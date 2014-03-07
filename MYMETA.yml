@@ -1,0 +1,23 @@
+---
+abstract: 'Interface to turboxsl xslt conversion library'
+author:
+  - 'Egor Voznessenski'
+build_requires:
+  ExtUtils::MakeMaker: 0
+configure_requires:
+  ExtUtils::MakeMaker: 0
+dynamic_config: 0
+generated_by: 'ExtUtils::MakeMaker version 6.82, CPAN::Meta::Converter version 2.120351'
+license: unknown
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: TurboXSLT
+no_index:
+  directory:
+    - t
+    - inc
+requires:
+  strict: 0
+  warnings: 0
+version: 1.0
