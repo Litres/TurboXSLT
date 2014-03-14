@@ -18,6 +18,40 @@ extern "C" {
 }
 #endif
 
+char *
+callbackfunc(void *fun, char **args)
+{
+int count,i;
+char *s;
+
+  dSP;
+
+  ENTER;
+  SAVETMPS;
+  PUSHMARK(SP);
+  for(i=0;args[i];++i) {
+    XPUSHs(sv_2mortal(newSVpv(args[i],0)));
+  }
+  PUTBACK;
+
+  count = call_sv(fun,G_SCALAR|G_EVAL);
+
+  SPAGAIN;
+  s = NULL;
+  if(count > 1)
+    croak("callback may return only single value\n");
+  if(count==1) {
+    s = xml_strdup(POPp);
+  }
+  PUTBACK;
+  FREETMPS;
+  LEAVE;	
+  return s;
+}
+
+
+
+
 
 MODULE = TurboXSLT   PACKAGE = TurboXSLT   PREFIX = xslt_
 
@@ -63,6 +97,14 @@ setvarg(gctx,name,val)
   char *val
 CODE:
   set_global_var(gctx,name,val);
+
+void
+xslt__register_callback(gctx,name,func)
+  XSLTGLOBALDATA *gctx
+  char *name
+  void *func
+CODE:
+  register_function(gctx,name,callbackfunc,func);
 
 
 MODULE = TurboXSLT   PACKAGE = XSLTGLOBALDATAPtr   PREFIX = gctx_

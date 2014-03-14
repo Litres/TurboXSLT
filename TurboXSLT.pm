@@ -40,6 +40,7 @@ sub new {
     my %options = @_;
     my $self = bless \%options, $class;
     $self->{TURBOXSL_GLOBAL_CONTEXT} = new XSLTGLOBALDATAPtr;
+    $self->{TURBOXSL_CALLBACKS} = {};
     return $self;
 }
 
@@ -59,6 +60,16 @@ sub ParseFile {
   my $self = shift;
   my $file = shift;
   return _parse_file($self->{TURBOXSL_GLOBAL_CONTEXT},$file);
+}
+
+sub RegisterCallback {
+  my $self = shift;
+  my $name = shift;
+  my $funp = shift;
+  unless($self->{TURBOXSL_CALLBACKS}->{$name}) {
+    $self->{TURBOXSL_CALLBACKS}->{$name} = $funp;
+    _register_callback($self->{TURBOXSL_GLOBAL_CONTEXT},$name,$funp);
+  }
 }
 
 sub Output {
@@ -83,7 +94,7 @@ sub SetVar {
     my $value = shift || '';
     setvarg($self->{TURBOXSL_GLOBAL_CONTEXT},$name,$value);
   } else {
-    warn "usage: TurboXSLT->SetVar(name[,value]";
+    warn "usage: TurboXSLT->SetVar(name[,value])";
   }
 }
 
