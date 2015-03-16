@@ -19,15 +19,17 @@ extern "C" {
 #endif
 
 char *
-callbackfunc(void *fun, char **args)
+callbackfunc(void *fun, char **args, void *interpreter)
 {
-int count,i;
-char *s;
-
+  PERL_SET_CONTEXT(interpreter);
   dSP;
+
+  int count,i;
+  char *s;
 
   ENTER;
   SAVETMPS;
+  
   PUSHMARK(SP);
   for(i=0;args[i];++i) {
     XPUSHs(sv_2mortal(newSVpv(args[i],0)));
@@ -45,7 +47,8 @@ char *s;
   }
   PUTBACK;
   FREETMPS;
-  LEAVE;	
+  LEAVE;
+
   return s;
 }
 
@@ -115,7 +118,7 @@ XSLTGLOBALDATA *
 gctx_new(package)
   char *package
   CODE:
-  RETVAL = XSLTInit();
+  RETVAL = XSLTInit(PERL_GET_CONTEXT);
   OUTPUT:
   RETVAL
 
