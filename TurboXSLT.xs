@@ -109,6 +109,13 @@ xslt__register_callback(gctx,name,func)
 CODE:
   register_function(gctx,name,callbackfunc,func);
 
+void
+xslt__enable_external_cache(gctx,list)
+  XSLTGLOBALDATA *gctx
+  char *list
+CODE:
+  XSLTEnableExternalCache(gctx,list);
+
 
 MODULE = TurboXSLT   PACKAGE = XSLTGLOBALDATAPtr   PREFIX = gctx_
 

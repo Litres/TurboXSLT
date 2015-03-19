@@ -44,6 +44,12 @@ sub new {
     return $self;
 }
 
+sub EnableExternalCache {
+  my $self = shift;
+  my $list = shift;
+  _enable_external_cache($self->{TURBOXSL_GLOBAL_CONTEXT},$list);
+}
+
 sub LoadStylesheet {
   my $self = shift;
   my $file = shift;
