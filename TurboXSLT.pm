@@ -50,12 +50,6 @@ sub EnableExternalCache {
   _enable_external_cache($self->{TURBOXSL_GLOBAL_CONTEXT},$list);
 }
 
-sub SetThreadPoolSize {
-  my $self = shift;
-  my $size = shift;
-  _set_thread_pool_size($self->{TURBOXSL_GLOBAL_CONTEXT},$size);
-}
-
 sub LoadStylesheet {
   my $self = shift;
   my $file = shift;
