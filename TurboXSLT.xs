@@ -116,6 +116,13 @@ xslt__enable_external_cache(gctx,list)
 CODE:
   XSLTEnableExternalCache(gctx,list);
 
+void
+xslt__set_thread_pool_size(gctx,size)
+  XSLTGLOBALDATA *gctx
+  unsigned int size
+CODE:
+  XSLTSetThreadPoolSize(gctx,size);
+
 
 MODULE = TurboXSLT   PACKAGE = XSLTGLOBALDATAPtr   PREFIX = gctx_
 
