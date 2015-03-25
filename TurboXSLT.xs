@@ -52,7 +52,23 @@ callbackfunc(void *fun, char **args, void *interpreter)
   return s;
 }
 
+HV *
+hash_from_attributes(char **attributes)
+{
+  unsigned int i;
+  
+  HV *hash = newHV();
+  if (attributes == NULL) return hash;
 
+  for(i = 0; attributes[i]; i += 2)
+  {
+    const char *key = newSVpv(attributes[i], 0);
+    const char *value = newSVpv(attributes[i + 1], 0);
+    hv_store(hash, key, strlen(key), value, 0);
+  }
+
+  return hash;
+}
 
 
 
@@ -62,27 +78,27 @@ XMLNODE *
 xslt__parse_str(gctx,str)
   XSLTGLOBALDATA *gctx
   char *str
-  CODE:
+CODE:
   RETVAL = XMLParse(gctx,str);
-  OUTPUT:
+OUTPUT:
   RETVAL
 
 XMLNODE *
 xslt__parse_file(gctx,str)
   XSLTGLOBALDATA *gctx
   char *str
-  CODE:
+CODE:
   RETVAL = XMLParseFile(gctx,str);
-  OUTPUT:
+OUTPUT:
   RETVAL
 
 char *
 xslt__output_str(gctx,doc)
   TRANSFORM_CONTEXT *gctx
   XMLNODE *doc
-  CODE:
+CODE:
   RETVAL = XMLOutput(gctx,doc);
-  OUTPUT:
+OUTPUT:
   RETVAL
 
 void
@@ -90,7 +106,7 @@ xslt__output_file(gctx,doc,filename)
   TRANSFORM_CONTEXT *gctx
   XMLNODE *doc
   char *filename
-  CODE:
+CODE:
   XMLOutputFile(gctx,doc,filename);
 
 void
@@ -124,15 +140,15 @@ PROTOTYPES: DISABLE
 XSLTGLOBALDATA *
 gctx_new(package)
   char *package
-  CODE:
+CODE:
   RETVAL = XSLTInit(PERL_GET_CONTEXT);
-  OUTPUT:
+OUTPUT:
   RETVAL
 
 void
 gctx_DESTROY(gctx)
   XSLTGLOBALDATA *gctx
-  CODE:
+CODE:
   XSLTEnd(gctx);
 
 
@@ -145,15 +161,15 @@ tctx_new(package,gctx,filename)
   char *package
   XSLTGLOBALDATA *gctx
   char *filename
-  CODE:
+CODE:
   RETVAL = XSLTNewProcessor(gctx,filename);
-  OUTPUT:
+OUTPUT:
   RETVAL
 
 void
 tctx_DESTROY(gctx)
   TRANSFORM_CONTEXT *gctx
-  CODE:
+CODE:
   XSLTFreeProcessor(gctx);
 
 void
@@ -167,9 +183,9 @@ XMLNODE *
 tctx_Transform(self,document)
   TRANSFORM_CONTEXT *self
   XMLNODE *document
-  CODE:
+CODE:
   RETVAL = XSLTProcess(self,document);
-  OUTPUT:
+OUTPUT:
   RETVAL
 
 void
@@ -184,9 +200,9 @@ char *
 tctx_Output(gctx,doc)
   TRANSFORM_CONTEXT *gctx
   XMLNODE *doc
-  CODE:
+CODE:
   RETVAL = XMLOutput(gctx,doc);
-  OUTPUT:
+OUTPUT:
   RETVAL
 
 void
@@ -194,13 +210,40 @@ tctx_OutputFile(gctx,doc,filename)
   TRANSFORM_CONTEXT *gctx
   XMLNODE *doc
   char *filename
-  CODE:
+CODE:
   XMLOutputFile(gctx,doc,filename);
+
+XMLNODE *
+tctx_FindNodes(self,document,expression)
+  TRANSFORM_CONTEXT *self
+  XMLNODE *document
+  char *expression
+CODE:
+  RETVAL = XMLFindNodes(self,document,expression);
+OUTPUT:
+  RETVAL
 
 MODULE = TurboXSLT   PACKAGE = XMLNODEPtr   PREFIX = node_
 
 void
 node_DESTROY(node)
   XMLNODE *node
-  CODE:
+CODE:
   XMLFreeDocument(node);
+
+char *
+node_StringValue(self)
+  XMLNODE *self
+CODE:
+  RETVAL = XMLStringValue(self);
+OUTPUT:
+  RETVAL
+
+HV *
+node_Attributes(self)
+  XMLNODE *self
+CODE:
+  HV *hash = hash_from_attributes(XMLAttributes(self));
+  RETVAL = newRV_noinc((SV *)hash);
+OUTPUT:
+  RETVAL
