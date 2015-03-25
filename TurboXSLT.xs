@@ -62,8 +62,8 @@ hash_from_attributes(char **attributes)
 
   for(i = 0; attributes[i]; i += 2)
   {
-    const char *key = newSVpv(attributes[i], 0);
-    const char *value = newSVpv(attributes[i + 1], 0);
+    const char *key = attributes[i];
+    SV *value = newSVpv(attributes[i + 1], 0);
     hv_store(hash, key, strlen(key), value, 0);
   }
 
