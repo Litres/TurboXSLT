@@ -239,7 +239,7 @@ CODE:
 OUTPUT:
   RETVAL
 
-HV *
+SV *
 node_Attributes(self)
   XMLNODE *self
 CODE:
