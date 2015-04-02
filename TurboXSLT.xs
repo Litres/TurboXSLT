@@ -179,6 +179,13 @@ tctx_CreateThreadPool(self,size)
 CODE:
   XSLTCreateThreadPool(self,size);
 
+void
+tctx_SetCacheKeyPrefix(self,prefix)
+  TRANSFORM_CONTEXT *self
+  char *prefix
+CODE:
+  XSLTSetCacheKeyPrefix(self,prefix);
+
 XMLNODE *
 tctx_Transform(self,document)
   TRANSFORM_CONTEXT *self
