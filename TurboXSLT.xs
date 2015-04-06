@@ -132,6 +132,14 @@ xslt__enable_external_cache(gctx,list)
 CODE:
   XSLTEnableExternalCache(gctx,list);
 
+void
+xslt__add_url_revision(gctx,url,revision)
+  XSLTGLOBALDATA *gctx
+  char *url
+  char *revision
+CODE:
+  XSLTAddURLRevision(gctx,url,revision);
+
 
 MODULE = TurboXSLT   PACKAGE = XSLTGLOBALDATAPtr   PREFIX = gctx_
 
@@ -185,6 +193,13 @@ tctx_SetCacheKeyPrefix(self,prefix)
   char *prefix
 CODE:
   XSLTSetCacheKeyPrefix(self,prefix);
+
+void
+tctx_SetURLLocalPrefix(self,prefix)
+  TRANSFORM_CONTEXT *self
+  char *prefix
+CODE:
+  XSLTSetURLLocalPrefix(self,prefix);
 
 XMLNODE *
 tctx_Transform(self,document)

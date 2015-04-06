@@ -50,6 +50,13 @@ sub EnableExternalCache {
   _enable_external_cache($self->{TURBOXSL_GLOBAL_CONTEXT},$list);
 }
 
+sub AddURLRevision {
+  my $self = shift;
+  my $url = shift;
+  my $revision = shift;
+  _add_url_revision($self->{TURBOXSL_GLOBAL_CONTEXT},$url,$revision);
+}
+
 sub LoadStylesheet {
   my $self = shift;
   my $file = shift;
