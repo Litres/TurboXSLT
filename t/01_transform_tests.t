@@ -16,7 +16,7 @@ for (readdir(TESTSDIR)){
 closedir TESTSDIR;
 
 
-plan(tests => (scalar @XSLs)*3 + 2);
+plan(tests => (scalar @XSLs)*6 + 2);
 
 ok(@XSLs > 0, "Tests loaded");
 
@@ -53,5 +53,10 @@ for my $XSL (@XSLs){
 	close OUTFILE;
 	$ExpectedOut = Encode::decode_utf8($ExpectedOut);
 
-	cmp_ok($Out, 'eq', $ExpectedOut, "Transformation $XSL works as expected");
+	cmp_ok($Out, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
+	for (0..10){
+		my $FakeRes = $ctx->Output($ctx->Transform($doc));
+	}
+	my $FinalRes = $ctx->Output($ctx->Transform($doc));
+	cmp_ok($FinalRes, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
 }
