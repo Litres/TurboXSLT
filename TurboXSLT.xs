@@ -58,7 +58,7 @@ hash_from_attributes(char **attributes)
   unsigned int i;
   
   HV *hash = newHV();
-  if (attributes == NULL) return hash;
+  if(attributes == NULL) return hash;
 
   for(i = 0; attributes[i]; i += 2)
   {
@@ -160,7 +160,7 @@ CODE:
   XSLTEnd(gctx);
 
 
-MODULE = TurboXSLT   PACKAGE = TRANSFORM_CONTEXTPtr   PREFIX = tctx_
+MODULE = TurboXSLT   PACKAGE = TurboXSLT::Stylesheet   PREFIX = tctx_
 
 PROTOTYPES: DISABLE
 
@@ -245,7 +245,7 @@ CODE:
 OUTPUT:
   RETVAL
 
-MODULE = TurboXSLT   PACKAGE = XMLNODEPtr   PREFIX = node_
+MODULE = TurboXSLT   PACKAGE = TurboXSLT::Node   PREFIX = node_
 
 void
 node_DESTROY(node)

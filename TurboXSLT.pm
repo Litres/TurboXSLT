@@ -60,7 +60,7 @@ sub AddURLRevision {
 sub LoadStylesheet {
   my $self = shift;
   my $file = shift;
-  return new TRANSFORM_CONTEXTPtr($self->{TURBOXSL_GLOBAL_CONTEXT}, $file);
+  return new TurboXSLT::Stylesheet($self->{TURBOXSL_GLOBAL_CONTEXT}, $file);
 }
 
 sub Parse {
