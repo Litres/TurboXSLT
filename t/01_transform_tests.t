@@ -11,12 +11,12 @@ opendir TESTSDIR, $TestsFolder;
 
 my @XSLs;
 for (readdir(TESTSDIR)){
-	push @XSLs,$1 if /(\w+)\.xsl$/;
+	push @XSLs,$1 if /(.+)\.xsl$/;
 }
 closedir TESTSDIR;
 
 
-plan(tests => (scalar @XSLs)*6 + 2);
+plan(tests => (scalar @XSLs)*13 + 2);
 
 ok(@XSLs > 0, "Tests loaded");
 
@@ -27,43 +27,49 @@ for my $XSL (@XSLs){
 	my $XSLFile = "$TestsFolder/$XSL.xsl";
 	my $XMLFile = "$TestsFolder/$XSL.xml";
 	my $Expectance = "$TestsFolder/$XSL.out";
+	for my $Multithreads(0,1){
+		my $ctx = $engine->LoadStylesheet($XSLFile);
+		isa_ok($ctx, 'TurboXSLT::Stylesheet', "Stylesheet $XSL.xsl load");
 
-	my $ctx = $engine->LoadStylesheet($XSLFile);
-	isa_ok($ctx, 'TurboXSLT::Stylesheet', "Stylesheet $XSL.xsl load");
+		if ($Multithreads){
+			$ctx->CreateThreadPool(4);
+			pass("CreateThreadPool(4) - no die");
+		}
 
-	my $XML;
-	open XMLFILE, "<$XMLFile";
-	read(XMLFILE, $XML, -s $XMLFile);
-	close XMLFILE;
-	$XML = Encode::decode_utf8($XML);
+		my $XML;
+		open(XMLFILE, "<$XMLFile") or die "Can't open $XMLFile";
+		read(XMLFILE, $XML, -s $XMLFile);
+		close XMLFILE;
+		$XML = Encode::decode_utf8($XML);
 
-	my $doc = $engine->Parse($XML);
+		my $doc = $engine->Parse($XML);
 
-	isa_ok($doc, 'TurboXSLT::Node', "Parse $XSL.xml document");
+		isa_ok($doc, 'TurboXSLT::Node', "Parse $XSL.xml document");
 
-	my $res = $ctx->Transform($doc);
-	isa_ok($res, 'TurboXSLT::Node', "DOM after $XSL transform");
+		my $res = $ctx->Transform($doc);
+		isa_ok($res, 'TurboXSLT::Node', "DOM after $XSL transform");
 
-	my $Out = Encode::decode_utf8($ctx->Output($res));
-	ok($Out, "Some text output from $XSLFile transform");
-	$Out =~ s/\s+/ /g;
+		my $Out = Encode::decode_utf8($ctx->Output($res));
+		ok($Out, "Some text output from $XSLFile transform");
+		$Out =~ s/\s+/ /g;
 
-	my $ExpectedOut;
-	open OUTFILE, "<$Expectance";
-	read(OUTFILE, $ExpectedOut, -s $Expectance);
-	close OUTFILE;
-	$ExpectedOut = Encode::decode_utf8($ExpectedOut);
-	$ExpectedOut =~ s/\s+/ /g;
+		my $ExpectedOut;
+		open OUTFILE, "<$Expectance";
+		read(OUTFILE, $ExpectedOut, -s $Expectance);
+		close OUTFILE;
+		$ExpectedOut = Encode::decode_utf8($ExpectedOut);
+		$ExpectedOut =~ s/\s+/ /g;
 
-	cmp_ok($Out, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
-	for (0..10){
-		my $FakeRes = $ctx->Output($ctx->Transform($doc));
+		cmp_ok($Out, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
+		for (0..10){
+			my $FakeRes = $ctx->Output($ctx->Transform($doc));
+		}
+		my $FinalRes = Encode::decode_utf8($ctx->Output($ctx->Transform($doc)));
+
+		$FinalRes =~ s/\s+/ /g;
+
+		cmp_ok($FinalRes, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
 	}
-	my $FinalRes = Encode::decode_utf8($ctx->Output($ctx->Transform($doc)));
-
-	$FinalRes =~ s/\s+/ /g;
-
-	cmp_ok($FinalRes, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
 }
 
 exit;
