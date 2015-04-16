@@ -44,19 +44,26 @@ for my $XSL (@XSLs){
 	my $res = $ctx->Transform($doc);
 	isa_ok($res, 'TurboXSLT::Node', "DOM after $XSL transform");
 
-	my $Out = $ctx->Output($res);
+	my $Out = Encode::decode_utf8($ctx->Output($res));
 	ok($Out, "Some text output from $XSLFile transform");
+	$Out =~ s/\s+/ /g;
 
 	my $ExpectedOut;
 	open OUTFILE, "<$Expectance";
 	read(OUTFILE, $ExpectedOut, -s $Expectance);
 	close OUTFILE;
 	$ExpectedOut = Encode::decode_utf8($ExpectedOut);
+	$ExpectedOut =~ s/\s+/ /g;
 
 	cmp_ok($Out, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
 	for (0..10){
 		my $FakeRes = $ctx->Output($ctx->Transform($doc));
 	}
-	my $FinalRes = $ctx->Output($ctx->Transform($doc));
+	my $FinalRes = Encode::decode_utf8($ctx->Output($ctx->Transform($doc)));
+
+	$FinalRes =~ s/\s+/ /g;
+
 	cmp_ok($FinalRes, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
 }
+
+exit;
