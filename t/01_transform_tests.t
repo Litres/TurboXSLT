@@ -15,6 +15,8 @@ for (readdir(TESTSDIR)){
 }
 closedir TESTSDIR;
 
+@XSLs = sort {$b cmp $a} @XSLs;
+
 
 plan(tests => (scalar @XSLs)*13 + 2);
 
