@@ -6,7 +6,6 @@
 	</head>
 	<body>
 		<xsl:value-of select="@username | @fullname"/><br/>
-		<xsl:value-of select="@fullname | @username"/><br/>
 	</body>
 </xsl:template>
 
