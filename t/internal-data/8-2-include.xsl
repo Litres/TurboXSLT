@@ -11,6 +11,6 @@
   </div>
 </xsl:template>
 
-<xsl:include href="8xslincludefile.xsl" />
+<xsl:include href="8xslincludefile.xml" />
 
 </xsl:stylesheet>
