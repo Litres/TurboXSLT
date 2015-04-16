@@ -53,14 +53,14 @@ for my $XSL (@XSLs){
 
 		my $Out = Encode::decode_utf8($ctx->Output($res));
 		ok($Out, "Some text output from $XSLFile transform");
-		$Out =~ s/\s+/ /g;
+		$Out = Cleanup($Out);
 
 		my $ExpectedOut;
 		open OUTFILE, "<$Expectance";
 		read(OUTFILE, $ExpectedOut, -s $Expectance);
 		close OUTFILE;
 		$ExpectedOut = Encode::decode_utf8($ExpectedOut);
-		$ExpectedOut =~ s/\s+/ /g;
+		$ExpectedOut  = Cleanup($ExpectedOut);
 
 		cmp_ok($Out, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
 		for (0..10){
@@ -68,10 +68,16 @@ for my $XSL (@XSLs){
 		}
 		my $FinalRes = Encode::decode_utf8($ctx->Output($ctx->Transform($doc)));
 
-		$FinalRes =~ s/\s+/ /g;
+		$FinalRes  = Cleanup($FinalRes);
 
 		cmp_ok($FinalRes, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
 	}
+}
+
+sub Cleanup {
+	$_ = shift;
+	s/^\s+|\s+$//g;
+	s/\s+/ /g;
 }
 
 exit;
