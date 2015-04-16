@@ -70,7 +70,7 @@ for my $XSL (@XSLs){
 
 		$FinalRes  = Cleanup($FinalRes);
 
-		cmp_ok($FinalRes, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
+		cmp_ok($FinalRes, 'eq', $ExpectedOut, "10-time transformation $XSL works as expected");
 	}
 }
 
