@@ -1,2 +1,2 @@
 <?xml version="1.0"?>
-<div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="corners " id="sortby" style="color:blue;">12345</div>
+<div style="color:blue;" id="sortby" class="corners ">12345</div>
