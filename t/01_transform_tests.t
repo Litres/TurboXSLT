@@ -81,6 +81,7 @@ sub Cleanup {
 	$_ = shift;
 	s/^\s+|\s+$//g;
 	s/\s+/ /g;
+	return $_;
 }
 
 exit;
