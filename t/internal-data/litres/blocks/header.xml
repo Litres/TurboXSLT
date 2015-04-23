@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<!-- [37976] Новая шапка ЛитРес в АБ-тест - адаптивная сетка -->
+	<xsl:template name="header">
+		<xsl:variable name="active">
+			<xsl:choose>
+				<xsl:when test="/xportal/xportal-page/page-data[genres_tree or biblio_genres or biblio_genre_by_date or biblio_subgenre_by_pop or biblio_subgenre_by_date or genre_recomended_arts or subgenre_recomended_arts]">genres</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data[new_books or on_sale_soon]">new</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data[biblio_ratings or book_ratings or author_ratings]">popular</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/cms/article/@id = 3255">what_to_read</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/cms/article/@id = 4">company</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/biblio_news">news_and_events</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/cms/article[@id = 4673 or @id = 375]">contacts</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/cms/article/@id = 5016">app</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/cms/article[@id = 4670 or @id = 4044]">help</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/gift_cards">gift_cards</xsl:when>
+				<!--<xsl:when test="$atype='text'">text</xsl:when>-->
+				<xsl:when test="/xportal/xportal-page/page-data/put_money_on_account/put-money-on-account[@descr = 18]">activate_coupon</xsl:when>
+				<xsl:when test="$atype='audio'">audio</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
+		<!-- кол-во итемов для моих книг и корзины. Если больше, отображаем скроллбар -->
+		<xsl:variable name="max_items">4</xsl:variable>
+		<div class="ab-logo block_td">
+			<xsl:if test="/xportal/xportal-page/page-data/homepage">
+				<xsl:attribute name="itemscope">itemscope</xsl:attribute>
+				<xsl:attribute name="itemtype">http://schema.org/Organization</xsl:attribute>
+				<meta itemprop="logo" content="http://www.litres.ru/static/new/i/new/logo.png"/>
+				<meta itemprop="url" content="http://www.litres.ru/"/>
+			</xsl:if>
+			<xsl:variable name="logo">
+				<span><xsl:attribute name="title"><xsl:call-template name="site_title"/></xsl:attribute><xsl:call-template name="site_title"/></span>
+			</xsl:variable>
+			<xsl:choose>
+				<xsl:when test="/xportal/xportal-page/page-data/homepage and not(/xportal/formdata/@*)">
+					<xsl:copy-of select="$logo"/>
+				</xsl:when>
+				<xsl:otherwise><a href="{ltr:url_code('')}"><xsl:copy-of select="$logo"/></a></xsl:otherwise>
+			</xsl:choose>
+		</div>
+		<div class="ab-nav block_td">
+			<div class="ab-topmenu">
+				<ul>
+					<!--<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Электронные книги</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('','atype','text')"/>
+						<xsl:with-param name="active" select="$active='text'"/>
+						<xsl:with-param name="check" select="$active='text' and not(/xportal/xportal-page/page-data/homepage)"/>
+					</xsl:call-template>-->
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Жанры</xsl:with-param>
+						<xsl:with-param name="id">genres_popup</xsl:with-param>
+						<xsl:with-param name="class">ab_genre</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('genres_tree','-atype')"/>
+						<xsl:with-param name="active" select="$active='genres'"/>
+						<xsl:with-param name="check" select="$active='genres' and not(/xportal/xportal-page/page-data/genres_tree)"/>
+					</xsl:call-template>
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Новинки</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('new_books','-atype')"/>
+						<xsl:with-param name="active" select="$active='new'"/>
+					</xsl:call-template>
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Популярное</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('book_ratings','period',2,'type',1,'-atype')"/>
+						<xsl:with-param name="active" select="$active='popular'"/>
+					</xsl:call-template>
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Аудиокниги</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('','atype','audio')"/>
+						<xsl:with-param name="active" select="$active='audio'"/>
+						<xsl:with-param name="check" select="$active='audio' and not(/xportal/xportal-page/page-data/homepage)"/>
+					</xsl:call-template>
+					<xsl:if test="not(chk:check_rights('chk_hide_shop_feautures'))">
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Подарочные карты</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('gift_cards')"/>
+						<xsl:with-param name="active" select="$active='gift_cards'"/>
+					</xsl:call-template>
+					</xsl:if>
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Что читать?</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('cms','page','3255')"/>
+						<xsl:with-param name="active" select="$active='what_to_read'"/>
+						<!--<xsl:with-param name="class">ab-hide-1540</xsl:with-param>-->
+					</xsl:call-template>
+				</ul>
+			</div>
+			<div class="ab-search">
+				<xsl:comment>noindex</xsl:comment>
+					<form action="{ltr:url_code('biblio_search')}" method="get">
+						<button id="go" class="searchbutn coolbtn btn-orange"><span>Найти</span></button>
+						<div id="q-cell">
+							<input name="q" value="{/xportal/formdata/@q}" type="text" id="q" class="top_search_input" placeholder="Введите название книги или имя автора" maxlength="150" autocomplete="off"/>
+						</div>
+					</form>
+				<xsl:comment>/noindex</xsl:comment>
+			</div>
+		</div>
+		<div class="ab-userlinks block_td">
+			<div class="ab-topmenu">
+				<ul>
+					<xsl:choose>
+						<xsl:when test="chk:check_rights('chk_hide_shop_feautures')">
+							<xsl:call-template name="ab-nav_menu">
+								<xsl:with-param name="text">О компании</xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('cms','page','4')"/>
+								<xsl:with-param name="active" select="$active='company'"/>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="ab-nav_menu">
+								<xsl:with-param name="text">Активировать купон</xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('put_money_on_account','descr','18')"/>
+								<xsl:with-param name="active" select="$active='activate_coupon'"/>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Новости</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('cms','page','3735')"/>
+						<xsl:with-param name="active" select="$active='news_and_events'"/>
+					</xsl:call-template>
+					<xsl:if test="not(chk:check_rights('chk_hide_shop_feautures'))">
+						<xsl:call-template name="ab-nav_menu">
+							<xsl:with-param name="text">Партнерам</xsl:with-param>
+							<xsl:with-param name="href">
+								<xsl:choose>
+									<xsl:when test="chk:check_rights('lib_user_returns_book')"><xsl:value-of select="ltr:url_code('cms','page','4673')"/></xsl:when>
+									<xsl:otherwise><xsl:value-of select="ltr:url_code('staticpages','page','partner')"/></xsl:otherwise>
+								</xsl:choose>
+							</xsl:with-param>
+							<xsl:with-param name="active" select="$active='contacts'"/>
+						</xsl:call-template>
+					</xsl:if>
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Приложения</xsl:with-param>
+						<xsl:with-param name="href" select="ltr:url_code('cms','page','5016')"/>
+						<xsl:with-param name="active" select="$active='app'"/>
+					</xsl:call-template>
+					<xsl:call-template name="ab-nav_menu">
+						<xsl:with-param name="text">Помощь</xsl:with-param>
+						<xsl:with-param name="href">
+							<xsl:choose>
+							<xsl:when test="chk:check_rights('chk_hide_shop_feautures')"><xsl:value-of select="ltr:url_code('cms','page','4670')"/></xsl:when>
+							<xsl:otherwise><xsl:value-of select="ltr:url_code('cms','page','4044')"/></xsl:otherwise>
+						</xsl:choose>
+						</xsl:with-param>
+						<xsl:with-param name="active" select="$active='help'"/>
+					</xsl:call-template>
+				</ul>
+			</div>
+			<div class="ab-userinfo">
+				<ul>
+					<xsl:attribute name="class">block_relative
+						<xsl:choose>
+							<xsl:when test="$user_id = 0"><xsl:text> </xsl:text>unreg</xsl:when>
+							<xsl:when test="$user_id &gt; 0 and not(com_messages/message)"><xsl:text> </xsl:text>no_info</xsl:when>
+						</xsl:choose>
+					</xsl:attribute>
+					<xsl:choose>
+						<xsl:when test="$user_id = 0">
+							<xsl:call-template name="ab-userlink">
+								<xsl:with-param name="class">login</xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('login')"/>
+								<xsl:with-param name="content">
+									<xsl:choose>
+										<xsl:when test="chk:check_rights('chk_hide_shop_feautures')">Войти в библиотеку</xsl:when>
+										<xsl:otherwise>Вход и регистрация</xsl:otherwise>
+									</xsl:choose>
+								</xsl:with-param>
+								<xsl:with-param name="dropdown"><div class="ab-block-padding"><xsl:call-template name="login-bubble"/></div></xsl:with-param>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="ab-userlink">
+								<xsl:with-param name="class">user</xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('my_settings')"/>
+								<xsl:with-param name="content">
+									<img alt="" src="{ltr:veristat_local('i/header/popup/avatar.svg')}" width="26" height="26">
+										<xsl:if test="/xportal/xportal-page[@browser='ie' and @agent_version_major &lt;= 8]"><xsl:attribute name="src"><xsl:value-of select="ltr:veristat_local('adaptive/images/popup/avatar.png')"/></xsl:attribute></xsl:if>
+									</img>
+									<span><xsl:value-of select="$user_name"/></span>
+								</xsl:with-param>
+								<xsl:with-param name="dropdown">
+									<div class="ab-block-padding">
+										<div class="blocks">
+											<div class="block_left block_cover">
+												<img alt="" src="{ltr:veristat_local('i/header/popup/avatar.svg')}" width="48" height="48">
+													<xsl:if test="/xportal/xportal-page[@browser='ie' and @agent_version_major &lt;= 8]"><xsl:attribute name="src"><xsl:value-of select="ltr:veristat_local('adaptive/images/popup/avatar-big.png')"/></xsl:attribute></xsl:if>
+												</img>
+											</div>
+											<div class="ab-block">
+												<div class="caption"><strong><xsl:value-of select="$user_name"/></strong></div>
+												<ul>
+													<li><a href="{ltr:url_code('my_settings')}">Ваш профиль</a><br /></li>
+													<xsl:if test="chk:check_rights('chk_reader_partner')">
+														<li><a href="{ltr:url_code('show_reader_partner_stats')}">Статистика партнёра</a></li>
+													</xsl:if>
+													<!--<li><a href="{ltr:url_code('my_settings')}">Настройки</a></li>-->
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- ждем бэкенд
+									<div class="ab-block-padding">
+										<div class="blocks">
+											<div class="block_left block_cover"></div>
+											<div class="ab-block">
+												<div class="caption">Бонусный уровень: <strong>золотой</strong></div>
+												<a href="{ltr:url_code('cms','page','4732')}" class="icon icon-question">Что такое бонусы?</a>
+											</div>
+										</div>
+									</div>-->
+									<div class="ab-block-padding ab-block-gray">
+										<a href="{ltr:url_code('logoff')}" class="icon icon-exit">Выход</a>
+									</div>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:if test="$user_id = 0 or ($user_id &gt; 0 and com_messages/message)">
+						<xsl:call-template name="ab-userlink">
+							<xsl:with-param name="class">info</xsl:with-param>
+							<xsl:with-param name="content">
+								<xsl:choose>
+									<xsl:when test="$user_id = 0">1</xsl:when>
+									<xsl:otherwise><xsl:value-of select="count(/xportal/xportal-page/com_messages/message)"/></xsl:otherwise>
+								</xsl:choose>
+							</xsl:with-param>
+							<xsl:with-param name="dropdown">
+								<xsl:choose>
+										<xsl:when test="$user_id = 0">
+											<xsl:call-template name="ab-info">
+												<xsl:with-param name="message">
+													<a href="{ltr:url_code('registration')}" class="ab-registration">Зарегистрируйтесь сейчас</a> и&#160;получите 10&#160;бесплатных книг&#160;в&#160;подарок!
+												</xsl:with-param>
+											</xsl:call-template>
+											<div class="ab-block-padding ab-block-gray">
+												Уже регистрировались? <a href="{ltr:url_code('login')}"  class="ab-login">Войти</a>
+											</div>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:apply-templates select="com_messages/message" mode="ab-info"/>
+										</xsl:otherwise>
+									</xsl:choose>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:if>
+						<xsl:choose>
+						<xsl:when test="$user_id = 0 and chk:check_rights('chk_hide_shop_feautures')">
+							<xsl:call-template name="ab-userlink">
+								<xsl:with-param name="class">service</xsl:with-param>
+								<xsl:with-param name="content">О сервисе</xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('cms','page','4599')"/>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:when test="$user_id = 0">
+							<xsl:call-template name="ab-userlink">
+								<xsl:with-param name="class">free</xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('biblio_collection','collection',4)"/>
+								<xsl:with-param name="content">Бесплатные книги</xsl:with-param>
+								<xsl:with-param name="dropdown">
+									<div class="ab-block-padding">
+										10 книг в подарок и доступ к сотням бесплатных книг сразу после <a href="{ltr:url_code('registration')}"  class="ab-registration">регистрации</a>
+									</div>
+									<div class="ab-block-padding ab-block-gray">
+										Уже регистрировались? <a href="{ltr:url_code('login')}"  class="ab-login">Войти</a>
+									</div>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="ab-userlink">
+								<xsl:with-param name="class">ab-books<xsl:if test="/xportal/xportal-page/page-data/my_books"><xsl:text> </xsl:text>no_active</xsl:if></xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('my_books')"/>
+								<xsl:with-param name="content">Мои книги</xsl:with-param>
+								<xsl:with-param name="dropdown">
+									<div class="ab-block-padding ab-block-border_b">
+										<a href="{ltr:url_code('my_books')}" class="coolbtn btn-orange">Показать все мои книги <span class="arr"></span></a>
+									</div>
+									<div>
+										<xsl:if test="/xportal_rmd/purchased-arts/art[position() &gt; $max_items]"><xsl:attribute name="class">scrollbar</xsl:attribute><xsl:attribute name="id">scrollbar_books</xsl:attribute></xsl:if>
+										<xsl:apply-templates select="/xportal_rmd/purchased-arts/art" mode="litres-header-books"/>
+									</div>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:choose>
+						<xsl:when test="$user_id = 0 or chk:check_rights('chk_hide_shop_feautures')"/>
+						<xsl:otherwise>
+							<xsl:variable name="cash">
+								<xsl:choose>
+									<xsl:when test="/xportal/xportal-page/@is-librarian = 1"><xsl:value-of select="lib-info/@account"/></xsl:when>
+									<xsl:otherwise><xsl:call-template name="user_account_bonus"><xsl:with-param name="show_decimal" select="1"/></xsl:call-template></xsl:otherwise>
+								</xsl:choose>
+							</xsl:variable>
+							<xsl:call-template name="ab-userlink">
+								<xsl:with-param name="class">cash</xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('put_money_on_account')"/>
+								<xsl:with-param name="content">
+									<xsl:choose>
+										<!-- Если нет на счете денег и есть бонусы, показывать в статус строке бонусы -->
+										<xsl:when test="/xportal_rmd/user/@account &lt;= 0 and /xportal_rmd/user/@money_bonus &gt; 0">
+											<xsl:call-template name="format_price_number">
+												<xsl:with-param name="price" select="/xportal_rmd/user/@money_bonus"/>
+											</xsl:call-template> б.
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:call-template name="format_price_number">
+												<xsl:with-param name="price">
+													<xsl:value-of select="$cash"/>
+												</xsl:with-param>
+											</xsl:call-template> р.
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:with-param>
+								<xsl:with-param name="dropdown">
+									<div class="ab-block-padding">
+											<div class="caption">На счёте: <strong><xsl:value-of select="format-number($cash,' # ##0,00', 'filesize')"/> руб.</strong></div>
+											<xsl:call-template name="cool_input">
+												<xsl:with-param name="class">btn-green font-11 font-uppercase</xsl:with-param>
+												<xsl:with-param name="text">Пополнить счёт</xsl:with-param>
+												<xsl:with-param name="href" select="ltr:url_code('put_money_on_account')"/>
+												<xsl:with-param name="type">href</xsl:with-param>
+											</xsl:call-template>
+										</div>
+										<xsl:if test="/xportal_rmd/user/@money_bonus !=0">
+											<xsl:variable name="account_bonus">
+												<xsl:choose>
+													<xsl:when test="substring-after(/xportal_rmd/user/@money_bonus, '.') &gt; 0"><xsl:value-of select="format-number(/xportal_rmd/user/@money_bonus,'0,00', 'rub')"/></xsl:when>
+													<xsl:otherwise><xsl:value-of select="substring-before(@money_bonus, '.')"/></xsl:otherwise>
+												</xsl:choose>
+											</xsl:variable>
+											<div class="ab-block-padding bonuses-block">
+												<div class="caption">Бонусов: <strong><xsl:value-of select="$account_bonus"/></strong></div>
+												<a href="{ltr:url_code('cms','page','4732')}" class="icon icon-question">На что можно потратить бонусы?</a>
+											</div>
+										</xsl:if>
+										<!--<div class="ab-block-padding ab-block-gray">
+											<a href="{ltr:url_code('put_money_on_account')}">Пополните счет</a> более чем на 500 руб. и получите 100 бонусных рублей в подарок.
+										</div>-->
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+					<!-- корзина -->
+					<xsl:choose>
+						<xsl:when test="$user_id = 0 and chk:check_rights('chk_hide_shop_feautures')"/>
+						<!--<xsl:when test="chk:check_rights('chk_hide_shop_feautures')"><li class="biblio_operations"><a href="{ltr:url_code('my_account')}"><span>История операций</span></a></li></xsl:when>-->
+						<xsl:otherwise>
+							<xsl:variable name="basket_items">
+								<xsl:choose>
+									<xsl:when test="/xportal_rmd/basket-items/art"><xsl:value-of select="count(/xportal_rmd/basket-items/art)"/></xsl:when>
+									<xsl:otherwise>0</xsl:otherwise>
+								</xsl:choose>
+							  </xsl:variable>
+							  <xsl:call-template name="ab-userlink">
+								<xsl:with-param name="class">basket<xsl:if test="/xportal_rmd/biblio_basket[not(custom_set)]"><xsl:text> </xsl:text>no_active</xsl:if></xsl:with-param>
+								<xsl:with-param name="href" select="ltr:url_code('biblio_basket')"/>
+								<xsl:with-param name="content">
+									<span class="basket_not_empty">
+									  <xsl:if test="$basket_items = 0"><xsl:attribute name="style">display:none;</xsl:attribute></xsl:if>
+										<!--<span class="ab-hide-1280">-->
+											Корзина (<!--</span>--><span class="litres-header_basket_spl_title_num"><xsl:value-of select="$basket_items"/></span><!--<span class="ab-hide-1280">-->)
+										<!--</span>-->
+									</span>
+									<span class="basket_empty"><xsl:if test="$basket_items &gt; 0"><xsl:attribute name="style">display:none;</xsl:attribute></xsl:if>Корзина пуста</span>
+								</xsl:with-param>
+								<xsl:with-param name="dropdown">
+									<div id="fast_basket_spl">
+										<xsl:attribute name="class">fast_basket<xsl:if test="/xportal_rmd/basket-items/art[position() &gt; $max_items]"><xsl:text> </xsl:text>scrollbar</xsl:if></xsl:attribute>
+										<xsl:apply-templates select="/xportal_rmd/basket-items/art" mode="litres-header-books"/>
+									</div>
+									<div class="ab-block-padding ab-block-gray">
+										<div class="blocks">
+											<div class="block_left">
+												<a href="{ltr:url_code('biblio_basket')}">Перейти в корзину</a>
+											</div>
+											<div class="block_right">
+												<xsl:if test="not(chk:check_rights('do_libchild_give_art') or chk:check_rights('chk_hide_shop_feautures'))">
+													<xsl:variable name="full_price"><xsl:call-template name="full_price"><xsl:with-param name="nnode" select="fast-basket/fast_basket_item"/></xsl:call-template></xsl:variable>
+													<xsl:call-template name="buy">
+														<xsl:with-param name="class">btn-green font-11</xsl:with-param>
+														<xsl:with-param name="id">buyall_btn</xsl:with-param>
+														<xsl:with-param name="text">Купить за <span id="total_qbasket_summ"><xsl:value-of select="format-number($full_price,'#0,00','rub')"/></span><xsl:call-template name="roubles"/></xsl:with-param>
+														<xsl:with-param name="basket">true</xsl:with-param><!-- basket=true отвечает за покупку корзины без xml -->
+														<xsl:with-param name="onclick">
+															<xsl:if test="not(count(fast-basket/fast_basket_item[@type='13' or @type='3' or @type='12']) &gt; 0)">
+																PurchaseBasket({
+																	amount:<xsl:value-of select="/xportal/xportal-page/@money_amount"/>,
+																	price: $(this).find('#total_qbasket_summ').text()
+																	<xsl:if test="/xportal/formdata/@custom_set">,custom_set:<xsl:value-of select="/xportal/formdata/@custom_set"/></xsl:if>
+																});return false;
+															</xsl:if>
+														</xsl:with-param>
+													</xsl:call-template>
+												</xsl:if>
+											</div>
+										</div>
+									</div>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+				</ul>
+			</div>
+		</div>
+	</xsl:template>
+	<xsl:template name="ab-info">
+		<xsl:param name="message"/>
+		<div class="ab-block-padding ab-block-info" id="top_mess_{@id}">
+			<div class="blocks block_relative">
+				<a class="my-mess icon icon-close" title="Удалить сообщение">
+					<xsl:if test="$user_id &gt; 0 and @id">
+						<xsl:variable name="currpage"><xsl:call-template name="safe_fill_url"/>,action,communicator_killmsgs,box,104,items,<xsl:value-of select="@id"/></xsl:variable>
+						<xsl:attribute name="href"><xsl:value-of select="ltr:url_code($currpage)"/></xsl:attribute>
+						<xsl:attribute name="onclick">return DropMessage(<xsl:value-of select="@id"/>)</xsl:attribute>
+					</xsl:if>
+				</a>
+				<div class="block_left block_cover"/>
+				<div class="ab-block"><xsl:copy-of select="$message"/></div>
+			</div>
+		</div>
+	</xsl:template>
+	<xsl:template match="message" mode="ab-info">
+		<xsl:call-template name="ab-info">
+			<xsl:with-param name="message">
+				<div class="caption"><xsl:value-of select="@subject"/></div>
+				<xsl:call-template name="spoiler">
+				<xsl:with-param name="title">Подробнее</xsl:with-param>
+				<xsl:with-param name="noimg">1</xsl:with-param>
+				<xsl:with-param name="contents">
+					<xsl:apply-templates select="msg_body/hidden/*"/>
+				</xsl:with-param>
+			</xsl:call-template>
+			</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="art" mode="litres-header-books">
+		<xsl:variable name="type">
+			<xsl:choose>
+				<xsl:when test="name(../.) = 'purchased-arts'">payed</xsl:when>
+				<xsl:otherwise>basket</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="author_id">
+			<xsl:choose>
+				<xsl:when test="@type = 12"><xsl:value-of select="related-person/@author_id"/></xsl:when>
+				<xsl:otherwise><xsl:value-of select="@author_id"/></xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="author-name">
+			<xsl:choose>
+				<xsl:when test="@type = 12"><xsl:value-of select="related-person/@author_name"/></xsl:when>
+				<xsl:otherwise><xsl:value-of select="@author-name"/></xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<div class="ab-block-padding">
+			<xsl:if test="$type = 'basket'"><xsl:attribute name="id">basketitem_<xsl:value-of select="@id"/></xsl:attribute></xsl:if>
+			<div class="blocks block_relative">
+				<xsl:if test="$type = 'basket'"><xsl:call-template name="del_fast_basket_item_btn"><xsl:with-param name="class">icon icon-close</xsl:with-param></xsl:call-template></xsl:if>
+				<div class="block_left cover type{@type}">
+					<a href="{ltr:url_code('biblio_book','art',@id)}">
+						<xsl:variable name="new_w">37</xsl:variable>
+						<img width="{$new_w}">
+							<xsl:if test="@cover_h != 0"><xsl:attribute name="height"><xsl:value-of select="floor($new_w * @cover_h div @cover_w)"/></xsl:attribute></xsl:if>
+							<xsl:attribute name="alt">
+								<!--<xsl:call-template name="imin_type"><xsl:with-param name="type"><xsl:value-of select="@type"/></xsl:with-param>
+									</xsl:call-template> -->«<xsl:value-of select="@name"/>»<xsl:if test="@author-name and (@type = 0 or @type = 4 or @type = 1)"> – <xsl:value-of select="@author-name"/></xsl:if>
+							</xsl:attribute>
+							<xsl:attribute name="src">
+								<xsl:choose>
+									<xsl:when test="@cover_ratio">http://cv<xsl:value-of select="substring(@release_file,string-length(@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="@release_file"/></xsl:call-template>_<xsl:value-of select="$new_w"/>.jpg</xsl:when>
+									<xsl:otherwise><!--
+										--><xsl:variable name="noimg_name">
+											<xsl:choose>
+												<xsl:when test="@type = 10">gift</xsl:when>
+												<xsl:otherwise>w</xsl:otherwise>
+											</xsl:choose>
+										</xsl:variable><!--
+										-->/static/litres/i/cover/no_img/<xsl:value-of select="$noimg_name"/>-<xsl:value-of select="$new_w"/>.png<!--
+									--></xsl:otherwise>
+								</xsl:choose>
+							</xsl:attribute>
+						</img>
+					</a>
+				</div>
+				<div class="ab-block">
+					<xsl:choose>
+						<xsl:when test="@type=10">
+							<div class="caption"><xsl:value-of select="@name"/></div>
+						</xsl:when>
+						<xsl:otherwise>
+							<div class="caption">
+								<a href="{ltr:url_code('biblio_book','art',@id)}">
+									<xsl:value-of select="@name"/>
+								</a>
+								<br/>
+								<a class="auth ab-link" href="{ltr:url_code('biblio_authors','subject',$author_id)}"><xsl:value-of select="$author-name"/></a>
+								<xsl:if test="@authors-count &gt; 1"> в соавт.</xsl:if>
+							</div>
+						</xsl:otherwise>
+					</xsl:choose>
+				</div>
+			</div>
+		</div>
+	</xsl:template>
+
+	<xsl:template name="user_account_bonus">
+		<xsl:param name="money_amount_full" select="/xportal_rmd/user/@account_full"/>
+		<xsl:param name="money_amount" select="/xportal_rmd/user/@account"/>
+		<xsl:param name="money_bonus" select="/xportal_rmd/user/@money_bonus"/>
+		<xsl:param name="show_decimal"/>
+		<xsl:variable name="money_amount_to_show"> <!-- если можем тратить все бонусы - покажем общую сумму. Если НЕ все - покажем реальные деньги -->
+			<xsl:choose>
+				<xsl:when test="$money_amount_full &gt; $money_amount"><xsl:value-of select="$money_amount_full - $money_bonus" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="$money_amount_full" /></xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:choose>
+			<xsl:when test="$money_amount_to_show &lt; 1000 or not(contains($money_amount_to_show,'.')) or $show_decimal">
+				<xsl:value-of select="format-number($money_amount_to_show,'0.00')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="substring-before($money_amount_to_show,'.')"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- отображает хайлайт для меню -->
+	<xsl:template name="ab-nav_menu">
+		<xsl:param name="text"/>
+		<xsl:param name="href"/>
+		<xsl:param name="active"/>
+		<xsl:param name="class"/>
+		<xsl:param name="check"/>
+		<xsl:param name="id"/>
+		<li>
+			<xsl:attribute name="class">ab-nav-li<xsl:if test="$class"><xsl:text> </xsl:text><xsl:value-of select="$class"/></xsl:if><xsl:if test="$class and $active"><xsl:text> </xsl:text></xsl:if><xsl:if test="$active">active</xsl:if></xsl:attribute>
+			<xsl:choose>
+				<xsl:when test="$check or not($active)">
+					<a href="{$href}"><xsl:if test="$id"><xsl:attribute name="id"><xsl:value-of select="$id"/></xsl:attribute></xsl:if><xsl:copy-of select="$text"/></a>
+				</xsl:when>
+				<xsl:otherwise>
+					<span><xsl:copy-of select="$text"/></span>
+				</xsl:otherwise>
+			</xsl:choose>
+		</li>
+	</xsl:template>
+
+	<!-- инфа по книгам и тд теперь в хлебных крошках -->
+	<xsl:template name="book-info-id">
+		<xsl:if test="$header-new = 1">
+			<xsl:call-template name="info-id">
+				<xsl:with-param name="class">book-info-id</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+	
+	<xsl:template name="del_fast_basket_item_btn">
+		<xsl:param name="class"/>
+		<xsl:variable name="item_price">
+			<xsl:call-template name="real_art_price">
+				<xsl:with-param name="art_node" select="."/>
+			</xsl:call-template>
+		</xsl:variable>
+		<a title="Убрать книгу из отложенных в корзину" href="{ltr:url_code(concat($safe_fill_url,',action,del_art_from_basket,itm,',@in_basket))}">
+			<xsl:attribute name="class">del_item_btn ajaxhref<xsl:if test="$class"><xsl:text> </xsl:text><xsl:value-of select="$class"/></xsl:if></xsl:attribute>
+			<xsl:attribute name="onclick">return DropArtFromBasketAjax(<xsl:value-of select="concat(@id,',',$item_price,',',@id,',',@type)"/>);</xsl:attribute>
+			<span>
+				<img src="{ltr:veristat_local('i/popup/small_rx.gif')}" alt="X" width="11" height="11"/>
+			</span>
+		</a>
+	</xsl:template>
+	
+	<xsl:template name="ab-userlink">
+		<xsl:param name="href"/>
+		<xsl:param name="content"/>
+		<xsl:param name="class"/>
+		<xsl:param name="dropdown"/>
+		<li>
+			<xsl:attribute name="class">ab-user-li<xsl:if test="$class"><xsl:text> </xsl:text><xsl:value-of select="$class"/></xsl:if></xsl:attribute>
+			<a class="ab-userlink"><xsl:if test="$href"><xsl:attribute name="href"><xsl:value-of select="$href"/></xsl:attribute></xsl:if><span><xsl:copy-of select="$content"/></span></a>
+			<xsl:if test="$dropdown">
+				<div class="ab-dropdown">
+					<div class="ab-popup">
+						<xsl:copy-of select="$dropdown"/>
+					</div>
+				</div>
+			</xsl:if>
+		</li>
+	</xsl:template>
+
+	</xsl:stylesheet>

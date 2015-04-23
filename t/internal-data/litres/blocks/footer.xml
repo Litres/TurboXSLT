@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+		
+		<!-- FOOTER -->
+		<xsl:template name="footer">
+			<ul>
+				<li>
+					<span class="header">
+						<img alt="ЛитРес" src="{ltr:veristat_local('i/footer/logo-gray.png')}" width="95" height="22">
+							<xsl:if test="/xportal_rmd/request/user_agent_info/@agent_advanced = 1"><xsl:attribute name="src"><xsl:value-of select="ltr:veristat_local('i/footer/logo-gray.svg')"/></xsl:attribute></xsl:if>
+						</img>
+					</span>
+					<ul>
+						<li><a href="{ltr:url_code('cms','page','4')}">О компании</a></li>
+						<xsl:if test="not(chk:check_rights('lib_user_returns_book'))">
+							<li><a href="{ltr:url_code('cms','page','6')}">Партнерам</a></li>
+						</xsl:if>
+						<li><a href="{ltr:url_code('cms','page','4349')}">Библиотекам</a></li>
+						<xsl:choose>
+							<xsl:when test="chk:check_rights('lib_user_returns_book')">
+								<li><a href="{ltr:url_code('cms','page','4670')}">Служба поддержки</a></li>
+								<li><a href="{ltr:url_code('cms','page','4673')}">Контакты</a></li>
+							</xsl:when>
+							<xsl:otherwise>
+								<li><a href="{ltr:url_code('cms','page','4044')}">Служба поддержки</a></li>
+								<li><a href="{ltr:url_code('cms','page','3745')}">Контакты</a></li>
+							</xsl:otherwise>
+						</xsl:choose>
+						<li class="site_name">© ООО «ЛитРес»</li>
+					</ul>
+				</li>
+				<xsl:if test="not(chk:check_rights('lib_user_returns_book'))">
+					<li>
+						<span class="header">Справка</span>
+						<ul>
+							<li><a href="{ltr:url_code('cms','page','92')}">Как выбрать, купить и читать</a></li>
+							<li><a href="{ltr:url_code('cms','page','52')}">Проблемы при покупке?</a></li>
+							<li><a href="{ltr:url_code('cms','page','16')}">О чтении электронных книг</a></li>
+							<li><a href="{ltr:url_code('cms','page','82')}">Выбор формата файла</a></li>
+							<li><a href="{ltr:url_code('put_money_on_account')}">Cпособы оплаты</a></li>
+							<li><a href="{ltr:url_code('cms','page','4044')}">Все разделы</a></li>
+						</ul>
+					</li>
+				</xsl:if>
+				<li>
+					<span class="header">Что почитать?</span>
+					<ul>
+						<li><a href="{ltr:url_code('biblio_ratings')}">Все рейтинги ЛитРес</a></li>
+						<li><a href="{ltr:url_code('author_ratings','type','1','period','3')}">Популярные авторы</a></li>
+						<li><a href="{ltr:url_code('book_ratings','type','3','period','3')}">Самое обсуждаемое</a></li>
+						<li><a href="{ltr:url_code('new_books')}">Новинки</a></li>
+						<li><a href="{ltr:url_code('book_ratings','type','1','period','3')}">Бестселлеры</a></li>
+						<li><a href="{ltr:url_code('cms','page','3255')}">Что читать</a></li>
+						<li><a href="{ltr:url_code('cms','page','1365')}">Интервью с авторами</a></li>
+					</ul>
+				</li>
+				<li>
+					<xsl:choose>
+						<xsl:when test="/xportal_rmd/page_data/homepage_rmd and $atype=''">
+							<span class="header">Обсудить</span>
+							<ul>
+								<li><a href="http://vkontakte.ru/club23482323" rel="nofollow">Вконтакте</a></li>
+								<li><a href="http://www.odnoklassniki.ru/group/50844466151495" rel="nofollow">Одноклассники</a></li>
+								<li><a href="http://mylitres.livejournal.com/" rel="nofollow">Живой Журнал</a></li>
+								<li><a href="http://www.facebook.com/pages/LitRes/128688247186385/" rel="nofollow">Facebook</a></li>
+								<li><a href="http://twitter.com/mylitres/" rel="nofollow">Twitter</a></li>
+								<li><a href="http://my.mail.ru/community/litres/" rel="nofollow">Mail.ru</a></li>
+							</ul>
+						</xsl:when>
+						<xsl:otherwise>
+							<span class="header">Жанры</span>
+							<ul>
+								<li><a href="{ltr:url_code('biblio_genres','genre','112')}">Фэнтези</a></li>
+								<li><a href="{ltr:url_code('biblio_genres','genre','7032')}">Детективы</a></li>
+								<li><a href="{ltr:url_code('biblio_genres','genre','56')}">Боевики</a></li>
+								<li><a href="{ltr:url_code('biblio_genres','genre','109')}">Современная проза</a></li>
+								<li><a href="{ltr:url_code('biblio_genres','genre','34')}">Любовный роман</a></li>
+								<li><a href="{ltr:url_code('biblio_genres','genre','30')}">Деловая литература</a></li>
+							</ul>
+						</xsl:otherwise>
+					</xsl:choose>
+				</li>
+				<xsl:if test="not(chk:check_rights('lib_user_returns_book'))">
+					<li>
+						<span class="header">Другой формат</span>
+						<ul>
+							<xsl:if test="/xportal/formdata/@atype != 'text'"><li><a href="{ltr:url_code('','atype','text')}">Электронные книги</a></li></xsl:if>
+							<xsl:if test="not(/xportal/formdata/@atype='audio')"><li><a href="{ltr:url_code('','atype','audio')}">Аудиокниги</a></li></xsl:if>
+							<xsl:if test="not(/xportal/xportal-page/page-data/gift_cards)"><li><a href="{ltr:url_code('gift_cards')}">Подарочные карты</a></li></xsl:if>
+							<li><div style="padding:15px 0 0 0"><xsl:call-template name="new-social-block"/></div></li>
+						</ul>
+					</li>
+				</xsl:if>
+			</ul>
+					
+			<!--  [329] Сверстать новый подвал-баннер -->
+			<xsl:variable name="big_bottom" select="ltr:baner_code('big_bottom')"/>
+			<xsl:if test="$big_bottom"><xsl:value-of select="$big_bottom" disable-output-escaping="yes"/></xsl:if>
+			<!-- END FOOTER -->
+		</xsl:template>
+		
+	</xsl:stylesheet>

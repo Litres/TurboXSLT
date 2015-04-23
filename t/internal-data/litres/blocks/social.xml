@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+    <!-- [27915] addThis like -->
+	<xsl:template name="new-social-block">
+		<div class="addthis_toolbox addthis_default_style new-social-block">
+			<a class="addthis_button_vk"></a>
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_preferred_1"></a>
+			<a class="addthis_button_compact"></a>
+			<a class="addthis_counter addthis_bubble_style"></a>
+		</div>
+		<!-- это добавляет хэш, который не влияет на сео (http://support.addthis.com/customer/portal/articles/381254-address-bar-sharing-analytics#.UE8Cy1GmHlY) -->
+		<!--<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>-->
+		<script type="text/javascript">
+			var addthis_config = {"data_track_addressbar":false};
+			var addthis_config = {"data_track_clickback":true};
+		</script>
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fb666b83e0a646b"></script>
+	</xsl:template>
+	
+	<xsl:template name="socnet_buttons">
+        <xsl:param name="id" select="generate-id()"/>
+        <div class="soc_autorize" >
+            <div class="header">Вход через социальные сети:</div>
+            <div class="socnet_buttons">
+                <xsl:comment>noindex</xsl:comment>
+					<a rel="nofolow" id="vkontakte_login" href="javascript:VKLoginClick(65538);"
+                       title="Войти, используя аккаунт ВКонтакте"></a>
+                    <a rel="nofolow" id="facebook_login" href="javascript:FBLoginClick('email,user_friends');"
+                       title="Войти, используя аккаунт facebook"></a>
+                    <a rel="nofolow" id="mailru_login" href="javascript:MRLoginClick();"
+                       title="Войти, используя аккаунт Mail.ru"></a>
+                    <a rel="nofolow" id="twitter_login" href="javascript:TWLoginClick();"
+                       title="Войти, используя аккаунт twitter"></a>
+                    <a rel="nofolow" id="livejournal_login" href="javascript:ShowOIForm('lj_form','{$id}');"
+                       title="Войти, используя аккаунт ЖЖ"></a>
+                    <a rel="nofolow" id="openid_login" href="javascript:ShowOIForm('openid_form','{$id}');"
+                       title="Войти, используя OpenID"></a>
+					<!-- [37616] Доработка верстки и socnet.js для google+ -->
+					<a rel="nofolow" id="googleplus_login" title="Войти, используя аккаунт Google+">
+						<span class="g-signin"
+							data-redirecturi="postmessage"
+							data-accesstype="offline"
+							data-cookiepolicy="http://www.litres.ru"
+							data-width="iconOnly"
+							data-callback="GPLoginClick"
+							data-clientid="150098605394.apps.googleusercontent.com"
+							data-requestvisibleactions="http://schemas.google.com/AddActivity"
+							data-scope="https://www.googleapis.com/auth/plus.login"
+							data-approvalprompt="force"
+							>
+						</span>
+					</a>
+                <xsl:comment>/noindex</xsl:comment>
+            </div>
+            <div class="socnet_input">
+                <form id="openid_form_{$id}" class="openid_form" onsubmit="OILoginClick('my_uoi_{$id}'); return false;">
+                    <input type="text" class="ext-input" placeholder="Идентификатор" name="user_open_id"
+                           id="my_uoi_{$id}"/>
+                    <button class="ext-button">OK</button>
+                </form>
+                <form id="lj_form_{$id}" class="lj_form"
+                      onsubmit="OILoginClick('my_ulj_{$id}', 'livejournal.com'); return false;">
+                    <input type="text" class="ext-input" placeholder="Ваше имя в ЖЖ" name="user_open_id" id="my_ulj_{$id}"/>
+                    <button class="ext-button">OK</button>
+                </form>
+            </div>
+        </div>
+    </xsl:template>
+	
+</xsl:stylesheet>

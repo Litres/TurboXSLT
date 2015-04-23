@@ -1,0 +1,2824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:exsl="http://exslt.org/common" extension-element-prefixes="fo exsl ltr">
+	<!-- количество авторов в перечислении -->
+	<xsl:variable name="meta-authors-limit">2</xsl:variable>
+	<!-- порог точного указания количества произведений -->
+	<xsl:variable name="meta-show-num-threshold">3</xsl:variable>
+	<!-- порог формулировки «широкий выбор» -->
+	<xsl:variable name="meta-a-wide-range-of-choice-threshold">4</xsl:variable>
+	<!-- порог минимальной длины метаописания -->
+	<xsl:variable name="meta-a-min-length-threshold">150</xsl:variable>
+	<!-- порог максимальной длины метаописания -->
+	<xsl:variable name="meta-a-max-length-threshold">250</xsl:variable>
+	<!-- преимущества -->
+	<xsl:variable name="meta-advantage">Скидки, бонусы, подарки.</xsl:variable>
+	<xsl:variable name="meta-advantage-with-free-books">Более 26 тысяч книг бесплатно, скидки, бонусы.</xsl:variable>
+	<!-- порог авторитетности при выводе чтецов -->
+	<xsl:variable name="meta-readers-lvl-threshold">3</xsl:variable>
+	<!-- порог авторитетности при выводе авторов -->
+	<xsl:variable name="meta-authors-lvl-threshold">3</xsl:variable>
+
+	<!-- данные формы -->
+	<xsl:variable name="form" select="/xportal/formdata"/>
+	<!-- счётчики количества книг -->
+	<xsl:variable name="totals" select="/xportal/xportal-page/totals"/>
+
+	<!-- индексация главной -->
+	<xsl:template match="homepage" mode="page_robots">
+		<xsl:if test="$atype = '' or not($atype)">
+			<!-- запрет на использование описания из Яндекс Каталога и DMOZ для сниппетов главной страницы в Яндексе -->
+			<xsl:text>noyaca, noodp</xsl:text>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template name="pagepostfix">
+		<!-- постфикс на главной не нужен -->
+		<xsl:if test="not(xportal-page/page-data/homepage) or $form/@atype"> – ЛитРес</xsl:if>
+	</xsl:template>
+
+	<!-- заголовки главных страниц -->
+	<xsl:template match="homepage" mode="page_title">
+		<xsl:variable name="atype" select="$form/@atype"/>
+
+		<xsl:choose>
+			<xsl:when test="not($atype)"><xsl:call-template name="site_title"/> – магазин электронных книг – купить и скачать книги без регистрации или читать онлайн</xsl:when>
+			<xsl:when test="$atype = 'text'">Электронные книги – купить и скачать в форматах FB2, ePub, PDF, TXT или читать в своей онлайн библиотеке</xsl:when>
+			<xsl:when test="$atype = 'audio'">Аудиокниги – бесплатно слушать фрагмент, купить и скачать для телефона, iPhone, iPad, iРod, MP3-плеера или автомобиля</xsl:when>
+			<xsl:when test="$atype = 'readers'">Покупайте ридеры для чтения электронных книг в ЛитРес по привлекательным ценам</xsl:when>
+			<xsl:when test="$atype = 'english'">Книги на английском языке – english books, английская литература в формате EPUB, PDF</xsl:when>
+			<xsl:when test="$atype = 'mmedia'">Мультимедиа-книги – справочники, словари, энциклопедии – купить недорого и скачать без регистрации</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">Бумажные книги – купить недорого литературу в печатном виде</xsl:when>
+			<xsl:when test="not($atype) and /xportal/xportal-page/@host = 'biblio.litres.ru'">Библиотека ЛитРес — выдача книг на дом и на мобильные устройства</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- метаописания главных страниц -->
+	<xsl:template match="homepage_rmd" mode="page_description">
+		<xsl:variable name="atype" select="$form/@atype"/>
+
+		<xsl:choose>
+			<xsl:when test="not($atype)">
+				<xsl:variable name="total-num-of-books" select="sum($totals[@item = 'typed_count_0' or @item = 'typed_count_4' or @item = 'typed_count_1' or @item = 'typed_count_11']/@value)"/>
+
+				<xsl:text>Читай онлайн или скачивай без регистрации свыше </xsl:text>
+				<xsl:call-template name="print-huge-number">
+					<xsl:with-param name="number" select="$total-num-of-books"/>
+				</xsl:call-template>
+				<xsl:text> лицензионных электронных книг и аудиокниг для любых устройств. Рейтинги лучших книг, отзывы и рецензии, рекомендации, популярные авторы.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'text'">
+				<xsl:text>Начни читать онлайн бесплатно лучшие лицензионные электронные книги и ожидаемые новинки, посмотри рейтинги, наши рекомендации, отзывы и рецензии, в любом удобном формате.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'audio'">
+				<xsl:text>Скачай лицензионные аудиокниги для детей, деловых людей и просто для всех, у кого нет времени читать. Самый широкий выбор аудиокниг дешево и просто только на litres.ru.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'english'">
+				<xsl:variable name="total-num-of-books" select="$totals[@item = 'typed_count_11']/@value"/>
+
+				<xsl:text>Просто купи и скачай свыше </xsl:text>
+				<xsl:call-template name="print-huge-number">
+					<xsl:with-param name="number" select="$total-num-of-books"/>
+				</xsl:call-template>
+				<xsl:text> оригинальных книг на английском языке. Не надо ждать доставки.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'mmedia'">
+				<xsl:text>Лучшие лицензионные мультимедиа-книги – справочники, энциклопедии, словари, обучающие и развлекательные материалы для детей и взрослых.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">
+				<xsl:text>Купи недорого лучшие бумажные книги, ожидаемые новинки и самые обсуждаемые издания. Литература в печатном виде с отзывами, рейтингами и рекомендациями. Доставка по всей России.</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- заголовок автора -->
+	<xsl:template match="biblio_authors[/xportal/formdata/@view = 'the_best']" mode="page_title">
+		<xsl:variable name="texts-count" select="subject-arts-type/arts-type[@mem = 'text']/@arts_count"/>
+		<xsl:variable name="audios-count" select="subject-arts-type/arts-type[@mem = 'audio']/@arts_count"/>
+		<xsl:variable name="has-free-books" select="arts/sequence/book/art-collections/collection[@id = '4']"/>
+
+		<xsl:text>Лучшие книги </xsl:text>
+		<xsl:value-of select="normalize-space(subject/@full_rodit)"/>
+		<xsl:if test="$texts-count &gt; 0 or $audios-count &gt; 0">
+			<xsl:text> – </xsl:text>
+			<xsl:text>скачать</xsl:text>
+			<xsl:if test="$has-free-books"> бесплатно</xsl:if>
+			<xsl:text>, </xsl:text>
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$texts-count &gt; 0">
+						<item>читать</item>
+					</xsl:if>
+					<xsl:if test="$audios-count &gt; 0">
+						<item>слушать</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> онлайн </xsl:text>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="biblio_authors" mode="page_title">
+		<xsl:variable name="texts-count" select="subject-arts-type/arts-type[@mem = 'text']/@arts_count"/>
+		<xsl:variable name="audios-count" select="subject-arts-type/arts-type[@mem = 'audio']/@arts_count"/>
+		<xsl:variable name="multimedia-count" select="subject-arts-type/arts-type[@mem = 'mmedia']/@arts_count"/>
+		<xsl:variable name="english-count" select="subject-arts-type/arts-type[@mem = 'english']/@arts_count"/>
+		<xsl:variable name="paper-count" select="subject-arts-type/arts-type[@mem = 'hardcopy']/@arts_count"/>
+		<xsl:variable name="total-count" select="subject/@arts_count"/>
+		<xsl:variable name="has-free-books" select="arts/sequence/book/art-collections/collection[@id = '4']"/>
+
+		<xsl:value-of select="normalize-space(subject/@full_name)"/>
+		<xsl:text> – </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$atype = '' or not($atype)">
+				<!-- «читать и слушать онлайн»; к книгам на английском не относится, их читать онлайн нельзя -->
+				<xsl:if test="$texts-count &gt; 0 or $audios-count &gt; 0">
+					<xsl:choose>
+						<xsl:when test="$total-count = count($has-free-books)">
+							<!-- есть только бесплатные книги -->
+							<xsl:text>скачать бесплатно</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>купить и скачать</xsl:text>
+							<xsl:if test="$has-free-books"> бесплатно</xsl:if>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:text>, </xsl:text>
+					<xsl:call-template name="print-list">
+						<xsl:with-param name="list">
+							<xsl:if test="$texts-count &gt; 0">
+								<item>читать</item>
+							</xsl:if>
+							<xsl:if test="$audios-count &gt; 0">
+								<item>слушать</item>
+							</xsl:if>
+						</xsl:with-param>
+					</xsl:call-template>
+					<xsl:text> онлайн </xsl:text>
+				</xsl:if>
+				<xsl:call-template name="print-list">
+					<xsl:with-param name="list">
+						<xsl:if test="$texts-count &gt; 0">
+							<item>электронные книги</item>
+						</xsl:if>
+						<xsl:if test="$audios-count &gt; 0">
+							<item>аудиокниги</item>
+						</xsl:if>
+						<xsl:if test="$multimedia-count &gt; 0">
+							<item>мультимедиа-книги</item>
+						</xsl:if>
+						<xsl:if test="$english-count &gt; 0">
+							<item>электронные книги на английском языке</item>
+						</xsl:if>
+						<xsl:if test="$paper-count &gt; 0">
+							<item>бумажные книги</item>
+						</xsl:if>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:when test="$atype = 'text'">купить и скачать, читать электронные книги онлайн</xsl:when>
+			<xsl:when test="$atype = 'audio'">купить и скачать, слушать аудиокниги онлайн</xsl:when>
+			<xsl:when test="$atype = 'mmedia'">купить и скачать мультимедиа-книги</xsl:when>
+			<xsl:when test="$atype = 'english'">купить и скачать электронные книги на английском</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">купить недорого бумажные книги</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- метаописание автора -->
+	<xsl:template match="biblio_authors[/xportal/formdata/@view = 'the_best']" mode="page_description">
+		<xsl:variable name="books" select="arts/sequence/book[@type = 0 or @type = 1 or @type = 4]"/>
+		<!-- самая свежая новинка — книга с минимальным @art_age -->
+		<xsl:variable name="novelty" select="($books[@art_age[not(. &gt; $books/@art_age)]])[1]"/>
+		<xsl:variable name="bestsellers" select="$books[not(@id = $novelty/@id)]"/>
+		<xsl:variable name="limit">2</xsl:variable>
+
+		<xsl:text>Лучшее у </xsl:text>
+		<xsl:value-of select="normalize-space(subject/@full_rodit)"/>
+		<xsl:text> – бестселлеры, новинки и рекомендуемые книги. </xsl:text>
+
+		<!-- первой в списке будет новинка, если таковая имеется -->
+		<xsl:if test="$novelty">
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title" select="$novelty/@name"/>
+			</xsl:call-template>
+			<xsl:text>. </xsl:text>
+		</xsl:if>
+
+		<xsl:if test="$bestsellers">
+			<xsl:for-each select="$bestsellers">
+				<xsl:sort select="@rating_one_year" order="descending" data-type="number"/>
+				<xsl:sort select="@available" order="descending" data-type="number"/>
+
+				<xsl:if test="position() &lt;= $limit">
+					<xsl:call-template name="print-title">
+						<xsl:with-param name="title" select="@name"/>
+					</xsl:call-template>
+					<xsl:if test="position() &lt; $limit and position() &lt; count($bestsellers)">. </xsl:if>
+				</xsl:if>
+			</xsl:for-each>
+			<xsl:if test="count($bestsellers) &gt;= $limit">
+				<xsl:text>.</xsl:text>
+			</xsl:if>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="biblio_authors" mode="page_description">
+		<xsl:variable name="texts-count" select="subject-arts-type/arts-type[@mem = 'text']/@arts_count"/>
+		<xsl:variable name="audios-count" select="subject-arts-type/arts-type[@mem = 'audio']/@arts_count"/>
+		<xsl:variable name="multimedia-count" select="subject-arts-type/arts-type[@mem = 'mmedia']/@arts_count"/>
+		<xsl:variable name="english-count" select="subject-arts-type/arts-type[@mem = 'english']/@arts_count"/>
+		<xsl:variable name="paper-count" select="subject-arts-type/arts-type[@mem = 'hardcopy']/@arts_count"/>
+		<xsl:variable name="total-count" select="subject/@arts_count"/>
+		<xsl:variable name="has-free-books" select="arts/sequence/book/art-collections/collection[@id = '4']"/>
+		<xsl:variable name="total-num-of-books" select="sum($totals[@item = 'typed_count_0' or @item = 'typed_count_4' or @item = 'typed_count_1' or @item = 'typed_count_11' or @item = 'typed_count_12']/@value)"/>
+
+		<xsl:variable name="num-of-texts">
+			<xsl:if test="$texts-count &gt; 0">
+				<xsl:choose>
+					<xsl:when test="$texts-count &gt;= $meta-show-num-threshold">
+						<xsl:value-of select="$texts-count"/>
+						<xsl:text> </xsl:text>
+						<xsl:call-template name="num-decline">
+							<xsl:with-param name="num" select="$texts-count"/>
+							<xsl:with-param name="nominative">электронная книга</xsl:with-param>
+							<xsl:with-param name="genitive-singular">электронных книги</xsl:with-param>
+							<xsl:with-param name="genitive-plural">электронных книг</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>электронные книги</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="num-of-audios">
+			<xsl:if test="$audios-count &gt; 0">
+				<xsl:choose>
+					<xsl:when test="$audios-count &gt;= $meta-show-num-threshold">
+						<xsl:value-of select="$audios-count"/>
+						<xsl:text> </xsl:text>
+						<xsl:call-template name="num-decline">
+							<xsl:with-param name="num" select="$audios-count"/>
+							<xsl:with-param name="nominative">аудиокнига</xsl:with-param>
+							<xsl:with-param name="genitive-singular">аудиокниги</xsl:with-param>
+							<xsl:with-param name="genitive-plural">аудиокниг</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>аудиокниги</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="num-of-multimedia">
+			<xsl:if test="$multimedia-count &gt; 0">
+				<xsl:choose>
+					<xsl:when test="$multimedia-count &gt;= $meta-show-num-threshold">
+						<xsl:value-of select="$multimedia-count"/>
+						<xsl:text> </xsl:text>
+						<xsl:call-template name="num-decline">
+							<xsl:with-param name="num" select="$multimedia-count"/>
+							<xsl:with-param name="nominative">мультимедиа-книга</xsl:with-param>
+							<xsl:with-param name="genitive-singular">мультимедиа-книги</xsl:with-param>
+							<xsl:with-param name="genitive-plural">мультимедиа-книг</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>мультимедиа-книги</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="num-of-english">
+			<xsl:if test="$english-count &gt; 0">
+				<xsl:choose>
+					<xsl:when test="$english-count &gt;= $meta-show-num-threshold">
+						<xsl:value-of select="$english-count"/>
+						<xsl:text> </xsl:text>
+						<xsl:call-template name="num-decline">
+							<xsl:with-param name="num" select="$english-count"/>
+							<xsl:with-param name="nominative">электронная книга на английском языке</xsl:with-param>
+							<xsl:with-param name="genitive-singular">электронные книги на английском языке</xsl:with-param>
+							<xsl:with-param name="genitive-plural">электронных книг на английском языке</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>электронные книги на английском языке</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="num-of-paper">
+			<xsl:if test="$paper-count &gt; 0">
+				<xsl:choose>
+					<xsl:when test="$paper-count &gt;= $meta-show-num-threshold">
+						<xsl:value-of select="$paper-count"/>
+						<xsl:text> </xsl:text>
+						<xsl:call-template name="num-decline">
+							<xsl:with-param name="num" select="$paper-count"/>
+							<xsl:with-param name="nominative">бумажная книга</xsl:with-param>
+							<xsl:with-param name="genitive-singular">бумажных книги</xsl:with-param>
+							<xsl:with-param name="genitive-plural">бумажных книг</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>бумажные книги</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:variable>
+
+		<xsl:variable name="description">
+			<xsl:choose>
+				<xsl:when test="$atype = 'text'">
+					<!-- тип контента – электронные книги -->
+					<xsl:value-of select="$num-of-texts"/>
+				</xsl:when>
+				<xsl:when test="$atype = 'audio'">
+					<!-- тип контента – аудиокниги -->
+					<xsl:value-of select="$num-of-audios"/>
+				</xsl:when>
+				<xsl:when test="$atype = 'mmedia'">
+					<!-- тип контента – мультимедиа -->
+					<xsl:value-of select="$num-of-multimedia"/>
+				</xsl:when>
+				<xsl:when test="$atype = 'english'">
+					<!-- тип контента – книги на английском -->
+					<xsl:value-of select="$num-of-english"/>
+				</xsl:when>
+				<xsl:when test="$atype = 'hardcopy'">
+					<!-- тип контента – бумажные книги -->
+					<xsl:value-of select="$num-of-paper"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- тип контента не задан -->
+					<xsl:call-template name="print-list">
+						<xsl:with-param name="list">
+							<xsl:if test="$num-of-texts != ''">
+								<item>
+									<xsl:value-of select="$num-of-texts"/>
+								</item>
+							</xsl:if>
+							<xsl:if test="$num-of-audios != ''">
+								<item>
+									<xsl:value-of select="$num-of-audios"/>
+								</item>
+							</xsl:if>
+							<xsl:if test="$num-of-multimedia != ''">
+								<item>
+									<xsl:value-of select="$num-of-multimedia"/>
+								</item>
+							</xsl:if>
+							<xsl:if test="$num-of-english != ''">
+								<item>
+									<xsl:value-of select="$num-of-english"/>
+								</item>
+							</xsl:if>
+							<xsl:if test="$num-of-paper != ''">
+								<item>
+									<xsl:value-of select="$num-of-paper"/>
+								</item>
+							</xsl:if>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:call-template name="capitalize-first-letter">
+			<xsl:with-param name="string" select="$description"/>
+		</xsl:call-template>
+		<xsl:text> </xsl:text>
+		<xsl:choose>
+			<xsl:when test="normalize-space(subject/@full_rodit) != ''">
+				<xsl:value-of select="normalize-space(subject/@full_rodit)"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<!-- на случай пустого родительного падежа -->
+				<xsl:text>автора </xsl:text>
+				<xsl:value-of select="normalize-space(subject/@full_name)"/>
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:text>, </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$total-count = count($has-free-books)">
+				<!-- есть только бесплатные книги -->
+				<xsl:text>скачать бесплатно</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>купить и скачать</xsl:text>
+				<xsl:if test="$has-free-books"> бесплатно</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:text>, отзывы и комментарии.</xsl:text>
+		<xsl:text> Более </xsl:text>
+		<xsl:call-template name="print-huge-number">
+			<xsl:with-param name="number" select="$total-num-of-books"/>
+		</xsl:call-template>
+		<xsl:text> электронных, аудио-, бумажных книг и книг на английском языке легально по выгодной цене. </xsl:text>
+		<xsl:value-of select="$meta-advantage"/>
+	</xsl:template>
+
+	<!-- заголовок совместной страницы авторов -->
+	<xsl:template match="biblio_authors_books" mode="page_title">
+		<xsl:variable name="authors">
+			<xsl:call-template name="persons-list">
+				<xsl:with-param name="persons" select="authors/author[@full_rodit or $atype = 'english']"/>
+				<xsl:with-param name="is-genitive" select="$atype != 'english'"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:text>Совместные </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$atype = ''">книги <xsl:value-of select="$authors"/> – читать онлайн или скачать в FB2, TXT, PDF, ePub, DOC, MP3</xsl:when>
+			<xsl:when test="$atype = 'text'">электронные книги <xsl:value-of select="$authors"/> – читать онлайн или скачать в FB2, TXT, PDF, ePub, DOC</xsl:when>
+			<xsl:when test="$atype = 'audio'">аудиокниги <xsl:value-of select="$authors"/> – слушать онлайн или скачать в MP3 и M4B</xsl:when>
+			<xsl:when test="$atype = 'english'">книги <xsl:value-of select="$authors"/> на английском языке – скачать в оригинале</xsl:when>
+		</xsl:choose>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="pager/@page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание совместной страницы авторов -->
+	<xsl:template match="biblio_authors_books" mode="page_description">
+		<xsl:variable name="authors">
+			<xsl:call-template name="persons-list">
+				<xsl:with-param name="persons" select="authors/author[@full_rodit or $atype = 'english']"/>
+				<xsl:with-param name="is-genitive" select="$atype != 'english'"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="$atype = '' or $atype = 'text'">Читай онлайн или скачивай для ридера, телефона, компьютера книги <xsl:value-of select="$authors"/></xsl:when>
+			<xsl:when test="$atype = 'audio'">Слушай онлайн или скачивай для плеера, телефона, компьютера аудиокниги <xsl:value-of select="$authors"/></xsl:when>
+			<xsl:when test="$atype = 'english'">Скачивай книги <xsl:value-of select="$authors"/> на английском языке в оригинале</xsl:when>
+		</xsl:choose>
+		<xsl:text>.</xsl:text>
+	</xsl:template>
+
+	<!-- индексация авторов сотоварищи -->
+	<xsl:template match="biblio_authors" mode="page_robots">
+		<xsl:variable name="num-of-books" select="sum(subject-arts-type/arts-type[@mem = 'text' or @mem = 'audio']/@arts_count)"/>
+
+		<!-- страницы типов произведений, вкладки страницы автора (кроме бестселлеров) и страницу бестселлеров, если у автора нет электронных или аудиокниг индексировать не нужно -->
+		<xsl:if test="$atype != '' or $form/@view != 'the_best' or $num-of-books = 0">noindex</xsl:if>
+	</xsl:template>
+
+	<!-- алфавитный указатель авторов -->
+	<xsl:template match="alphabet_authors" mode="page_title">
+		<xsl:text>Авторы книг на букву «</xsl:text>
+		<xsl:value-of select="$form/@letter"/>
+		<xsl:text>»</xsl:text>
+		<xsl:if test="/xportal/formdata/@alph_pagenumber">
+			<xsl:text>, «</xsl:text>
+			<xsl:value-of select="author_split[@alph_pagenumber = /xportal/formdata/@alph_pagenumber]/@asplit"/>
+			<xsl:text>»</xsl:text>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="alphabet_authors" mode="page_description">
+		<xsl:for-each select="author-list/author">
+			<xsl:sort select="@arts_count div (@level+1)*@level" order="descending"/>
+			<xsl:if test="position() &lt; 11">
+				<xsl:value-of select="@first_name"/><xsl:if test="@last_name and @first_name">&#160;</xsl:if><xsl:value-of select="@last_name"/><xsl:if test="position() != 10">, </xsl:if>
+			</xsl:if>
+		</xsl:for-each>
+		<xsl:if test="count(author-list/author) &gt; 10"> и другие</xsl:if>
+		<xsl:text>.</xsl:text>
+	</xsl:template>
+
+	<!-- заголовок бренда ридеров -->
+	<xsl:template match="biblio_authors[arts/sequence/book/@type = 3 or arts/sequence/book/@type = 13]" mode="page_title">
+		<xsl:variable name="devices" select="arts/sequence/book"/>
+
+		<xsl:choose>
+			<xsl:when test="$devices[@type = 3] and $devices[@type = 13]">
+				<!-- есть ридеры и аксессуары -->
+				<xsl:text>Ридеры для электронных книг и аксессуары </xsl:text>
+				<xsl:value-of select="normalize-space(subject/@full_name)"/>
+				<xsl:text> – обзоры, отзывы и характеристики, купить недорого</xsl:text>
+			</xsl:when>
+			<xsl:when test="$devices[@type = 3] and not($devices[@type = 13])">
+				<!-- есть только ридеры -->
+				<xsl:text>Ридеры для электронных книг </xsl:text>
+				<xsl:value-of select="normalize-space(subject/@full_name)"/>
+				<xsl:text> – обзоры, отзывы и характеристики, купить недорого</xsl:text>
+			</xsl:when>
+			<xsl:when test="not($devices[@type = 3]) and $devices[@type = 13]">
+				<!-- есть только аксессуары -->
+				<xsl:text>Аксессуары для ридеров </xsl:text>
+				<xsl:value-of select="normalize-space(subject/@full_name)"/>
+				<xsl:text> – обзоры и отзывы, купить недорого</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- метаописание бренда ридеров -->
+	<xsl:template match="biblio_authors[arts/sequence/book/@type = 3 or arts/sequence/book/@type = 13]" mode="page_description">
+		<xsl:variable name="devices" select="arts/sequence/book"/>
+		<xsl:variable name="brand-devices-count" select="subject-arts-type/arts-type[@mem = 'readers']/@arts_count"/>
+
+		<xsl:choose>
+			<xsl:when test="$devices[@type = 3] and $devices[@type = 13]">
+				<!-- есть ридеры и аксессуары -->
+				<xsl:choose>
+					<xsl:when test="$brand-devices-count &gt;= $meta-a-wide-range-of-choice-threshold">Широкий выбор ридеров для электронных книг и аксессуаров </xsl:when>
+					<xsl:otherwise>Ридеры для электронных книг и аксессуары </xsl:otherwise>
+				</xsl:choose>
+				<xsl:value-of select="normalize-space(subject/@full_name)"/>
+				<xsl:text>.</xsl:text>
+				<xsl:text> Доставка ридеров, самовывоз. Карта для покупки электронных книг в подарок.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$devices[@type = 3] and not($devices[@type = 13])">
+				<!-- есть только ридеры -->
+				<xsl:choose>
+					<xsl:when test="$brand-devices-count &gt;= $meta-a-wide-range-of-choice-threshold">Широкий выбор ридеров для электронных книг </xsl:when>
+					<xsl:otherwise>Ридеры для электронных книг </xsl:otherwise>
+				</xsl:choose>
+				<xsl:value-of select="normalize-space(subject/@full_name)"/>
+				<xsl:text>.</xsl:text>
+				<xsl:text> Доставка, самовывоз. Карта для покупки электронных книг в подарок.</xsl:text>
+			</xsl:when>
+			<xsl:when test="not($devices[@type = 3]) and $devices[@type = 13]">
+				<!-- есть только аксессуары -->
+				<xsl:text>Аксессуары для ридеров электронных книг </xsl:text>
+				<xsl:value-of select="normalize-space(subject/@full_name)"/>
+				<xsl:text> и других брендов.</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- заголовок книги -->
+	<xsl:template match="biblio_book" mode="page_title">
+		<xsl:variable name="a-type" select="art/@type"/>
+		<xsl:variable name="authors" select="libbook-relations/related-person[@fake = '0' and @relation = '0']"/>
+		<xsl:variable name="compilers" select="libbook-relations/related-person[@fake = '0' and @relation = '4' and @full_rodit != '']"/>
+		<xsl:variable name="readers" select="(libbook-relations/related-person[@fake = '0' and @relation = '6' and @lvl &gt;= $meta-readers-lvl-threshold and normalize-space(@full_name) != ''])[position() &lt;= $meta-authors-limit]"/>
+		<xsl:variable name="is-free" select="art/art-collections/collection[@id = '4']"/>
+		<xsl:variable name="formats" select="conversions/format-type[@size != '']"/>
+
+		<xsl:variable name="addition-info">
+			<!-- форматы -->
+			<xsl:choose>
+				<xsl:when test="$a-type = 1"> в MP3 и M4B</xsl:when>
+				<xsl:when test="$formats[. = 'fb2.zip'] or $formats[. = 'txt.zip'] or $formats[. = 'epub'] or $formats[. = 'rtf.zip'] or $formats[. = 'html.zip'] or $formats[. = 'mobi.prc']">
+					<xsl:text> в </xsl:text>
+					<xsl:call-template name="print-list">
+						<xsl:with-param name="list">
+							<xsl:if test="$formats[. = 'fb2.zip']">
+								<item>FB2</item>
+							</xsl:if>
+							<xsl:if test="$formats[. = 'txt.zip']">
+								<item>TXT</item>
+							</xsl:if>
+							<xsl:if test="$formats[. = 'epub']">
+								<item>ePub</item>
+							</xsl:if>
+							<xsl:if test="$formats[. = 'rtf.zip']">
+								<item>RTF</item>
+							</xsl:if>
+							<xsl:if test="$formats[. = 'html.zip']">
+								<item>HTML</item>
+							</xsl:if>
+							<xsl:if test="$formats[. = 'mobi.prc']">
+								<item>Mobi</item>
+							</xsl:if>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="actions">
+			<xsl:choose>
+				<xsl:when test="$is-free">
+					<xsl:choose>
+						<xsl:when test="$a-type = 0 or $a-type = 4 or $a-type = 11">скачать бесплатно, читать онлайн</xsl:when>
+						<xsl:when test="$a-type = 1">скачать бесплатно, слушать онлайн</xsl:when>
+						<xsl:when test="$a-type = 2">скачать бесплатно</xsl:when>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:choose>
+						<xsl:when test="$a-type = 0 or $a-type = 4 or $a-type = 11">читать онлайн, купить и скачать</xsl:when>
+						<xsl:when test="$a-type = 1">слушать онлайн, купить и скачать</xsl:when>
+						<xsl:when test="$a-type = 2 or $a-type = 11">купить и скачать</xsl:when>
+						<xsl:when test="$a-type = 12">купить недорого</xsl:when>
+					</xsl:choose>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:value-of select="art/@name"/>
+		<xsl:if test="$a-type = 1 and $readers">
+			<!-- информация об исполнителях -->
+			<xsl:text> (</xsl:text>
+			<xsl:call-template name="num-decline">
+				<xsl:with-param name="num" select="count($readers)"/>
+				<xsl:with-param name="nominative">читает</xsl:with-param>
+				<xsl:with-param name="genitive-singular">читают</xsl:with-param>
+				<xsl:with-param name="genitive-plural">читают</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> </xsl:text>
+			<xsl:call-template name="persons-list">
+				<xsl:with-param name="persons" select="$readers"/>
+			</xsl:call-template>
+			<xsl:text>)</xsl:text>
+		</xsl:if>
+		<xsl:text> – </xsl:text>
+		<xsl:if test="($authors or $compilers) and $a-type != 2">
+			<xsl:choose>
+				<xsl:when test="$authors">
+					<xsl:call-template name="persons-list">
+						<xsl:with-param name="persons" select="$authors"/>
+						<xsl:with-param name="limit" select="$meta-authors-limit"/>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- если нет авторов, упоминаем составителей -->
+					<xsl:call-template name="persons-list">
+						<xsl:with-param name="persons" select="$compilers"/>
+						<xsl:with-param name="limit" select="$meta-authors-limit"/>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:text>, </xsl:text>
+		</xsl:if>
+		<xsl:value-of select="$actions"/>
+		<xsl:text> </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$a-type = 0">электронную книгу<xsl:value-of select="$addition-info"/></xsl:when>
+			<xsl:when test="$a-type = 4">PDF-книгу<xsl:value-of select="$addition-info"/></xsl:when>
+			<xsl:when test="$a-type = 1">аудиокнигу<xsl:value-of select="$addition-info"/></xsl:when>
+			<xsl:when test="$a-type = 11">
+				<xsl:text>книгу на английском</xsl:text>
+				<!-- для книг на английском указываем цену, это помогает расклеить дубликаты Gardners -->
+				<xsl:text> за </xsl:text>
+				<xsl:call-template name="format_price_number">
+					<xsl:with-param name="price" select="art/@price"/>
+				</xsl:call-template>
+				<xsl:text> </xsl:text>
+				<xsl:call-template name="num-decline">
+					<xsl:with-param name="num" select="art/@price"/>
+					<xsl:with-param name="nominative">рубль</xsl:with-param>
+					<xsl:with-param name="genitive-singular">рубля</xsl:with-param>
+					<xsl:with-param name="genitive-plural">рублей</xsl:with-param>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:when test="$a-type = 2">мультимедиа-книгу</xsl:when>
+			<xsl:when test="$a-type = 12">
+				<xsl:text>бумажную книгу</xsl:text>
+				<xsl:if test="art/@date_written_s != ''">
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="art/@date_written_s"/>
+					<xsl:text> года</xsl:text>
+				</xsl:if>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- метаописание книги -->
+	<xsl:template match="biblio_book" mode="page_description">
+		<xsl:variable name="a-type" select="art/@type"/>
+		<xsl:variable name="authors" select="libbook-relations/related-person[@fake = '0' and @relation = '0']"/>
+		<xsl:variable name="translators" select="libbook-relations/related-person[@fake = '0' and @relation = '1']"/>
+		<xsl:variable name="compilers" select="libbook-relations/related-person[@fake = '0' and @relation = '4']"/>
+		<xsl:variable name="readers" select="libbook-relations/related-person[@fake = '0' and @relation = '6' and normalize-space(@full_rodit) != '']"/>
+		<xsl:variable name="num-of-books" select="sum($authors[position() &lt;= $meta-authors-limit]/@total_arts)"/>
+		<xsl:variable name="is-free" select="art/art-collections/collection[@id = '4']"/>
+
+		<xsl:variable name="addition-info">
+			<!-- информация о переводчиках и исполнителях -->
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$translators and $a-type != 1">
+						<item>
+							<xsl:text>в переводе </xsl:text>
+							<xsl:choose>
+								<xsl:when test="count($translators) &gt; 1">
+									<xsl:value-of select="normalize-space($translators[1]/@full_rodit)"/>
+									<xsl:text> и других,</xsl:text>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="normalize-space($translators[1]/@full_rodit)"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</item>
+					</xsl:if>
+					<xsl:if test="$readers">
+						<item>
+							<xsl:text>в исполнении </xsl:text>
+							<xsl:choose>
+								<xsl:when test="count($readers) &gt; $meta-authors-limit">
+									<xsl:call-template name="persons-list">
+										<xsl:with-param name="persons" select="$readers"/>
+										<xsl:with-param name="is-genitive" select="true()"/>
+										<xsl:with-param name="use-conjunction" select="false()"/>
+										<xsl:with-param name="limit" select="$meta-authors-limit"/>
+									</xsl:call-template>
+									<xsl:text> и других,</xsl:text>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:call-template name="persons-list">
+										<xsl:with-param name="persons" select="$readers"/>
+										<xsl:with-param name="is-genitive" select="true()"/>
+										<xsl:with-param name="limit" select="$meta-authors-limit"/>
+									</xsl:call-template>
+								</xsl:otherwise>
+							</xsl:choose>
+						</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="description">
+			<xsl:if test="$is-free">бесплатная </xsl:if>
+			<xsl:choose>
+				<xsl:when test="$a-type = 0">электронная книга</xsl:when>
+				<xsl:when test="$a-type = 4">PDF-книга</xsl:when>
+				<xsl:when test="$a-type = 1">аудиокнига</xsl:when>
+				<xsl:when test="$a-type = 11">электронная книга на английском</xsl:when>
+				<xsl:when test="$a-type = 2">мультимедиа-книга</xsl:when>
+				<xsl:when test="$a-type = 12">
+					<xsl:text>бумажная книга</xsl:text>
+					<xsl:if test="art/@date_written_s != ''">
+						<xsl:text> </xsl:text>
+						<xsl:value-of select="art/@date_written_s"/>
+						<xsl:text> года</xsl:text>
+					</xsl:if>
+				</xsl:when>
+			</xsl:choose>
+			<xsl:text> </xsl:text>
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title" select="art/@name"/>
+			</xsl:call-template>
+			<xsl:text> </xsl:text>
+			<xsl:value-of select="$addition-info"/>
+			<!-- для книг на английском указываем цену, это помогает расклеить дубликаты Gardners -->
+			<xsl:if test="$a-type = 11 and not($is-free)">
+				<xsl:text>по цене </xsl:text>
+				<xsl:call-template name="format_price_number">
+					<xsl:with-param name="price" select="art/@price"/>
+				</xsl:call-template>
+				<xsl:text> </xsl:text>
+				<xsl:call-template name="num-decline">
+					<xsl:with-param name="num" select="art/@price"/>
+					<xsl:with-param name="nominative">рубль</xsl:with-param>
+					<xsl:with-param name="genitive-singular">рубля</xsl:with-param>
+					<xsl:with-param name="genitive-plural">рублей</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
+			<xsl:if test="substring-before($addition-info, ' и ') and substring($addition-info, string-length($addition-info), 1) != ','">
+				<!-- запятая после дополнительной информации в случае, если перечисление содержит союз и не оканчивается на запятую -->
+				<xsl:text>,</xsl:text>
+			</xsl:if>
+			<xsl:choose>
+				<xsl:when test="$num-of-books &gt; 3 and $a-type != 2">
+					<xsl:text> и ещё </xsl:text>
+					<xsl:value-of select="$num-of-books - 1"/>
+					<xsl:text> </xsl:text>
+					<xsl:call-template name="num-decline">
+						<xsl:with-param name="num" select="$num-of-books - 1"/>
+						<xsl:with-param name="nominative">книга</xsl:with-param>
+						<xsl:with-param name="genitive-singular">книги</xsl:with-param>
+						<xsl:with-param name="genitive-plural">книг</xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text> и другие книги</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:if test="($authors or $compilers) and $a-type != 2">
+				<!-- для мультимедии «автора» не выводим -->
+				<xsl:text> </xsl:text>
+				<xsl:choose>
+					<xsl:when test="$authors">
+						<xsl:call-template name="persons-list">
+							<xsl:with-param name="persons" select="$authors"/>
+							<xsl:with-param name="limit" select="$meta-authors-limit"/>
+							<xsl:with-param name="is-genitive" select="true()"/>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<!-- если нет авторов, упоминаем составителей -->
+						<xsl:call-template name="persons-list">
+							<xsl:with-param name="persons" select="$compilers"/>
+							<xsl:with-param name="limit" select="$meta-authors-limit"/>
+							<xsl:with-param name="is-genitive" select="true()"/>
+						</xsl:call-template>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+			<xsl:choose>
+				<xsl:when test="$a-type = 11">
+					<!-- для книг на английском указываем только доступный формат -->
+					<xsl:text> в </xsl:text>
+					<xsl:for-each select="conversions/format-type[@size != '']">
+						<xsl:call-template name="download-file-types">
+							<xsl:with-param name="ext" select="."/>
+						</xsl:call-template>
+						<xsl:if test="position() != last()">, </xsl:if>
+					</xsl:for-each>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text> в FB2, TXT, PDF, EPUB, DOC, MP3</xsl:text>
+					<xsl:if test="$a-type = 12"> и печатном виде</xsl:if>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:text>. </xsl:text>
+			<xsl:choose>
+				<xsl:when test="$is-free">
+					<xsl:choose>
+						<xsl:when test="$a-type = 0 or $a-type = 4 or $a-type = 11">Скачать бесплатно или прочесть онлайн</xsl:when>
+						<xsl:when test="$a-type = 1">Скачать бесплатно или прослушать онлайн</xsl:when>
+						<xsl:when test="$a-type = 2">Скачать бесплатно</xsl:when>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:choose>
+						<xsl:when test="$a-type = 0 or $a-type = 4 or $a-type = 11">Читать онлайн, купить и скачать</xsl:when>
+						<xsl:when test="$a-type = 1">Слушать онлайн, купить и скачать</xsl:when>
+						<xsl:when test="$a-type = 2">Купить и скачать</xsl:when>
+						<xsl:when test="$a-type = 12">Купить недорого</xsl:when>
+					</xsl:choose>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:text>. </xsl:text>
+		</xsl:variable>
+
+		<xsl:call-template name="capitalize-first-letter">
+			<xsl:with-param name="string" select="$description"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- заголовок ридера -->
+	<xsl:template match="biblio_book[art/@type = 3]" mode="page_title">
+		<xsl:text>Ридер для электронных книг </xsl:text>
+		<xsl:value-of select="art/@name"/>
+		<xsl:text>, обзор характеристик, отзывы, купить недорого</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание ридера -->
+	<xsl:template match="biblio_book[art/@type = 3]" mode="page_description">
+		<xsl:variable name="brand" select="libbook-relations/related-person[@fake = '0' and @relation = '0'][1]"/>
+		<xsl:variable name="num-of-devices" select="$brand/@total_arts"/>
+
+		<xsl:value-of select="art/@name"/>
+		<xsl:if test="art/@price &gt; 0">
+			<xsl:text> по цене </xsl:text>
+			<xsl:call-template name="format_price_number">
+				<xsl:with-param name="price" select="art/@price"/>
+			</xsl:call-template>
+			<xsl:text> руб.</xsl:text>
+			<xsl:choose>
+				<xsl:when test="art/@available = 1"> в наличии</xsl:when>
+				<xsl:when test="art/@can_preorder = 1"> под заказ</xsl:when>
+				<!--xsl:when test="art/@available = 0"></xsl:when-->
+			</xsl:choose>
+		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="$num-of-devices &gt;= $meta-a-wide-range-of-choice-threshold">
+				<xsl:text>, широкий выбор ридеров </xsl:text>
+				<xsl:value-of select="$brand/@full_name"/>
+				<xsl:text> и аксессуаров.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$num-of-devices &gt; 1">
+				<xsl:text> и другие ридеры </xsl:text>
+				<xsl:value-of select="$brand/@full_name"/>
+				<xsl:text>, аксессуары.</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>, аксессуары.</xsl:otherwise>
+		</xsl:choose>
+		<xsl:text> Доставка, самовывоз. Карта для покупки электронных книг в подарок.</xsl:text>
+	</xsl:template>
+
+	<!-- заголовок аксессуара -->
+	<xsl:template match="biblio_book[art/@type = 13]" mode="page_title">
+		<xsl:value-of select="art/@name"/>
+		<xsl:text>, обзор, отзывы, купить недорого</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание аксессуара -->
+	<xsl:template match="biblio_book[art/@type = 13]" mode="page_description">
+		<xsl:variable name="brand" select="libbook-relations/related-person[@fake = '0' and @relation = '0'][1]"/>
+		<xsl:variable name="num-of-devices" select="$brand/@total_arts"/>
+
+		<xsl:value-of select="art/@name"/>
+		<xsl:text> по цене </xsl:text>
+		<xsl:call-template name="format_price_number">
+			<xsl:with-param name="price" select="art/@price"/>
+		</xsl:call-template>
+		<xsl:text> руб.</xsl:text>
+		<xsl:choose>
+			<xsl:when test="art/@available = 1"> в наличии</xsl:when>
+			<xsl:when test="art/@can_preorder = 1"> под заказ</xsl:when>
+			<!--xsl:when test="art/@available = 0"> нет в наличии</xsl:when-->
+		</xsl:choose>
+		<xsl:text>, широкий выбор ридеров и аксессуаров.</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание статики -->
+	<xsl:template match="cms" mode="page_description">
+		<xsl:if test="article/@meta_descr">
+			<xsl:value-of select="article/@meta_descr"/>
+		</xsl:if>
+	</xsl:template>
+
+	<!-- индексация серий -->
+	<xsl:template match="biblio_series[not(arts/sequence/book_in_serie_list)]" mode="page_robots">noindex</xsl:template>
+
+	<!-- заголовок серии -->
+	<xsl:template match="biblio_series" mode="page_title">
+		<xsl:variable name="seq" select="child-serie[@id = $form/@id] | child-serie//child-serie[@id = $form/@id]"/>
+		<xsl:variable name="authors" select="arts/sequence/book_in_serie_list/related-person[@relation = 0 and @fake = 0 and @lvl &gt;= $meta-authors-lvl-threshold and not(./@id = preceding::related-person/@id)]"/>
+		<xsl:variable name="current-page" select="series_pager/pager/@page"/>
+		<xsl:variable name="title">
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title" select="$seq/@name"/>
+			</xsl:call-template>
+			<xsl:if test="$authors and $atype != 'mmedia'">
+				<xsl:text> </xsl:text>
+				<xsl:call-template name="persons-list">
+					<xsl:with-param name="persons" select="$authors[@full_rodit]"/>
+					<xsl:with-param name="limit" select="$meta-authors-limit"/>
+					<xsl:with-param name="is-genitive" select="$atype != 'english'"/>
+				</xsl:call-template>
+			</xsl:if>
+		</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="$atype = '' or not($atype)">Книги серии <xsl:value-of select="$title"/> – читать онлайн, купить и скачать</xsl:when>
+			<xsl:when test="$atype = 'text'">Электронные книги серии <xsl:value-of select="$title"/> – читать онлайн, купить и скачать</xsl:when>
+			<xsl:when test="$atype = 'audio'">Аудиокниги серии <xsl:value-of select="$title"/> – слушать онлайн, купить и скачать</xsl:when>
+			<xsl:when test="$atype = 'mmedia'">Мультимедиа-книги серии <xsl:value-of select="$title"/> – купить и скачать</xsl:when>
+			<xsl:when test="$atype = 'english'">Книги на английском серии <xsl:value-of select="$title"/> – купить и скачать</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">Бумажные книги серии <xsl:value-of select="$title"/> – купить недорого</xsl:when>
+		</xsl:choose>
+		<xsl:text>, отзывы и оценки</xsl:text>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание серии -->
+	<xsl:template match="biblio_series" mode="page_description">
+		<xsl:variable name="atypes" select="arts/sequence/available-root-art-types/type"/>
+		<xsl:variable name="atype" select="/xportal/xportal-page/all-types/root-type[@root_type_id = $atypes[@selected = 1]/@id]/@mem"/>
+
+		<xsl:variable name="seq" select="child-serie[@id = $form/@id] | child-serie//child-serie[@id = $form/@id]"/>
+		<xsl:variable name="authors" select="arts/sequence/book_in_serie_list/related-person[@relation = 0 and @fake = 0 and @lvl &gt;= $meta-authors-lvl-threshold and @full_rodit and not(./@id = preceding::related-person/@id)]"/>
+		<xsl:variable name="current-page" select="series_pager/pager/@page"/>
+		<xsl:variable name="title">
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title" select="$seq/@name"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="$atype = '' or not($atype)">Книги серии <xsl:value-of select="$title"/></xsl:when>
+			<xsl:when test="$atype = 'text'">Электронные книги серии <xsl:value-of select="$title"/></xsl:when>
+			<xsl:when test="$atype = 'audio'">Аудиокниги серии <xsl:value-of select="$title"/></xsl:when>
+			<xsl:when test="$atype = 'mmedia'">Мультимедиа-книги серии <xsl:value-of select="$title"/></xsl:when>
+			<xsl:when test="$atype = 'english'">Книги на английском языке серии <xsl:value-of select="$title"/></xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">Бумажные книги серии <xsl:value-of select="$title"/></xsl:when>
+		</xsl:choose>
+		<xsl:text> и другие книги</xsl:text>
+		<xsl:if test="$authors and $atype != 'mmedia'">
+			<xsl:text> </xsl:text>
+			<xsl:call-template name="persons-list">
+				<xsl:with-param name="persons" select="$authors"/>
+				<xsl:with-param name="limit" select="$meta-authors-limit"/>
+				<xsl:with-param name="is-genitive" select="$atype != 'english'"/>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="$atype != 'hardcopy'"> в FB2, TXT, PDF, EPUB, DOC, MP3</xsl:if>
+		<xsl:text>. </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$current-page = 1">
+				<xsl:value-of select="$meta-advantage-with-free-books"/>
+			</xsl:when>
+			<xsl:when test="$current-page = 2">
+				<xsl:choose>
+					<xsl:when test="$atype = 'text' or $atype = '' or not($atype)">Читать онлайн, купить и скачать</xsl:when>
+					<xsl:when test="$atype = 'audio'">Слушать онлайн, купить и скачать</xsl:when>
+					<xsl:when test="$atype = 'mmedia' or $atype = 'english'">Купить и скачать</xsl:when>
+					<xsl:when test="$atype = 'hardcopy'">Купить недорого с доставкой в удобное время</xsl:when>
+				</xsl:choose>
+				<xsl:text>.</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="limit">3</xsl:variable>
+				<xsl:variable name="first-books" select="arts/sequence/book_in_serie_list[position() &lt;= $limit]"/>
+				<!-- три первых книги списка, для уникальности описания далее второй страницы -->
+				<xsl:for-each select="$first-books">
+					<xsl:call-template name="print-title">
+						<xsl:with-param name="title" select="@name"/>
+					</xsl:call-template>
+					<xsl:if test="position() != last()">, </xsl:if>
+				</xsl:for-each>
+				<xsl:text>.</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- заголовок тега -->
+	<xsl:template match="tags" mode="page_title">
+		<xsl:variable name="atypes" select="tag_book/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:call-template name="capitalize-first-letter">
+			<xsl:with-param name="string" select="hidden/tags/tag/@title"/>
+		</xsl:call-template>
+		<xsl:text> – </xsl:text>
+		<xsl:call-template name="print-list">
+			<xsl:with-param name="list">
+				<xsl:if test="$has-texts">
+					<item>электронные книги</item>
+				</xsl:if>
+				<xsl:if test="$has-audios">
+					<item>аудиокниги</item>
+				</xsl:if>
+				<xsl:if test="$has-multimedia">
+					<item>мультимедиа-книги</item>
+				</xsl:if>
+				<xsl:if test="$has-pdf">
+					<item>PDF-книги</item>
+				</xsl:if>
+				<xsl:if test="$has-paper">
+					<item>бумажные книги</item>
+				</xsl:if>
+			</xsl:with-param>
+		</xsl:call-template>
+		<!-- «читать и слушать онлайн» -->
+		<xsl:if test="$has-texts or $has-audios or $has-pdf">
+			<xsl:text>, </xsl:text>
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts or $has-pdf">
+						<item>читать</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>слушать</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> онлайн</xsl:text>
+		</xsl:if>
+		<xsl:text>, купить</xsl:text>
+		<xsl:if test="$has-texts or $has-audios or $has-multimedia or $has-pdf"> и скачать</xsl:if>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание тега -->
+	<xsl:template match="tags" mode="page_description">
+		<xsl:variable name="atypes" select="tag_book/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:variable name="description">
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts">
+						<item>электронные книги</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>аудиокниги</item>
+					</xsl:if>
+					<xsl:if test="$has-multimedia">
+						<item>мультимедиа-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-pdf">
+						<item>PDF-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-paper">
+						<item>бумажные книги</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> на тему </xsl:text>
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title" select="hidden/tags/tag/@title"/>
+			</xsl:call-template>
+			<xsl:text> и другие книги в FB2, TXT, PDF, EPUB, DOC, MP3</xsl:text>
+			<xsl:if test="$has-paper">, и печатном виде</xsl:if>
+			<xsl:text>. </xsl:text>
+			<xsl:choose>
+				<xsl:when test="$current-page = 1">
+					<xsl:value-of select="$meta-advantage-with-free-books"/>
+				</xsl:when>
+				<xsl:when test="$current-page = 2">
+					<xsl:choose>
+						<xsl:when test="$has-texts or $has-pdf">Читать онлайн, купить и скачать</xsl:when>
+						<xsl:when test="$has-audios">Слушать онлайн, купить и скачать</xsl:when>
+						<xsl:when test="$has-multimedia">Купить и скачать</xsl:when>
+						<xsl:when test="$has-paper">Купить недорого</xsl:when>
+					</xsl:choose>
+					<xsl:text>.</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:variable name="limit">3</xsl:variable>
+					<xsl:variable name="first-books" select="tag_book[position() &lt;= $limit]"/>
+
+					<!-- три первых книги списка, для уникальности описания далее второй страницы -->
+					<xsl:for-each select="$first-books">
+						<xsl:call-template name="print-title">
+							<xsl:with-param name="title" select="@name"/>
+						</xsl:call-template>
+						<xsl:if test="position() != last()">, </xsl:if>
+					</xsl:for-each>
+					<xsl:text>. </xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:call-template name="capitalize-first-letter">
+			<xsl:with-param name="string" select="$description"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- заголовок издательства -->
+	<xsl:template match="izdatelstva" mode="page_title">
+		<xsl:variable name="atypes" select="arts/izdat-book/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="arts/pager/@page"/>
+		<xsl:variable name="title">
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title" select="copyrighter-info/@copyright_name"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="result-title">
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts">
+						<item>электронные книги</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>аудиокниги</item>
+					</xsl:if>
+					<xsl:if test="$has-multimedia">
+						<item>мультимедиа-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-pdf">
+						<item>PDF-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-paper">
+						<item>бумажные книги</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> издательства </xsl:text>
+			<xsl:value-of select="$title"/>
+			<xsl:text> – </xsl:text>
+			<xsl:if test="$has-texts or $has-pdf or $has-audios">
+				<xsl:call-template name="print-list">
+					<xsl:with-param name="list">
+						<xsl:if test="$has-texts or $has-pdf">
+							<item>читать</item>
+						</xsl:if>
+						<xsl:if test="$has-audios">
+							<item>слушать</item>
+						</xsl:if>
+					</xsl:with-param>
+				</xsl:call-template>
+				<xsl:text> онлайн, </xsl:text>
+			</xsl:if>
+
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts or $has-pdf or $has-audios or $has-multimedia">
+						<item>купить и скачать</item>
+					</xsl:if>
+					<xsl:if test="$has-paper">
+						<item>купить недорого</item>
+					</xsl:if>
+				</xsl:with-param>
+				<xsl:with-param name="use-conjunction" select="false()"/>
+			</xsl:call-template>
+			<xsl:call-template name="pager-in-title">
+				<xsl:with-param name="page" select="arts/pager/@page"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:call-template name="capitalize-first-letter">
+			<xsl:with-param name="string" select="$result-title"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание издательства -->
+	<xsl:template match="izdatelstva" mode="page_description">
+		<xsl:variable name="atypes" select="arts/izdat-book/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="arts/pager/@page"/>
+		<xsl:variable name="authors" select="arts/izdat-book/related-person[@relation = 0 and @fake = 0 and @full_rodit and not(./@id = preceding::related-person/@id)]"/>
+		<xsl:variable name="title">
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title" select="copyrighter-info/@copyright_name"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="description">
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts">
+						<item>электронные книги</item>
+					</xsl:if>
+					<xsl:if test="$has-pdf">
+						<item>PDF-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>аудиокниги</item>
+					</xsl:if>
+					<xsl:if test="$has-multimedia">
+						<item>мультимедиа-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-paper">
+						<item>бумажные книги</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> издательства </xsl:text>
+			<xsl:value-of select="$title"/>
+			<xsl:choose>
+				<xsl:when test="$has-multimedia or $has-paper">
+					<xsl:text> легально и по доступной цене</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text> в </xsl:text>
+					<xsl:call-template name="print-list">
+						<xsl:with-param name="list">
+							<xsl:if test="$has-texts">
+								<item>FB2, DOC, EPUB, TXT, Java, HTML, RTF, LRF</item>
+							</xsl:if>
+							<xsl:if test="$has-pdf">
+								<item>PDF</item>
+							</xsl:if>
+							<xsl:if test="$has-audios">
+								<item>MP3, MP4, в виде ZIP-архива</item>
+							</xsl:if>
+						</xsl:with-param>
+						<xsl:with-param name="use-conjunction" select="false()"/>
+					</xsl:call-template>
+					<xsl:text> и других форматах</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:text>. </xsl:text>
+			<xsl:choose>
+				<xsl:when test="$current-page = 1">
+					<xsl:value-of select="$meta-advantage-with-free-books"/>
+				</xsl:when>
+				<xsl:when test="$current-page = 2">
+					<xsl:variable name="appendix">
+						<xsl:if test="$has-texts or $has-pdf or $has-audios">
+							<xsl:call-template name="print-list">
+								<xsl:with-param name="list">
+									<xsl:if test="$has-texts or $has-pdf">
+										<item>читать</item>
+									</xsl:if>
+									<xsl:if test="$has-audios">
+										<item>слушать</item>
+									</xsl:if>
+								</xsl:with-param>
+							</xsl:call-template>
+							<xsl:text> онлайн, </xsl:text>
+						</xsl:if>
+						<xsl:call-template name="print-list">
+							<xsl:with-param name="list">
+								<xsl:if test="$has-texts or $has-pdf or $has-audios or $has-multimedia">
+									<item>купить и скачать</item>
+								</xsl:if>
+								<xsl:if test="$has-paper">
+									<item>купить недорого</item>
+								</xsl:if>
+							</xsl:with-param>
+							<xsl:with-param name="use-conjunction" select="false()"/>
+						</xsl:call-template>
+						<xsl:text>.</xsl:text>
+					</xsl:variable>
+
+					<xsl:call-template name="capitalize-first-letter">
+						<xsl:with-param name="string" select="$appendix"/>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:variable name="limit">3</xsl:variable>
+					<xsl:variable name="first-books" select="arts/izdat-book[position() &lt;= $limit]"/>
+
+					<!-- первые авторы, для уникальности описания далее второй страницы -->
+					<xsl:if test="$authors">
+						<xsl:call-template name="persons-list">
+							<xsl:with-param name="persons" select="$authors"/>
+							<xsl:with-param name="limit" select="$meta-authors-limit"/>
+							<xsl:with-param name="use-conjunction" select="false()"/>
+						</xsl:call-template>
+						<xsl:text> и другие. </xsl:text>
+					</xsl:if>
+
+					<!-- три первых книги списка, для уникальности описания далее второй страницы -->
+					<xsl:for-each select="$first-books">
+						<xsl:call-template name="print-title">
+							<xsl:with-param name="title" select="@name"/>
+						</xsl:call-template>
+						<xsl:if test="position() != last()">, </xsl:if>
+					</xsl:for-each>
+					<xsl:text>.</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:call-template name="capitalize-first-letter">
+			<xsl:with-param name="string" select="$description"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- заголовок жанрового дерева -->
+	<xsl:template match="genres_tree" mode="page_title">
+		<xsl:text>Жанры электронных и аудио книг — выберите понравившийся и приступайте к онлайн-чтению</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание жанрового дерева -->
+	<xsl:template match="genres_tree" mode="page_description">
+		<xsl:text>Полный список жанров электронных и аудио книг магазина ЛитРес — бизнес-книги, зарубежная литература, детские книги, фантастика, детективы и многое другое для увлекательного чтения.</xsl:text>
+	</xsl:template>
+
+	<!-- заголовок жанра -->
+	<xsl:template match="biblio_genres | biblio_genre_by_date | biblio_subgenre_by_pop | biblio_subgenre_by_date | biblio_subgenres" mode="page_title">
+		<xsl:variable name="atypes" select="genre_book/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-english" select="$atypes[. = 11]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:value-of select="genre_title/@title | subgenres/root_title/@value"/>
+		<xsl:text> – </xsl:text>
+		<xsl:call-template name="print-list">
+			<xsl:with-param name="list">
+				<xsl:if test="$has-texts">
+					<item>электронные книги</item>
+				</xsl:if>
+				<xsl:if test="$has-audios">
+					<item>аудиокниги</item>
+				</xsl:if>
+				<xsl:if test="$has-multimedia">
+					<item>мультимедиа-книги</item>
+				</xsl:if>
+				<xsl:if test="$has-pdf">
+					<item>PDF-книги</item>
+				</xsl:if>
+				<xsl:if test="$has-english">
+					<item>электронные книги на английском</item>
+				</xsl:if>
+				<xsl:if test="$has-paper">
+					<item>бумажные книги</item>
+				</xsl:if>
+			</xsl:with-param>
+		</xsl:call-template>
+		<!-- «читать и слушать онлайн» -->
+		<xsl:if test="$has-texts or $has-audios or $has-pdf or $has-english">
+			<xsl:text>, </xsl:text>
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts or $has-pdf or $has-english">
+						<item>читать</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>слушать</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> онлайн</xsl:text>
+		</xsl:if>
+		<xsl:text>, купить </xsl:text>
+		<xsl:if test="$has-texts or $has-audios or $has-multimedia or $has-pdf">и скачать </xsl:if>
+		<xsl:call-template name="genre-synonym">
+			<xsl:with-param name="genre" select="subgenres/root_title | genre_title"/>
+		</xsl:call-template>
+		<xsl:choose>
+			<xsl:when test="$has-texts or $has-audios or $has-english or $has-pdf">
+				<xsl:text>в </xsl:text>
+				<xsl:call-template name="print-list">
+					<xsl:with-param name="list">
+						<xsl:if test="$has-texts">
+							<item>FB2, DOC, EPUB, TXT</item>
+						</xsl:if>
+						<xsl:if test="$has-english">
+							<item>EPUB</item>
+						</xsl:if>
+						<xsl:if test="$has-pdf">
+							<item>PDF</item>
+						</xsl:if>
+						<xsl:if test="$has-audios">
+							<item>MP3, MP4</item>
+						</xsl:if>
+					</xsl:with-param>
+					<xsl:with-param name="use-conjunction" select="false()"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:when test="$has-paper">
+				<xsl:text> по лучшей цене</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание жанра -->
+	<xsl:template match="biblio_genres | biblio_genre_by_date | biblio_subgenre_by_pop | biblio_subgenre_by_date | biblio_subgenres" mode="page_description">
+		<xsl:variable name="atypes" select="genre_book/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-english" select="$atypes[. = 11]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+		<xsl:variable name="genre-synonym">
+			<xsl:call-template name="genre-synonym">
+				<xsl:with-param name="genre" select="subgenres/root_title | genre_title"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="description">
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts">
+						<item>электронные книги</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>аудиокниги</item>
+					</xsl:if>
+					<xsl:if test="$has-multimedia">
+						<item>мультимедиа-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-pdf">
+						<item>PDF-книги</item>
+					</xsl:if>
+					<xsl:if test="$has-english">
+						<item>электронные книги на английском</item>
+					</xsl:if>
+					<xsl:if test="$has-paper">
+						<item>бумажные книги</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> жанра </xsl:text>
+			<xsl:call-template name="print-title">
+				<xsl:with-param name="title">
+					<xsl:call-template name="lowercase">
+						<xsl:with-param name="string" select="subgenres/root_title/@value | genre_title/@title"/>
+					</xsl:call-template>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> </xsl:text>
+			<xsl:choose>
+				<xsl:when test="$atype = '' or not($atype)">в форматах FB2, TXT, PDF, EPUB, DOC, MP3 и других</xsl:when>
+				<xsl:when test="$atype = 'text'">в форматах FB2, TXT, PDF, EPUB, DOC и других</xsl:when>
+				<xsl:when test="$atype = 'audio'">в MP3, MP4 и в виде ZIP-архива</xsl:when>
+				<xsl:when test="$atype = 'mmedia' or $atype = 'hardcopy'">легально и по доступной цене</xsl:when>
+			</xsl:choose>
+			<xsl:text>. </xsl:text>
+			<xsl:choose>
+				<xsl:when test="$current-page = 1">
+					<xsl:choose>
+						<xsl:when test="$has-texts or $has-pdf">
+							<xsl:text>Читать </xsl:text>
+							<xsl:value-of select="$genre-synonym"/>
+							<xsl:text> онлайн, купить и скачать</xsl:text>
+						</xsl:when>
+						<xsl:when test="$has-audios">
+							<xsl:text>Слушать </xsl:text>
+							<xsl:value-of select="$genre-synonym"/>
+							<xsl:text> онлайн, купить и скачать</xsl:text>
+						</xsl:when>
+						<xsl:when test="$has-multimedia or $has-english">
+							<xsl:text>Купить и скачать</xsl:text>
+							<xsl:value-of select="$genre-synonym"/>
+						</xsl:when>
+						<xsl:when test="$has-paper">
+							<xsl:text>Купить </xsl:text>
+							<xsl:value-of select="$genre-synonym"/>
+							<xsl:text> недорого</xsl:text>
+						</xsl:when>
+					</xsl:choose>
+					<xsl:text>.</xsl:text>
+				</xsl:when>
+				<xsl:when test="$current-page = 2">
+					<xsl:value-of select="$meta-advantage-with-free-books"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:variable name="limit">3</xsl:variable>
+					<xsl:variable name="first-books" select="genre_book[position() &lt;= $limit]"/>
+
+					<!-- три первых книги списка, для уникальности описания далее второй страницы -->
+					<xsl:for-each select="$first-books">
+						<xsl:call-template name="print-title">
+							<xsl:with-param name="title" select="@name"/>
+						</xsl:call-template>
+						<xsl:if test="position() != last()">, </xsl:if>
+					</xsl:for-each>
+					<xsl:text>. </xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:call-template name="capitalize-first-letter">
+			<xsl:with-param name="string" select="$description"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- заголовок списка коллекций -->
+	<xsl:template match="collections_list" mode="page_title">
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:text>Коллекциии и подборки книг</xsl:text>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+		<xsl:text> – читать онлайн, купить и скачать</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание списка коллекций -->
+	<xsl:template match="collections_list" mode="page_description">
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:text>Коллекциии и подборки лучших книг. </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$current-page = 1">Читать или слушать онлайн, купить и скачать.</xsl:when>
+			<xsl:when test="$current-page = 2">
+				<xsl:value-of select="$meta-advantage-with-free-books"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="limit">3</xsl:variable>
+				<xsl:variable name="first-collections" select="category_list[position() &lt;= $limit]"/>
+
+				<!-- три первых коллекции списка, для уникальности описания далее второй страницы -->
+				<xsl:for-each select="$first-collections">
+					<xsl:call-template name="print-title">
+						<xsl:with-param name="title" select="@category_name"/>
+					</xsl:call-template>
+					<xsl:if test="position() != last()">, </xsl:if>
+				</xsl:for-each>
+				<xsl:text>.</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- заголовок страницы коллекции -->
+	<xsl:template match="biblio_collection" mode="page_title">
+		<xsl:variable name="atypes" select="category_arts/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:call-template name="print-title">
+			<xsl:with-param name="title" select="category_info/@category_name"/>
+		</xsl:call-template>
+		<xsl:text> – подборка </xsl:text>
+		<xsl:call-template name="print-list">
+			<xsl:with-param name="list">
+				<xsl:if test="$has-texts">
+					<item>электронных книг</item>
+				</xsl:if>
+				<xsl:if test="$has-audios">
+					<item>аудиокниг</item>
+				</xsl:if>
+				<xsl:if test="$has-multimedia">
+					<item>мультимедиа-книг</item>
+				</xsl:if>
+				<xsl:if test="$has-pdf">
+					<item>PDF-книг</item>
+				</xsl:if>
+				<xsl:if test="$has-paper">
+					<item>бумажных книг</item>
+				</xsl:if>
+			</xsl:with-param>
+		</xsl:call-template>
+		<!-- «читать и слушать онлайн» -->
+		<xsl:if test="$has-texts or $has-audios or $has-pdf">
+			<xsl:text>, </xsl:text>
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts or $has-pdf">
+						<item>читать</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>слушать</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> онлайн</xsl:text>
+		</xsl:if>
+		<xsl:text>, купить</xsl:text>
+		<xsl:if test="$has-texts or $has-audios or $has-multimedia or $has-pdf"> и скачать</xsl:if>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание страницы коллекции -->
+	<xsl:template match="biblio_collection" mode="page_description">
+		<xsl:variable name="atypes" select="category_arts/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:variable name="short-books-list">
+			<xsl:for-each select="category_arts[position() &lt;= 3]">
+				<xsl:call-template name="print-title">
+					<xsl:with-param name="title" select="@name"/>
+				</xsl:call-template>
+				<xsl:if test="position() != last()">, </xsl:if>
+			</xsl:for-each>
+		</xsl:variable>
+		<xsl:variable name="long-books-list">
+			<xsl:for-each select="category_arts[position() &lt;= 5]">
+				<xsl:call-template name="print-title">
+					<xsl:with-param name="title" select="@name"/>
+				</xsl:call-template>
+				<xsl:if test="position() != last()">, </xsl:if>
+			</xsl:for-each>
+		</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="$current-page = 1">
+				<xsl:value-of select="$short-books-list"/>
+				<xsl:text> и другие книги в FB2, TXT, PDF, EPUB, DOC</xsl:text>
+				<xsl:if test="$has-audios">, MP3</xsl:if>
+				<xsl:if test="$has-paper"> и печатном виде</xsl:if>
+				<xsl:text>. </xsl:text>
+			</xsl:when>
+			<xsl:when test="$current-page = 2">
+				<xsl:value-of select="$short-books-list"/>
+				<xsl:text>. </xsl:text>
+				<xsl:value-of select="$meta-advantage-with-free-books"/>
+			</xsl:when>
+			<xsl:when test="$current-page = 3">
+				<xsl:value-of select="$short-books-list"/>
+				<xsl:text>. </xsl:text>
+				<xsl:choose>
+					<xsl:when test="$has-texts or $has-pdf">Читать онлайн, купить и скачать</xsl:when>
+					<xsl:when test="$has-audios">Слушать онлайн, купить и скачать</xsl:when>
+					<xsl:when test="$has-multimedia">Купить и скачать</xsl:when>
+					<xsl:when test="$has-paper">Купить недорого</xsl:when>
+				</xsl:choose>
+				<xsl:text>.</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$long-books-list"/>
+				<xsl:text>.</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- заголовок коллекции бесплатных книг -->
+	<xsl:template match="biblio_collection[category_info/@id = 4]" mode="page_title">
+		<xsl:variable name="atypes" select="category_arts/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:text>Бесплатные </xsl:text>
+		<xsl:call-template name="print-list">
+			<xsl:with-param name="list">
+				<xsl:if test="$has-texts">
+					<item>электронные книги</item>
+				</xsl:if>
+				<xsl:if test="$has-audios">
+					<item>аудиокниги</item>
+				</xsl:if>
+				<xsl:if test="$has-multimedia">
+					<item>мультимедиа-книги</item>
+				</xsl:if>
+				<xsl:if test="$has-pdf">
+					<item>PDF-книги</item>
+				</xsl:if>
+				<xsl:if test="$has-paper">
+					<item>бумажные книги</item>
+				</xsl:if>
+			</xsl:with-param>
+		</xsl:call-template>
+		<!-- «скачать, читать и слушать онлайн» -->
+		<xsl:if test="$has-texts or $has-audios or $has-multimedia or $has-pdf">, скачать</xsl:if>
+		<xsl:if test="$has-texts or $has-audios or $has-pdf">
+			<xsl:text> и </xsl:text>
+			<xsl:call-template name="print-list">
+				<xsl:with-param name="list">
+					<xsl:if test="$has-texts or $has-pdf">
+						<item>читать</item>
+					</xsl:if>
+					<xsl:if test="$has-audios">
+						<item>слушать</item>
+					</xsl:if>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text> онлайн</xsl:text>
+		</xsl:if>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание коллекции бесплатных книг -->
+	<xsl:template match="biblio_collection[category_info/@id = 4]" mode="page_description">
+		<xsl:variable name="atypes" select="category_arts/@type"/>
+		<xsl:variable name="has-texts" select="$atypes[. = 0]"/>
+		<xsl:variable name="has-audios" select="$atypes[. = 1]"/>
+		<xsl:variable name="has-multimedia" select="$atypes[. = 2]"/>
+		<xsl:variable name="has-pdf" select="$atypes[. = 4]"/>
+		<xsl:variable name="has-paper" select="$atypes[. = 12]"/>
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:variable name="short-books-list">
+			<xsl:for-each select="category_arts[position() &lt;= 3]">
+				<xsl:call-template name="print-title">
+					<xsl:with-param name="title" select="@name"/>
+				</xsl:call-template>
+				<xsl:if test="position() != last()">, </xsl:if>
+			</xsl:for-each>
+		</xsl:variable>
+		<xsl:variable name="long-books-list">
+			<xsl:for-each select="category_arts[position() &lt;= 5]">
+				<xsl:call-template name="print-title">
+					<xsl:with-param name="title" select="@name"/>
+				</xsl:call-template>
+				<xsl:if test="position() != last()">, </xsl:if>
+			</xsl:for-each>
+		</xsl:variable>
+
+		<xsl:text>Бесплатные книги </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$current-page = 1">
+				<xsl:text>в FB2, TXT, PDF, EPUB, DOC</xsl:text>
+				<xsl:if test="$has-texts or $has-pdf"> и других форматах</xsl:if>
+				<xsl:if test="$has-audios">, MP3</xsl:if>
+				<xsl:if test="$has-paper"> и печатном виде</xsl:if>
+				<xsl:text>. </xsl:text>
+				<xsl:choose>
+					<xsl:when test="$has-texts or $has-pdf">Скачать и читать онлайн</xsl:when>
+					<xsl:when test="$has-audios">Скачать и слушать онлайн</xsl:when>
+					<xsl:when test="$has-multimedia">Скачать</xsl:when>
+				</xsl:choose>
+				<xsl:text>.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$current-page = 2">
+				<xsl:text>– </xsl:text>
+				<xsl:choose>
+					<xsl:when test="$has-texts or $has-pdf">скачать и читать онлайн</xsl:when>
+					<xsl:when test="$has-audios">скачать и слушать онлайн</xsl:when>
+					<xsl:when test="$has-multimedia">скачать</xsl:when>
+				</xsl:choose>
+				<xsl:text>. </xsl:text>
+				<xsl:value-of select="$short-books-list"/>
+				<xsl:text>. </xsl:text>
+			</xsl:when>
+			<xsl:when test="$current-page = 3">
+				<xsl:value-of select="$short-books-list"/>
+				<xsl:text> и другие. </xsl:text>
+				<xsl:value-of select="$meta-advantage-with-free-books"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$long-books-list"/>
+				<xsl:text> и другие.</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- заголовок страницы рейтингов -->
+	<xsl:template match="biblio_ratings" mode="page_title">
+		<xsl:text>Рейтинг интересных книг, самые читаемые книги и лучшие авторы</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание страницы рейтингов -->
+	<xsl:template match="biblio_ratings" mode="page_description">
+		<xsl:text>Рейтинг книг, самые интересные, популярные, продаваемые и обсуждаемые произведения, лучшие авторы. Бестселлеры на любой вкус от самых известных авторов.</xsl:text>
+	</xsl:template>
+
+	<!-- заголовок страницы новостей -->
+	<xsl:template match="biblio_news" mode="page_title">
+		<xsl:text>Новости компании, события, акции</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание страницы новостей -->
+	<xsl:template match="biblio_news" mode="page_description">
+		<xsl:text>Новости компании ЛитРес, информация об акциях и скидках, премиях и литературных событиях.</xsl:text>
+	</xsl:template>
+
+	<!-- заголовок страницы архива новостей -->
+	<xsl:template match="biblio_news[archive/@value = 1]" mode="page_title">
+		<xsl:text>Архив новостей компании, событий, акций</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание страницы архива новостей -->
+	<xsl:template match="biblio_news[archive/@value = 1]" mode="page_description"/>
+
+	<!-- индексация страницы архива новостей -->
+	<xsl:template match="biblio_news[archive/@value = 1]" mode="page_robots">noindex</xsl:template>
+
+	<!-- заголовок страницы «скоро в продаже» -->
+	<xsl:template match="on_sale_soon" mode="page_title">
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:text>Ожидаемые в продаже новинки книг</xsl:text>
+		<xsl:if test="$current-page = 1"> – сделайте предзаказ и прочитайте первым</xsl:if>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание страницы страницы «скоро в продаже» -->
+	<xsl:template match="on_sale_soon" mode="page_description">
+		<xsl:variable name="current-page" select="pager/@page"/>
+		<xsl:variable name="authors" select="new_book/related-person[@relation = 0 and @fake = 0 and not(./@id = preceding::related-person/@id) and @full_rodit]"/>
+
+		<xsl:variable name="authors-annotation">
+			<xsl:call-template name="persons-list">
+				<xsl:with-param name="persons" select="$authors"/>
+				<xsl:with-param name="limit">
+					<xsl:choose>
+						<xsl:when test="$current-page = 1">5</xsl:when>
+						<xsl:otherwise>10</xsl:otherwise>
+					</xsl:choose>
+				</xsl:with-param>
+				<xsl:with-param name="is-genitive" select="true()"/>
+				<xsl:with-param name="use-conjunction" select="false()"/>
+			</xsl:call-template>
+			<xsl:text> и других. </xsl:text>
+		</xsl:variable>
+
+		<xsl:text>Новинки </xsl:text>
+		<xsl:value-of select="$authors-annotation"/>
+		<xsl:if test="$current-page = 1">
+			<xsl:value-of select="$meta-advantage-with-free-books"/>
+		</xsl:if>
+	</xsl:template>
+
+	<!-- индексация страниц отзывов -->
+	<!-- первую страницу отзывов не индексируем — все они есть на странице объекта -->
+	<xsl:template match="show_all_recenses[pager/@page = 1]" mode="page_robots">noindex</xsl:template>
+
+	<!-- заголовок страницы отзывов -->
+	<xsl:template match="show_all_recenses" mode="page_title">
+		<xsl:variable name="current-page" select="pager/@page"/>
+
+		<xsl:text>Отзывы </xsl:text>
+		<xsl:choose>
+			<xsl:when test="art and $atype = 'text'">
+				<xsl:variable name="a-type" select="art/@type"/>
+				<xsl:variable name="authors" select="libbook-relations/related-person[@fake = '0' and @relation = '0']"/>
+				<xsl:variable name="translators" select="libbook-relations/related-person[@fake = '0' and @relation = '1']"/>
+				<xsl:variable name="compilers" select="libbook-relations/related-person[@fake = '0' and @relation = '4']"/>
+				<xsl:variable name="readers" select="libbook-relations/related-person[@fake = '0' and @relation = '6']"/>
+				<xsl:variable name="is-free" select="art/art-collections/collection[@id = '4']"/>
+
+				<xsl:choose>
+					<xsl:when test="$a-type = 0 or $a-type = 1 or $a-type = 11"> об </xsl:when>
+					<xsl:otherwise> о </xsl:otherwise>
+				</xsl:choose>
+
+				<xsl:if test="$is-free">бесплатной </xsl:if>
+				<xsl:choose>
+					<xsl:when test="$a-type = 0">электронной книге</xsl:when>
+					<xsl:when test="$a-type = 4">PDF-книге</xsl:when>
+					<xsl:when test="$a-type = 1">аудиокниге</xsl:when>
+					<xsl:when test="$a-type = 11">электронной книге на английском</xsl:when>
+					<xsl:when test="$a-type = 2">мультимедиа-книге</xsl:when>
+					<xsl:when test="$a-type = 12">
+						<xsl:text>бумажной книге</xsl:text>
+						<xsl:if test="art/@date_written_s != ''">
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="art/@date_written_s"/>
+							<xsl:text> года</xsl:text>
+						</xsl:if>
+					</xsl:when>
+				</xsl:choose>
+				<xsl:text> </xsl:text>
+				<xsl:if test="($authors or $compilers or $translators or $readers) and $a-type != 2">
+					<!-- для мультимедии «автора» не выводим -->
+					<xsl:text> </xsl:text>
+					<xsl:choose>
+						<xsl:when test="$authors">
+							<xsl:call-template name="persons-list">
+								<xsl:with-param name="persons" select="$authors"/>
+								<xsl:with-param name="limit" select="$meta-authors-limit"/>
+								<xsl:with-param name="is-genitive" select="true()"/>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>
+							<!-- если нет авторов, упоминаем составителей -->
+							<xsl:call-template name="persons-list">
+								<xsl:with-param name="persons" select="$compilers"/>
+								<xsl:with-param name="limit" select="$meta-authors-limit"/>
+								<xsl:with-param name="is-genitive" select="true()"/>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+					<!-- информация о переводчиках и исполнителях -->
+					<xsl:call-template name="print-list">
+						<xsl:with-param name="list">
+							<xsl:if test="$translators">
+								<item>
+									<xsl:text>в переводе </xsl:text>
+									<xsl:choose>
+										<xsl:when test="count($translators) &gt; 1">
+											<xsl:value-of select="normalize-space($translators[1]/@full_rodit)"/>
+											<xsl:text> и других</xsl:text>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="normalize-space($translators[1]/@full_rodit)"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</item>
+							</xsl:if>
+							<xsl:if test="$readers">
+								<item>
+									<xsl:text>в исполнении </xsl:text>
+									<xsl:choose>
+										<xsl:when test="count($readers) &gt; 1">
+											<xsl:value-of select="normalize-space($readers[1]/@full_rodit)"/>
+											<xsl:text> и других</xsl:text>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="normalize-space($readers[1]/@full_rodit)"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</item>
+							</xsl:if>
+						</xsl:with-param>
+					</xsl:call-template>
+					<xsl:text> </xsl:text>
+				</xsl:if>
+				<xsl:call-template name="print-title">
+					<xsl:with-param name="title" select="art/@name"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:when test="art/@type=3 and $atype = 'readers'">
+				<xsl:text>о ридере </xsl:text>
+				<xsl:value-of select="art/@name"/>
+			</xsl:when>
+			<xsl:when test="art/@type=13 and $atype = 'readers'">
+				<xsl:text>об аксессуаре </xsl:text>
+				<xsl:call-template name="print-title">
+					<xsl:with-param name="title" select="art/@name"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:when test="subject">
+				<xsl:text>о произведениях </xsl:text>
+				<xsl:choose>
+					<xsl:when test="normalize-space(subject/@full_rodit) != ''">
+						<xsl:value-of select="normalize-space(subject/@full_rodit)"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<!-- на случай пустого родительного падежа -->
+						<xsl:text>автора </xsl:text>
+						<xsl:value-of select="normalize-space(subject/@full_name)"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:when test="sequence">
+				<xsl:text>о серии </xsl:text>
+				<xsl:call-template name="print-title">
+					<xsl:with-param name="title" select="sequence/@name"/>
+				</xsl:call-template>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="$current-page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание страницы отзывов -->
+	<xsl:template match="show_all_recenses" mode="page_description">
+		<xsl:variable name="recenses" select="book-recenses/recense/text_recense/hidden"/>
+
+		<xsl:variable name="description">
+			<xsl:call-template name="concatenator">
+				<xsl:with-param name="parts" select="$recenses/p | $recenses/spoiler/p"/>
+				<xsl:with-param name="min-length" select="$meta-a-min-length-threshold"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:choose>
+			<xsl:when test="string-length() &gt; $meta-a-max-length-threshold">
+				<xsl:value-of select="concat(substring($description, 1, $meta-a-max-length-threshold), '…')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$description"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- индексация страниц списка отзывов -->
+	<xsl:template match="recenses_feed[pager/@page &gt; 1]" mode="page_robots">noindex</xsl:template>
+
+	<!-- заголовок страницы списка отзывов -->
+	<xsl:template match="recenses_feed" mode="page_title">
+		<xsl:text>Свежие отзывы о книгах и авторах, рецензии и рекомендации от читателей</xsl:text>
+	</xsl:template>
+
+	<!-- метаописание страницы списка отзывов -->
+	<xsl:template match="recenses_feed" mode="page_description">
+		<xsl:variable name="authors-limit">5</xsl:variable>
+		<xsl:variable name="authors" select="rec_item/rec-art/related-person[@relation = 0 and @fake = 0 and not(./@id = preceding::related-person/@id)]"/>
+
+		<xsl:text>Рецензии на книги </xsl:text>
+		<xsl:call-template name="persons-list">
+			<xsl:with-param name="persons" select="$authors"/>
+			<xsl:with-param name="limit" select="$authors-limit"/>
+			<xsl:with-param name="is-genitive" select="true()"/>
+			<xsl:with-param name="use-conjunction" select="not(count($authors) &gt; $authors-limit)"/>
+		</xsl:call-template>
+		<xsl:if test="count($authors) &gt; $authors-limit">
+			<xsl:text> и других</xsl:text>
+		</xsl:if>
+		<xsl:text>.</xsl:text>
+	</xsl:template>
+
+	<!-- индексация страниц читателей -->
+	<xsl:template match="reader_profile" mode="page_robots">noindex</xsl:template>
+
+	<!-- индексация страниц онлайн-чтения книги -->
+	<xsl:template match="read_book_online[pager/@page &gt; pager/@maxpage]" mode="page_robots">noindex</xsl:template>
+
+	<!-- заголовок страницы онлайн-чтения книги -->
+	<xsl:template match="read_book_online" mode="page_title">
+		<xsl:variable name="authors" select="book-info/libbook-relations/related-person[@fake = '0' and @relation = '0' and @full_rodit]"/>
+		<xsl:variable name="compilers" select="book-info/libbook-relations/related-person[@fake = '0' and @relation = '4' and @full_rodit != '']"/>
+
+		<xsl:text>Бесплатное онлайн-чтение книги </xsl:text>
+		<xsl:if test="($authors or $compilers)">
+			<xsl:choose>
+				<xsl:when test="$authors">
+					<xsl:call-template name="persons-list">
+						<xsl:with-param name="persons" select="$authors"/>
+						<xsl:with-param name="limit" select="$meta-authors-limit"/>
+						<xsl:with-param name="is-genitive" select="true()"/>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- если нет авторов, упоминаем составителей -->
+					<xsl:call-template name="persons-list">
+						<xsl:with-param name="persons" select="$compilers"/>
+						<xsl:with-param name="limit" select="$meta-authors-limit"/>
+						<xsl:with-param name="is-genitive" select="true()"/>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:text> </xsl:text>
+		</xsl:if>
+		<xsl:call-template name="print-title">
+			<xsl:with-param name="title" select="book-info/art/@name"/>
+		</xsl:call-template>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="pager/@page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание страницы онлайн-чтения книги -->
+	<xsl:template match="read_book_online" mode="page_description">
+		<xsl:variable name="authors" select="book-info/libbook-relations/related-person[@fake = '0' and @relation = '0' and @full_rodit]"/>
+		<xsl:variable name="compilers" select="book-info/libbook-relations/related-person[@fake = '0' and @relation = '4' and @full_rodit != '']"/>
+		<xsl:variable name="num-of-books">
+			<xsl:choose>
+				<xsl:when test="$authors">
+					<xsl:value-of select="(sum($authors[position() &lt;= $meta-authors-limit]/@total_arts) div count($authors[position() &lt;= $meta-authors-limit]))"/>
+				</xsl:when>
+				<xsl:when test="$compilers">
+					<xsl:value-of select="(sum($compilers[position() &lt;= $meta-authors-limit]/@total_arts) div count($compilers[position() &lt;= $meta-authors-limit]))"/>
+				</xsl:when>
+				<xsl:otherwise>1</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:text>Читать бесплатно книгу </xsl:text>
+		<xsl:call-template name="print-title">
+			<xsl:with-param name="title" select="book-info/art/@name"/>
+		</xsl:call-template>
+		<xsl:if test="$num-of-books &gt; 1">
+			<xsl:text> и другие книги </xsl:text>
+			<xsl:choose>
+				<xsl:when test="$authors">
+					<xsl:call-template name="persons-list">
+						<xsl:with-param name="persons" select="$authors"/>
+						<xsl:with-param name="limit" select="$meta-authors-limit"/>
+						<xsl:with-param name="is-genitive" select="true()"/>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- если нет авторов, упоминаем составителей -->
+					<xsl:call-template name="persons-list">
+						<xsl:with-param name="persons" select="$compilers"/>
+						<xsl:with-param name="limit" select="$meta-authors-limit"/>
+						<xsl:with-param name="is-genitive" select="true()"/>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:text> на сайте Литрес.</xsl:text>
+		</xsl:if>
+	</xsl:template>
+
+	<!-- второй и дальнейшим страницам метаописание не навязываем -->
+	<xsl:template match="read_book_online[pager/@page &gt; 1]" mode="page_description"/>
+
+	<!-- метаинформация акции «Миллион на добрые дела» -->
+	<xsl:template match="biblio_collection[category_info/@id = 4714]" mode="page_title">
+		<xsl:text>Благотворительный проект «Миллион на добрые дела»</xsl:text>
+	</xsl:template>
+	<xsl:template match="biblio_collection[category_info/@id = 4714]" mode="page_description">
+		<xsl:text>Покупайте книги Эксмо и выбирайте, кому передать ваше доброе дело! #вызовдобра на ЛитРес</xsl:text>
+	</xsl:template>
+
+	<!-- заголовок страницы лучших авторов -->
+	<xsl:template match="author_ratings" mode="page_title">
+		<xsl:variable name="form" select="$form"/>
+
+		<xsl:text>Рейтинг самых популярных авторов за </xsl:text>
+		<xsl:call-template name="rait_period">
+			<xsl:with-param name="period">
+				<xsl:choose>
+					<xsl:when test="$form/@period">
+						<xsl:value-of select="$form/@period"/>
+					</xsl:when>
+					<xsl:otherwise>2</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- метаописание страницы лучших авторов -->
+	<xsl:template match="author_ratings" mode="page_description">
+		<xsl:variable name="form" select="$form"/>
+
+		<xsl:for-each select="rating-author[position() &lt;= 5]">
+			<xsl:value-of select="@author_name"/>
+			<xsl:if test="position() != last()">, </xsl:if>
+		</xsl:for-each>
+		<xsl:text> и другие лучшие авторы</xsl:text>
+		<xsl:choose>
+			<xsl:when test="$form/@period = 1"> суток</xsl:when>
+			<xsl:when test="$form/@period = 2 or not($form/@period)"> недели</xsl:when>
+			<xsl:when test="$form/@period = 3"> месяца</xsl:when>
+			<xsl:when test="$form/@period = 4"> года</xsl:when>
+		</xsl:choose>
+		<xsl:text>.</xsl:text>
+	</xsl:template>
+
+	<!-- рекомендуемое -->
+	<xsl:template match="biblio_recommend" mode="page_title">
+		<xsl:variable name="atype" select="$form/@atype"/>
+
+		<xsl:choose>
+			<xsl:when test="not($atype)">Что читать? Cамые интересные книги в FB2, TXT, PDF, EPUB, DOC, MP3</xsl:when>
+			<xsl:when test="$atype = 'text'">Cамые интересные электронные книги в FB2, TXT, PDF, EPUB, DOC – купить и скачать или читать онлайн</xsl:when>
+			<xsl:when test="$atype = 'audio'">Cамые интересные аудиокниги – купить и скачать или слушать онлайн</xsl:when>
+			<xsl:when test="$atype = 'english'">Cамые интересные книги на английском языке</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="biblio_recommend" mode="page_description">
+		<xsl:variable name="atype" select="$form/@atype"/>
+
+		<xsl:choose>
+			<xsl:when test="not($atype)">Самые интересные книги онлайн c отзывами и оценками, купить и скачать просто и без регистрации.</xsl:when>
+			<xsl:when test="$atype = 'text'">Самые интересные электронные книги онлайн c отзывами и оценками в удобных форматах для ридера, телефона или компьютера — купить и скачать очень просто, без регистрации.</xsl:when>
+			<xsl:when test="$atype = 'audio'">Самые интересные аудиокниги онлайн c отзывами и оценками в удобных форматах для плеера, телефона, компьютера или прослушивания в машине. Купить и скачать очень просто, без регистрации.</xsl:when>
+			<xsl:when test="$atype = 'english'">Cамые актуальные книги на английском языке, недорого и без регистрации.</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="my_settings" mode="page_title">Мои настройки</xsl:template>
+
+	<!-- рейтинг -->
+	<xsl:template match="book_ratings" mode="page_title">
+		<xsl:variable name="type" select="$form/@type"/>
+		<xsl:variable name="atype" select="$form/@atype"/>
+		<xsl:variable name="period" select="$form/@period"/>
+
+		<xsl:choose>
+			<xsl:when test="not($atype)">
+				<xsl:choose>
+					<xsl:when test="$type = 1">Рейтинг бестселлеров</xsl:when>
+					<xsl:when test="$type = 3">Самые обсуждаемые книги</xsl:when>
+					<xsl:otherwise>Лучшие книги </xsl:otherwise>
+				</xsl:choose>
+				<xsl:text> </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> – купить и скачать или читать онлайн</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'text'">
+				<xsl:choose>
+					<xsl:when test="$type = 1">Самые популярные</xsl:when>
+					<xsl:when test="$type = 3">Самые обсуждаемые</xsl:when>
+					<xsl:otherwise>Лучшие</xsl:otherwise>
+				</xsl:choose>
+				<xsl:text> электронные книги </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> – купить и скачать или читать онлайн</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'audio'">
+				<xsl:choose>
+					<xsl:when test="$type = 1">Самые популярные</xsl:when>
+					<xsl:when test="$type = 3">Самые обсуждаемые</xsl:when>
+					<xsl:otherwise>Лучшие</xsl:otherwise>
+				</xsl:choose>
+				<xsl:text> аудиокниги </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> – купить и скачать или слушать онлайн</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'english'">
+				<xsl:choose>
+					<xsl:when test="$type = 1">Самые популярные</xsl:when>
+					<xsl:when test="$type = 3">Самые обсуждаемые</xsl:when>
+					<xsl:otherwise>Лучшие</xsl:otherwise>
+				</xsl:choose>
+				<xsl:text> книги на английском языке </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> – купить и скачать</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">
+				<xsl:choose>
+					<xsl:when test="$type = 1">Самые популярные</xsl:when>
+					<xsl:when test="$type = 3">Самые обсуждаемые</xsl:when>
+					<xsl:otherwise>Лучшие</xsl:otherwise>
+				</xsl:choose><xsl:text> бумажные книги </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> – купить недорого</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="pager/@page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="book_ratings[pager/@page = 1]" mode="page_description">
+		<xsl:variable name="type" select="$form/@type"/>
+		<xsl:variable name="atype" select="$form/@atype"/>
+		<xsl:variable name="period" select="$form/@period"/>
+
+		<xsl:choose>
+			<xsl:when test="$type = 1">Самые лучшие, популярные и модные</xsl:when>
+			<xsl:when test="$type = 3">Самые обсуждаемые и рецензируемые</xsl:when>
+			<xsl:otherwise>Лучшие</xsl:otherwise>
+		</xsl:choose>
+		<xsl:choose>
+			<xsl:when test="not($atype)">
+				<xsl:text> электронные и аудиокниги </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> для телефона, планшета, ридера, компьютера, плеера или онлайн-чтения</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'text'">
+				<xsl:text> электронные книги </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> для телефона, планшета, ридера, компьютера или онлайн-чтения</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'audio'">
+				<xsl:text> аудиокниги </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> для плеера, телефона, автомобиля, компьютера или прослушивания онлайн</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'english'">
+				<xsl:text> книги на английском языке </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> для планшета, ридера или компьютера</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">
+				<xsl:text> бумажные книги </xsl:text>
+				<xsl:call-template name="rating-title-period">
+					<xsl:with-param name="period" select="$period"/>
+				</xsl:call-template>
+				<xsl:text> – недорого и с доставкой</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:text>.</xsl:text>
+	</xsl:template>
+
+	<!-- новинки -->
+	<xsl:template match="new_books" mode="page_title">
+		<xsl:variable name="atype" select="$form/@atype"/>
+
+		<xsl:variable name="today" select="/xportal/xportal-page/@now"/>
+		<xsl:variable name="current-year" select="substring($today, 1, 4)"/>
+		<xsl:variable name="current-month" select="substring($today, 6, 2)"/>
+
+		<xsl:variable name="period">
+			<!-- в январе новинок мало – упоминаем предыдущий год -->
+			<xsl:if test="$current-month = '01'">
+				<xsl:value-of select="$current-year - 1"/>
+				<xsl:text> и </xsl:text>
+			</xsl:if>
+			<xsl:value-of select="$current-year"/>
+			<xsl:text> года</xsl:text>
+		</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="not($atype)">
+				<xsl:text>Новые книги – читать онлайн, купить и скачать лучшие книжные новинки </xsl:text>
+				<xsl:value-of select="$period"/>
+			</xsl:when>
+			<xsl:when test="$atype = 'text'">
+				<xsl:text>Новые электронные книги – читать онлайн, купить и скачать последние произведения </xsl:text>
+				<xsl:value-of select="$period"/>
+			</xsl:when>
+			<xsl:when test="$atype = 'audio'">
+				<xsl:text>Новые аудиокниги – слушать онлайн, купить и скачать новинки </xsl:text>
+				<xsl:value-of select="$period"/>
+			</xsl:when>
+			<xsl:when test="$atype = 'english'">
+				<xsl:text>Новые книги на английском языке </xsl:text>
+				<xsl:value-of select="$period"/>
+			</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">
+				<xsl:text>Новые бумажные книги </xsl:text>
+				<xsl:value-of select="$period"/>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:call-template name="pager-in-title">
+			<xsl:with-param name="page" select="pager/@page"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="new_books[pager/@page = 1]" mode="page_description">
+		<xsl:variable name="atype" select="$form/@atype"/>
+
+		<xsl:choose>
+			<xsl:when test="not($atype)">
+				<xsl:variable name="genres" select="(new_book/@genre-title[not(. = preceding::new_book/@genre-title)])[position() &lt;= 5]"/>
+
+				<xsl:text>Выбери, купи и скачай или читай онлайн новые и самые ожидаемые электронные книги, аудиокниги </xsl:text>
+				<xsl:value-of select="substring(/xportal/xportal-page/@now, 1, 4)"/>
+				<xsl:text> года.</xsl:text>
+				<xsl:if test="$genres">
+					<xsl:text> </xsl:text>
+					<xsl:call-template name="capitalize-first-letter">
+						<xsl:with-param name="string">
+							<xsl:for-each select="$genres">
+								<xsl:call-template name="lowercase">
+									<xsl:with-param name="string" select="."/>
+								</xsl:call-template>
+								<xsl:choose>
+									<xsl:when test="position() = last() - 1"> и </xsl:when>
+									<xsl:when test="position() != last()">, </xsl:when>
+								</xsl:choose>
+							</xsl:for-each>
+						</xsl:with-param>
+					</xsl:call-template>
+					<xsl:text>.</xsl:text>
+				</xsl:if>
+			</xsl:when>
+			<xsl:when test="$atype = 'text'">
+				<xsl:text>Самые ожидаемые новинки электронных книг, популярные авторы. Оценки и отзывы читателей, удобные форматы, онлайн-чтение.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'audio'">
+				<xsl:text>Самые ожидаемые и интересные новинки аудиокниг для MP3-плеера, на телефона, компьютера, автомобиля или онлайн-прослушивания.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'english'">
+				<xsl:text>Актуальные новинки книг на английском языке. Последние поступления книг для изучающих английский язык, новинки деловой литературы, модных и культовых авторов.</xsl:text>
+			</xsl:when>
+			<xsl:when test="$atype = 'hardcopy'">
+				<xsl:text>Актуальные новинки бумажных книг. Недорого и с доставкой.</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- прочее -->
+	<xsl:template match="survey_list" mode="page_title">
+		<xsl:text>Результаты голосования «</xsl:text>
+		<xsl:value-of select="/xportal/xportal-page/page-data/survey_list/survey_info/@title"/>
+		<xsl:text>»</xsl:text>
+	</xsl:template>
+
+	<xsl:template match="show_sms_page" mode="page_title">
+		<xsl:text>SMS-тарифы сотовых операторов </xsl:text>
+		<xsl:call-template name="sms_country">
+			<xsl:with-param name="cnt" select="$form/@country"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="order_by_email" mode="page_title">
+		<xsl:value-of select="email-order-form/email-order-book-info/@book_title"/>
+		<xsl:text> – заказать файл на электронную почту</xsl:text>
+	</xsl:template>
+
+	<xsl:template match="add_review" mode="page_title">
+		<xsl:text>Написать отзыв </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$atype = 'text'">о книге</xsl:when>
+			<xsl:when test="$atype = 'audio'">об аудиокниге</xsl:when>
+			<xsl:when test="$atype = 'english'">о книге на английском</xsl:when>
+			<xsl:when test="$atype = 'english'">о бумажной книге</xsl:when>
+			<xsl:when test="subject">об авторе</xsl:when>
+			<xsl:when test="child-serie">о серии</xsl:when>
+			<xsl:when test="category_info">о коллекции</xsl:when>
+			<xsl:otherwise></xsl:otherwise>
+		</xsl:choose>
+		<xsl:text> </xsl:text>
+		<xsl:choose>
+			<xsl:when test="subject">
+				<xsl:value-of select="subject/@full_name"/>
+			</xsl:when>
+			<xsl:when test="child-serie">
+				<xsl:value-of select="child-serie/@name"/>
+			</xsl:when>
+			<xsl:when test="category_info">
+				<xsl:value-of select="category_info/@category_name"/>
+			</xsl:when>
+			<xsl:when test="recensing-books">
+				<xsl:for-each select="recensing-books/book">
+					<xsl:call-template name="quotes-name">
+						<xsl:with-param name="valname" select="@name"/>
+					</xsl:call-template>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:call-template name="quotes-name"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- windows-приложение -->
+	<xsl:template match="staticpages[static-page/@name = 'winphone']" mode="page_title">
+		<xsl:text>Книжное приложение ЛитРес для Windows Phone 7 – электронные книги всегда под рукой</xsl:text>
+	</xsl:template>
+
+	<xsl:template match="staticpages[static-page/@name = 'winphone']" mode="page_description">
+		<xsl:text>Самый большой и постоянно пополняющийся книжный каталог – более шестидесяти тысяч русскоязычных электронных книг. Бесплатный ознакомительный фрагмент, удобный поиск, оффлайн-чтение.</xsl:text>
+	</xsl:template>
+
+	<!-- подарочные карты -->
+	<xsl:template match="gift_cards" mode="page_title">Подарочные карты – лучшие книги в подарок</xsl:template>
+
+	<xsl:template match="gift_cards" mode="page_description">
+		<xsl:text>Книга – лучший подарок! Дарите книги любимым, близким и просто хорошим людям! Карты номиналом от </xsl:text>
+		<xsl:call-template name="format_price_number">
+			<xsl:with-param name="price" select="cards/card[1]/@nom"/>
+		</xsl:call-template>
+		<xsl:text> до </xsl:text>
+		<xsl:call-template name="format_price_number">
+			<xsl:with-param name="price" select="cards/card[last()]/@nom"/>
+		</xsl:call-template>
+		<xsl:text> рублей.</xsl:text>
+	</xsl:template>
+
+
+	<!-- выводит большие числительные -->
+	<xsl:template name="print-huge-number">
+		<xsl:param name="number"/>
+
+		<xsl:choose>
+			<xsl:when test="$number &lt; 100">
+				<xsl:value-of select="$number"/>
+			</xsl:when>
+			<xsl:when test="$number &lt; 1000">
+				<xsl:value-of select="floor($number div 100) * 100"/>
+			</xsl:when>
+			<xsl:when test="$number &lt; 1000000">
+				<xsl:variable name="rounded-number" select="floor($number div 1000)"/>
+
+				<xsl:if test="$rounded-number &gt; 1">
+					<xsl:value-of select="$rounded-number"/>
+					<xsl:text> </xsl:text>
+				</xsl:if>
+				<xsl:call-template name="num-decline">
+					<xsl:with-param name="num" select="$rounded-number"/>
+					<xsl:with-param name="nominative">тысячи</xsl:with-param>
+					<xsl:with-param name="genitive-singular">тысяч</xsl:with-param>
+					<xsl:with-param name="genitive-plural">тысяч</xsl:with-param>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="rounded-number" select="floor($number div 1000000)"/>
+
+				<xsl:if test="$rounded-number &gt; 1">
+					<xsl:value-of select="$rounded-number"/>
+					<xsl:text> </xsl:text>
+				</xsl:if>
+				<xsl:call-template name="num-decline">
+					<xsl:with-param name="num" select="$rounded-number"/>
+					<xsl:with-param name="nominative">миллиона</xsl:with-param>
+					<xsl:with-param name="genitive-singular">миллионов</xsl:with-param>
+					<xsl:with-param name="genitive-plural">миллионов</xsl:with-param>
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- конкатенатор кусков текста до заданной длины -->
+	<xsl:template name="concatenator">
+		<xsl:param name="parts"/>
+		<xsl:param name="current-part">1</xsl:param>
+		<xsl:param name="min-length">150</xsl:param>
+		<xsl:param name="max-length">300</xsl:param>
+		<xsl:param name="separator" select="' '"/>
+		<xsl:param name="result" select="$parts[$current-part]"/>
+
+		<xsl:variable name="next-part" select="$parts[$current-part + 1]"/>
+
+		<xsl:choose>
+			<xsl:when test="string-length($result) + string-length($next-part) + string-length($separator) &lt; $max-length">
+				<xsl:call-template name="concatenator">
+					<xsl:with-param name="parts" select="$parts"/>
+					<xsl:with-param name="current-part" select="$current-part + 1"/>
+					<xsl:with-param name="min-length" select="$min-length"/>
+					<xsl:with-param name="max-length" select="$max-length"/>
+					<xsl:with-param name="separator" select="$separator"/>
+					<xsl:with-param name="result" select="concat($result, $separator, $next-part)"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:choose>
+					<xsl:when test="string-length($result) &lt; $min-length">
+						<xsl:value-of select="concat($result, $separator, $next-part)"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$result"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- шаблон синонимичного наименования книг жанра -->
+	<xsl:template name="genre-synonym">
+		<xsl:param name="genre"/>
+
+		<xsl:variable name="id" select="$genre/@root_id | $genre/@id"/>
+
+		<xsl:choose>
+			<xsl:when test="local-name($genre) = 'root_title'">
+				<xsl:choose>
+					<xsl:when test="$id = 3">книги малой формы </xsl:when>
+					<xsl:when test="$id = 30">книги о бизнесе </xsl:when>
+					<xsl:when test="$id = 31">фантастические книги </xsl:when>
+					<xsl:when test="$id = 34">любовные романы </xsl:when>
+					<xsl:when test="$id = 35">приключенческие книги </xsl:when>
+					<xsl:when test="$id = 36">детские книги </xsl:when>
+					<xsl:when test="$id = 39">научные и образовательные </xsl:when>
+					<xsl:when test="$id = 41">справочники </xsl:when>
+					<xsl:when test="$id = 42">публицистические книги </xsl:when>
+					<xsl:when test="$id = 43">религиозную литературу </xsl:when>
+					<xsl:when test="$id = 44">юмористические книги </xsl:when>
+					<xsl:when test="$id = 56">книги-боевики </xsl:when>
+					<xsl:when test="$id = 109">современную прозу </xsl:when>
+					<xsl:when test="$id = 111">зарубежную литературу </xsl:when>
+					<xsl:when test="$id = 112">фэнтези-книги </xsl:when>
+					<xsl:when test="$id = 114">книги по искусству </xsl:when>
+					<xsl:when test="$id = 115">книги по психологии </xsl:when>
+					<xsl:when test="$id = 7032">детективы </xsl:when>
+					<xsl:when test="$id = 7037">поэзию и драматургию </xsl:when>
+					<xsl:when test="$id = 7040">книги о компьютерах </xsl:when>
+					<xsl:when test="$id = 7045">книги о доме и семье </xsl:when>
+					<xsl:when test="$id = 7046">периодические издания </xsl:when>
+					<xsl:when test="$id = 7110">классическую литературу </xsl:when>
+					<xsl:otherwise/>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:choose>
+					<xsl:when test="$id = 1">рассказы </xsl:when>
+					<xsl:when test="$id = 2">путеводители </xsl:when>
+					<xsl:when test="$id = 7">драматургию </xsl:when>
+					<xsl:when test="$id = 13">биографические книги и мемуары </xsl:when>
+					<xsl:when test="$id = 23">эссе </xsl:when>
+					<xsl:when test="$id = 24">повести </xsl:when>
+					<xsl:when test="$id = 25">очерки </xsl:when>
+					<xsl:when test="$id = 37">книги о природе и животных </xsl:when>
+					<xsl:when test="$id = 40">учебную литературу </xsl:when>
+					<xsl:when test="$id = 45">книги для детей </xsl:when>
+					<xsl:when test="$id = 46">религиозные тексты </xsl:when>
+					<xsl:when test="$id = 59">проза для детей </xsl:when>
+					<xsl:when test="$id = 67">книги о компьютерах </xsl:when>
+					<xsl:when test="$id = 75">книги о компьютерном железе </xsl:when>
+					<xsl:when test="$id = 78">книги об операционных системах и сетях </xsl:when>
+					<xsl:when test="$id = 80">книги о программах </xsl:when>
+					<xsl:when test="$id = 82">кулинарные книги </xsl:when>
+					<xsl:when test="$id = 110">книги о контркультуре </xsl:when>
+					<xsl:when test="$id = 116">книги о медицине </xsl:when>
+					<xsl:when test="$id = 154">книги «сделай сам» (DIY) </xsl:when>
+					<xsl:when test="$id = 161">ужасы и мистику </xsl:when>
+					<xsl:when test="$id = 181">сказки </xsl:when>
+					<xsl:when test="$id = 184">приключения </xsl:when>
+					<xsl:when test="$id = 187">морские приключения </xsl:when>
+					<xsl:when test="$id = 190">книги-вестерны </xsl:when>
+					<xsl:when test="$id = 193">поэзию </xsl:when>
+					<xsl:when test="$id = 194">классическую проза </xsl:when>
+					<xsl:when test="$id = 198">русская классическую литературу </xsl:when>
+					<xsl:when test="$id = 199">советская литературу </xsl:when>
+					<xsl:when test="$id = 200">исторические детективы </xsl:when>
+					<xsl:when test="$id = 201">современные детективы </xsl:when>
+					<xsl:when test="$id = 202">полицейские детективы </xsl:when>
+					<xsl:when test="$id = 210">книги по юриспруденции и праву </xsl:when>
+					<xsl:when test="$id = 211">философские книги </xsl:when>
+					<xsl:when test="$id = 221">мифы, легенды и эпос </xsl:when>
+					<xsl:when test="$id = 227">книги об эротике и сексе </xsl:when>
+					<xsl:when test="$id = 236">документальную литературу </xsl:when>
+					<xsl:when test="$id = 244">руководства </xsl:when>
+					<xsl:when test="$id = 245">книги по биологии </xsl:when>
+					<xsl:when test="$id = 253">книги о путешествиях </xsl:when>
+					<xsl:when test="$id = 262">юмористические книги </xsl:when>
+					<xsl:when test="$id = 265">книги о здоровье </xsl:when>
+					<xsl:when test="$id = 271">техническую литературу </xsl:when>
+					<xsl:when test="$id = 278">справочники </xsl:when>
+					<xsl:when test="$id = 282">энциклопедии </xsl:when>
+					<xsl:when test="$id = 290">справочную литературу </xsl:when>
+					<xsl:when test="$id = 304">эзотерическую литературу </xsl:when>
+					<xsl:when test="$id = 305">книги по саморазвитию </xsl:when>
+					<xsl:when test="$id = 312">историческую литературу </xsl:when>
+					<xsl:when test="$id = 316">современные любовные романы </xsl:when>
+					<xsl:when test="$id = 325">книги по химии </xsl:when>
+					<xsl:when test="$id = 330">книги по истории </xsl:when>
+					<xsl:when test="$id = 331">книги по математике </xsl:when>
+					<xsl:when test="$id = 334">книги по физике </xsl:when>
+					<xsl:when test="$id = 339">историческую фантастику </xsl:when>
+					<xsl:when test="$id = 340">киберпанк-книги </xsl:when>
+					<xsl:when test="$id = 341">книги о спорте и фитнесе </xsl:when>
+					<xsl:when test="$id = 344">исторические приключения </xsl:when>
+					<xsl:when test="$id = 351">научно-фантастические книги </xsl:when>
+					<xsl:when test="$id = 353">детские приключенческие книги </xsl:when>
+					<xsl:when test="$id = 372">книги для дома и семьи </xsl:when>
+					<xsl:when test="$id = 373">боевую фантастику </xsl:when>
+					<xsl:when test="$id = 375">героическую фантастику </xsl:when>
+					<xsl:when test="$id = 376">детективную фантастику </xsl:when>
+					<xsl:when test="$id = 377">космическую фантастику </xsl:when>
+					<xsl:when test="$id = 378">социальную фантастику </xsl:when>
+					<xsl:when test="$id = 379">юмористическую фантастику </xsl:when>
+					<xsl:when test="$id = 380">детская фантастику </xsl:when>
+					<xsl:when test="$id = 381">классические детективы </xsl:when>
+					<xsl:when test="$id = 382">боевики </xsl:when>
+					<xsl:when test="$id = 383">иронические детективы </xsl:when>
+					<xsl:when test="$id = 384">шпионские детективы </xsl:when>
+					<xsl:when test="$id = 385">криминальные боевики </xsl:when>
+					<xsl:when test="$id = 386">политические детективы </xsl:when>
+					<xsl:when test="$id = 388">крутые детективы </xsl:when>
+					<xsl:when test="$id = 390">детективы для детей </xsl:when>
+					<xsl:when test="$id = 391">остросюжетные любовные романы </xsl:when>
+					<xsl:when test="$id = 393">юмористическую проза </xsl:when>
+					<xsl:when test="$id = 394">исторические любовные романы </xsl:when>
+					<xsl:when test="$id = 395">короткие любовные романы </xsl:when>
+					<xsl:when test="$id = 396">эротическую литературу </xsl:when>
+					<xsl:when test="$id = 398">детские стихи </xsl:when>
+					<xsl:when test="$id = 399">юмористические стихи </xsl:when>
+					<xsl:when test="$id = 400">античную литературу </xsl:when>
+					<xsl:when test="$id = 401">европейская старинную литературу </xsl:when>
+					<xsl:when test="$id = 402">древнерусская литературу </xsl:when>
+					<xsl:when test="$id = 403">древневосточную литературу </xsl:when>
+					<xsl:when test="$id = 404">старинную литературу </xsl:when>
+					<xsl:when test="$id = 405">книги по культурологии </xsl:when>
+					<xsl:when test="$id = 406">книги по религиоведению </xsl:when>
+					<xsl:when test="$id = 407">книги о политике и политологии </xsl:when>
+					<xsl:when test="$id = 408">книги по языкознанию </xsl:when>
+					<xsl:when test="$id = 413">публицистику </xsl:when>
+					<xsl:when test="$id = 414">книги о критике в искусстве </xsl:when>
+					<xsl:when test="$id = 415">анекдоты </xsl:when>
+					<xsl:when test="$id = 429">книги-триллеры </xsl:when>
+					<xsl:when test="$id = 430">образовательную литературу </xsl:when>
+					<xsl:when test="$id = 431">книги об интернете </xsl:when>
+					<xsl:when test="$id = 432">книги по программированию </xsl:when>
+					<xsl:when test="$id = 433">книги по базам данных </xsl:when>
+					<xsl:when test="$id = 434">словари </xsl:when>
+					<xsl:when test="$id = 435">религиозные книги </xsl:when>
+					<xsl:when test="$id = 436">книги о домашних животных </xsl:when>
+					<xsl:when test="$id = 437">книги о хобби и ремёслах </xsl:when>
+					<xsl:when test="$id = 438">развлечения </xsl:when>
+					<xsl:when test="$id = 439">книге о саде и огороде </xsl:when>
+					<xsl:when test="$id = 440">книги о войне </xsl:when>
+					<xsl:when test="$id = 441">любовно-фантастические романы </xsl:when>
+					<xsl:when test="$id = 442">поиск работы, карьера </xsl:when>
+					<xsl:when test="$id = 443">книги об управлении и подборе персонала </xsl:when>
+					<xsl:when test="$id = 444">книги о маркетинге, PR и рекламе </xsl:when>
+					<xsl:when test="$id = 445">книги о банковском деле </xsl:when>
+					<xsl:when test="$id = 446">книги о ценных бумагах и инвестициях </xsl:when>
+					<xsl:when test="$id = 447">книги о бухучёте, налогообложении и аудите </xsl:when>
+					<xsl:when test="$id = 448">книги о ВЭД </xsl:when>
+					<xsl:when test="$id = 449">книги по экономике </xsl:when>
+					<xsl:when test="$id = 450">отраслевые издания </xsl:when>
+					<xsl:when test="$id = 451">книги по корпоративной культуре </xsl:when>
+					<xsl:when test="$id = 452">книги о личных финансах </xsl:when>
+					<xsl:when test="$id = 453">книги о недвижимости </xsl:when>
+					<xsl:when test="$id = 454">книги о бизнесе </xsl:when>
+					<xsl:when test="$id = 455">книги о малом бизнесе </xsl:when>
+					<xsl:when test="$id = 456">книги о делопроизводстве </xsl:when>
+					<xsl:when test="$id = 458">журналы </xsl:when>
+					<xsl:when test="$id = 460">газеты </xsl:when>
+					<xsl:when test="$id = 6075">зарубежные бизнес-книги </xsl:when>
+					<xsl:when test="$id = 6085">зарубежную драматургию </xsl:when>
+					<xsl:when test="$id = 6115">зарубежные стихи </xsl:when>
+					<xsl:when test="$id = 6125">зарубежную классику </xsl:when>
+					<xsl:when test="$id = 6135">зарубежную публицистику </xsl:when>
+					<xsl:when test="$id = 6145">зарубежную старинную литературу </xsl:when>
+					<xsl:when test="$id = 6155">зарубежную фантастику </xsl:when>
+					<xsl:when test="$id = 6175">зарубежную прикладную и научно-популярную литературу </xsl:when>
+					<xsl:when test="$id = 6185">зарубежную образовательную литературу </xsl:when>
+					<xsl:when test="$id = 6195">зарубежную литературу </xsl:when>
+					<xsl:when test="$id = 6205">зарубежную эзотерическую и религиозную литературу </xsl:when>
+					<xsl:when test="$id = 6215">зарубежное фэнтези </xsl:when>
+					<xsl:when test="$id = 6225">зарубежный юмор </xsl:when>
+					<xsl:when test="$id = 6235">зарубежные детские книги </xsl:when>
+					<xsl:when test="$id = 6245">зарубежные любовные романы </xsl:when>
+					<xsl:when test="$id = 6255">зарубежные приключения </xsl:when>
+					<xsl:when test="$id = 6265">зарубежные детективы </xsl:when>
+					<xsl:when test="$id = 6285">современную русская литературу </xsl:when>
+					<xsl:when test="$id = 6286">современную зарубежную литературу </xsl:when>
+					<xsl:when test="$id = 6287">литературу 20 века </xsl:when>
+					<xsl:when test="$id = 6288">литературу 19 века </xsl:when>
+					<xsl:when test="$id = 6289">литературу 18 века </xsl:when>
+					<xsl:when test="$id = 6293">зарубежные боевики </xsl:when>
+					<xsl:when test="$id = 6295">книги про вампиров </xsl:when>
+					<xsl:when test="$id = 6296">городское фэнтези </xsl:when>
+					<xsl:when test="$id = 6297">книги про волшебников </xsl:when>
+					<xsl:when test="$id = 6298">историческое фэнтези </xsl:when>
+					<xsl:when test="$id = 6299">юмористическое фэнтези </xsl:when>
+					<xsl:when test="$id = 6300">русское фэнтези </xsl:when>
+					<xsl:when test="$id = 6301">фэнтези про драконов </xsl:when>
+					<xsl:when test="$id = 6302">любовное фэнтези </xsl:when>
+					<xsl:when test="$id = 6303">книги о попаданцах </xsl:when>
+					<xsl:when test="$id = 6305">книги о социологии </xsl:when>
+					<xsl:when test="$id = 6306">книги о географии </xsl:when>
+					<xsl:when test="$id = 6307">книги о педагогике </xsl:when>
+					<xsl:when test="$id = 6308">книги об иностранных языках </xsl:when>
+					<xsl:when test="$id = 6310">книги о военном деле и спецслужбах </xsl:when>
+					<xsl:when test="$id = 6312">книги с афоризмами и цитатами </xsl:when>
+					<xsl:when test="$id = 6314">книги об автомобилях и ПДД </xsl:when>
+					<xsl:when test="$id = 6315">книги по воспитанию детей </xsl:when>
+					<xsl:when test="$id = 6316">книги о кинематографе и театре </xsl:when>
+					<xsl:when test="$id = 6317">пособия по изобразительному искусству и фотографии </xsl:when>
+					<xsl:when test="$id = 6318">книги об архитектуре </xsl:when>
+					<xsl:when test="$id = 6319">книги о музыке и балете </xsl:when>
+					<xsl:when test="$id = 6321">книги по общей психологии </xsl:when>
+					<xsl:when test="$id = 6322">книги по социальной психологии </xsl:when>
+					<xsl:when test="$id = 6323">классики психологии </xsl:when>
+					<xsl:when test="$id = 6324">книги по психотерапии </xsl:when>
+					<xsl:when test="$id = 6325">книги по личностному росту </xsl:when>
+					<xsl:when test="$id = 6326">книги о сексе и семейной психологии </xsl:when>
+					<xsl:when test="$id = 6327">книги по детской психологии </xsl:when>
+					<xsl:when test="$id = 6329">зарубежную психологию </xsl:when>
+					<xsl:when test="$id = 6330">зарубежную компьютерную литературу </xsl:when>
+					<xsl:when test="$id = 6331">зарубежную справочную литературу </xsl:when>
+					<xsl:when test="$id = 6332">боевое фэнтези </xsl:when>
+					<xsl:otherwise/>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- заголовок страницы лендинг -->
+	<xsl:template match="lp-free-books" mode="page_title">
+		<xsl:value-of select="/xportal/formdata/@utm_term"/>
+	</xsl:template>
+	<!-- дополнительные мета поля для litres и pda -->
+	<xsl:template match="biblio_book" mode="others_meta">
+		<xsl:if test="art[@type=0 or @type=4]">
+			<meta property="al:ios:canonical_url" content="litresread://content/b/{art/@id}/" />
+			<meta property="al:ios:url" content="litresread://content/b/{art/@id}/" />
+			<meta property="al:ios:app_store_id" content="438441429" />
+			<meta property="al:ios:app_name" content="Читай!" />
+		</xsl:if>
+	</xsl:template>
+	<xsl:template match="*" mode="others_meta"/>
+</xsl:stylesheet>

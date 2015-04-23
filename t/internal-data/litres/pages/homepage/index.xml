@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:chk="LTR:chk"  xmlns:ltr="LTR" exclude-result-prefixes="ltr chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
+	
+	<xsl:include href="../../index.xml"/>
+
+	<xsl:template match="basic_arts">
+		<div class="arts_conteiner">
+			<xsl:apply-templates select="art" mode="map"/>
+		</div>
+	</xsl:template>
+	
+	<xsl:template match="art" mode="map">
+		<xsl:choose>
+			<xsl:when test="@basic_block_pos = 1"><xsl:apply-templates select="." mode="basic_block_pos1"/></xsl:when>
+			<xsl:when test="@basic_block_pos = 2"><xsl:apply-templates select="." mode="basic_block_pos2"/></xsl:when>
+			<xsl:when test="@basic_block_pos = 3"><xsl:apply-templates select="." mode="basic_block_pos3"/></xsl:when>
+			<xsl:when test="@basic_block_pos = 4"><xsl:apply-templates select="." mode="basic_block_pos4"/></xsl:when>
+			<xsl:otherwise/>
+		</xsl:choose>	
+	</xsl:template>
+	
+	<!-- mode="basic_block_pos1" -->
+	<xsl:template match="art" mode="basic_block_pos1">
+		<ul>
+		<xsl:attribute name="class">basic_arts1<xsl:text> </xsl:text>
+			<xsl:choose>
+				<xsl:when test="banner[contains(@name, '460x220')] and teaser">
+					modification1
+				</xsl:when>
+				<xsl:when test="banner[contains(@name, '220x350')]">
+					modification2
+				</xsl:when>
+				<xsl:when test="banner[contains(@name, '220x220')]">
+					modification3
+				</xsl:when>
+				<xsl:when test="banner[contains(@name, '140x220')]">
+					modification4
+				</xsl:when>
+				<xsl:when test="not(banner) and teaser">
+					modification5
+				</xsl:when>
+				<xsl:otherwise>
+					modification6
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:attribute>
+			<li class="row1_type1 row1">
+				<a href="{ltr:url_code('biblio_book','art',@id)}" title="{@name}">
+					<img><xsl:attribute name="src">http://cv<xsl:value-of select="substring(@release_file,string-length(@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="@release_file"/></xsl:call-template>_max1500.jpg</xsl:attribute></img>
+				</a>
+				<div class="description big">
+					<xsl:value-of select="@author-name"/><br/>
+					<xsl:value-of select="@name"/>
+					<div class="bigart-btn-buy">
+						<xsl:call-template name="cool_input">
+							<xsl:with-param name="type">href</xsl:with-param>
+							<xsl:with-param name="text">Купить за <xsl:call-template name="format_price_number">
+																							<xsl:with-param name="price" select="@price"/>
+																						</xsl:call-template> руб.
+							</xsl:with-param>
+							<xsl:with-param name="class">btn-green</xsl:with-param>
+							<xsl:with-param name="href" select="ltr:url_code('put_money_on_account')"/>
+						</xsl:call-template>
+					</div>
+				</div>
+			</li>
+			<xsl:choose>
+				<xsl:when test="banner[contains(@name, '460x220')] and teaser">
+					<xsl:apply-templates mode="pos1_type1"/>
+				</xsl:when>
+				<xsl:when test="banner[contains(@name, '220x350')]">
+					<xsl:apply-templates mode="pos1_type2"/>
+				</xsl:when>
+				<xsl:when test="banner[contains(@name, '220x220')]">
+					<xsl:apply-templates mode="pos1_type3"/>
+				</xsl:when>
+				<xsl:when test="banner[contains(@name, '140x220')]">
+					<xsl:apply-templates mode="pos1_type4"/>
+				</xsl:when>
+				<xsl:when test="not(banner) and teaser">
+					<xsl:apply-templates mode="pos1_type5"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates mode="pos1_type6"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</ul>
+	</xsl:template>
+
+	<!-- [45637] -->
+	<!-- Большой блок первый тип модификации (Есть баннер 460x220 и к нему тизер: big_ban_3_tiz.png) -->
+	<xsl:template match="like_basic" mode="pos1_type1">
+		<xsl:call-template name="row1_type2"/>
+		<xsl:call-template name="row1_type3"/>
+		<xsl:call-template name="row1_type4"/>
+		<xsl:call-template name="row1_type5"/>
+	</xsl:template>
+	<!-- end Большой блок первый тип модификации (Есть баннер 460x220 и к нему тизер: big_ban_3_tiz.png) -->
+	
+	<!-- Большой блок второй тип модификации (Есть банер 220x350, тизера нет: big_ban_4.png) -->
+	<xsl:template match="like_basic" mode="pos1_type2">
+		<xsl:call-template name="row1_type2"/>
+		<xsl:call-template name="row1_type4"><xsl:with-param name="order">1</xsl:with-param></xsl:call-template>
+		<xsl:call-template name="row1_type4"><xsl:with-param name="order">2</xsl:with-param></xsl:call-template>	
+		<xsl:call-template name="row1_type5"/>
+	</xsl:template>	
+	<!-- end Большой блок второй тип модификации (Есть банер 220x350, тизера нет: big_ban_4.png) -->
+		
+	<!-- Большой блок третий тип модификации (Есть банер 220x220, тизера нет: big_ban_5.png) -->
+	<xsl:template match="like_basic" mode="pos1_type3">
+		<xsl:call-template name="row1_type5"/>
+		<xsl:call-template name="row1_type4"/>		
+		<xsl:call-template name="row1_type3"/>
+		<xsl:call-template name="row1_type2"/>		
+	</xsl:template>	
+	<!-- end Большой блок третий тип модификации (Есть банер 220x220, тизера нет: big_ban_5.png) -->
+			
+	<!-- Большой блок четвертый тип модификации (Есть банер 140x220, тизера нет: big_ban_2.png) -->
+	<xsl:template match="like_basic" mode="pos1_type4">
+		<xsl:call-template name="row1_type2"/>
+		<xsl:call-template name="row1_type2"><xsl:with-param name="order">2</xsl:with-param></xsl:call-template>
+		<xsl:call-template name="row1_type5"/>	
+	</xsl:template>	
+	<!-- end Большой блок четвертый тип модификации (Есть банер 220x220, тизера нет: big_ban_5.png) -->
+	
+	<!-- Большой блок пятый тип модификации (Совсем нет баннеров, но есть тизер: big_no_ban_3_tiz.png) -->
+	<xsl:template match="like_basic" mode="pos1_type5">
+		<xsl:call-template name="row1_type2"/>
+		<xsl:call-template name="row1_type3"/>
+		<xsl:call-template name="row1_type4"/>
+		<xsl:call-template name="row1_type5"/>
+	</xsl:template>	
+	<!-- end Большой блок пятый тип модификации (Совсем нет баннеров, но есть тизер: big_no_ban_3_tiz.png) -->
+	
+	<!-- Большой блок шестой тип модификации (Нет ни банеров, ни тизеров: big_no_ban_2.png) -->
+	<xsl:template match="like_basic" mode="pos1_type6">
+		<xsl:call-template name="row1_type5"/>
+		<xsl:call-template name="row1_type4"><xsl:with-param name="order">1</xsl:with-param></xsl:call-template>
+		<xsl:call-template name="row1_type4"><xsl:with-param name="order">2</xsl:with-param></xsl:call-template>
+		<xsl:call-template name="row1_type2"/>
+	</xsl:template>	
+	<!-- end Большой блок шестой тип модификации (Нет ни банеров, ни тизеров: big_no_ban_2.png) -->
+	
+	<xsl:template name="row1_type2">
+		<xsl:param name="order">1</xsl:param>
+		<xsl:param name="nnode" select="."/>
+		<xsl:variable name="node" select="$nnode/../banner/text_html/hidden"/>
+		<li class="row1_type2 row1">
+		<xsl:if test="$order = 2"><xsl:attribute name="class">row1_type2_ row1</xsl:attribute></xsl:if>
+			<xsl:choose>
+				<xsl:when test="../banner[contains(@name, '460x220') and ../teaser]">
+					<xsl:apply-templates select="$nnode/art[position() &lt; 3]" mode="row1_col1"><xsl:with-param name="description">1</xsl:with-param></xsl:apply-templates>
+					<xsl:copy-of select="$node/*"/>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '220x350')]">
+					<xsl:apply-templates select="$nnode/art[position() &lt; 3]" mode="row1_col1"><xsl:with-param name="description">1</xsl:with-param></xsl:apply-templates>
+					<div class="book_item_"><xsl:apply-templates select="$nnode/art[position() &gt; 2 and position() &lt; 6]" mode="row1_col1"/></div>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '220x220')]">
+					<xsl:apply-templates select="$nnode/art[position() &gt; 7 and position() &lt; 10]" mode="row1_col1"><xsl:with-param name="description">1</xsl:with-param></xsl:apply-templates>
+					<xsl:call-template name="wrapper_blocks">
+						<xsl:with-param name="class">row4_col2</xsl:with-param>
+						<xsl:with-param name="nnode" select="art[8]"/>
+						<xsl:with-param name="content"><div class="content_ser_4"><xsl:apply-templates select="art[position() &gt; 9 and position() &lt; 14]" mode="row1_col2"/></div></xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '140x220')]">
+					<xsl:choose>
+						<xsl:when test="$order = 1">
+							<xsl:apply-templates select="$nnode/art[position() &lt; 3]" mode="row1_col1"><xsl:with-param name="description">1</xsl:with-param></xsl:apply-templates>
+							<div class="book_item_">
+								<xsl:apply-templates select="$nnode/art[position() &gt; 2 and position() &lt; 5]" mode="row1_col1"/>
+								<xsl:copy-of select="$node/*"/>								
+							</div>							
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:apply-templates select="$nnode/art[position() &gt; 4 and position() &lt; 7]" mode="row1_col1"/>
+							<xsl:call-template name="wrapper_blocks">
+								<xsl:with-param name="class">row4_col2</xsl:with-param>
+								<xsl:with-param name="nnode" select="art[7]"/>
+								<xsl:with-param name="content"><div class="content_ser_4"><xsl:apply-templates select="art[position() &gt; 6 and position() &lt; 11]" mode="row1_col2"/></div></xsl:with-param>
+								<xsl:with-param name="line_descriptions">1</xsl:with-param>
+								<xsl:with-param name="description">Еще книги <xsl:value-of select="art[7]/@author-name-rodit"/></xsl:with-param>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>				
+				<xsl:otherwise>
+					<xsl:apply-templates select="$nnode/art[position() &gt; 9 and position() &lt; 12]" mode="row1_col1"/>
+					<xsl:call-template name="wrapper_blocks">
+						<xsl:with-param name="class">row4_col2</xsl:with-param>
+						<xsl:with-param name="nnode" select="art[12]"/>
+						<xsl:with-param name="content"><div class="content_ser_4"><xsl:apply-templates select="art[position() &gt; 11 and position() &lt; 16]" mode="row1_col2"/></div></xsl:with-param>
+						<xsl:with-param name="line_descriptions">1</xsl:with-param>
+						<xsl:with-param name="description">Еще книги <xsl:value-of select="art[12]/@author-name-rodit"/></xsl:with-param>						
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+		</li>
+	</xsl:template>
+	
+	<xsl:template name="row1_type3">
+		<li class="row1_type3 row1">
+			<xsl:choose>
+				<xsl:when test="../banner[contains(@name, '460x220')] and ../teaser">
+					<xsl:apply-templates select="art[3]" mode="row1_col1"/>
+					<xsl:call-template name="wrapper_blocks">
+						<xsl:with-param name="nnode" select="../teaser"/>
+						<xsl:with-param name="class">teaser_item</xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '220x220')]">
+					<xsl:apply-templates select="art[7]" mode="row1_col1"/>
+					<xsl:copy-of select="../banner/text_html/hidden/*"/>
+				</xsl:when>
+				<xsl:when test="not(../banner) and ../teaser">
+					<xsl:apply-templates select="art[7]" mode="row1_col1"/>
+					<xsl:call-template name="wrapper_blocks">
+						<xsl:with-param name="nnode" select="../teaser"/>
+						<xsl:with-param name="class">teaser_item</xsl:with-param>
+					</xsl:call-template>				
+				</xsl:when>
+				<xsl:otherwise/>
+			</xsl:choose>
+		</li>
+	</xsl:template>
+	
+	<xsl:template name="row1_type4">
+	<xsl:param name="order" select="1"/>
+		<li class="row1_type4 row1">
+			<xsl:if test="$order = 2"><xsl:attribute name="class">row1_type4_ row1</xsl:attribute></xsl:if>
+			<xsl:choose>
+				<xsl:when test="(../banner[contains(@name, '460x220')] and ../teaser) or ../banner[contains(@name, '220x220')]">
+					<xsl:apply-templates select="art[4]" mode="row1_col1"/>
+					<xsl:call-template name="wrapper_blocks">
+						<xsl:with-param name="nnode" select="art[5]"/>
+						<xsl:with-param name="class">series_item</xsl:with-param>
+						<xsl:with-param name="content"><div class="content_ser"><xsl:apply-templates select="art[position() &gt; 4 and position() &lt; 7]" mode="row1_col2"/></div></xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '220x350')]">					
+					<xsl:choose>
+						<xsl:when test="$order = 1">
+							<xsl:copy-of select="../banner/text_html/hidden/*"/>
+							<xsl:call-template name="wrapper_blocks">
+								<xsl:with-param name="nnode" select="art[6]"/>
+								<xsl:with-param name="class">series_item</xsl:with-param>
+								<xsl:with-param name="content"><div class="content_ser"><xsl:apply-templates select="art[position() &gt; 5 and position() &lt; 8]" mode="row1_col2"/></div></xsl:with-param>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:when test="$order = 2">
+							<xsl:apply-templates select="art[8]" mode="row1_col1"/>
+							<xsl:call-template name="wrapper_blocks">
+								<xsl:with-param name="nnode" select="art[9]"/>
+								<xsl:with-param name="class">series_item</xsl:with-param>
+								<xsl:with-param name="line_descriptions">1</xsl:with-param>
+								<xsl:with-param name="description">Еще в этом жанре</xsl:with-param>
+								<xsl:with-param name="content"><div class="content_ser"><xsl:apply-templates select="art[position() &gt; 8 and position() &lt; 11]" mode="row1_col2"/></div></xsl:with-param>
+							</xsl:call-template>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:when test="not(../banner) and ../teaser">
+					<xsl:apply-templates select="art[8]" mode="row1_col1"/>
+					<xsl:call-template name="wrapper_blocks">
+						<xsl:with-param name="nnode" select="art[9]"/>
+						<xsl:with-param name="class">series_item</xsl:with-param>
+						<xsl:with-param name="content"><div class="content_ser"><xsl:apply-templates select="art[position() &gt; 8 and position() &lt; 11]" mode="row1_col2"/></div></xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:choose>
+						<xsl:when test="$order = 1">
+							<xsl:apply-templates select="art[4]" mode="row1_col1"/>
+							<xsl:call-template name="wrapper_blocks">
+								<xsl:with-param name="nnode" select="art[5]"/>
+								<xsl:with-param name="class">series_item</xsl:with-param>
+								<xsl:with-param name="content"><div class="content_ser"><xsl:apply-templates select="art[position() &gt; 4 and position() &lt; 7]" mode="row1_col2"/></div></xsl:with-param>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:when test="$order = 2">
+							<xsl:apply-templates select="art[7]" mode="row1_col1"/>
+							<xsl:call-template name="wrapper_blocks">
+								<xsl:with-param name="nnode" select="art[8]"/>
+								<xsl:with-param name="class">series_item</xsl:with-param>
+								<xsl:with-param name="content"><div class="content_ser"><xsl:apply-templates select="art[position() &gt; 7 and position() &lt; 10]" mode="row1_col2"/></div></xsl:with-param>
+							</xsl:call-template>
+						</xsl:when>
+					</xsl:choose>				
+				</xsl:otherwise>
+			</xsl:choose>
+		</li>
+	</xsl:template>	
+	
+	<xsl:template match="art" mode="row1_type5">
+		<xsl:call-template name="wrapper_blocks">
+			<xsl:with-param name="class">type5</xsl:with-param>			
+			<xsl:with-param name="nnode" select="."/>
+			<xsl:with-param name="content">
+				<div class="cover">
+					<a href="{ltr:url_code('biblio_book','art',@id)}" title="{@name}">
+						<img><xsl:attribute name="src">http://cv<xsl:value-of select="substring(@release_file,string-length(@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="@release_file"/></xsl:call-template>_250.jpg</xsl:attribute></img>
+					</a>
+				</div>
+				<xsl:choose>
+					<xsl:when test="(../../banner[contains(@name, '460x220')] and ../../teaser) or ../../banner[contains(@name, '140x220')] or (not(../../banner) and ../../teaser)">
+						<div class="seq_description">
+							<span class="seq_name">Серия «<xsl:value-of select="@reason_name"/>»</span><br/>
+							<span class="seq_author"><xsl:value-of select="@author-name"/></span>
+						</div>
+					</xsl:when>
+					<xsl:when test="../../banner[contains(@name, '220x350') or contains(@name, '220x220')]"/>
+					<xsl:otherwise/>
+				</xsl:choose>
+				<div class="content_ser">
+					<xsl:choose>
+						<xsl:when test="../../banner[contains(@name, '460x220')] and ../../teaser"> <!-- and teaser-->
+							<xsl:apply-templates select="../art[position() &gt; 7 and position() &lt; 10]" mode="row1_col2"/>
+						</xsl:when>
+						<xsl:when test="../../banner[contains(@name, '220x350')]">
+							<xsl:apply-templates select="../art[position() &gt; 10 and position() &lt; 13]" mode="row1_col2"/>
+						</xsl:when>
+						<xsl:when test="../../banner[contains(@name, '220x220')]">
+							<xsl:apply-templates select="../art[position() &gt; 1 and position() &lt; 4]" mode="row1_col2"/>
+						</xsl:when>
+						<xsl:when test="../../banner[contains(@name, '140x220')]">
+							<xsl:apply-templates select="../art[position() &gt; 11 and position() &lt; 14]" mode="row1_col2"/>
+						</xsl:when>
+						<xsl:when test="not(../../banner) and ../../teaser">
+							<xsl:apply-templates select="../art[position() &gt; 11 and position() &lt; 14]" mode="row1_col2"/>
+						</xsl:when>
+						<xsl:otherwise><xsl:apply-templates select="../art[position() &gt; 1 and position() &lt; 4]" mode="row1_col2"/></xsl:otherwise>
+					</xsl:choose>
+				</div>
+				<xsl:choose>
+					<xsl:when test="../../banner[contains(@name, '140x220')]"/>
+					<xsl:when test="not(../../banner) and ../../teaser"/>
+					<xsl:when test="../../banner[contains(@name, '220x350') or contains(@name, '220x220')] or not(../../banner and ../../teaser)">
+						<div class="description small">Еще книги <span class="show_min1210"><xsl:value-of select="@author-name-rodit"/></span><span class="show_max1210">автора</span></div>
+					</xsl:when>					
+					<xsl:when test="not(../../banner[contains(@name, '140x220')])">
+						<div class="description small"><span class="show_min1210">Другие книги</span><span class="show_max1210">Еще из</span> серии</div>
+					</xsl:when>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+		
+	<xsl:template name="row1_type5">
+		<li class="row1_type5 row1">
+			<xsl:choose>
+				<xsl:when test="../banner[contains(@name, '460x220')] and ../teaser"><!-- and teaser-->
+					<xsl:apply-templates select="art[7]" mode="row1_type5"/>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '220x350')]">
+					<xsl:apply-templates select="art[10]" mode="row1_type5"/>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '220x220')]">
+					<xsl:apply-templates select="art[1]" mode="row1_type5"/>
+				</xsl:when>
+				<xsl:when test="../banner[contains(@name, '140x220')]">
+					<xsl:apply-templates select="art[11]" mode="row1_type5"/>
+				</xsl:when>
+				<xsl:when test="not(../banner) and ../teaser">
+					<xsl:apply-templates select="art[11]" mode="row1_type5"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates select="art[1]" mode="row1_type5"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</li>
+	</xsl:template>
+	
+	<xsl:template match="art" mode="row1_col1">
+	<xsl:param name="class"/>
+	<xsl:param name="description">0</xsl:param>
+		<div><xsl:attribute name="class">book_item number<xsl:value-of select="position()"/> <xsl:if test="$class"><xsl:text> </xsl:text><xsl:value-of select="$class"/></xsl:if></xsl:attribute>
+			<div class="caption_txt">
+				<xsl:value-of select="@reason_name"/>
+			</div>
+			<div class="cover">
+				<a href="{ltr:url_code('biblio_book','art',@id)}" title="{@name}">
+					<img><xsl:attribute name="src">http://cv<xsl:value-of select="substring(@release_file,string-length(@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="@release_file"/></xsl:call-template>_250.jpg</xsl:attribute></img>
+				</a>
+			</div>
+			<xsl:if test="$description = 1">				
+				<xsl:choose>
+					<xsl:when test="../../banner[contains(@name, '220x350')] and position() = 1"><div class="description small">Еще похожие</div></xsl:when>
+					<xsl:when test="../../banner[contains(@name, '460x220')] and position() = last() and ../../teaser"><div class="description small">Еще похожие</div></xsl:when>
+					<xsl:when test="../../banner[contains(@name, '220x220')] and position() = 1"><div class="description small">Другие книги серии</div></xsl:when>
+					<xsl:when test="../../banner[contains(@name, '140x220')] and position() = last()"><div class="description small">Еще похожие</div></xsl:when>
+					<xsl:when test="not(../../banner) and ../../teaser and position() = last()"><div class="description small">Еще книги со скидкой</div></xsl:when> <!-- потом переопределить-->
+					<xsl:otherwise/>
+				</xsl:choose>				
+			</xsl:if>
+		</div>
+	</xsl:template>
+	
+	<xsl:template match="art" mode="row1_col2">
+		<div>
+			<a href="{ltr:url_code('biblio_book','art',@id)}" title="{@name}">
+				<img><xsl:attribute name="src">http://cv<xsl:value-of select="substring(@release_file,string-length(@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="@release_file"/></xsl:call-template>_89.jpg</xsl:attribute></img>
+			</a>
+		</div>
+	</xsl:template>
+
+	<xsl:template name="wrapper_blocks">
+		<xsl:param name="nnode" select="."/>
+		<xsl:param name="class"/>
+		<xsl:param name="cover"/>
+		<xsl:param name="content"/>
+		<xsl:param name="line_descriptions">0</xsl:param>
+		<xsl:param name="description"/>
+		<xsl:variable name="teaser"><xsl:choose>
+			<xsl:when test="name($nnode) = 'teaser'">1</xsl:when>
+			<xsl:otherwise>0</xsl:otherwise>
+		</xsl:choose></xsl:variable>
+		<div class="{$class}">
+			<div class="caption_txt">
+				<xsl:choose>
+					<xsl:when test="$teaser = 1"><xsl:value-of select="$nnode/@head"/></xsl:when>
+					<xsl:otherwise><xsl:value-of select="$nnode/@reason"/></xsl:otherwise>
+				</xsl:choose>
+			</div>
+			<xsl:if test="$teaser =1">
+				<xsl:variable name="img_src"><xsl:call-template name="make_path_from_fileid"><xsl:with-param name="FileId" select="$nnode/@id"/></xsl:call-template></xsl:variable>
+				<div class="teaser_cover">
+					<div>
+						<a href="{$nnode/@url}"><img src="{ltr:veristat('ds/teaser/',/xportal_rmd/request/@Lib,'/',$img_src,'.',$nnode/@img_filetype)}" border="0"/></a>
+					</div>					
+				</div>
+				<div class="teaser_caption">
+					<xsl:value-of select="$nnode/@caption"/><br/>
+					<span class="teaser_txt"><xsl:value-of select="$nnode/@txt"/>»</span>
+				</div>
+			</xsl:if>
+			<xsl:if test="$content">
+				<xsl:copy-of select="$content"/>
+			</xsl:if>
+			<xsl:if test="$line_descriptions = 1">
+				<div class="description small">
+					<xsl:choose>
+						<xsl:when test="$description"><xsl:value-of select="$description"/></xsl:when>
+						<xsl:otherwise>Еще похожие</xsl:otherwise>
+					</xsl:choose>
+				</div>
+			</xsl:if>
+		</div>
+	</xsl:template>
+		
+<!-- end mode="basic_block_pos1" -->	
+
+	<!-- mode="basic_block_pos2" -->
+	<xsl:template match="art" mode="basic_block_pos2">
+		<ul class="basic_arts2">
+			<xsl:for-each select="like_basic/art">
+				<li class="basic_block_pos2">
+					<xsl:apply-templates select="." mode="row1_col1"/>
+				</li>
+			</xsl:for-each>
+		</ul>
+	</xsl:template>	
+	<!-- end mode="basic_block_pos2" -->
+
+	<!-- mode="basic_block_pos3" -->
+	<xsl:template match="art" mode="basic_block_pos3">
+		<ul class="basic_arts3">
+			<xsl:for-each select="like_basic/art">
+				<li class="basic_block_pos3">
+					<xsl:apply-templates select="." mode="row1_col1"/>
+				</li>
+			</xsl:for-each>
+		</ul>
+	</xsl:template>	
+	<!-- end mode="basic_block_pos3" -->
+	
+	<!-- mode="basic_block_pos4" -->
+	<xsl:template match="art" mode="basic_block_pos4">
+		<ul class="basic_arts4">
+			<xsl:for-each select="like_basic/art">
+				<li class="basic_block_pos4">
+					<xsl:apply-templates select="." mode="row1_col1"/>
+				</li>
+			</xsl:for-each>
+		</ul>
+	</xsl:template>	
+	<!-- end mode="basic_block_pos4" -->
+		
+	<!-- [43739] -->
+	<!--<xsl:template match="art" mode="basic">
+		<div class="basic_art" style="color:white">
+			--><!-- <img src="www.litres.ru"/> --><!--
+			<div style="float:left; text-align: center; margin-top: 10px;">
+				[<xsl:value-of select="@id"/>]
+				<br/>
+				<a href="{ltr:url_code('biblio_book','art',@id)}" title="{@name}">
+					<img width="250"><xsl:attribute name="src">http://cv<xsl:value-of select="substring(@release_file,string-length(@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="@release_file"/></xsl:call-template>_250.jpg</xsl:attribute></img>
+				</a>
+			</div>
+			<xsl:apply-templates select="like_basic/art" mode="like_basic"/>
+			<br style="clear:both"/>
+		</div>
+		<hr/>
+	</xsl:template>
+		-->
+	<xsl:template match="art" mode="others">
+		<xsl:text> </xsl:text>
+		<div style="float:left; text-align: center; margin-top: 10px; margin-left: 5px; height: 215px;">
+			<xsl:value-of select="@whence"/> [<xsl:value-of select="@id"/>]
+			<br/>
+			<a href="{ltr:url_code('biblio_book','art',@id)}" title="{@name}">
+				<xsl:attribute name="style">display: block; border: 5px solid <xsl:choose>
+					<xsl:when test="@reason = 'seq'">red</xsl:when>
+					<xsl:when test="@reason = 'person'">blue</xsl:when>
+					<xsl:when test="@reason = 'tag'">green</xsl:when>
+					<xsl:when test="@reason = 'genre'">black</xsl:when>
+					<xsl:otherwise>yellow</xsl:otherwise>
+				</xsl:choose>;</xsl:attribute>
+				<img width="89"><xsl:attribute name="src">http://cv<xsl:value-of select="substring(@release_file,string-length(@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="@release_file"/></xsl:call-template>_<xsl:value-of select="89"/>.jpg</xsl:attribute></img>
+			</a>
+		</div>
+	</xsl:template>
+<!-- [/43739] -->
+	
+</xsl:stylesheet>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<!-- [36382] Счетчики Criteo -->
+	<xsl:template name="criteo">
+		<xsl:param name="type">d</xsl:param>
+		<script type="text/javascript">
+			(function(){
+				var s = document.createElement( 'script' );
+				var x = document.getElementsByTagName('script')[0];
+				s.type = 'text/javascript';
+				s.async = true;
+				s.src = ( 'https:' == document.location.protocol? 'https://' : 'http://' )
+				+ 'static.criteo.net/js/ld/ld.js';
+				//s.onload = function() {console.log('1')};
+				x.parentNode.insertBefore( s, x );
+			})();
+		</script>
+		<script type="text/javascript">
+			window.criteo_q = window.criteo_q || [];
+			window.criteo_q.push(
+				{ event: "setAccount", account: 12246},
+				{ event: "setCustomerId", id: "<xsl:value-of select="/xportal/xportal-page[@user &gt; 0]/@user"/>" },
+				{ event: "setSiteType", type: "<xsl:value-of select="$type"/>" }
+			<xsl:choose>
+				<xsl:when test="/xportal/xportal-page/page-data/biblio_book/art">,{ event: "viewItem", item: "<xsl:value-of select="/xportal/xportal-page/page-data/biblio_book/art/@id"/>" }</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data[
+					biblio_genres |
+					biblio_genre_by_date |
+					biblio_subgenre_by_pop |
+					biblio_subgenre_by_date |
+					genre_recomended_arts |
+					subgenre_recomended_arts |
+					new_books |
+					on_sale_soon |
+					biblio_authors |
+					biblio_series |
+					biblio_collection
+				]">
+					<xsl:variable name="viewitem" select="
+						/xportal/xportal-page/page-data/biblio_genres/genre_book |
+						/xportal/xportal-page/page-data/biblio_genre_by_date/genre_book |
+						/xportal/xportal-page/page-data/biblio_subgenre_by_pop/genre_book |
+						/xportal/xportal-page/page-data/biblio_subgenre_by_date/genre_book |
+						/xportal/xportal-page/page-data/genre_recomended_arts/genre_book |
+						/xportal/xportal-page/page-data/subgenre_recomended_arts/genre_book |
+						/xportal/xportal-page/page-data/new_books/new_book |
+						/xportal/xportal-page/page-data/on_sale_soon/new_book |
+						/xportal/xportal-page/page-data/biblio_authors/arts/sequence/book |
+						/xportal/xportal-page/page-data/biblio_series/arts/sequence/book_in_serie_list |
+						/xportal/xportal-page/page-data/biblio_collection/category_arts
+					"/>
+					,{ event: "viewList", item: [
+						<xsl:for-each select="$viewitem[position()&lt;=3]">
+							"<xsl:value-of select="@id"/>"<xsl:if test="position()!=last()">,</xsl:if>
+						</xsl:for-each>
+					], keywords: "" }
+				</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data[homepage] and $atype=''">,{ event: "viewHome" }</xsl:when>
+			</xsl:choose>
+			);
+		</script>
+	</xsl:template>
+	
+	<!-- Rating@Mail.ru counter -->
+	<xsl:template name="mailru_counter">
+		<xsl:text disable-output-escaping="yes">
+			<![CDATA[<!-- Rating@Mail.ru counter -->
+				<script type="text/javascript">]]></xsl:text><xsl:text disable-output-escaping="yes">//&lt;![CDATA[</xsl:text>
+				<xsl:text disable-output-escaping="yes">
+			<![CDATA[var _tmr = _tmr || [];
+				_tmr.push({id: "1283707", type: "pageView", start: (new Date()).getTime()});
+				(function (d, w) {
+					var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true;
+					ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+					var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+					if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+				})(document, window);]]></xsl:text><xsl:text disable-output-escaping="yes">//]]&gt;</xsl:text>
+				<xsl:text disable-output-escaping="yes">
+				<![CDATA[</script><noscript><div style="position:absolute;left:-10000px;">
+				<img class="blb" src="//top-fwz1.mail.ru/counter?id=1283707;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+				</div></noscript>
+	<!-- //Rating@Mail.ru counter -->]]>
+		</xsl:text>
+	</xsl:template>
+	
+	<!-- [35229] Установить Коды Ретаргетинга для партнера Admitad -->
+	<xsl:template name="admitad">
+		<script type="text/javascript">
+			window._retag = window._retag || [];
+			<xsl:choose>
+				<xsl:when test="/xportal/xportal-page/page-data[homepage] and $atype = ''">
+						window._retag.push({code: "9ce88867b7", level: 0});
+				</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data[biblio_genres|biblio_genre_by_date|biblio_subgenre_by_pop|biblio_subgenre_by_date]">
+						window.ad_category = "<xsl:value-of select="/xportal/formdata/@genre|/xportal/formdata/@subgenre"/>";
+						window._retag.push({code: "9ce88867b6", level: 1});
+				</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/biblio_book/art">
+					<xsl:variable name="art" select="/xportal/xportal-page/page-data/biblio_book/art"/>
+						window.ad_product = {
+							"id": "<xsl:value-of select="$art/@id"/>",
+							"vendor": "",
+							"price": "<xsl:value-of select="$art/@price"/>",
+							"url": "http://<xsl:call-template name="URLTitle"/><xsl:value-of select="ltr:url_code('biblio_book','art',$art/@id)"/>",
+							"picture": "http://cv<xsl:value-of select="substring($art/@release_file,string-length($art/@release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="$art/@release_file"/></xsl:call-template>.jpg",
+							"name": "<xsl:value-of select="$art/@name"/>",
+							"category": "<xsl:value-of select="/xportal/xportal-page/all-types/root-type[sub/@id = $art/@type]/@root_type_id"/>",
+						};
+						window._retag.push({code: "9ce88867b5", level: 2});
+				</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/biblio_basket/delivery_agents/delivery_agent[basket_delivery_item|basket_item]|/xportal/xportal-page/page-data/delivery_info[basket_delivery_item]">
+						window.ad_products = [
+						<xsl:for-each select="
+							/xportal/xportal-page/page-data/biblio_basket/delivery_agents/delivery_agent/basket_delivery_item[not(@id=preceding-sibling::basket_delivery_item/@id|../preceding-sibling::delivery_agent/basket_delivery_item/@id)]
+							| /xportal/xportal-page/page-data/biblio_basket/delivery_agents/delivery_agent/basket_item[not(@id=preceding-sibling::basket_item/@id|../preceding-sibling::delivery_agent/basket_item/@id)]
+							| /xportal/xportal-page/page-data/delivery_info/basket_delivery_item[not(@id=preceding-sibling::basket_delivery_item/@id)]">
+							{
+								"id": "<xsl:value-of select="@id"/>",
+								"number": "<xsl:value-of select="count(../basket_delivery_item[@id=current()/@id]|../basket_item[@id=current()/@id])"/>"
+							}<xsl:if test="position()!=last()">,</xsl:if>
+						</xsl:for-each>
+						];
+						window._retag.push({code: "9ce88867b4", level: 3});
+				</xsl:when>
+			</xsl:choose>
+			(function () {
+				var s=document.createElement("script");
+				s.async=true;
+				s.src=(document.location.protocol == "https:" ? "https:" : "http:") + "//cdn.admitad.com/static/js/retag.js";
+				var a=document.getElementsByTagName("script")[0];
+				a.parentNode.insertBefore(s, a);
+			})()
+		</script>
+	</xsl:template>
+	
+	<xsl:template name='advaction_counter'>
+		<script type="text/javascript">
+			var advaction_params = advaction_params || {};
+			advaction_params.asite = 'litres.ru';
+			(function()
+				{
+					var aa = document.createElement("script");
+					aa.type = "text/javascript";
+					aa.async = true;
+					aa.src = document.location.protocol+"//advaction.ru/js/advertiser.js";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(aa, s);
+				}
+			)();
+		</script>
+	</xsl:template>
+	
+	<!--[33195] Коды отслеживания Sociomantic-->
+	<xsl:template name="sociomantic">
+		<xsl:param name="id">litres-ru</xsl:param>
+		<script type="text/javascript">
+			var sociomantic_id = '<xsl:value-of select="$id"/>';
+			<xsl:choose>
+				<xsl:when test="/xportal/xportal-page/page-data[biblio_genres|biblio_genre_by_date|biblio_subgenre_by_pop|biblio_subgenre_by_date|biblio_subgenres]">
+					var product = {
+						category : [
+							<xsl:if test="$atype">'<xsl:value-of select="/xportal/xportal-page/all-types/root-type[@mem=$atype]/@title"/>',</xsl:if>
+							'<xsl:value-of select="/xportal/xportal-page/root-genres/genre[subgenres/@id=/xportal/formdata/@subgenre or @id=/xportal/formdata/@genre]/@title"/>'
+							<xsl:if test="/xportal/formdata/@subgenre">,'<xsl:value-of select="/xportal/xportal-page/root-genres/genre/subgenres[@id=/xportal/formdata/@subgenre]/@title"/>'</xsl:if>
+						]
+					};
+				</xsl:when>
+				<xsl:when test="/xportal/xportal-page/page-data/biblio_book/art[@delivered=0]">
+					var product = {
+						identifier: '<xsl:value-of select="/xportal/xportal-page/page-data/biblio_book/art/@id"/>'
+					};
+				</xsl:when>
+			</xsl:choose>
+			(function(){
+			var s = document.createElement( 'script' );
+			var x = document.getElementsByTagName('script')[0];
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = ( 'https:' == document.location.protocol? 'https://' : 'http://' )
+			+ 'eu-sonar.sociomantic.com/js/2010-07-01/adpan/<xsl:value-of select="$id"/>';
+			x.parentNode.insertBefore( s, x );
+			})();
+		</script>
+	</xsl:template>
+	
+	<!-- [42313] Обновление кода Flocktory -->
+	<xsl:template name="flocktory">
+		<script type="text/javascript" src="//api.flocktory.com/v2/loader.js?site_id=77" async="async"></script>
+		<div class="i-flocktory" data-fl-action="precheckout" data-fl-spot="exintent_popup"></div>
+		<div class="i-flocktory" data-fl-action="precheckout" data-fl-spot=" exintent_uservoice"></div>
+		<div class="i-flocktory" data-fl-user-name="{/xportal/xportal-page/@fullname}" data-fl-user-email="{/xportal/xportal-page/@email}"></div>
+	</xsl:template>
+	
+	<xsl:template name="adriver">
+		<xsl:text disable-output-escaping="yes"><![CDATA[
+		<!-- AdRiver code START. Type:counter(zeropixel) Site: Litres PZ: 0 BN: 0 -->
+		<script language="javascript" type="text/javascript">
+		var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+		var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+		document.write('<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?' + 'sid=179325&bt=21&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail + '" border="0" width="1" height="1" class="blb"/>')
+		</script>
+		<noscript><img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=179325&bt=21&pz=0&rnd=1689363294" border="0" width="1" height="1"/></noscript>
+		<!-- AdRiver code END -->
+		]]></xsl:text>
+	</xsl:template>
+	<xsl:template name="ya_metrica">
+		<xsl:text disable-output-escaping="yes"><![CDATA[<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter2199583 = new Ya.Metrika({id:2199583, enableAll: true, webvisor:true, params:{}}); } catch(e) {} }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/2199583" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->]]></xsl:text>
+	</xsl:template>
+	<xsl:template name="adriver_on_book">
+			<xsl:text disable-output-escaping="yes"><![CDATA[
+			<!-- AdRiver code START. Type:counter(zeropixel) Site: Litres PZ: 0 BN: 0 -->
+			<script language="javascript" type="text/javascript">
+			var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+			var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+			document.write('<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?' + 'sid=179325&bt=21&pz=0&custom=10=]]></xsl:text><xsl:value-of select="/xportal/xportal-page/page-data/biblio_book/art/@id"/>;11=<xsl:value-of select="/xportal/xportal-page/page-data/biblio_book/book-genres/bj[1]/@id"/><xsl:text disable-output-escaping="yes"><![CDATA[&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail + '" border="0" width="1" height="1" class="blb"/>')
+			</script>
+			<noscript><img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=179325&bt=21&pz=0&rnd=1689363294&custom=10=]]></xsl:text><xsl:value-of select="/xportal/xportal-page/page-data/biblio_book/art/@id"/>;11=<xsl:value-of select="/xportal/xportal-page/page-data/biblio_book/book-genres/bj[1]/@id"/><xsl:text disable-output-escaping="yes"><![CDATA[" border="0" width="1" height="1" class="blb"/></noscript>
+			<!-- AdRiver code END -->
+		]]></xsl:text>
+	</xsl:template>
+	
+	<xsl:template name="googlaanalitics-ID">UA-15543008-5</xsl:template>
+	<xsl:template name="google-analitics-init">
+		<xsl:variable name="ga_id"><xsl:call-template name="googlaanalitics-ID"/></xsl:variable>
+		<xsl:variable name="google-userid">
+			<xsl:choose>
+				<xsl:when test="$user_id &gt; 0"><xsl:value-of select="$user_id"/></xsl:when>
+				<xsl:otherwise>auto</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<script type="text/javascript">
+			var _gap = [];
+			var GoogleAccount = '<xsl:value-of select="$ga_id"/>';
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', '<xsl:call-template name="googlaanalitics-ID"/>', {'userId': '<xsl:value-of select="$google-userid"/>'});
+			ga('require', 'displayfeatures');
+			ga('send', 'pageview');
+		</script>
+	</xsl:template>
+	
+	<xsl:template name="retail_rocket">
+	  <xsl:text disable-output-escaping="yes">
+			<![CDATA[<script type="text/javascript">
+			var rrPartnerId = "51f1107c0d422d251008cb0a";
+			var rrApi = {};
+			rrApi.addToBasket = rrApi.order = rrApi.categoryView = rrApi.view = function() {};
+			(function(d) {
+			var ref = d.getElementsByTagName('script')[0];
+			var apiJs, apiJsId = 'rrApi-jssdk';
+			if (d.getElementById(apiJsId)) return;
+			apiJs = d.createElement('script');
+			apiJs.id = apiJsId;
+			apiJs.async = true;
+			apiJs.src = "http://api.retailrocket.ru/Content/JavaScript/api.js";
+			ref.parentNode.insertBefore(apiJs, ref);
+			}(document));
+			</script>]]>
+	  </xsl:text>
+	</xsl:template>
+	
+	<xsl:template name="ecommerce">
+		<!-- [36382] Счетчики Criteo -->
+		<xsl:call-template name="criteo"/>
+		<!--[36564] Счетчик top.mail.ru-->
+		<xsl:call-template name="mailru_counter"/>
+		<!-- [35229] Установить Коды Ретаргетинга для партнера Admitad -->
+		<xsl:call-template name="admitad"/>
+		<!-- [35862] Установить пиксель и сделать xml отчет для партнерской сетки Advaction -->
+		<xsl:call-template name="advaction_counter"/>
+		<!--[33195] Коды отслеживания Sociomantic-->
+		<xsl:call-template name="sociomantic"/>
+		<!-- [42313] Обновление кода Flocktory -->
+		<xsl:call-template name="flocktory"/>
+		<xsl:choose>
+			<xsl:when test="/xportal/xportal-page/page-data/@name!='biblio_book'"><xsl:call-template name="adriver"/></xsl:when>
+			<xsl:otherwise><xsl:call-template name="adriver_on_book"/></xsl:otherwise>
+		</xsl:choose>
+		<xsl:call-template name="retail_rocket"/>
+		<xsl:call-template name="google-analitics-init"/>
+		<xsl:call-template name="ya_metrica"/>
+	</xsl:template>
+	
+</xsl:stylesheet>

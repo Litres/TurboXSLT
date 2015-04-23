@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<!-- Заголовки страниц -->
+	<xsl:include href="metadata.xml"/>
+	
+	<xsl:template name="head">
+		<head>
+			<xsl:call-template name="pagetitle"/>
+			<xsl:call-template name="generic_css"/>
+			<xsl:call-template name="generic_js"/>
+			<xsl:call-template name="favicon"/>
+			<xsl:call-template name="head_ext"/>
+		</head>
+	</xsl:template>
+	
+	<xsl:template name="head_ext"/>
+	
+	<xsl:template name="pagetitle">
+		<title>
+			<xsl:apply-templates select="/xportal_rmd/page_data/*" mode="page_title"/><!--
+			--><xsl:if test="/xportal/formdata/@page and not(/xportal/xportal-page/page-data/cms) and not(/xportal/xportal-page/page-data/read_book_online) and not(/xportal/xportal-page/page-data/staticpages)">, страница <xsl:value-of select="/xportal/formdata/@page"/><xsl:if test="/xportal/xportal-page/page-data/*/pager"> из <xsl:value-of select="/xportal/xportal-page/page-data/*/pager/@pages"/></xsl:if></xsl:if>
+		</title>
+		
+		<xsl:variable name="dinamic_description">
+			<xsl:apply-templates select="/xportal_rmd/page_data/*" mode="page_description"/>
+		</xsl:variable>
+		<xsl:if test="$dinamic_description and normalize-space($dinamic_description) != ''">
+			<meta name="description" content="{normalize-space($dinamic_description)}"/>
+		</xsl:if>
+
+		<xsl:variable name="dinamic_robots">
+			<xsl:apply-templates select="/xportal_rmd/page_data/*" mode="page_robots"/>
+		</xsl:variable>
+		<xsl:if test="$dinamic_robots and normalize-space($dinamic_robots) != ''">
+			<meta name="robots" content="{normalize-space($dinamic_robots)}"/>
+		</xsl:if>
+		
+		
+	</xsl:template>
+	
+	<xsl:template match="/xportal_rmd/page_data/custom_css_data"/>
+	<xsl:template name="generic_css">
+		<!-- reset css -->
+		<link rel="StyleSheet" href="{ltr:veristat('wrapper/css/reset.css')}" type="text/css"/>
+		<link rel="StyleSheet" href="{ltr:veristat_local('css/style.css')}" type="text/css"/>
+		<xsl:if test="/xportal_rmd/page_data/custom_css_files/file/@name">
+			<link rel="StyleSheet" href="{ltr:veristat_local(concat('css/p/', /xportal_rmd/page_data/custom_css_files/file/@name))}" type="text/css"/>
+		</xsl:if>
+	</xsl:template>
+	
+	<!-- дефолтный шаблон загрузки js -->
+	<xsl:template name="generic_js">
+		<xsl:call-template name="include"><xsl:with-param name="src" select="ltr:veristat('wrapper/js/functions.js')"/></xsl:call-template>
+		<xsl:call-template name="include"><xsl:with-param name="src">//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js</xsl:with-param></xsl:call-template>
+		<xsl:call-template name="include"><xsl:with-param name="src" select="ltr:veristat_local('js/code.js')"/></xsl:call-template>
+	</xsl:template>
+	
+	<xsl:template name="favicon">
+		<link rel="SHORTCUT ICON">
+			<xsl:attribute name="href">
+				<!--<xsl:choose>
+					<xsl:when test="contains(/xportal/xportal-page/@host,'fbhub.ru')">/static/favicon_g.ico</xsl:when>
+					<xsl:otherwise>--><xsl:value-of select="ltr:veristat_local('favicon.ico')"/><!--</xsl:otherwise>
+				</xsl:choose>-->
+			</xsl:attribute>
+		</link>
+	</xsl:template>
+	
+</xsl:stylesheet>

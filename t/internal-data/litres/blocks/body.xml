@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+
+	<!-- основные блоки -->
+	<xsl:include href="header.xml"/>
+	<xsl:include href="footer.xml"/>
+	
+	<xsl:include href="../blocks/ecommerce.xml"/>
+	
+	<xsl:template name="bodyend">
+		<script type="text/javascript">
+			(function() {
+				var resource = document.createElement('script');
+				resource.async = true;
+				resource.src = "/static/wrapper/js/modernizr.js";
+				var script = document.getElementsByTagName('script')[0];
+				script.parentNode.insertBefore(resource, script);
+			})();
+		</script>
+		<!-- [37616] Доработка верстки и socnet.js для google+ -->
+		<script type="text/javascript">
+			include.push([
+				{
+					load: "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
+					complete: function(){
+						Modernizr.load([
+							{
+								load: "<xsl:value-of select="ltr:veristat('wrapper/js/functions.js')"/>",
+								complete: function() {
+									$(document).ready(function() {
+										<xsl:call-template name="init_ajax"/>
+									});
+									$(function() {
+										$.get('<xsl:value-of select="ltr:veristat_local('inc/genres_bubble.html')"/>', function(data) {
+											$('<div class="overlay_genre"></div>').appendTo('body');
+											$('.ab-topmenu &gt; ul &gt; li.ab_genre').append(data);
+											$("#genres_popup").click(function (e) {
+												e = e || event;
+												e.preventDefault();
+												$(this).toggleClass('active');
+												if ($(this).hasClass('active')) $('.overlay_genre').show();
+												else $('.overlay_genre').hide();
+											});
+											$(".overlay_genre").click(function () {
+												$(this).hide();
+												$("#genres_popup").removeClass('active');
+											});
+										});
+									});
+								}
+							}
+						]);
+					}
+				},
+				{
+					load: ["<xsl:value-of select="ltr:veristat_local('js/ecommerce.js')"/>", "<xsl:value-of select="ltr:veristat_local('js/code.js')"/>"]
+				},
+				{
+					load: "<xsl:value-of select="ltr:veristat_local('js/sociallogin.js')"/>",
+					complete: function(){
+						window.___gcfg = {
+							lang: 'ru'
+						};
+						(function() {
+							var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+							po.src = 'https://apis.google.com/js/client:plusone.js';
+							var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						})();
+					}
+				},
+				{
+					load: ["<xsl:value-of select="ltr:veristat_local('js/header.js')"/>", "<xsl:value-of select="ltr:veristat_local('js/search.js')"/>"],
+					complete: function() {
+						Modernizr.load([
+							{
+								load: ["<xsl:value-of select="ltr:veristat_local('css/popups.css')"/>", "<xsl:value-of select="ltr:veristat_local('css/search.css')"/>"],
+								complete: function(){
+									$(function(){
+										<xsl:if test="/xportal_rmd/request[param/@quick_reg and $user_id = 0]">
+											<!-- баблы для одноклика -->
+												ShowRegPopup();
+												$('#login-bubble').addClass('quick-reg');
+											<!-- end бабл для одноклика -->
+										</xsl:if>
+										<xsl:if test="chk:check_rights('chk_hide_shop_feautures')">
+											$("#login-bubble").overlay().load();
+										</xsl:if>
+									});
+								}
+							}
+						]);
+					}
+				},
+				{
+					load: "<xsl:value-of select="ltr:veristat('or4/view/js/scrollbar.js')"/>",<!-- подключаем скроллбар ВКОНЦЕ!!! -->
+					complete: function(){
+						if ($('#scrollbar_books').length)
+							var scrollbar_books = new scrollbar($('#scrollbar_books')[0],{show:true});
+						if ($('#fast_basket_spl.scrollbar').length)
+							var scrollbar_basket = new scrollbar($('#fast_basket_spl.scrollbar')[0],{show:true});
+					}
+				}
+			]);
+		</script>
+		
+		<!-- чат -->
+		<xsl:call-template name="widget_chat"/>
+		
+		<!-- подгружаем аналитику -->
+		<xsl:call-template name="ecommerce"/>
+		<!-- подключаем социалки -->
+		<xsl:call-template name="soc_inits"/>
+		
+	</xsl:template>
+	
+	<xsl:template name="soc_inits">
+		<xsl:call-template name="facebook_init"/>
+		<xsl:call-template name="vkontakte_init"/>
+		<xsl:call-template name="twitter_init"/>
+		<xsl:call-template name="mailru_init"/>
+		<xsl:call-template name="odnoklassniki_init"/>
+	</xsl:template>
+	
+	<xsl:template name="facebook_init">
+		<div id="fb-root"></div>
+	</xsl:template>
+	<xsl:template name="vkontakte_init">
+		<div id="vk_api_transport"></div>
+	</xsl:template>
+	<xsl:template name="mailru_init">
+		<div id="ma_init"></div>
+	</xsl:template>
+	<xsl:template name="odnoklassniki_init">
+		<div id="ok_init"></div>
+	</xsl:template>
+	<xsl:template name="twitter_init">
+		<div id="tw_init"></div>
+	</xsl:template>
+
+</xsl:stylesheet>

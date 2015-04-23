@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<!-- [38262] Переделать кнопки "купить" на карточке книги -->
+	<xsl:template name="buy">
+		<xsl:param name="text"/>
+		<xsl:param name="title"/>
+		<xsl:param name="nnode"/>
+		<xsl:param name="descr"/>
+		<xsl:param name="ref_url"/>
+		<xsl:param name="redir"/>
+		<xsl:param name="id"/>
+		<xsl:param name="class"/>
+		<xsl:param name="rel"/>
+		<xsl:param name="onclick"/>
+		<xsl:param name="target"/>
+		<xsl:param name="prefix"/><!-- дополнительный контент перед кнопкой. можно добавить несколько инпутов -->
+		<xsl:param name="postfix"/><!-- дополнительный контент после кнопки. можно добавить несколько инпутов -->
+		<xsl:param name="button__type"/>
+		<xsl:param name="action"/>
+		<xsl:param name="basket"/><!-- basket = true для покупки из корзины -->
+		<form action="{$action}" method="get">
+			<input type="hidden" name="action" value="create_custom_set"/>
+			<xsl:if test="$nnode"><input type="hidden" name="arts"><xsl:attribute name="value"><xsl:for-each select="$nnode"><xsl:value-of select="@id"/><xsl:if test="position() != last()">,</xsl:if></xsl:for-each></xsl:attribute></input></xsl:if>
+			<xsl:if test="$basket != ''"><input type="hidden" name="basket" value="{$basket}"/></xsl:if>
+			<input type="hidden" name="buy_now" value="true"/>
+			<xsl:if test="$descr"><input type="hidden" name="descr" value="{$descr}"/></xsl:if>
+			<xsl:if test="$ref_url"><input type="hidden" name="ref_url" value="{$descr}"/></xsl:if>
+			<xsl:if test="$redir"><input type="hidden" name="redir" value="{$redir}"/></xsl:if>
+			<xsl:if test="$prefix"><xsl:copy-of select="$prefix"/></xsl:if>
+			<xsl:call-template name="cool_input">
+				<xsl:with-param name="title" select="$title"/>
+				<xsl:with-param name="text" select="$text"/>
+				<xsl:with-param name="id" select="$id"/>
+				<xsl:with-param name="class" select="$class"/>
+				<xsl:with-param name="rel" select="$rel"/>
+				<xsl:with-param name="onclick" select="$onclick"/>
+				<xsl:with-param name="target" select="$target"/>
+				<xsl:with-param name="button__type" select="$button__type"/>
+			</xsl:call-template>
+			<xsl:if test="$postfix"><xsl:copy-of select="$postfix"/></xsl:if>
+		</form>
+	</xsl:template>
+		
+</xsl:stylesheet>

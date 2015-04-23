@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:chk="LTR:chk" xmlns:ltr="LTR" exclude-result-prefixes="ltr chk" xmlns:exsl="http://exslt.org/common" extension-element-prefixes="exsl">
+	<xsl:template match="*" mode="page_title"/>
+	<xsl:template match="*" mode="page_description"/>
+	<xsl:template match="*" mode="page_robots"/>
+	<xsl:template match="*" mode="page_canonical"/>
+	<xsl:template match="biblio_authors" mode="page_title">
+		<xsl:variable name="rodit"><xsl:choose>
+			<xsl:when test="subject/@full_rodit"><xsl:value-of select="subject/@full_rodit"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="subject/@full_name"/></xsl:otherwise>
+		</xsl:choose></xsl:variable>
+		<xsl:choose>
+			<xsl:when test="$atype = 'text' or $atype = '' ">Электронные книги <xsl:value-of select="$rodit"/> – читать онлайн или скачать в формате fb2, txt, epub, pdf, mobi.</xsl:when>
+			<xsl:when test="$atype = 'audio'">Аудиокниги <xsl:value-of select="$rodit"/> – скачать и слушать на любом mp3 плеере </xsl:when>
+			<xsl:when test="$atype = 'readers'">Купить электронные читалки и ридеры для чтения книг <xsl:value-of select="subject/@full_name"/> отзывы и характеристики цены на читалки</xsl:when>
+			<xsl:when test="$atype = 'games'">Игры от <xsl:value-of select="$rodit"/>, скачать и играть</xsl:when>
+			<xsl:when test="$atype = 'english'">Книги на английском языке - <xsl:value-of select="$rodit"/> – download original English Books</xsl:when>
+			<xsl:when test="$atype = 'video'"><xsl:value-of select="subject/@full_name"/> – его фильмы, купить, скачать в формате avi</xsl:when>
+			<xsl:otherwise>Все
+				<xsl:for-each select="/xportal/xportal-page/all-types/root-type[sub[ @id = /xportal/xportal-page/page-data/biblio_authors/arts/sequence/book/@type]]">
+						<xsl:value-of select="@title"/><xsl:if test="position() != last()">,</xsl:if><xsl:text> </xsl:text>
+				</xsl:for-each>
+				<xsl:value-of select="$rodit"/>, купить<xsl:if test="arts/sequence/book[@type = 0 or @type = 4]">, читать онлайн</xsl:if>
+				<xsl:if test="arts/sequence/book[@delivered=0]"> и скачать</xsl:if>
+				<xsl:if test="arts/sequence/book[@type = 0]"> fb2, txt, epub, mobi,</xsl:if>
+				<xsl:if test="arts/sequence/book[@type = 0 or @type = 4]"> pdf,</xsl:if>
+				<xsl:if test="arts/sequence/book[@type = 1]"> mp3, m4b</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="cms" mode="page_title">
+		<xsl:choose>
+			<xsl:when test="string-length(/xportal/xportal-page/page-data/cms/article/@meta_title) &gt; 0"><xsl:value-of select="/xportal/xportal-page/page-data/cms/article/@meta_title" /></xsl:when>
+			<xsl:otherwise><xsl:value-of select="/xportal/xportal-page/page-data/cms/article/@title" /></xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="cms" mode="page_description">
+		<xsl:choose>
+			<xsl:when test="/xportal/xportal-page/page-data/cms/article/@meta_descr"><xsl:value-of select="/xportal/xportal-page/page-data/cms/article/@meta_descr" /></xsl:when>
+			<xsl:otherwise><xsl:value-of select="/xportal/xportal-page/page-data/cms/article/@title" /></xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="my_settings" mode="page_title">Мои настройки</xsl:template>
+	<xsl:template match="author_ratings" mode="page_title">Рейтинг популярности авторов за
+		<xsl:call-template name="rait_period"><xsl:with-param name="period"><xsl:value-of select="/xportal/formdata/@period"/></xsl:with-param></xsl:call-template>
+	</xsl:template>
+</xsl:stylesheet>

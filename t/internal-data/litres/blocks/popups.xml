@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<xsl:template name="login-bubble">
+		<xsl:choose>
+			<xsl:when test="chk:check_rights('chk_hide_shop_feautures')"><xsl:call-template name="biblio_popup_login"/></xsl:when>
+			<xsl:otherwise><xsl:call-template name="user_popup_login"/></xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<!-- авторизация обычного юзера -->
+	<xsl:template name="user_popup_login">
+		<div class="clicktag login-bubble" id="login-bubble">
+			<xsl:comment>noindex</xsl:comment>
+			<div id="div-quick-login">
+				<div id="loginfailblock"><span></span></div>
+				<div class="header">Вход в систему</div>
+				<form action="/{//xportal/login/@url}" method="post" id="frm_quick_login" onsubmit="return LoginFormCheck();">
+					<div class="blocks">
+						<div class="block_left">
+							<input id="login_fast_inp" name="login" class="ext-input" tabindex="1" onblur="NewOpenPassToggle('_fast');" placeholder="Логин (электронная почта)" type="text"/>
+							<div id="pwd_fast">
+								<xsl:if test="/xportal/cookies/@showpwd=1 or not(/xportal/cookies/@showpwd)"><xsl:attribute name="style">display:none</xsl:attribute></xsl:if>
+								<input id="pwd_fast_inp" name="pwd" class="ext-input" type="password" tabindex="2" onchange="$('#open_pwd_fast_inp').val(this.value)"/>
+							</div>
+							<div id="open_pwd_fast">
+								<xsl:if test="/xportal/cookies/@showpwd=2"><xsl:attribute name="style">display:none</xsl:attribute></xsl:if>
+								<input id="open_pwd_fast_inp" class="ext-input" type="text" tabindex="2" onkeyup="$('#pwd_fast_inp').val(this.value)" onchange="$('#pwd_fast_inp').val(this.value)" autocomplete="off" placeholder="Пароль"/>
+							</div>
+							<div class="check">
+								<div class="item">
+									<input type="checkbox" name="showpwd" id="show_pass_fast" onchange="NewOpenPassToggle('_fast')" onclick="NewOpenPassToggle('_fast')" tabindex="3">
+										<xsl:if test="not(/xportal/cookies/@showpwd=2)"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
+									</input>
+									<label for="show_pass_fast">видеть пароль</label>
+								</div>
+								<div class="item">
+									<input type="checkbox" name="remember_me" id="remember_me" checked="checked" tabindex="4"/><label for="remember_me">запомнить меня</label>
+								</div>
+							</div>
+						</div>
+						<div class="block_right">
+							<p>Первый раз в нашем магазине? Зарегистрируйтесь и получите доступ к расширенным возможностям сайта<br/>
+							<b class="free10">и 10 бесплатных книг<br/>в подарок!</b></p>
+						</div>
+					</div>
+					<div class="blocks">
+						<div class="block_left button">
+							<div class="dnone">
+								<input type="hidden" name="can_have_short_sessions" value="1"/>
+								<input type="hidden" name="pre_action" value="login"/>
+							</div>
+							<xsl:call-template name="cool_input">
+								<xsl:with-param name="text">Войти</xsl:with-param>
+								<xsl:with-param name="class">btn-blue font-16</xsl:with-param>
+								<xsl:with-param name="id">reg_login_in_bibble</xsl:with-param>
+								<xsl:with-param name="tabindex">5</xsl:with-param>
+							</xsl:call-template>
+						</div>
+						<div class="block_right">
+							<xsl:call-template name="cool_input">
+								<xsl:with-param name="type">href</xsl:with-param>
+								<xsl:with-param name="text">Регистрация</xsl:with-param>
+								<xsl:with-param name="class">btn-green font-16</xsl:with-param>
+								<xsl:with-param name="id">reg_me_in_bubble</xsl:with-param>
+								<xsl:with-param name="tabindex">6</xsl:with-param>
+							</xsl:call-template>
+						</div>
+					</div>
+ 					<a href="{ltr:url_code('password_recover')}" class="password_recover">вспомнить логин или пароль</a>
+				</form>
+				<div class="blocks social">
+					<div class="block_left">
+						<xsl:call-template name="socnet_buttons"/>
+					</div>
+					<div class="block_right">
+						<div class="header"><span onclick="$('#login-help-div').slideToggle()" class="block_pointer">Уже покупали на ЛитРес без&#160;регистрации?</span></div>
+					</div>
+				</div>
+				<div id="login-help-div">
+					<p>После совершения покупки на <xsl:value-of select="/xportal/xportal-page/@host"/> регистрация происходит автоматически.</p>
+					<p>Логин и пароль, выданные вам при регистрации, Вы всегда сможете найти в истории платежей для PayPal, WM, Яндекс.Денег, в SMS сообщении при оплате через SMS и на вашем e-mail при оплате банковской картой.</p>
+					<p><a href="{ltr:url_code('cms','page','72')}">Как узнать логин и пароль полученные после<br/>автоматической регистрации?</a></p>
+				</div>
+			</div>
+
+			<xsl:call-template name="quick-reg-bubble"/>
+
+			<xsl:comment>/noindex</xsl:comment>
+		</div>
+	</xsl:template>
+	<!-- Авторизация для библиотекаря -->
+	<xsl:template name="biblio_popup_login">
+		<div class="bibl_land clicktag" id="login-bubble">
+			<xsl:comment>noindex</xsl:comment>
+				<div id="loginfailblock"><span></span></div>
+				<div class="blocks">
+					<div class="block_left">
+						<div class="biblio_logo"><img src="{ltr:veristat_local('i/popup/biblio/lit_library.png')}" alt=""/></div>
+						<div class="book-bonus">
+							<img src="{ltr:veristat_local('i/popup/biblio/library.png')}" alt=""/>
+						</div>
+					</div>
+		
+					<div class="block_right">
+						<form action="/{//xportal/login/@url}" method="post" id="frm_quick_login" onsubmit="return LoginFormCheck();">
+							<div class="header">Добро пожаловать</div>
+							<p>97853 электронные книги&#160;для бесплатного чтения</p>
+							<div class="new_login input">
+								<input id="login_fast_inp" name="login" class="ext-input inum" tabindex="1" onblur="NewOpenPassToggle('_fast');" placeholder="Номер читательского билета"/>
+							</div>
+							<div id="pwd_fast" class="input">
+								<xsl:if test="/xportal/cookies/@showpwd=1 or not(/xportal/cookies/@showpwd)"><xsl:attribute name="style">display:none</xsl:attribute></xsl:if>
+								<input id="pwd_fast_inp" name="pwd" class="ext-input" type="password" tabindex="2" onchange="$('#open_pwd_fast_inp').val(this.value)"/>
+							</div>
+							<div id="open_pwd_fast" class="input">
+								<xsl:if test="/xportal/cookies/@showpwd=2"><xsl:attribute name="style">display:none</xsl:attribute></xsl:if>
+								<input id="open_pwd_fast_inp" class="ext-input" type="text" tabindex="2" onkeyup="$('#pwd_fast_inp').val(this.value)" onchange="$('#pwd_fast_inp').val(this.value)" autocomplete="off" placeholder="Пароль"/>
+							</div>
+							<label>
+								<input type="checkbox" name="showpwd" id="show_pass_fast" onchange="NewOpenPassToggle('_fast')" onclick="NewOpenPassToggle('_fast')">
+									<xsl:if test="not(/xportal/cookies/@showpwd=2)"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
+								</input>
+								видеть пароль
+							</label>
+		
+							<div class="dnone">
+								<input type="hidden" name="can_have_short_sessions" value="1"/>
+								<input type="hidden" name="pre_action" value="login"/>
+								<xsl:choose>
+									<xsl:when test="/xportal/xportal-page/@user=0 and (/xportal/formdata/@westudyin or /xportal/formdata/@keywords='westudyin')">
+										<input type="hidden" name="ref_url" value="{ltr:url_code('biblio_book','art','2465085','code1','9750167876470823','action','activate_coupone')}"/>
+									</xsl:when>
+									<xsl:when test="/xportal/formdata/@ref_url or not(/xportal/xportal-page/page-data/*[1][ name() = 'login' or name() = 'registration'])"><xsl:call-template name="ref_url"/></xsl:when>
+								</xsl:choose>
+							</div>
+							<xsl:call-template name="cool_input">
+								<xsl:with-param name="text">Войти</xsl:with-param>
+								<xsl:with-param name="class" select="'coolbtn btn-green font-16'"/>
+								<xsl:with-param name="id">reg_login_in_bibble</xsl:with-param>
+								<xsl:with-param name="tabindex">3</xsl:with-param>
+							</xsl:call-template>
+						</form>
+					</div>
+					
+				</div>
+				<xsl:comment>/noindex</xsl:comment>
+			</div>
+	</xsl:template>
+	
+	<!-- Шаблон техподдержка через виджет чат -->
+	<xsl:template name="widget_chat">
+		<xsl:choose>
+			<xsl:when test="/xportal/xportal-page/@host='biblio.litres.ru' or /xportal/xportal-page/@host='business.litres.ru'">
+				<xsl:text disable-output-escaping="yes"><![CDATA[
+				<!-- BEGIN SITEHEART CHAT CODE --> ]]></xsl:text>
+				<script type="text/javascript">
+					_shcp = [];
+					_shcp.push({widget_id : 629788, widget : "Chat", side : "bottom", position : "right", template : "dark"<!--
+							--><xsl:if test="/xportal/xportal-page/@user!=0">
+									<xsl:variable name="json-userdata">{
+										 "id":"<xsl:value-of select="/xportal/xportal-page/@user"/>"
+										 <xsl:if test="/xportal/xportal-page/@email">,"email":"<xsl:value-of select="/xportal/xportal-page/@email"/>"</xsl:if>,
+										 "data": {<xsl:if test="/xportal/xportal-page/@username">"username":"<xsl:value-of select="/xportal/xportal-page/@username"/>"</xsl:if>
+										<xsl:if test="/xportal/xportal-page/@email">,"email":"<xsl:value-of select="/xportal/xportal-page/@email"/>"</xsl:if>}
+									}
+									</xsl:variable>
+										 <xsl:variable name="userdata" select="ltr:encode_base64($json-userdata)"/>
+										 <xsl:variable name="secret">zaq12wsx</xsl:variable>
+										 <xsl:variable name="time" select="/xportal/xportal-page/@now_timestamp"/>
+										 <xsl:variable name="sign" select="ltr:md5_hex(concat($secret,$userdata,$time))"/><!--
+								-->, "auth" : "<xsl:value-of select="$userdata"/>_<xsl:value-of select="$time"/>_<xsl:value-of select="$sign"/>"
+								</xsl:if>
+					<xsl:text disable-output-escaping="yes"><![CDATA[});
+					(function() {
+					  var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+					  hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://widget.siteheart.com/apps/js/sh.js";
+					  var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hcc, s.nextSibling);
+					 })(); ]]></xsl:text>
+				</script>
+				<xsl:text disable-output-escaping="yes"><![CDATA[ <!-- END SITEHEART CHAT CODE --> ]]></xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<script type="text/javascript">
+					var __lc = {};
+					__lc.license = 5048621;
+					<xsl:choose>
+						<xsl:when test="/xportal/xportal-page/@user!=0">
+							<xsl:variable name="login"><xsl:call-template name="replace-string">
+								<xsl:with-param name="text"><xsl:value-of select="/xportal/xportal-page/@username"/></xsl:with-param>
+								<xsl:with-param name="replace" select="'&quot;'" />
+								<xsl:with-param name="with" select="'\&quot;'"/>
+							</xsl:call-template></xsl:variable>
+							<xsl:variable name="e-mail"><xsl:call-template name="replace-string">
+								<xsl:with-param name="text"><xsl:value-of select="/xportal/xportal-page/@email"/></xsl:with-param>
+								<xsl:with-param name="replace" select="'&quot;'" />
+								<xsl:with-param name="with" select="'\&quot;'"/>
+							</xsl:call-template></xsl:variable>
+						 __lc.group = 2;
+						 __lc.params =[{ name: 'Login', value: "<xsl:value-of select="$login" />" }, { name: 'UserID', value: '<xsl:value-of select="/xportal/xportal-page/@user" />' }, { name: 'E-mail', value: "<xsl:value-of select="$e-mail"/>" }, { name: 'verified', value: <xsl:choose><xsl:when test="/xportal/xportal-page/@email_ok=0">'no'</xsl:when><xsl:otherwise>'yes'</xsl:otherwise></xsl:choose>}];
+						</xsl:when>
+						<xsl:otherwise>	__lc.group = 1;</xsl:otherwise>
+					</xsl:choose>
+					(function() { var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true; lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js'; 
+					<!-- [43319] Добавление ссылки "Сообщить о проблеме"-->
+					<!--lc.onload = function(){ $(".add_comment").append('<a class="problem_report" href="#" onclick="LC_API.show_full_view();return false;">Сообщить о проблеме</a>'); }-->
+					<!-- end [43319] -->
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s); })();
+				</script>
+			</xsl:otherwise>
+			</xsl:choose>
+	</xsl:template>
+	
+	<!-- баббл с автопаролем, так же используется для лэндинга -->
+	<xsl:template name="quick-reg-bubble">
+		<xsl:param name="landing"/> <!-- 1 if landing -->
+		<xsl:param name="ref_url"/>
+		<xsl:param name="title"/> <!-- заголовок под кнопкой регистрации -->
+		<xsl:param name="txt"/> <!-- текст под кнопкой регистрации -->
+		<xsl:param name="code">0991573886335689</xsl:param>
+			<div id="div-quick-reg" style="display:none;">
+				<form id="quick_regform" action="{ltr:url_code('registration')}" method="post" onsubmit="return ValidateRegForm('quick');">
+					<xsl:call-template name="ref_url"/>
+					<input type="checkbox" style="display:none" name="iaccept" value="1" checked="checked"/>
+					<input type="hidden" name="phone"/>
+					<input type="hidden" value="register_user" name="action"/>
+					<input type="checkbox" value="1" style="display:none" name="subscribe_to_news" checked="checked"/>
+					<input type="checkbox" value="1" style="display:none" name="subscr_email" checked="checked"/>
+					<input type="checkbox" value="1" name="gimmifreebooks" checked="checked" style="display:none"/>
+					<input type="hidden" id="code1" name="code1" value="{$code}" onblur="NewOpenPassToggle('_fast');"/>
+					<div class="registration">
+						<div class="header">Регистрация на ЛитРес</div>
+						<div class="blocks">
+							<div class="block_left">
+								<input type="text" name="new_login" id="new_login" class="ext-input" placeholder="E-mail" tabindex="1"/>
+								<div class="desc">Используется в качестве логина</div>
+							</div>
+							<div class="block_right">
+								<div id="pass-auto">
+									<input type="hidden" name="autopwd" value="1"/>
+									<div class="txt">Пароль создается автоматически и&#160;будет отправлен на ваш e-mail</div>
+									<div class="desc"><label class="switch"><input type="checkbox" name="sw" value="1"/>Ввести пароль самостоятельно</label></div>
+								</div>
+								<div id="pass-manual">
+									<div id="pwd_reg">
+										<xsl:if test="/xportal/cookies/@showpwd=1 or not(/xportal/cookies/@showpwd)"><xsl:attribute name="style">display:none</xsl:attribute></xsl:if>
+											<input id="pwd_reg_inp" name="new_pwd1" class="ext-input" type="password"/>
+											<input id="pwd2_reg_inp" name="new_pwd2" class="ext-input" type="password" />
+									</div>
+									<div id="open_pwd_reg">
+										<xsl:if test="/xportal/cookies/@showpwd=2"><xsl:attribute name="style">display:none</xsl:attribute></xsl:if>
+										<input id="open_pwd_reg_inp" name="new_pwd_open" class="ext-input" type="text" placeholder="Пароль" />
+									</div>
+									<label class="desc">
+										<input type="checkbox" name="showpwd" id="show_pass_reg" onclick="NewOpenPassToggle('_reg');">
+											<xsl:if test="not(/xportal/cookies/@showpwd=2)"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
+										</input>
+										видеть пароль
+									</label>
+								</div>
+							</div>
+						</div>
+						<xsl:call-template name="cool_input">
+							<xsl:with-param name="text">Зарегистрироваться</xsl:with-param>
+							<xsl:with-param name="class">btn-green font-16 btn-reg</xsl:with-param>
+							<xsl:with-param name="tabindex">2</xsl:with-param>
+						</xsl:call-template>
+						<!-- текст под кнопкой -->
+						<xsl:call-template name="free_books"/>
+						</div>
+					<div class="ab-block-padding ab-block-gray">Нажимая «зарегистрироваться» Вы соглашаетесь с <a href="{ltr:url_code('litres_oferta')}" onclick="ShowFrame('{ltr:url_code('litres_oferta')}',1); return false;">условиями обслуживания</a>.</div>
+				</form>
+			</div>
+
+	</xsl:template>
+	<xsl:template name="free_books">
+		<div class="header">10 книг в подарок после регистрации!</div>
+		<div class="free-books">
+			<xsl:apply-templates mode="free-art" select="/xportal_rmd/free-arts/art[position() &lt;= 5]"/>
+		</div>
+		<div class="free-books">
+			<xsl:apply-templates mode="free-art" select="/xportal_rmd/free-arts/art[position() &gt;5]"/>
+		</div>
+	</xsl:template>
+	
+	<xsl:template match="art" mode="free-art">
+		<xsl:call-template name="draw_cover_small">
+			<xsl:with-param name="nnode" select="."/>
+			<xsl:with-param name="height">120</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+	
+</xsl:stylesheet>

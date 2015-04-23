@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<xsl:template name="site_title">ЛитРес</xsl:template>
+	<xsl:template name="URLTitle">www.litres.ru</xsl:template>
+	
+	<xsl:variable name="atype"><xsl:call-template name="atype"/></xsl:variable>
+	
+	<!--Значение атрибута lang, по умолчанию ru-->
+	<xsl:template name="lang">
+		<xsl:param name="lang">ru</xsl:param>
+		<xsl:value-of select="$lang"/>
+	</xsl:template>
+	
+</xsl:stylesheet>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<!--
+		README
+		0. Структура в новых площадках должна сохраняться как и в wrapper
+		1. Создаем новую папку, в ней index.xml, импортим нулевую площадку (<xsl:import href="../wrapper/index.xml"/>)
+		2. Создаем setup.xml, устанавливаем значения переменных для площадки
+		3. В wrapper.xml Создаем свою структуру верстки (см. папку litres)
+		
+		Как создать площадку
+		- создать папку
+		- добавить путь в Settings.pm в переменную our %XSLSets (Имя_морды => путь_к_xsl_шаблонам)
+		- в админке создать хост с этим фейсом
+		- для стилей в переменную %StaticPathsPrefixes добавить тож папку со стилями.
+		Если имя папки такое же как имя фейса, то можно в @StaticPathsPrefixesArray добавить и все.
+	-->
+	
+	<!-- Глобальные переменные,  форматы для чиселовых значений файлов, рублей -->
+	<xsl:include href="setup.xml"/>
+	
+	<!-- Скелет сайта -->
+	<xsl:include href="blocks/wrapper.xml"/>
+	
+	<!-- Функции -->
+	<xsl:include href="blocks/functions.xml"/>
+	
+	<!-- Дефолтные шаблоны Xpath -->
+	<xsl:include href="pages/pages.xml"/>
+
+</xsl:stylesheet>

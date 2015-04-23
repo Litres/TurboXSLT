@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<!-- обложка -->
+	<xsl:include href="head.xml"/>
+	<xsl:include href="body.xml"/>
+	
+	<xsl:template match="/xportal_rmd">
+		<xsl:apply-templates select="page_data"/>
+	</xsl:template>
+	
+	<xsl:template match="page_data">
+		<xsl:call-template name="wrapper"/>
+	</xsl:template>
+	
+	<xsl:template match="/xportal_rmd[request/@hide_page_head = 1]/page_data">
+		<xsl:call-template name="content"/>
+	</xsl:template>
+
+	<!-- обертка сайта -->
+	<xsl:template name="wrapper">
+		<html>
+			<xsl:call-template name="head"/>
+			<body>
+				<xsl:call-template name="content"/>
+				<xsl:call-template name="bodyend"/>
+			</body>
+		</html>
+	</xsl:template>
+	
+</xsl:stylesheet>

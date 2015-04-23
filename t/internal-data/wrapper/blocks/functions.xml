@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk" xmlns:exsl="http://exslt.org/common" extension-element-prefixes="fo exsl ltr chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+	
+	<!-- ф-ции, связанные с url + ref_url -->
+	<xsl:template name="ref_url">
+		<xsl:param name="add_param"/>
+		<xsl:if test="/xportal_rmd/request/param/@ref_url or not(/xportal_rmd/page_data/registration)">
+			<input name="ref_url" type="hidden" id="ref_url">
+				<xsl:attribute name="value"><xsl:choose>
+					<xsl:when test="/xportal_rmd/request/param/@ref_url"><xsl:value-of select="/xportal_rmd/request/param/@ref_url"/></xsl:when>
+					<xsl:otherwise>
+						<xsl:variable name="ref_url">
+							<xsl:call-template name="safe_fill_url"/>
+						</xsl:variable>
+						<xsl:value-of select="ltr:url_code($ref_url)"/>
+					</xsl:otherwise>
+				</xsl:choose><xsl:value-of select="ltr:url_encode($add_param)" /></xsl:attribute>
+			</input>
+		</xsl:if>
+	</xsl:template>
+	<!-- safe_fill_url в одну строчку, иначе не сработает -->
+	<xsl:variable name="safe_fill_url"><xsl:call-template name="safe_fill_url"/></xsl:variable>
+	<xsl:template name="safe_fill_url"><xsl:choose><xsl:when test="/xportal_rmd/page_data/homepage"> </xsl:when><xsl:otherwise><xsl:for-each select="/xportal_rmd/page_data/*[
+		name() != 'hidden'
+	][1]"><xsl:value-of select="name()"/></xsl:for-each></xsl:otherwise></xsl:choose><xsl:for-each select="/xportal_rmd/request/param/@*[
+			name() != 'action' and
+			name() != 'itm' and
+			name() != 'login' and
+			name() != 'pre_action' and
+			name() != 'pwd' and
+			name() != 'socnet' and
+			name() != 'autologin' and
+			name() != 'show_reminders_subscr'
+	]">,-<xsl:value-of select="name()"/></xsl:for-each></xsl:template>
+	
+	<!-- цены -->
+	<xsl:template name="full_price">
+		<xsl:param name="nnode" select="/xportal/xportal-page/page-data/biblio_basket/delivery_agents/delivery_agent[@id=0]/basket_item"/>
+		<xsl:param name="discount" select="1"/>
+		<xsl:value-of select="
+			sum($nnode[(@available = 1 or @can_preorder = 1) and (not(@promo_price) or @promo_price &gt; @price*$discount) and not(art-collections/collection/@id = '4')]/@price)*$discount
+			+ sum($nnode[(@available = 1 or @can_preorder = 1) and (@promo_price &lt;= @price*$discount) and not(art-collections/collection/@id = '4')]/@promo_price)"/>
+	</xsl:template>
+	
+	<!-- Шаблон оформление цены в вид  0,00 -->
+	<xsl:template name="format_price_number">
+		<xsl:param name="price"/>
+		<xsl:choose>
+			<xsl:when test="$price &lt; 30 or round($price) != $price"><xsl:value-of select="format-number($price,'0,00','rub')"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="format-number($price,'0','rub')"/></xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- atype (тип страницы/арта) -->
+	<xsl:template name="atype"><xsl:value-of select="/xportal_rmd/request/param/@atype"/></xsl:template>
+	
+	<!-- переменная для вывода типов -->
+	<xsl:variable name="root-type">
+		<root-type root_type_id="1" mem="text" title="Электронные книги" imin_title="Электронная книга" mn_rodit_title="Электронных книг" hidden="0" sortkey="0">
+			<sub id="0" title="Электронный текст" delivered="0" priority="0"/>
+			<sub id="4" title="PDF-книга" delivered="0" priority="1"/>
+			<sub id="14" title="Kobo books" delivered="0" priority="99"/>
+		</root-type>
+		<root-type root_type_id="7" mem="readers" title="Ридеры" imin_title="Ридер" mn_rodit_title="Ридеров" hidden="0" sortkey="5">
+			<sub id="3" title="Устройство для чтения" delivered="1" priority="99"/>
+			<sub id="13" title="Аксесcуары для ридеров" delivered="1" priority="20"/>
+			<sub id="15" title="Спецтовары" delivered="1" priority="99"/>
+		</root-type>
+		<root-type root_type_id="2" mem="audio" title="Аудиокниги" imin_title="Аудиокнига" mn_rodit_title="Аудиокниг" hidden="0" sortkey="10">
+			<sub id="1" title="Аудиокнига" delivered="0" priority="3"/>
+		</root-type>
+		<root-type root_type_id="9" mem="hardcopy" title="Бумажные книги" imin_title="Бумажная книга" mn_rodit_title="Бумажных книг" hidden="0" sortkey="15">
+			<sub id="12" title="Книги Read.ru" delivered="1" priority="2"/>
+		</root-type>
+		<root-type root_type_id="8" mem="english" title="Книги на английском" imin_title="Книга на английском" mn_rodit_title="Книг на английском" hidden="0" sortkey="25">
+			<sub id="11" title="Gardner books" delivered="0" priority="99"/>
+		</root-type>
+	</xsl:variable>
+	
+	<!-- создание ссылок -->
+	<!-- создание ссылки из шаблона -->
+	<xsl:template name="make_url_var">
+		<xsl:param name="data"/>
+		<xsl:value-of select="ltr:url_code($data)"/>
+	</xsl:template>
+	<!-- загрузка скриптов -->
+	<xsl:template name="include">
+		<xsl:param name="src"/>
+		<script language="JavaScript" src="{$src}" type="text/javascript"/>
+	</xsl:template>
+	
+	<!-- функции с текстом (кавычки) -->
+	<!-- обрамляет текст кавычками - елочками («»), можно создать ссылку -->
+	<xsl:template name="quotes-name">
+		<xsl:param name="valname" select="art/@name"/>
+		<!-- schema.org -->
+		<xsl:param name="schema" select="0"/>
+		<xsl:param name="href"/>
+
+		<span>
+			<xsl:if test="$schema=1">
+				<xsl:attribute name="itemprop">name</xsl:attribute>
+			</xsl:if>
+
+			<xsl:choose>
+				<xsl:when test="(contains($valname, '«') and (not(contains($valname, '„')) or not(contains($valname, '“')))) and not(starts-with($valname, '«') and substring($valname,string-length($valname),1)='»')">
+					<xsl:choose>
+						<xsl:when test="$href">«<a href="{$href}"><xsl:value-of select="translate($valname, '«»', '„“')"/></a>»</xsl:when>
+						<xsl:otherwise>«<xsl:value-of select="translate($valname, '«»', '„“')"/>»</xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:when test="(starts-with($valname, '«') and substring($valname,string-length($valname),1)='»') or (contains($valname, '«') and ((contains($valname, '„')) or contains($valname, '“')))">
+					<xsl:choose>
+						<xsl:when test="$href"><a href="{$href}"><xsl:value-of select="$valname"/></a></xsl:when>
+						<xsl:otherwise><xsl:value-of select="$valname"/></xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:choose>
+						<xsl:when test="$href">«<a href="{$href}"><xsl:value-of select="$valname"/></a>»</xsl:when>
+						<xsl:otherwise>«<xsl:value-of select="$valname"/>»</xsl:otherwise>
+					</xsl:choose>
+				</xsl:otherwise>
+			</xsl:choose>
+		</span>
+	</xsl:template>
+	
+	<!-- перечисляет список -->
+	<xsl:template name="print-list">
+		<xsl:param name="list"/>
+		<xsl:param name="node-list" select="exsl:node-set($list)"/>
+		<xsl:param name="use-conjunction" select="true()"/>
+		<xsl:for-each select="$node-list/*">
+			<xsl:copy-of select="node()"/>
+			<xsl:if test="count($node-list/*) &gt; 1">
+				<xsl:choose>
+					<xsl:when test="position() = last() - 1 and $use-conjunction"> и </xsl:when>
+					<xsl:when test="position() != last()">, </xsl:when>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:template>
+	
+	<!-- Функция замены. например для js ' -> /' -->
+	<xsl:template name="replace-string">
+		<xsl:param name="text"/>
+		<xsl:param name="replace"/>
+		<xsl:param name="with"/>
+		<xsl:choose>
+			<xsl:when test="contains($text,$replace)">
+				<xsl:value-of select="substring-before($text,$replace)"/>
+				<xsl:value-of select="$with"/>
+				<xsl:call-template name="replace-string">
+					<xsl:with-param name="text" select="substring-after($text,$replace)"/>
+					<xsl:with-param name="replace" select="$replace"/>
+					<xsl:with-param name="with" select="$with"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy-of select="$text"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- создание обложки арта -->
+	<xsl:template name="make_cover_path">
+		<xsl:param name="FileId"/>
+		<xsl:variable name="addfilename" select="substring('0000',1,8 - string-length($FileId))"/>
+		<xsl:variable name="fullfilename" select="concat ($addfilename,$FileId)"/>
+		<xsl:variable name="pathname1" select="substring($fullfilename,1,2)"/>
+		<xsl:variable name="pathname2" select="substring($fullfilename,3,2)"/>
+		<xsl:variable name="pathname3" select="substring($fullfilename,5,2)"/>
+		<xsl:value-of select="concat('/static/bookimages/',$pathname1,'/',$pathname2,'/',$pathname3,'/',$fullfilename,'.bin.dir/',$fullfilename,'.cover')"/>
+	</xsl:template>
+	
+	<!-- ф-ции и переменные юзера -->
+	<xsl:variable name="user_id"><xsl:choose>
+		<xsl:when test="/xportal_rmd/user/@id"><xsl:value-of select="/xportal_rmd/user/@id"/></xsl:when>
+		<xsl:otherwise>0</xsl:otherwise>
+	</xsl:choose></xsl:variable>
+	<xsl:variable name="user_name"><xsl:choose>
+		<xsl:when test="/xportal_rmd/user/@name"><xsl:value-of select="/xportal_rmd/user/@name"/></xsl:when>
+		<xsl:otherwise>anonym</xsl:otherwise>
+	</xsl:choose></xsl:variable>
+	
+	<!-- Функция "Правильные окончания слов" пример: s1=Рубль, s2=Рубля, s3=Рублей -->
+	<xsl:template name="words_ending_3type">
+		<xsl:param name="s1" select="1"/>
+		<xsl:param name="s2" select="1"/>
+		<xsl:param name="s3" select="1"/>
+		<xsl:param name="cnt" select="1"/>
+		<xsl:choose>
+			<xsl:when test="$cnt mod 10 = 1 and $cnt mod 100 != 11 "><xsl:value-of select="$s1"/></xsl:when>
+			<xsl:when test="$cnt mod 10 &gt;= 2 and $cnt mod 10 &lt;= 4 and ($cnt mod 100 &lt; 10 or $cnt mod 100 &gt;= 20)"><xsl:value-of select="$s2"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="$s3"/></xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- вывод реальной цены книги -->
+	<xsl:template name="real_art_price">
+		<xsl:param name="art_node" select="art"/>
+		<xsl:choose>
+			<xsl:when test="$art_node/@promo_price &gt; 0 and $art_node/@promo_price &lt; $art_node/@price"><xsl:value-of select="$art_node/@promo_price"/></xsl:when>
+			<xsl:when test="$art_node/@prprice &gt; 0 and $art_node/../promotion_info/@price &lt; $art_node/@price"><xsl:value-of select="$art_node/../promotion_info/@price"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="$art_node/@price"/></xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<xsl:template name="draw_cover_small">
+		<xsl:param name="nnode" select="art"/>
+		<xsl:param name="release_file" select="$nnode/@release_file"/>
+		<xsl:param name="width"/>
+		<xsl:param name="height"/>
+		<xsl:variable name="size">
+			<xsl:choose>
+				<xsl:when test="$width"><xsl:value-of select="$width"/></xsl:when>
+				<xsl:when test="$height">h<xsl:value-of select="$height"/></xsl:when>
+			</xsl:choose>
+		</xsl:variable>
+		<img class="cover">
+			<xsl:attribute name="src">http://cv<xsl:value-of select="substring($release_file,string-length($release_file)-1,1)"/>.litres.ru<xsl:call-template name="make_cover_path"><xsl:with-param name="FileId" select="$release_file"/></xsl:call-template>_<xsl:value-of select="$size"/>.jpg</xsl:attribute>
+		</img>
+	</xsl:template>
+	
+	<!-- путь к изображению-->
+	<xsl:template name="make_path_from_fileid">
+		<xsl:param name="FileId"/>
+		<xsl:param name="WithBinDir"/>
+		<xsl:variable name="addfilename" select="substring('00000000',1,8 - string-length($FileId))"/>
+		<xsl:variable name="fullfilename" select="concat ($addfilename,$FileId)"/>
+		<xsl:variable name="pathname1" select="substring($fullfilename,1,2)"/>
+		<xsl:variable name="pathname2" select="substring($fullfilename,3,2)"/>
+		<xsl:variable name="pathname3" select="substring($fullfilename,5,2)"/>
+	  <xsl:variable name="full_path" select="concat($pathname1,'/',$pathname2,'/',$pathname3,'/',$fullfilename)"/>
+	  <xsl:choose>
+		  <xsl:when test="$WithBinDir &gt; 0"><xsl:value-of select="concat($full_path,'.bin.dir/',$fullfilename)"/></xsl:when>
+		  <xsl:otherwise><xsl:value-of select="$full_path"/></xsl:otherwise>
+	  </xsl:choose>
+	</xsl:template>
+</xsl:stylesheet>

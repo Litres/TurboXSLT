@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" exclude-result-prefixes="fo ltr chk" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ltr="LTR" xmlns:chk="LTR:chk">
+	<xsl:output encoding="UTF-8" indent="no" method="html" omit-xml-declaration="yes"/>
+
+	<xsl:include href="head.xml"/>
+	<xsl:include href="body.xml"/>
+
+	<xsl:template name="wrapper">
+		<html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#" xmlns:v="http://rdf.data-vocabulary.org/#">
+			<xsl:attribute name="lang"><xsl:call-template name="lang"/></xsl:attribute>
+			<xsl:call-template name="head"/>
+			<body>
+				<xsl:if test="chk:check_rights('chk_hide_shop_feautures')"><xsl:attribute name="class">biblio_user</xsl:attribute></xsl:if>
+				<xsl:call-template name="page-wrap"/>
+			</body>
+		</html>
+	</xsl:template>
+
+	<xsl:template name="page-wrap">
+		<div class="page-wrap">
+			<!-- header -->
+			<xsl:call-template name="block-wrapper">
+				<xsl:with-param name="class">litres-header block_table</xsl:with-param>
+				<xsl:with-param name="content"><xsl:call-template name="header"/></xsl:with-param>
+			</xsl:call-template>
+			<!-- content -->
+			<xsl:call-template name="block-wrapper">
+				<xsl:with-param name="class">page clicktag</xsl:with-param>
+				<xsl:with-param name="content">
+					<xsl:if test="not(/xportal_rmd/page_data/homepage_rmd and $atype='')">
+						<xsl:apply-templates select="navigation" mode="nav"/>
+					</xsl:if>
+					<xsl:call-template name="content"/>
+				</xsl:with-param>
+			</xsl:call-template>
+		</div>
+		<!-- footer -->
+		<xsl:call-template name="block-wrapper">
+			<xsl:with-param name="class">footer</xsl:with-param>
+			<xsl:with-param name="content"><xsl:call-template name="footer"/></xsl:with-param>
+		</xsl:call-template>
+		
+		<!-- элементы Js, img 1x1 etc -->
+		<xsl:call-template name="bodyend"/>
+	</xsl:template>
+	
+	<!-- обертка для основных блоков на странице (хедер, контент, футер) -->
+	<xsl:template name="block-wrapper">
+		<xsl:param name="class"/>
+		<xsl:param name="id"/>
+		<xsl:param name="content"/>
+		<div>
+			<xsl:if test="$class"><xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute></xsl:if>
+			<xsl:if test="$id"><xsl:attribute name="id"><xsl:value-of select="$id"/></xsl:attribute></xsl:if>
+			<div class="ab-container">
+				<xsl:if test="$content">
+					<xsl:copy-of select="$content"/>
+				</xsl:if>
+			</div>
+		</div>
+	</xsl:template>
+	
+	<!-- доп. блоки -->
+	
+	<!-- наша кнопка -->
+	<xsl:include href="button.xml"/>
+	
+	<!-- кнопка купить -->
+	<xsl:include href="buy.xml"/>
+	
+	<!-- лэндинги + вход для библиоюзера -->
+	<xsl:include href="landing.xml"/>
+	
+	<!-- баблы регистрации -->
+	<xsl:include href="popups.xml"/>
+	
+	<!-- блок социалки -->
+	<xsl:include href="social.xml"/>
+	
+
+</xsl:stylesheet>
