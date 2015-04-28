@@ -64,6 +64,7 @@ hash_from_attributes(char **attributes)
   {
     const char *key = attributes[i];
     SV *value = newSVpv(attributes[i + 1], 0);
+    if (is_utf8_string(attributes[i + 1], strlen(attributes[i + 1]))) SvUTF8_on(value);
     hv_store(hash, key, strlen(key), value, 0);
   }
 
@@ -92,12 +93,15 @@ CODE:
 OUTPUT:
   RETVAL
 
-char *
+SV *
 xslt__output_str(gctx,doc)
   TRANSFORM_CONTEXT *gctx
   XMLNODE *doc
 CODE:
-  RETVAL = XMLOutput(gctx,doc);
+  char *string = XMLOutput(gctx,doc);
+  SV *value = newSVpv(string, 0);
+  if (is_utf8_string(string, strlen(string))) SvUTF8_on(value);
+  RETVAL = value;
 OUTPUT:
   RETVAL
 
@@ -218,12 +222,15 @@ SetVariable(gctx,name,val)
 CODE:
   set_ctx_global_var(gctx,name,val);
 
-char *
+SV *
 tctx_Output(gctx,doc)
   TRANSFORM_CONTEXT *gctx
   XMLNODE *doc
 CODE:
-  RETVAL = XMLOutput(gctx,doc);
+  char *string = XMLOutput(gctx,doc);
+  SV *value = newSVpv(string, 0);
+  if (is_utf8_string(string, strlen(string))) SvUTF8_on(value);
+  RETVAL = value;
 OUTPUT:
   RETVAL
 
@@ -253,11 +260,14 @@ node_DESTROY(node)
 CODE:
   XMLFreeDocument(node);
 
-char *
+SV *
 node_StringValue(self)
   XMLNODE *self
 CODE:
-  RETVAL = XMLStringValue(self);
+  char *string = XMLStringValue(self);
+  SV *value = newSVpv(string, 0);
+  if (is_utf8_string(string, strlen(string))) SvUTF8_on(value);
+  RETVAL = value;
 OUTPUT:
   RETVAL
 
