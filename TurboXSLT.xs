@@ -144,6 +144,31 @@ xslt__add_url_revision(gctx,url,revision)
 CODE:
   XSLTAddURLRevision(gctx,url,revision);
 
+void
+xslt__define_group_rights(gctx,library,group,actions)
+  XSLTGLOBALDATA *gctx
+  char *library
+  char *group
+  AV* actions
+CODE:
+  int i;
+  char **action_array;
+  int action_count;
+
+  action_count = av_len(actions) + 1;
+  action_array = malloc(action_count * sizeof(char *));
+  for (i = 0; i < action_count; i++)
+  {
+    SV** action = av_fetch(actions, i, 0);
+    if (action != NULL)
+    {
+      action_array[i] = SvPVX(*action);
+    }
+  }
+
+  XSLTDefineGroupRights(gctx,library,group,action_array,action_count);
+  free(action_array);
+
 
 MODULE = TurboXSLT   PACKAGE = XSLTGLOBALDATAPtr   PREFIX = gctx_
 
@@ -204,6 +229,30 @@ tctx_SetURLLocalPrefix(self,prefix)
   char *prefix
 CODE:
   XSLTSetURLLocalPrefix(self,prefix);
+
+void
+tctx_SetUserContext(self,library,groups)
+  TRANSFORM_CONTEXT *self
+  char *library
+  AV* groups
+CODE:
+  int i;
+  char **group_array;
+  int group_count;
+
+  group_count = av_len(groups) + 1;
+  group_array = malloc(group_count * sizeof(char *));
+  for (i = 0; i < group_count; i++)
+  {
+    SV** group = av_fetch(groups, i, 0);
+    if (group != NULL)
+    {
+      group_array[i] = SvPVX(*group);
+    }
+  }
+
+  XSLTSetUserContext(self,library,group_array,group_count);
+  free(group_array);
 
 XMLNODE *
 tctx_Transform(self,document)

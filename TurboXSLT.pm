@@ -57,6 +57,14 @@ sub AddURLRevision {
   _add_url_revision($self->{TURBOXSL_GLOBAL_CONTEXT},$url,$revision);
 }
 
+sub DefineGroupRights {
+  my $self = shift;
+  my $library = shift;
+  my $group = shift;
+  my $actions = shift;
+  _define_group_rights($self->{TURBOXSL_GLOBAL_CONTEXT},$library,$group,$actions);
+}
+
 sub LoadStylesheet {
   my $self = shift;
   my $file = shift;
