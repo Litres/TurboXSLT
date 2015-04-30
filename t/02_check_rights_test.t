@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 6;
+use Test::More tests => 9;
 use utf8;
 use Encode;
 
@@ -9,42 +9,72 @@ require_ok( 'TurboXSLT' );
 my $engine = new TurboXSLT;
 isa_ok($engine, 'TurboXSLT', "XSLT init");
 
-my $library = "library";
+my %Rights = (
+	'Korriban' => {
+		'Sith' => ['lightning', 'dreem_GOD_power', 'use_force','r44', 'r100500'],
+		'DarthVader' => ['red_lightsaber', 'DeathStar', 'sopelka']
+	},
+	Tatooine => {
+		Elvis => ['music', 'songs', 'datastorage','microphone','soundcard'],
+		o_O  => ['gDGdshbcJJ&348JD'],
+		Jedi => ['use_force','lightsaber','pathos', 'beard'],
+    Luke => ['r3d2', 'c3po', 'sister'],
+    Leia => ['karalka_na_golove', 'cap.Solo', 'blaster']
+	}
+);
 
-my @actions_1 = ("read", "write");
-$engine->DefineGroupRights($library, "group_1", \@actions_1);
 
-my @actions_2 = ("execute");
-$engine->DefineGroupRights($library, "group_2", \@actions_2);
-
-my $ctx = $engine->LoadStylesheet("t/check_rights.xsl");
-isa_ok($ctx, 'TurboXSLT::Stylesheet', "Stylesheet load");
-
-my @groups_1 = ("group_1");
-$ctx->SetUserContext($library, \@groups_1);
+my $Ok = 0;
+eval{
+	for my $prefix (keys %Rights){
+		for my $group (keys %{ $Rights{$prefix} }){
+			$engine->DefineGroupRights($prefix, $group, $Rights{$prefix}->{$group});
+		}
+	}
+	$Ok = 1;
+};
+ok($Ok,'DefineGroupRights call works');
 
 my $source =<<_XML
 <foo>
   <bar>
-    
+
   </bar>
 </foo>
 _XML
 ;
+
+my $ctx = $engine->LoadStylesheet("t/check_rights.xsl");
+isa_ok($ctx, 'TurboXSLT::Stylesheet', "Stylesheet load");
 
 my $doc = $engine->Parse($source);
 isa_ok($doc, 'TurboXSLT::Node', "Parsed document");
 
 my $res = $ctx->Transform($doc);
 my $text = $ctx->Output($res);
-cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?> can read<br/>can write", "user has read and write rights");
+cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?>", "no rights specified");
 
-my @groups_2 = ("group_2");
-$ctx->SetUserContext($library, \@groups_2);
+
+my @groups_1 = ("DarthVader",'Elvis');
+$Ok=0;
+eval{
+  $ctx->SetUserContext("Korriban", \@groups_1);
+  $Ok=1;
+};
+ok($Ok,'SetUserContext call works');
 
 $res = $ctx->Transform($doc);
 $text = $ctx->Output($res);
-cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?> can execute", "user has execute right");
+cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?> Kh-h-h-h<br/>Pf-f-f-f", "has sopelka");
+
+my @groups_2 = ("Luke", 'Jedi', 'Sith');
+eval{
+  $ctx->SetUserContext("Tatuine", \@groups_2);
+};
+
+$res = $ctx->Transform($doc);
+$text = $ctx->Output($res);
+cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?> bip-bip-bip<br/>cool", "has robot");
 
 sub Cleanup {
 	$_ = shift;
@@ -52,4 +82,3 @@ sub Cleanup {
 	s/\s+/ /g;
 	return $_;
 }
-
