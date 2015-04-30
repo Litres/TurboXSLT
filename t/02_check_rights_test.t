@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 9;
+use Test::More tests => 10;
 use utf8;
 use Encode;
 
@@ -10,15 +10,15 @@ my $engine = new TurboXSLT;
 isa_ok($engine, 'TurboXSLT', "XSLT init");
 
 my %Rights = (
-	'Korriban' => {
-		'Sith' => ['lightning', 'dreem_GOD_power', 'use_force','r44', 'r100500'],
-		'DarthVader' => ['red_lightsaber', 'DeathStar', 'sopelka']
+	Korriban => {
+		Sith => ['lightning', 'dreem_GOD_power', 'use_force','r44', 'r100500'],
+		DarthVader => ['red_lightsaber', 'DeathStar', 'sopelka']
 	},
 	Tatooine => {
 		Elvis => ['music', 'songs', 'datastorage','microphone','soundcard'],
 		o_O  => ['gDGdshbcJJ&348JD'],
 		Jedi => ['use_force','lightsaber','pathos', 'beard'],
-    Luke => ['r3d2', 'c3po', 'sister'],
+    Luke => ['r2d2', 'c3po', 'sister'],
     Leia => ['karalka_na_golove', 'cap.Solo', 'blaster']
 	}
 );
@@ -69,12 +69,20 @@ cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?> Kh-h-h-h<br/>Pf-f-f-f", "h
 
 my @groups_2 = ("Luke", 'Jedi', 'Sith');
 eval{
-  $ctx->SetUserContext("Tatuine", \@groups_2);
+  $ctx->SetUserContext("Tatooine", \@groups_2);
 };
 
 $res = $ctx->Transform($doc);
 $text = $ctx->Output($res);
 cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?> bip-bip-bip<br/>cool", "has robot");
+
+eval{
+  $ctx->SetUserContext("Coruscant", \@groups_2);
+};
+
+$res = $ctx->Transform($doc);
+$text = $ctx->Output($res);
+cmp_ok(Cleanup($text), 'eq', "<?xml version=\"1.0\"?>", "has no rights");
 
 sub Cleanup {
 	$_ = shift;
