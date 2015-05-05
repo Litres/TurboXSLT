@@ -31,7 +31,7 @@ for my $XSL (@XSLs){
 	my $Expectance = "$TestsFolder/$XSL.out";
 	subtest $XSL => sub {
 		plan tests => 13;
-		for my $Multithreads(0,1){
+		for my $Multithreads (0,4){
 			my $ctx = $engine->LoadStylesheet($XSLFile);
 			isa_ok($ctx, 'TurboXSLT::Stylesheet', "Stylesheet $XSL.xsl load");
 
@@ -48,13 +48,13 @@ for my $XSL (@XSLs){
 
 			my $doc = $engine->Parse($XML);
 
-			isa_ok($doc, 'TurboXSLT::Node', "Parse $XSL.xml document");
+			isa_ok($doc, 'TurboXSLT::Node', "Parse $XSL.xml document".($Multithreads?" (threads=$Multithreads)":''));
 
 			my $res = $ctx->Transform($doc);
-			isa_ok($res, 'TurboXSLT::Node', "DOM after $XSL transform");
+			isa_ok($res, 'TurboXSLT::Node', "DOM after $XSL transform".($Multithreads?" (threads=$Multithreads)":''));
 
 			my $Out = Encode::decode_utf8($ctx->Output($res));
-			ok($Out, "Some text output from $XSLFile transform");
+			ok($Out, "Some text output from $XSLFile transform".($Multithreads?" (threads=$Multithreads)":''));
 			$Out = Cleanup($Out);
 
 			my $ExpectedOut;
@@ -64,7 +64,7 @@ for my $XSL (@XSLs){
 			$ExpectedOut = Encode::decode_utf8($ExpectedOut);
 			$ExpectedOut  = Cleanup($ExpectedOut);
 
-			cmp_ok($Out, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected");
+			cmp_ok($Out, 'eq', $ExpectedOut, "One-time transformation $XSL works as expected".($Multithreads?" (threads=$Multithreads)":''));
 			for (0..10){
 				my $FakeRes = $ctx->Output($ctx->Transform($doc));
 			}
@@ -72,7 +72,7 @@ for my $XSL (@XSLs){
 
 			$FinalRes  = Cleanup($FinalRes);
 
-			cmp_ok($FinalRes, 'eq', $ExpectedOut, "10-time transformation $XSL works as expected");
+			cmp_ok($FinalRes, 'eq', $ExpectedOut, "10-time transformation $XSL works as expected".($Multithreads?" (threads=$Multithreads)":''));
 		}
 	}
 }
