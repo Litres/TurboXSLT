@@ -5,7 +5,7 @@
 	</xsl:template>
 	<xsl:template name="curles">
 		<xsl:param name="contents"/>
-		{<xsl:copy-of select="$content"/>}
+		{<xsl:copy-of select="$contents"/>}
 		<xsl:value-of select="$contents"/>
 	</xsl:template>
 <xsl:template match="recense">
