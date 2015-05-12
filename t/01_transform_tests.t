@@ -53,7 +53,10 @@ for my $XSL (@XSLs){
 			my $res = $ctx->Transform($doc);
 			isa_ok($res, 'TurboXSLT::Node', "DOM after $XSL transform".($Multithreads?" (threads=$Multithreads)":''));
 
-			my $Out = Encode::decode_utf8($ctx->Output($res));
+			my $Out = $ctx->Output($res);
+			unless (Encode::is_utf8($Out)) {
+				$Out = Encode::decode_utf8($Out);
+			}
 			ok($Out, "Some text output from $XSLFile transform".($Multithreads?" (threads=$Multithreads)":''));
 			$Out = Cleanup($Out);
 
@@ -68,7 +71,10 @@ for my $XSL (@XSLs){
 			for (0..10){
 				my $FakeRes = $ctx->Output($ctx->Transform($doc));
 			}
-			my $FinalRes = Encode::decode_utf8($ctx->Output($ctx->Transform($doc)));
+			my $FinalRes = $ctx->Output($ctx->Transform($doc));
+			unless (Encode::is_utf8($FinalRes)) {
+				$FinalRes = Encode::decode_utf8($FinalRes);
+			}
 
 			$FinalRes  = Cleanup($FinalRes);
 
