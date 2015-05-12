@@ -55,9 +55,11 @@ _XML
 	isa_ok($res, 'TurboXSLT::Node', "DOM after Transform ($Threads threads)");
 
 	$text = $ctx->Output($res);
-	cmp_ok($text, 'eq',Encode::decode_utf8($text), "Correct UTF-bit on Output ($Threads threads)");
+	ok(Encode::is_utf8($text), "Correct UTF-bit on Output ($Threads threads)");
 
-	$text = Encode::decode_utf8($text);
+	unless (Encode::is_utf8($text)) {
+		$text = Encode::decode_utf8($text);
+	}
 
 	like($text,qr|<XXX>my/path/zzz</XXX>|,"Callback receives parameters as an array ($Threads threads)");
 
@@ -72,18 +74,24 @@ _XML
 
 	my $StringVal = $node->StringValue();
 	ok($StringVal, 'StringValue() returns something');
-	cmp_ok($StringVal,'eq',Encode::decode_utf8($StringVal),"Correct UTF-bit on StringValue ($Threads threads)");
+	ok(Encode::is_utf8($StringVal),"Correct UTF-bit on StringValue ($Threads threads)");
 
 	my $StringVal1 = $node->StringValue();
 	cmp_ok($StringVal, 'eq', $StringVal1,"StringValue returns the same data next time");
 
-	$StringVal = Encode::decode_utf8($StringVal);
+	unless (Encode::is_utf8($StringVal)) {
+		$StringVal = Encode::decode_utf8($StringVal,0);
+	}
 	cmp_ok($StringVal, 'eq', qq{жует печеньку},"StringValue() evaluated correctly  ($Threads threads)");
 
 	my $Attr = $ctx->FindNodes($doc,'/foo/bar')->Attributes();
 	is (ref($Attr),ref({}),'->Attributes() is HASH');
 	cmp_ok($Attr->{To_Pol}, '==', 26755344,"->Attributes() digit value ($Threads threads)");
-	cmp_ok($Attr->{'deve-Loper2'},'eq',Encode::decode_utf8($Attr->{'deve-Loper2'}),"Attributes hashe values have UTF bit on  ($Threads threads)");
-	$Attr->{'deve-Loper2'} = Encode::decode_utf8($Attr->{'deve-Loper2'});
+
+	ok(Encode::is_utf8($Attr->{'deve-Loper2'}),"Attributes hashe values have UTF bit on  ($Threads threads)");
+
+	unless (Encode::is_utf8($Attr->{'deve-Loper2'})) {
+		$Attr->{'deve-Loper2'} = Encode::decode_utf8($Attr->{'deve-Loper2'},0);
+	}
 	cmp_ok($Attr->{'deve-Loper2'}, 'eq', 'тоже хочет печенье',"->Attributes() string value  ($Threads threads)");
 }
