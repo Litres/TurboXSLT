@@ -24,9 +24,9 @@
 				</xsl:choose>
 			</xsl:variable>
 			[<xsl:value-of select="$prev"/>__<xsl:value-of select="$next"/>]
-			<xsl:if test="$prev > 0"><a href="{ltr:url_code('alphabet_authors', 'letter', $letter, 'alph_pagenumber', $prev, '-atype')}">&#8592; previous</a></xsl:if>
-			<xsl:if test="/xportal/formdata/@alph_pagenumber and $prev = 0"><a href="{ltr:url_code('alphabet_authors', 'letter', $letter, '-atype')}">&#8592; previous</a></xsl:if>
-			<xsl:if test="$next > 0"><a href="{ltr:url_code('alphabet_authors', 'letter', $letter, 'alph_pagenumber', $next, '-atype')}">next &#8594;</a></xsl:if>
+			<xsl:if test="$prev > 0"><a href="#">previous</a></xsl:if>
+			<xsl:if test="/xportal/formdata/@alph_pagenumber and $prev = 0"><a href="#">previous</a></xsl:if>
+			<xsl:if test="$next > 0"><a href="#">next</a></xsl:if>
 		</div>
 	</xsl:template>
 </xsl:stylesheet>
