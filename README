@@ -1,5 +1,6 @@
 TurboXSLT is Perl interface for libturboxsl
 (https://github.com/Litres/turboxsl)
 
-For libturboxsl installed in /opt please use:
-perl Makefile.PL LIBS='-L/opt/turboxsl/lib -lturboxsl' INC='-I/opt/turboxsl/include/' && make && make install
+perl Makefile.PL
+make
+make install
