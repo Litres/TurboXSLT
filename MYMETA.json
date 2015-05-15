@@ -1,12 +1,12 @@
 {
-   "abstract" : "Interface to turboxsl xslt conversion library",
+   "abstract" : "Interface to turboxsl library",
    "author" : [
       "Egor Voznessenski"
    ],
    "dynamic_config" : 0,
    "generated_by" : "ExtUtils::MakeMaker version 6.82, CPAN::Meta::Converter version 2.120351",
    "license" : [
-      "unknown"
+      "perl_5"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -38,5 +38,12 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/Litres/TurboXSLT",
+         "web" : "https://github.com/Litres/TurboXSLT"
+      }
+   },   
    "version" : "1.0"
 }
