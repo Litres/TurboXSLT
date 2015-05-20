@@ -1,5 +1,7 @@
 .git
 Makefile
+MYMETA.json
+MYMETA.yml
 
 t/internal-data/30-order-attributes.*
 t/internal-data/31-new-litres.*

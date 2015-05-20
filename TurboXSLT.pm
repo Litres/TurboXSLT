@@ -9,7 +9,7 @@
 package TurboXSLT;
 
 use strict;
-use vars qw($VERSION @ISA);
+our ($VERSION, @ISA);
 
 
 BEGIN {
@@ -143,7 +143,7 @@ TurboXSLT - Interface to multithreaded XML+XSLT transformation library libturbox
 
   use TurboXSLT;
 
-  my $xslt = new TurboXSLT;
+  my $xslt = TurboXSLT->new;
 
   my $doc = $xslt->Parse("<foo><bar/></foo>");
    or

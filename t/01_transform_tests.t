@@ -41,7 +41,7 @@ for my $XSL (@XSLs){
 			}
 
 			my $XML;
-			open(XMLFILE, "<$XMLFile") or die "Can't open $XMLFile";
+			open(XMLFILE, "<", $XMLFile) or die "Can't open $XMLFile";
 			read(XMLFILE, $XML, -s $XMLFile);
 			close XMLFILE;
 			$XML = Encode::decode_utf8($XML);
@@ -61,7 +61,7 @@ for my $XSL (@XSLs){
 			$Out = Cleanup($Out);
 
 			my $ExpectedOut;
-			open OUTFILE, "<$Expectance";
+			open OUTFILE, "<", $Expectance;
 			read(OUTFILE, $ExpectedOut, -s $Expectance);
 			close OUTFILE;
 			$ExpectedOut = Encode::decode_utf8($ExpectedOut);
