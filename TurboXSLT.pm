@@ -9,7 +9,7 @@
 package TurboXSLT;
 
 use strict;
-use vars qw($VERSION @ISA);
+our ($VERSION, @ISA);
 
 
 BEGIN {
