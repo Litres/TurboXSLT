@@ -3,6 +3,8 @@ Makefile
 MYMETA.json
 MYMETA.yml
 
+bench
+
 t/internal-data/30-order-attributes.*
 t/internal-data/31-new-litres.*
 
