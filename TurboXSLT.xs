@@ -217,6 +217,26 @@ CODE:
   XSLTCreateThreadPool(self,size);
 
 void
+tctx_SetParallelInstructions(self,instructions)
+  TRANSFORM_CONTEXT *self
+  AV* instructions
+CODE:
+  int i;
+  char **instructions_array;
+  int instructions_count;
+
+  instructions_count = av_len(instructions) + 1;
+  instructions_array = malloc(instructions_count * sizeof(char *));
+  for (i = 0; i < instructions_count; i++)
+  {
+    SV** instruction = av_fetch(instructions, i, 0);
+    if (instruction != NULL) instructions_array[i] = SvPVX(*instruction);
+  }
+
+  XSLTSetParallelInstructions(self,instructions_array,instructions_count);
+  free(instructions_array);
+
+void
 tctx_SetCacheKeyPrefix(self,prefix)
   TRANSFORM_CONTEXT *self
   char *prefix
