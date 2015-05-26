@@ -251,7 +251,7 @@ CODE:
   XSLTSetURLLocalPrefix(self,prefix);
 
 void
-tctx_XSLTEnableTaskGraph(self,filename)
+tctx_EnableTaskGraph(self,filename)
   TRANSFORM_CONTEXT *self
   char *filename
 CODE:
