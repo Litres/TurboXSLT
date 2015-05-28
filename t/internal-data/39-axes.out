@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+ancestor: 1<br/>
+ancestor-or-self: 2<br/>
+child: 0<br/>
+descendant: 0<br/>
+descendant-or-self: 1<br/>
+following: 3<br/>
+following-sibling: 3<br/>
+parent: test<br/>
+preceding: 3<br/>
+preceding-sibling: 3<br/>
+self: sub_test<br/>4
