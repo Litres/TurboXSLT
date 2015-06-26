@@ -83,6 +83,13 @@ sub ParseFile {
   return _parse_file($self->{TURBOXSL_GLOBAL_CONTEXT},$file);
 }
 
+sub CreateFromObject {
+  my $self = shift;
+  my $object = shift;
+  my $name = shift;
+  return _create_from_object($self->{TURBOXSL_GLOBAL_CONTEXT},$object,$name);
+}
+
 sub RegisterCallback {
   my $self = shift;
   my $name = shift;

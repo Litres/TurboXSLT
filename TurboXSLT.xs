@@ -71,6 +71,78 @@ hash_from_attributes(char **attributes)
   return hash;
 }
 
+void
+node_from_hash(XMLNODE *element, HV *hash, int is_root);
+
+void
+node_from_array(XMLNODE *parent, AV *array, char *name)
+{
+  SSize_t i;
+
+  SSize_t count = av_len(array) + 1;
+  for (i = 0; i < count; i++)
+  {
+    SV** item = av_fetch(array, i, 0);
+    if (item == NULL) continue;
+
+    XMLNODE *element = XMLCreateElement(parent, name);
+    if (!SvROK(*item))
+    {
+      XMLAddText(element, SvPVX(*item));
+    }
+    else
+    {
+      SV *real_item = SvRV(*item);
+      if (SvTYPE(real_item) == SVt_PVAV)
+      {
+        // TODO
+      }
+      else if (SvTYPE(real_item) == SVt_PVHV)
+      {
+        node_from_hash(element, (HV *)real_item, 0);
+      }
+    }
+  }
+}
+
+void
+node_from_hash(XMLNODE *element, HV *hash, int is_root)
+{
+  I32 i;
+
+  I32 keys = hv_iterinit(hash);
+  for (i = 0; i < keys; i++)
+  {
+    char *key = NULL;
+    I32 key_length = 0;
+    SV *value = hv_iternextsv(hash, &key, &key_length);
+    if (!SvROK(value))
+    {
+      if (is_root)
+      {
+        XMLNODE *node = XMLCreateElement(element, key);
+        XMLAddText(node, SvPVX(value));
+      }
+      else
+      {
+        XMLAddAttribute(element, key, SvPVX(value));
+      }
+    }
+    else
+    {
+      SV *real_value = SvRV(value);
+      if (SvTYPE(real_value) == SVt_PVAV)
+      {
+        node_from_array(element, (AV *)real_value, key);
+      }
+      else if (SvTYPE(real_value) == SVt_PVHV)
+      {
+        XMLNODE *node = XMLCreateElement(element, key);
+        node_from_hash(node, (HV *)real_value, 0);
+      }
+    }
+  }
+}
 
 
 MODULE = TurboXSLT   PACKAGE = TurboXSLT   PREFIX = xslt_
@@ -90,6 +162,35 @@ xslt__parse_file(gctx,str)
   char *str
 CODE:
   RETVAL = XMLParseFile(gctx,str);
+OUTPUT:
+  RETVAL
+
+XMLNODE *
+xslt__create_from_object(gctx,object_ref,name)
+  XSLTGLOBALDATA *gctx
+  SV *object_ref
+  char *name
+CODE:
+  if (!SvROK(object_ref))
+  {
+    RETVAL = NULL;
+    return;
+  }
+
+  SV *object = SvRV(object_ref); 
+  if (SvTYPE(object) == SVt_PVHV)
+  {
+    XMLNODE *document = XMLCreateDocument();
+
+    XMLNODE *root = XMLCreateElement(document, name);
+    node_from_hash(root, (HV *)object, 1);
+
+    RETVAL = document;
+  }
+  else
+  {
+    RETVAL = NULL;
+  }
 OUTPUT:
   RETVAL
 
@@ -187,6 +288,7 @@ gctx_DESTROY(gctx)
   XSLTGLOBALDATA *gctx
 CODE:
   XSLTEnd(gctx);
+
 
 
 MODULE = TurboXSLT   PACKAGE = TurboXSLT::Stylesheet   PREFIX = tctx_
@@ -355,3 +457,4 @@ CODE:
   RETVAL = newRV_noinc((SV *)hash);
 OUTPUT:
   RETVAL
+
