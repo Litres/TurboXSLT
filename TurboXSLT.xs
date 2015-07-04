@@ -88,7 +88,10 @@ node_from_array(XMLNODE *parent, AV *array, char *name)
     XMLNODE *element = XMLCreateElement(parent, name);
     if (!SvROK(*item))
     {
-      XMLAddText(element, SvPVX(*item));
+      if (SvTYPE(*item) < SVt_PVAV)
+      {
+        XMLAddText(element, SvPVX(*item));
+      }
     }
     else
     {
@@ -118,14 +121,17 @@ node_from_hash(XMLNODE *element, HV *hash, int is_root)
     SV *value = hv_iternextsv(hash, &key, &key_length);
     if (!SvROK(value))
     {
-      if (is_root)
+      if (SvTYPE(value) < SVt_PVAV)
       {
-        XMLNODE *node = XMLCreateElement(element, key);
-        XMLAddText(node, SvPVX(value));
-      }
-      else
-      {
-        XMLAddAttribute(element, key, SvPVX(value));
+        if (is_root)
+        {
+          XMLNODE *node = XMLCreateElement(element, key);
+          XMLAddText(node, SvPVX(value));
+        }
+        else
+        {
+          XMLAddAttribute(element, key, SvPVX(value));
+        }
       }
     }
     else
@@ -166,7 +172,7 @@ OUTPUT:
   RETVAL
 
 XMLNODE *
-xslt__create_from_object(gctx,object_ref,name)
+xslt__create_xml_from_object(gctx,object_ref,name)
   XSLTGLOBALDATA *gctx
   SV *object_ref
   char *name
