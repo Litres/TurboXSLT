@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 19;
 
 require_ok( 'TurboXSLT' );
 
@@ -39,8 +39,38 @@ my $xml_4 = <<_XML
 _XML
 ;
 
-my @objects = ($object_1, $object_2, $object_3, $object_4);
-my @xmls = ($xml_1, $xml_2, $xml_3, $xml_4);
+my $object_5 = {a => [1, 1.5, "b"]};
+my $xml_5 = <<_XML
+<?xml version="1.0"?>
+<root><a>1</a><a>1.500000</a><a>b</a></root>
+_XML
+;
+
+my $object_6 = {a => 1, b => 2.5, c => "d"};
+my $xml_6 = <<_XML
+<?xml version="1.0"?>
+<root><c>d</c><a>1</a><b>2.500000</b></root>
+_XML
+;
+
+my $object_7 = {a => [{b => ["c1", "c2"], d => 12}]};
+my $xml_7 = <<_XML
+<?xml version="1.0"?>
+<root><a d="12"><b>c1</b><b>c2</b></a></root>
+_XML
+;
+
+my %object_8 = ();
+$object_8{a} = 1;
+$object_8{b} = \%object_8;
+my $xml_8 = <<_XML
+<?xml version="1.0"?>
+<root><a>1</a><b/></root>
+_XML
+;
+
+my @objects = ($object_1, $object_2, $object_3, $object_4, $object_5, $object_6, $object_7, \%object_8);
+my @xmls = ($xml_1, $xml_2, $xml_3, $xml_4, $xml_5, $xml_6, $xml_7, $xml_8);
 
 for my $i (0 .. $#objects) {
   my $document = $engine->CreateXMLFromObject($objects[$i], "root");

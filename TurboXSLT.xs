@@ -72,10 +72,71 @@ hash_from_attributes(char **attributes)
 }
 
 void
-node_from_hash(XMLNODE *element, HV *hash, int is_root);
+node_from_hash(HV *value_hash, XMLNODE *element, HV *hash, int is_root);
+
+void 
+node_add_text(XMLNODE *element, SV* scalar)
+{
+  if (SvIOK(scalar))
+  {
+    char buffer[64];
+    sprintf(buffer, "%d", SvIVX(scalar));
+    XMLAddText(element, buffer);
+    return;
+  }
+
+  if (SvNOK(scalar))
+  {
+    char buffer[64];
+    sprintf(buffer, "%f", SvNVX(scalar));
+    XMLAddText(element, buffer);
+    return;
+  }
+
+  if (SvPOK(scalar))
+  {
+    XMLAddText(element, SvPVX(scalar));
+  }
+}
+
+void 
+node_add_attribute(XMLNODE *element, char *key, SV* scalar)
+{
+  if (SvIOK(scalar))
+  {
+    char buffer[64];
+    sprintf(buffer, "%d", SvIVX(scalar));
+    XMLAddAttribute(element, key, buffer);
+    return;
+  }
+
+  if (SvNOK(scalar))
+  {
+    char buffer[64];
+    sprintf(buffer, "%f", SvNVX(scalar));
+    XMLAddAttribute(element, key, buffer);
+    return;
+  }
+
+  if (SvPOK(scalar))
+  {
+    XMLAddAttribute(element, key, SvPVX(scalar));
+  }
+}
+
+int
+value_hash_add_value(HV *value_hash, SV* value)
+{
+  char key[64];
+  sprintf(key, "%p", value);
+  size_t key_length = strlen(key);
+  if (hv_exists(value_hash, key, key_length)) return 0;
+
+  return hv_store(value_hash, key, key_length, newSV(0), 0) != NULL;
+}
 
 void
-node_from_array(XMLNODE *parent, AV *array, char *name)
+node_from_array(HV *value_hash, XMLNODE *parent, AV *array, char *name)
 {
   SSize_t i;
 
@@ -85,13 +146,12 @@ node_from_array(XMLNODE *parent, AV *array, char *name)
     SV** item = av_fetch(array, i, 0);
     if (item == NULL) continue;
 
+    if (!value_hash_add_value(value_hash, *item)) continue;
+
     XMLNODE *element = XMLCreateElement(parent, name);
     if (!SvROK(*item))
     {
-      if (SvTYPE(*item) < SVt_PVAV)
-      {
-        XMLAddText(element, SvPVX(*item));
-      }
+      node_add_text(element, *item);
     }
     else
     {
@@ -102,14 +162,14 @@ node_from_array(XMLNODE *parent, AV *array, char *name)
       }
       else if (SvTYPE(real_item) == SVt_PVHV)
       {
-        node_from_hash(element, (HV *)real_item, 0);
+        node_from_hash(value_hash, element, (HV *)real_item, 0);
       }
     }
   }
 }
 
 void
-node_from_hash(XMLNODE *element, HV *hash, int is_root)
+node_from_hash(HV *value_hash, XMLNODE *element, HV *hash, int is_root)
 {
   I32 i;
 
@@ -119,19 +179,19 @@ node_from_hash(XMLNODE *element, HV *hash, int is_root)
     char *key = NULL;
     I32 key_length = 0;
     SV *value = hv_iternextsv(hash, &key, &key_length);
+
+    if (!value_hash_add_value(value_hash, value)) continue;
+
     if (!SvROK(value))
     {
-      if (SvTYPE(value) < SVt_PVAV)
+      if (is_root)
       {
-        if (is_root)
-        {
-          XMLNODE *node = XMLCreateElement(element, key);
-          XMLAddText(node, SvPVX(value));
-        }
-        else
-        {
-          XMLAddAttribute(element, key, SvPVX(value));
-        }
+        XMLNODE *node = XMLCreateElement(element, key);
+        node_add_text(node, value);
+      }
+      else
+      {
+        node_add_attribute(element, key, value);
       }
     }
     else
@@ -139,12 +199,12 @@ node_from_hash(XMLNODE *element, HV *hash, int is_root)
       SV *real_value = SvRV(value);
       if (SvTYPE(real_value) == SVt_PVAV)
       {
-        node_from_array(element, (AV *)real_value, key);
+        node_from_array(value_hash, element, (AV *)real_value, key);
       }
       else if (SvTYPE(real_value) == SVt_PVHV)
       {
         XMLNODE *node = XMLCreateElement(element, key);
-        node_from_hash(node, (HV *)real_value, 0);
+        node_from_hash(value_hash, node, (HV *)real_value, 0);
       }
     }
   }
@@ -188,8 +248,10 @@ CODE:
   {
     XMLNODE *document = XMLCreateDocument();
 
+    HV *value_hash = newHV();
     XMLNODE *root = XMLCreateElement(document, name);
-    node_from_hash(root, (HV *)object, 1);
+    node_from_hash(value_hash, root, (HV *)object, 1);
+    hv_undef(value_hash);
 
     RETVAL = document;
   }
