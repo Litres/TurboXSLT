@@ -72,7 +72,7 @@ hash_from_attributes(char **attributes)
 }
 
 void
-node_from_hash(HV *value_hash, XMLNODE *element, HV *hash, int is_root);
+node_from_hash(XSLTGLOBALDATA *context, HV *value_hash, XMLNODE *element, HV *hash, int is_root);
 
 void 
 node_add_text(XMLNODE *element, SV* scalar)
@@ -135,8 +135,16 @@ value_hash_add_value(HV *value_hash, SV* value)
   return hv_store(value_hash, key, key_length, newSV(0), 0) != NULL;
 }
 
+int node_is_xml_fragment(const char *key, size_t key_length)
+{
+  const char *prefix = "xml_";
+  size_t prefix_length = strlen(prefix);
+  if (key_length < prefix_length) return 0;
+  return strncmp(key, prefix, prefix_length) == 0;
+}
+
 void
-node_from_array(HV *value_hash, XMLNODE *parent, AV *array, char *name)
+node_from_array(XSLTGLOBALDATA *context, HV *value_hash, XMLNODE *parent, AV *array, char *name)
 {
   SSize_t i;
 
@@ -162,14 +170,14 @@ node_from_array(HV *value_hash, XMLNODE *parent, AV *array, char *name)
       }
       else if (SvTYPE(real_item) == SVt_PVHV)
       {
-        node_from_hash(value_hash, element, (HV *)real_item, 0);
+        node_from_hash(context, value_hash, element, (HV *)real_item, 0);
       }
     }
   }
 }
 
 void
-node_from_hash(HV *value_hash, XMLNODE *element, HV *hash, int is_root)
+node_from_hash(XSLTGLOBALDATA *context, HV *value_hash, XMLNODE *element, HV *hash, int is_root)
 {
   I32 i;
 
@@ -184,14 +192,23 @@ node_from_hash(HV *value_hash, XMLNODE *element, HV *hash, int is_root)
 
     if (!SvROK(value))
     {
-      if (is_root)
+      // special case for XML fragment
+      if (node_is_xml_fragment(key, key_length) && SvPOK(value))
       {
-        XMLNODE *node = XMLCreateElement(element, key);
-        node_add_text(node, value);
+        XMLNODE *parent = XMLCreateElement(element, key);
+        XMLAddChildFromString(context, parent, SvPVX(value));
       }
       else
       {
-        node_add_attribute(element, key, value);
+        if (is_root)
+        {
+          XMLNODE *node = XMLCreateElement(element, key);
+          node_add_text(node, value);
+        }
+        else
+        {
+          node_add_attribute(element, key, value);
+        }
       }
     }
     else
@@ -199,12 +216,12 @@ node_from_hash(HV *value_hash, XMLNODE *element, HV *hash, int is_root)
       SV *real_value = SvRV(value);
       if (SvTYPE(real_value) == SVt_PVAV)
       {
-        node_from_array(value_hash, element, (AV *)real_value, key);
+        node_from_array(context, value_hash, element, (AV *)real_value, key);
       }
       else if (SvTYPE(real_value) == SVt_PVHV)
       {
         XMLNODE *node = XMLCreateElement(element, key);
-        node_from_hash(value_hash, node, (HV *)real_value, 0);
+        node_from_hash(context, value_hash, node, (HV *)real_value, 0);
       }
     }
   }
@@ -250,7 +267,7 @@ CODE:
 
     HV *value_hash = newHV();
     XMLNODE *root = XMLCreateElement(document, name);
-    node_from_hash(value_hash, root, (HV *)object, 1);
+    node_from_hash(gctx, value_hash, root, (HV *)object, 1);
     hv_undef(value_hash);
 
     RETVAL = document;
