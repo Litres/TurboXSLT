@@ -18,17 +18,17 @@ my $xml_1 = <<_XML
 _XML
 ;
 
-my $object_2 = {a => {b => "c"}};
+my $object_2 = {a => {b => "c'c"}};
 my $xml_2 = <<_XML
 <?xml version="1.0"?>
-<root><a b="c"/></root>
+<root><a b="c'c"/></root>
 _XML
 ;
 
-my $object_3 = {a => {b => {c => "d"}}};
+my $object_3 = {a => {b => {c => "d\""}}};
 my $xml_3 = <<_XML
 <?xml version="1.0"?>
-<root><a><b c="d"/></a></root>
+<root><a><b c="d&quot;"/></a></root>
 _XML
 ;
 
@@ -69,10 +69,10 @@ my $xml_8 = <<_XML
 _XML
 ;
 
-my $object_9 = {a => [{b => 4, xml_text => "<a/>", xml_text2 => ["<b/>"], xml_text3 => {d => "<c/>"}}]};
+my $object_9 = {a => [{b => 4, xml_text => "<a/>", xml_text2 => ["<b/>"], xml_text3 => {d => "<c'\"/>"}}]};
 my $xml_9 = <<_XML
 <?xml version="1.0"?>
-<root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="<c/>"/></a></root>
+<root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="<c'&quot;/>"/></a></root>
 _XML
 ;
 
@@ -95,4 +95,3 @@ sub Cleanup {
 }
 
 exit;
-
