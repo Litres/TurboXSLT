@@ -69,10 +69,10 @@ my $xml_8 = <<_XML
 _XML
 ;
 
-my $object_9 = {a => [{b => 4, xml_text => "<a/>", xml_text2 => ["<b/>"], xml_text3 => {d => "<c'\"/>"}}]};
+my $object_9 = {a => [{b => 4, xml_text => "<a/>", xml_text2 => ["<b/>"], xml_text3 => {d => "<c/>"}}]};
 my $xml_9 = <<_XML
 <?xml version="1.0"?>
-<root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="<c'&quot;/>"/></a></root>
+<root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="<c/>"/></a></root>
 _XML
 ;
 
