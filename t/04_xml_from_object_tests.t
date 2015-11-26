@@ -72,7 +72,7 @@ _XML
 my $object_9 = {a => [{b => 4, xml_text => "<a/>", xml_text2 => ["<b/>"], xml_text3 => {d => "<c/>"}}]};
 my $xml_9 = <<_XML
 <?xml version="1.0"?>
-<root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="<c/>"/></a></root>
+<root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="&lt;c/&gt;"/></a></root>
 _XML
 ;
 my $TransTest = <<_XML
@@ -92,7 +92,7 @@ for my $i (0 .. $#objects) {
   cmp_ok(Cleanup($output), 'eq', Cleanup($xmls[$i]), "XML is correct");
 }
 my $doc = $engine->CreateXMLFromObject($object_2, "root");
-my $ctx = $engine->LoadStylesheet("t/amptest.xsl");
+$ctx = $engine->LoadStylesheet("t/amptest.xsl");
 my $res = $ctx->Transform($doc);
 my $text = $ctx->Output($res);
 cmp_ok(Cleanup($text), 'eq', Cleanup($TransTest), "Transform from object");
