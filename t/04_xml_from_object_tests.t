@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 21;
+use Test::More tests => 22;
 
 require_ok( 'TurboXSLT' );
 
@@ -75,6 +75,11 @@ my $xml_9 = <<_XML
 <root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="<c/>"/></a></root>
 _XML
 ;
+my $TransTest = <<_XML
+<?xml version="1.0"?>
+<div>c'c</div>
+_XML
+;
 
 my @objects = ($object_1, $object_2, $object_3, $object_4, $object_5, $object_6, $object_7, \%object_8, $object_9);
 my @xmls = ($xml_1, $xml_2, $xml_3, $xml_4, $xml_5, $xml_6, $xml_7, $xml_8, $xml_9);
@@ -84,8 +89,13 @@ for my $i (0 .. $#objects) {
   isa_ok($document, 'TurboXSLT::Node', "Created XML");
 
   my $output = $ctx->Output($document);
-  cmp_ok(Cleanup($output), 'eq', Cleanup($xmls[$i]), "XML is corrent");
+  cmp_ok(Cleanup($output), 'eq', Cleanup($xmls[$i]), "XML is correct");
 }
+my $doc = $engine->CreateXMLFromObject($object_2, "root");
+my $ctx = $engine->LoadStylesheet("t/amptest.xsl");
+my $res = $ctx->Transform($doc);
+my $text = $ctx->Output($res);
+cmp_ok(Cleanup($text), 'eq', Cleanup($TransTest), "Transform from object");
 
 sub Cleanup {
 	$_ = shift;
