@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 22;
+use Test::More tests => 23;
 
 require_ok( 'TurboXSLT' );
 
@@ -18,10 +18,10 @@ my $xml_1 = <<_XML
 _XML
 ;
 
-my $object_2 = {a => {b => "c'c"}};
+my $object_2 = {a => {b => "c&c'c"}};
 my $xml_2 = <<_XML
 <?xml version="1.0"?>
-<root><a b="c'c"/></root>
+<root><a b="c&amp;c'c"/></root>
 _XML
 ;
 
@@ -75,27 +75,39 @@ my $xml_9 = <<_XML
 <root><a b="4"><xml_text2>&lt;b/&gt;</xml_text2><xml_text><a/></xml_text><xml_text3 d="&lt;c/&gt;"/></a></root>
 _XML
 ;
-my $TransTest = <<_XML
-<?xml version="1.0"?>
-<div>c'c</div>
-_XML
-;
 
 my @objects = ($object_1, $object_2, $object_3, $object_4, $object_5, $object_6, $object_7, \%object_8, $object_9);
 my @xmls = ($xml_1, $xml_2, $xml_3, $xml_4, $xml_5, $xml_6, $xml_7, $xml_8, $xml_9);
 
 for my $i (0 .. $#objects) {
   my $document = $engine->CreateXMLFromObject($objects[$i], "root");
-  isa_ok($document, 'TurboXSLT::Node', "Created XML");
+  isa_ok($document, 'TurboXSLT::Node', "Created XML - ".($i+1));
 
   my $output = $ctx->Output($document);
-  cmp_ok(Cleanup($output), 'eq', Cleanup($xmls[$i]), "XML is correct");
+  cmp_ok(Cleanup($output), 'eq', Cleanup($xmls[$i]), "XML is correct - ".($i+1));
 }
+
 my $doc = $engine->CreateXMLFromObject($object_2, "root");
+
+my $TransTest = <<_XML
+<?xml version="1.0"?>
+<div>c&amp;c'c</div><div>c&amp;c'c</div>
+_XML
+;
 $ctx = $engine->LoadStylesheet("t/amptest.xsl");
 my $res = $ctx->Transform($doc);
 my $text = $ctx->Output($res);
-cmp_ok(Cleanup($text), 'eq', Cleanup($TransTest), "Transform from object");
+cmp_ok(Cleanup($text), 'eq', Cleanup($TransTest), "Transform from object (amptest)");
+
+$TransTest = <<_XML
+<?xml version="1.0"?>
+<div>f=c&amp;c'c</div><li>x=c&amp;c'c</li>
+_XML
+;
+$ctx = $engine->LoadStylesheet("t/matching.xsl");
+my $res = $ctx->Transform($doc);
+my $text = $ctx->Output($res);
+cmp_ok(Cleanup($text), 'eq', Cleanup($TransTest), "Transform from object (matching)");
 
 sub Cleanup {
 	$_ = shift;
