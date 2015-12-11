@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 23;
+use Test::More tests => 21;
 
 require_ok( 'TurboXSLT' );
 
@@ -86,28 +86,6 @@ for my $i (0 .. $#objects) {
   my $output = $ctx->Output($document);
   cmp_ok(Cleanup($output), 'eq', Cleanup($xmls[$i]), "XML is correct - ".($i+1));
 }
-
-my $doc = $engine->CreateXMLFromObject($object_2, "root");
-
-my $TransTest = <<_XML
-<?xml version="1.0"?>
-<div>c&amp;c'c</div><div>c&amp;c'c</div>
-_XML
-;
-$ctx = $engine->LoadStylesheet("t/amptest.xsl");
-my $res = $ctx->Transform($doc);
-my $text = $ctx->Output($res);
-cmp_ok(Cleanup($text), 'eq', Cleanup($TransTest), "Transform from object (amptest)");
-
-$TransTest = <<_XML
-<?xml version="1.0"?>
-<div>f=c&amp;c'c</div><li>x=c&amp;c'c</li>
-_XML
-;
-$ctx = $engine->LoadStylesheet("t/matching.xsl");
-my $res = $ctx->Transform($doc);
-my $text = $ctx->Output($res);
-cmp_ok(Cleanup($text), 'eq', Cleanup($TransTest), "Transform from object (matching)");
 
 sub Cleanup {
 	$_ = shift;
