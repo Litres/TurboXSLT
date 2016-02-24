@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+	
+		<div data-options="{
+					show_popup: 12,
+					voted: 12,
+					votes:[1, 1, 1, 1, 1],
+					mid_vote:1234,
+					vote_amount:1234,
+					recenses: 123
+				}
+		" omg="{omg}">
+		pda
+	</div>
+	
+
