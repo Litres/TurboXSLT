@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <div id="wrapper"><div class="page-wrap"><div class="page clicktag">
-			<div id="test" omg="{omg}" data-options="&#10;&#9;&#9;&#9;&#9;&#9;{&#10;&#9;&#9;&#9;&#9;&#9;&#9;show_popup: 12,&#10;&#9;&#9;&#9;&#9;&#9;&#9;voted: 12,&#10;&#9;&#9;&#9;&#9;&#9;&#9;votes:[1,2,3,4],&#10;&#9;&#9;&#9;&#9;&#9;&#9;mid_vote:1234,&#10;&#9;&#9;&#9;&#9;&#9;&#9;vote_amount:1234,&#10;&#9;&#9;&#9;&#9;&#9;&#9;recenses: 123&#10;&#9;&#9;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;">
+			<div id="test" omg="{omg}" data-options="{ show_popup: 12, voted: 12, votes:[1,2,3,4], mid_vote:1234, vote_amount:1234, recenses: 123 } ">
 			[test]			
 		</div>
 		</div></div></div>
