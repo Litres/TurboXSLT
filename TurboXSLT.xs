@@ -438,6 +438,14 @@ CODE:
   XSLTSetURLLocalPrefix(self,prefix);
 
 void
+tctx_AddURLCodeParameter(self,name,value)
+  TRANSFORM_CONTEXT *self
+  char *name
+  char *value
+CODE:
+  AddURLCodeParameter(self,name,value);
+
+void
 tctx_EnableTaskGraph(self,filename)
   TRANSFORM_CONTEXT *self
   char *filename
