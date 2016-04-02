@@ -446,6 +446,12 @@ CODE:
   AddURLCodeParameter(self,name,value);
 
 void
+tctx_ResetURLCodeParameters(self)
+  TRANSFORM_CONTEXT *self
+CODE:
+  ResetURLCodeParameters(self);
+
+void
 tctx_EnableTaskGraph(self,filename)
   TRANSFORM_CONTEXT *self
   char *filename
