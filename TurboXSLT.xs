@@ -443,13 +443,13 @@ tctx_AddURLCodeParameter(self,name,value)
   char *name
   char *value
 CODE:
-  AddURLCodeParameter(self,name,value);
+  XSLTAddURLCodeParameter(self,name,value);
 
 void
 tctx_ResetURLCodeParameters(self)
   TRANSFORM_CONTEXT *self
 CODE:
-  ResetURLCodeParameters(self);
+  XSLTResetURLCodeParameters(self);
 
 void
 tctx_EnableTaskGraph(self,filename)
