@@ -2,39 +2,13 @@
 	<genre arts_count="240" id="5003" s_token="biznes_knigi" title="бизнес-книги" url="/biznes-knigi/">
 		<subgenres arts_count="454" id="5052" s_token="ekonomicheskaya_teoriya" title="экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/">
 			<subgenres arts_count="10" id="5832" s_token="istoriya_ekonomiki" title="история экономики" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomiki/"/>
-			<subgenres arts_count="6" id="5825" s_token="ekonomicheskaya_statistika" title="экономическая статистика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-statistika/"/>
-			<subgenres arts_count="3" id="5827" s_token="otraslevaya_ekonomika" title="отраслевая и межотраслевая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/otraslevaya-ekonomika/"/>
-			<subgenres arts_count="2" id="5822" s_token="istoriya_ekonomicheskikh_ucheniy" title="история экономических учений" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomicheskikh-ucheniy/"/>
-			<subgenres arts_count="13" id="5831" s_token="ekonomicheskoe_razvitie" title="экономическое развитие" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskoe-razvitie/"/>
-			<subgenres arts_count="4" id="5830" s_token="razvivayushchiye_strany" title="экономика развивающихся стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvivayushchiye-strany/"/>
-			<subgenres arts_count="5" id="5829" s_token="razvityye_strany" title="экономика развитых стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvityye-strany/"/>
-			<subgenres arts_count="7" id="5826" s_token="ekonomicheskiy_analiz" title="экономический анализ" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskiy-analiz/"/>
-			<subgenres arts_count="4" id="5823" s_token="ekonomicheskaya_geografiya" title="экономическая география" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-geografiya/"/>
-			<subgenres arts_count="1" id="5833" s_token="makroekonomika" title="макроэкономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/makroekonomika/"/>
-			<subgenres arts_count="5" id="5821" s_token="ekonomicheskaya_teoriya_obshchaya" title="общая экономическая теория" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/obshchaya/"/>
-			<subgenres arts_count="2" id="5824" s_token="upravleniye_ekonomikoy" title="управление экономикой" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/upravleniye-ekonomikoy/"/>
-			<subgenres arts_count="81" id="5834" s_token="vneshneekonomicheskaya_deyatelnost" title="внешнеэкономическая деятельность" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/vneshneekonomicheskaya-deyatelnost/"/>
-			<subgenres arts_count="122" id="5828" s_token="mirovaya_ekonomika" title="мировая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/mirovaya-ekonomika/"/>
-			<subgenres arts_count="240" id="6457" s_token="economics_book" title="книги по экономике" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/economics_book/"/></subgenres>
+		</subgenres>
 	</genre>
 	<genre arts_count="4705" id="5030" s_token="knigi_nauka_obrazovanie" title="наука и образование" url="/knigi-nauka-obrazovanie/">
 		<subgenres arts_count="2151" id="5323" s_token="gumanitarnyye_obshestvennye_nauki" title="гуманитарные и общественные науки" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/">
 			<subgenres arts_count="454" id="5052" s_token="ekonomicheskaya_teoriya" title="экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/">
 				<subgenres arts_count="10" id="5832" s_token="istoriya_ekonomiki" title="история экономики" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomiki/"/>
-				<subgenres arts_count="6" id="5825" s_token="ekonomicheskaya_statistika" title="экономическая статистика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-statistika/"/>
-				<subgenres arts_count="3" id="5827" s_token="otraslevaya_ekonomika" title="отраслевая и межотраслевая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/otraslevaya-ekonomika/"/>
-				<subgenres arts_count="2" id="5822" s_token="istoriya_ekonomicheskikh_ucheniy" title="история экономических учений" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomicheskikh-ucheniy/"/>
-				<subgenres arts_count="13" id="5831" s_token="ekonomicheskoe_razvitie" title="экономическое развитие" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskoe-razvitie/"/>
-				<subgenres arts_count="4" id="5830" s_token="razvivayushchiye_strany" title="экономика развивающихся стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvivayushchiye-strany/"/>
-				<subgenres arts_count="5" id="5829" s_token="razvityye_strany" title="экономика развитых стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvityye-strany/"/>
-				<subgenres arts_count="7" id="5826" s_token="ekonomicheskiy_analiz" title="экономический анализ" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskiy-analiz/"/>
-				<subgenres arts_count="4" id="5823" s_token="ekonomicheskaya_geografiya" title="экономическая география" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-geografiya/"/>
-				<subgenres arts_count="1" id="5833" s_token="makroekonomika" title="макроэкономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/makroekonomika/"/>
-				<subgenres arts_count="5" id="5821" s_token="ekonomicheskaya_teoriya_obshchaya" title="общая экономическая теория" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/obshchaya/"/>
-				<subgenres arts_count="2" id="5824" s_token="upravleniye_ekonomikoy" title="управление экономикой" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/upravleniye-ekonomikoy/"/>
-				<subgenres arts_count="81" id="5834" s_token="vneshneekonomicheskaya_deyatelnost" title="внешнеэкономическая деятельность" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/vneshneekonomicheskaya-deyatelnost/"/>
-				<subgenres arts_count="122" id="5828" s_token="mirovaya_ekonomika" title="мировая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/mirovaya-ekonomika/"/>
-				<subgenres arts_count="240" id="6457" s_token="economics_book" title="книги по экономике" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/economics_book/"/></subgenres>
+			</subgenres>
 		</subgenres>
 	</genre>
 </new_genres>
