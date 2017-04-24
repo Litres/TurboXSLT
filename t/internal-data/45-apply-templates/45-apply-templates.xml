@@ -1,0 +1,916 @@
+<new_genres>
+	<genre arts_count="4630" id="5016" s_token="zarubezhnaya_literatura" title="зарубежная литература" url="/zarubezhnaya-literatura/">
+		<subgenres arts_count="25" id="6474" s_token="zarubezhnaya_ezoterika" title="зарубежная эзотерическая литература" url="/zarubezhnaya-literatura/zarubezhnaya_ezoterika/"/>
+		<subgenres arts_count="240" id="6492" s_token="foreign_religion" title="зарубежная религиозная и эзотерическая литература" url="/zarubezhnaya-literatura/foreign_religion/"/>
+		<subgenres arts_count="149" id="6469" s_token="zarubezhnaya_religiya" title="зарубежная религиозная литература" url="/zarubezhnaya-literatura/zarubezhnaya_religiya/"/>
+		<subgenres arts_count="240" id="5219" s_token="knigi_detektivy_zarubezhnye" title="зарубежные детективы" url="/knigi-detektivy/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5215" s_token="zarubezhnaya_starinnaya" title="зарубежная старинная литература" url="/klassicheskaya-literatura/zarubezhnaya-starinnaya/"/>
+		<subgenres arts_count="240" id="5212" s_token="zarubezhnaya_dramaturgiya" title="зарубежная драматургия" url="/knigi-poeziya-dramaturgiya/zarubezhnaya-dramaturgiya/"/>
+		<subgenres arts_count="240" id="5202" s_token="zarubezhnyy" title="зарубежный юмор" url="/knigi-umor/zarubezhnyy/"/>
+		<subgenres arts_count="240" id="5111" s_token="detskie_knigi_zarubezhnye" title="зарубежные детские книги" url="/detskie-knigi/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5080" s_token="zarubezhnaya" title="зарубежная фантастика" url="/knigi-fantastika/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="6484" s_token="zarubezhnaya_prikladnaya_literatura" title="зарубежная прикладная литература" url="/zarubezhnaya-literatura/zarubezhnaya_prikladnaya_literatura/"/>
+		<subgenres arts_count="240" id="5221" s_token="kompyuternaya_literatura_zarubezhnaya" title="зарубежная компьютерная литература" url="/kompyuternaya-literatura/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5218" s_token="knigi_fentezi_zarubezhnye" title="зарубежное фэнтези" url="/knigi-fentezi/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5214" s_token="klassicheskaya_literatura_zarubezhnaya" title="зарубежная классика" url="/klassicheskaya-literatura/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5211" s_token="knigi_sovremennaya_proza_zarubezhnaya" title="современная зарубежная литература" url="/knigi-sovremennaya-proza/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5171" s_token="knigi_publicistika_zarubezhnaya" title="зарубежная публицистика" url="/knigi-publicistika/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5096" s_token="zarubezhnye" title="зарубежные приключения" url="/knigi-priklucheniya/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5061" s_token="delovaya_literatura" title="зарубежная деловая литература" url="/zarubezhnaya-literatura/delovaya-literatura/"/>
+		<subgenres arts_count="151" id="6584" s_token="zarubezhnaya_kultura_iskusstvo" title="зарубежная литература о культуре и искусстве" url="/knigi-iskusstvo/zarubezhnaya_kultura_iskusstvo/"/>
+		<subgenres arts_count="240" id="5220" s_token="knigi_psihologiya_zarubezhnaya" title="зарубежная психология" url="/knigi-psihologiya/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5217" s_token="zarubezhnaya_obrazovatelnaya_literatura" title="зарубежная образовательная литература" url="/knigi-nauka-obrazovanie/zarubezhnaya-literatura/"/>
+		<subgenres arts_count="240" id="5213" s_token="zarubezhnaya_poeziya" title="зарубежная поэзия" url="/knigi-poeziya-dramaturgiya/zarubezhnaya_poeziya/"/>
+		<subgenres arts_count="20" id="5206" s_token="knigi_boeviki_zarubezhnye" title="зарубежные боевики" url="/knigi-boeviki/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5168" s_token="spravochniki_slovari_zarubezhnye" title="зарубежная справочная литература" url="/spravochniki-slovari/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5091" s_token="zarubezhnyye" title="зарубежные любовные романы" url="/knigi-lubovnye-romany/zarubezhnyye/"/>
+	</genre>
+	<genre arts_count="240" id="5003" s_token="biznes_knigi" title="бизнес-книги" url="/biznes-knigi/">
+		<subgenres arts_count="73" id="5064" s_token="lichnaya_effektivnost" title="личная эффективность" url="/biznes-knigi/lichnaya-effektivnost/"/>
+		<subgenres arts_count="240" id="5058" s_token="o_biznese_populyarno" title="о бизнесе популярно" url="/biznes-knigi/o-biznese-populyarno/">
+			<subgenres arts_count="15" id="5378" s_token="rossiyskaya_praktika" title="российская практика" url="/biznes-knigi/o-biznese-populyarno/rossiyskaya-praktika/"/>
+			<subgenres arts_count="7" id="5371" s_token="innovatsii" title="инновации в бизнесе" url="/biznes-knigi/o-biznese-populyarno/innovatsii/"/>
+			<subgenres arts_count="37" id="5379" s_token="guru" title="советы от гуру" url="/biznes-knigi/o-biznese-populyarno/guru/"/>
+			<subgenres arts_count="11" id="5374" s_token="kreativ_idei" title="креатив, идеи" url="/biznes-knigi/o-biznese-populyarno/kreativ-idei/"/>
+			<subgenres arts_count="2" id="5368" s_token="biznes_plan" title="бизнес-план" url="/biznes-knigi/o-biznese-populyarno/biznes-plan/"/>
+			<subgenres arts_count="13" id="5381" s_token="strategiya" title="бизнес-стратегии" url="/biznes-knigi/o-biznese-populyarno/strategiya/"/>
+			<subgenres arts_count="1" id="5369" s_token="privlecheniye_investitsiy" title="привлечение инвестиций" url="/biznes-knigi/o-biznese-populyarno/privlecheniye-investitsiy/"/>
+			<subgenres arts_count="3" id="5377" s_token="rabota_s_dolgami" title="работа с долгами" url="/biznes-knigi/o-biznese-populyarno/rabota-s-dolgami/"/>
+			<subgenres arts_count="240" id="6466" s_token="prosto_o_biznese" title="просто о бизнесе" url="/biznes-knigi/o-biznese-populyarno/prosto_o_biznese/"/>
+			<subgenres arts_count="108" id="5383" s_token="effectivnost" title="эффективность бизнеса" url="/biznes-knigi/o-biznese-populyarno/effectivnost/"/>
+			<subgenres arts_count="236" id="5372" s_token="istorii_uspekha" title="истории успеха" url="/biznes-knigi/o-biznese-populyarno/istorii-uspekha/"/></subgenres>
+		<subgenres arts_count="454" id="5052" s_token="ekonomicheskaya_teoriya" title="экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/">
+			<subgenres arts_count="10" id="5832" s_token="istoriya_ekonomiki" title="история экономики" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomiki/"/>
+			<subgenres arts_count="6" id="5825" s_token="ekonomicheskaya_statistika" title="экономическая статистика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-statistika/"/>
+			<subgenres arts_count="3" id="5827" s_token="otraslevaya_ekonomika" title="отраслевая и межотраслевая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/otraslevaya-ekonomika/"/>
+			<subgenres arts_count="2" id="5822" s_token="istoriya_ekonomicheskikh_ucheniy" title="история экономических учений" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomicheskikh-ucheniy/"/>
+			<subgenres arts_count="13" id="5831" s_token="ekonomicheskoe_razvitie" title="экономическое развитие" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskoe-razvitie/"/>
+			<subgenres arts_count="4" id="5830" s_token="razvivayushchiye_strany" title="экономика развивающихся стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvivayushchiye-strany/"/>
+			<subgenres arts_count="5" id="5829" s_token="razvityye_strany" title="экономика развитых стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvityye-strany/"/>
+			<subgenres arts_count="7" id="5826" s_token="ekonomicheskiy_analiz" title="экономический анализ" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskiy-analiz/"/>
+			<subgenres arts_count="4" id="5823" s_token="ekonomicheskaya_geografiya" title="экономическая география" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-geografiya/"/>
+			<subgenres arts_count="1" id="5833" s_token="makroekonomika" title="макроэкономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/makroekonomika/"/>
+			<subgenres arts_count="5" id="5821" s_token="ekonomicheskaya_teoriya_obshchaya" title="общая экономическая теория" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/obshchaya/"/>
+			<subgenres arts_count="2" id="5824" s_token="upravleniye_ekonomikoy" title="управление экономикой" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/upravleniye-ekonomikoy/"/>
+			<subgenres arts_count="81" id="5834" s_token="vneshneekonomicheskaya_deyatelnost" title="внешнеэкономическая деятельность" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/vneshneekonomicheskaya-deyatelnost/"/>
+			<subgenres arts_count="122" id="5828" s_token="mirovaya_ekonomika" title="мировая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/mirovaya-ekonomika/"/>
+			<subgenres arts_count="240" id="6457" s_token="economics_book" title="книги по экономике" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/economics_book/"/></subgenres>
+		<subgenres arts_count="40" id="5047" s_token="kadrovyj_menedzhment" title="кадровый менеджмент" url="/biznes-knigi/kadrovyj_menedzhment/">
+			<subgenres arts_count="1" id="5332" s_token="konflikty" title="конфликты" url="/biznes-knigi/upravlenie-podbor-personala/konflikty/"/>
+			<subgenres arts_count="1" id="5331" s_token="timbilding" title="тимбилдинг" url="/biznes-knigi/upravlenie-podbor-personala/timbilding/"/>
+			<subgenres arts_count="2" id="5333" s_token="motivaciya" title="мотивация" url="/biznes-knigi/upravlenie-podbor-personala/motivaciya/"/>
+			<subgenres arts_count="5" id="5335" s_token="poisk_presonala_hr" title="поиск и подбор персонала" url="/biznes-knigi/upravlenie-podbor-personala/poisk-presonala-hr/"/>
+			<subgenres arts_count="11" id="5336" s_token="kouching" title="коучинг" url="/biznes-knigi/upravlenie-podbor-personala/kouching/"/>
+			<subgenres arts_count="240" id="6583" s_token="upravlenie_personalom" title="управление персоналом" url="/biznes-knigi/kadrovyj_menedzhment/upravlenie_personalom/"/></subgenres>
+		<subgenres arts_count="619" id="5070" s_token="menedzhment" title="менеджмент" url="/biznes-knigi/menedzhment/">
+			<subgenres arts_count="8" id="6880" s_token="organizacionnyj_menedzhment" title="организационный менеджмент" url="/biznes-knigi/menedzhment/organizacionnyj_menedzhment/"/>
+			<subgenres arts_count="7" id="5393" s_token="strategicheskiy_menedzhment" title="стратегический менеджмент" url="/biznes-knigi/menedzhment/strategicheskiy_menedzhment/"/>
+			<subgenres arts_count="1" id="6875" s_token="proizvodstvennyj_menedzhment" title="производственный менеджмент" url="/biznes-knigi/menedzhment/proizvodstvennyj_menedzhment/"/>
+			<subgenres arts_count="3" id="5394" s_token="krizisnoye_upravleniye" title="кризисное управление" url="/biznes-knigi/menedzhment/krizisnoye-upravleniye/"/>
+			<subgenres arts_count="9" id="5399" s_token="finansovyy" title="финансовый менеджмент" url="/biznes-knigi/menedzhment/finansovyy/"/>
+			<subgenres arts_count="2" id="5390" s_token="mba" title="MBA" url="/biznes-knigi/menedzhment/mba/"/>
+			<subgenres arts_count="6" id="5391" s_token="biznes_protsessy" title="бизнес-процессы" url="/biznes-knigi/menedzhment/biznes-protsessy/"/>
+			<subgenres arts_count="3" id="5395" s_token="upravleniye_kachestvom" title="управление качеством" url="/biznes-knigi/menedzhment/upravleniye-kachestvom/"/>
+			<subgenres arts_count="5" id="5392" s_token="klassika" title="классика менеджмента" url="/biznes-knigi/menedzhment/klassika/"/>
+			<subgenres arts_count="8" id="5398" s_token="proect" title="project-менеджмент" url="/biznes-knigi/menedzhment/proect/"/>
+			<subgenres arts_count="240" id="6583" s_token="upravlenie_personalom" title="управление персоналом" url="/biznes-knigi/kadrovyj_menedzhment/upravlenie_personalom/"/>
+			<subgenres arts_count="156" id="5396" s_token="liderstvo" title="лидерство" url="/biznes-knigi/menedzhment/liderstvo/"/>
+			<subgenres arts_count="240" id="5382" s_token="upravlenie_biznesom" title="управление бизнесом" url="/biznes-knigi/menedzhment/upravlenie/"/></subgenres>
+		<subgenres arts_count="392" id="5048" s_token="marketing_pr_reklama" title="маркетинг, PR, реклама" url="/biznes-knigi/marketing-pr-reklama/">
+			<subgenres arts_count="1" id="5341" s_token="partizanskiy_marketing" title="партизанский маркетинг" url="/biznes-knigi/marketing-pr-reklama/partizanskiy-marketing/"/>
+			<subgenres arts_count="6" id="5343" s_token="issledovanie_analiz" title="исследования и анализ" url="/biznes-knigi/marketing-pr-reklama/issledovanie-analiz/"/>
+			<subgenres arts_count="4" id="5351" s_token="upravleniye_marketingom" title="управление маркетингом" url="/biznes-knigi/marketing-pr-reklama/upravleniye-marketingom/"/>
+			<subgenres arts_count="3" id="5340" s_token="brending" title="брендинг" url="/biznes-knigi/marketing-pr-reklama/brending/"/>
+			<subgenres arts_count="2" id="5345" s_token="loyalnost" title="лояльность" url="/biznes-knigi/marketing-pr-reklama/loyalnost/"/>
+			<subgenres arts_count="2" id="5355" s_token="dlya_novichkov" title="маркетинг для новичков" url="/biznes-knigi/marketing-pr-reklama/dlya-novichkov/"/>
+			<subgenres arts_count="7" id="5344" s_token="klassicheskiy_marketing" title="классический маркетинг" url="/biznes-knigi/marketing-pr-reklama/klassicheskiy-marketing/"/>
+			<subgenres arts_count="3" id="5347" s_token="otnosheniya_s_kliyentami" title="отношения с клиентами" url="/biznes-knigi/marketing-pr-reklama/otnosheniya-s-kliyentami/"/>
+			<subgenres arts_count="1" id="5342" s_token="direkt_marketing" title="директ-маркетинг" url="/biznes-knigi/marketing-pr-reklama/direkt-marketing/"/>
+			<subgenres arts_count="2" id="5354" s_token="pr" title="PR" url="/biznes-knigi/marketing-pr-reklama/pr/"/>
+			<subgenres arts_count="1" id="5353" s_token="kliyentskiy_servis" title="клиентский сервис" url="/biznes-knigi/marketing-pr-reklama/kliyentskiy-servis/"/>
+			<subgenres arts_count="1" id="5350" s_token="upravleniye_assortimentom" title="управление ассортиментом" url="/biznes-knigi/marketing-pr-reklama/upravleniye-assortimentom/"/>
+			<subgenres arts_count="90" id="5356" s_token="reklama" title="реклама" url="/biznes-knigi/marketing-pr-reklama/reklama/"/>
+			<subgenres arts_count="31" id="5337" s_token="internet_marketing" title="интернет-маркетинг" url="/biznes-knigi/marketing-pr-reklama/internet-marketing/"/>
+			<subgenres arts_count="42" id="5352" s_token="strategiya_marketinga" title="стратегия маркетинга" url="/biznes-knigi/marketing-pr-reklama/strategiya-marketinga/"/>
+			<subgenres arts_count="240" id="5348" s_token="privlecheniye_kliyentov" title="привлечение клиентов" url="/biznes-knigi/marketing-pr-reklama/privlecheniye-kliyentov/"/></subgenres>
+		<subgenres arts_count="49" id="5063" s_token="prodazhi" title="продажи" url="/biznes-knigi/prodazhi/">
+			<subgenres arts_count="10" id="5386" s_token="upravleniye_prodazhami" title="управление продажами" url="/biznes-knigi/prodazhi/upravleniye-prodazhami/"/>
+			<subgenres arts_count="2" id="5388" s_token="kholodnyye" title="холодные продажи" url="/biznes-knigi/prodazhi/kholodnyye/"/>
+			<subgenres arts_count="3" id="5387" s_token="prodazhi_peregovory" title="успешные переговоры" url="/biznes-knigi/prodazhi/peregovory/"/>
+			<subgenres arts_count="3" id="5389" s_token="prezentatsiya" title="эффективная презентация" url="/biznes-knigi/prodazhi/prezentatsiya/"/>
+			<subgenres arts_count="37" id="5385" s_token="tekhnika_prodazh" title="техника продаж" url="/biznes-knigi/prodazhi/tekhnika-prodazh/"/></subgenres>
+		<subgenres arts_count="7" id="5065" s_token="taym_menedzhment" title="тайм-менеджмент" url="/biznes-knigi/taym-menedzhment/"/>
+		<subgenres arts_count="11" id="5067" s_token="peregovory" title="переговоры" url="/biznes-knigi/peregovory/"/>
+		<subgenres arts_count="10" id="5068" s_token="startapy" title="стартапы и создание бизнеса" url="/biznes-knigi/startapy/"/>
+		<subgenres arts_count="16" id="5053" s_token="finansy" title="финансы" url="/biznes-knigi/finansy/">
+			<subgenres arts_count="7" id="5360" s_token="korporativnyye_finansy" title="корпоративные финансы" url="/biznes-knigi/finansy/korporativnyye-finansy/"/>
+			<subgenres arts_count="1" id="5362" s_token="tekhnicheskiy_analiz" title="технический анализ" url="/biznes-knigi/finansy/tekhnicheskiy-analiz/"/>
+			<subgenres arts_count="1" id="5363" s_token="treyding" title="трейдинг" url="/biznes-knigi/finansy/treyding/"/>
+			<subgenres arts_count="3" id="5364" s_token="finansovyye_instrumenty" title="финансовые инструменты" url="/biznes-knigi/finansy/finansovyye-instrumenty/"/>
+			<subgenres arts_count="2" id="5361" s_token="riski" title="риски" url="/biznes-knigi/finansy/riski/"/>
+			<subgenres arts_count="4" id="5359" s_token="budzhetirovaniye" title="бюджетирование" url="/biznes-knigi/finansy/budzhetirovaniye/"/></subgenres>
+		<subgenres arts_count="1" id="5375" s_token="logistika" title="логистика" url="/biznes-knigi/logistika/"/>
+		<subgenres arts_count="8" id="5069" s_token="kliyenty" title="работа с клиентами" url="/biznes-knigi/kliyenty/"/>
+		<subgenres arts_count="149" id="5066" s_token="oratorskoye_iskusstvo" title="ораторское искусство, риторика" url="/biznes-knigi/oratorskoye-iskusstvo/"/>
+		<subgenres arts_count="195" id="5060" s_token="deloproizvodstvo" title="делопроизводство" url="/biznes-knigi/deloproizvodstvo/"/>
+		<subgenres arts_count="135" id="5057" s_token="nedvizhimost" title="недвижимость" url="/biznes-knigi/nedvizhimost/"/>
+		<subgenres arts_count="240" id="5054" s_token="otraslevye_izdaniya" title="отраслевые издания" url="/biznes-knigi/otraslevye-izdaniya/"/>
+		<subgenres arts_count="240" id="5051" s_token="oblozhenie_audit" title="бухучет, налогообложение, аудит" url="/biznes-knigi/buhuchet-nalogooblozhenie-audit1/"/>
+		<subgenres arts_count="30" id="5062" s_token="internet" title="интернет-бизнес" url="/biznes-knigi/internet/"/>
+		<subgenres arts_count="240" id="5059" s_token="malyy_biznes" title="малый бизнес" url="/biznes-knigi/malyy-biznes/"/>
+		<subgenres arts_count="240" id="5056" s_token="lichnye_finansy" title="личные финансы" url="/biznes-knigi/lichnye-finansy/"/>
+		<subgenres arts_count="240" id="5050" s_token="cennye_bumagi_investicii" title="ценные бумаги, инвестиции" url="/biznes-knigi/cennye-bumagi-investicii/"/>
+		<subgenres arts_count="240" id="5046" s_token="poisk_raboty_karera" title="поиск работы, карьера" url="/biznes-knigi/poisk-raboty-karera/"/>
+		<subgenres arts_count="222" id="6784" s_token="gosudarstvennoe_i_munitsipalnoe_upravlenie" title="государственное и муниципальное управление" url="/biznes-knigi/gosudarstvennoe-i-munitsipalnoe-upravlenie/"/>
+		<subgenres arts_count="240" id="5061" s_token="delovaya_literatura" title="зарубежная деловая литература" url="/zarubezhnaya-literatura/delovaya-literatura/"/>
+		<subgenres arts_count="240" id="5055" s_token="korporativnaya_kultura" title="корпоративная культура" url="/biznes-knigi/korporativnaya-kultura/"/>
+		<subgenres arts_count="240" id="6462" s_token="management_kadry_old" title="менеджмент и кадры" url="/biznes-knigi/management_kadry_old/"/>
+	</genre>
+	<genre arts_count="4705" id="5030" s_token="knigi_nauka_obrazovanie" title="наука и образование" url="/knigi-nauka-obrazovanie/">
+		<subgenres arts_count="2151" id="5323" s_token="gumanitarnyye_obshestvennye_nauki" title="гуманитарные и общественные науки" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/">
+			<subgenres arts_count="240" id="5021" s_token="knigi_psihologiya" title="книги по психологии" url="/knigi-psihologiya/">
+				<subgenres arts_count="372" id="5256" s_token="prakticheskaya" title="практическая психология" url="/knigi-psihologiya/prakticheskaya/">
+					<subgenres arts_count="5" id="5638" s_token="nlp" title="НЛП" url="/knigi-psihologiya/prakticheskaya/nlp/"/>
+					<subgenres arts_count="7" id="5623" s_token="psikhoanaliz" title="психоанализ" url="/knigi-psihologiya/psihoterapiya/psikhoanaliz/"/>
+					<subgenres arts_count="1" id="5625" s_token="tranzaktsionnyy_analiz" title="транзакционный анализ" url="/knigi-psihologiya/psihoterapiya/tranzaktsionnyy-analiz/"/>
+					<subgenres arts_count="108" id="5641" s_token="treningi" title="психологические тренинги" url="/knigi-psihologiya/prakticheskaya/treningi/"/>
+					<subgenres arts_count="10" id="6838" s_token="psihoterapiya" title="психотерапия" url="/knigi-psihologiya/prakticheskaya/psihoterapiya/"/>
+					<subgenres arts_count="240" id="6544" s_token="konsultatsii_psihoterapiya" title="психологическая консультация" url="/knigi-psihologiya/prakticheskaya/konsultatsii_psihoterapiya/"/>
+					<subgenres arts_count="43" id="5626" s_token="klinicheskaya" title="клиническая психология" url="/knigi-psihologiya/psihoterapiya/klinicheskaya/"/></subgenres>
+				<subgenres arts_count="126" id="5255" s_token="prikladnaya" title="прикладная психология" url="/knigi-psihologiya/prikladnaya/">
+					<subgenres arts_count="1" id="5629" s_token="testy" title="психологические тесты" url="/knigi-psihologiya/prikladnaya/testy/"/>
+					<subgenres arts_count="36" id="5631" s_token="uchebniki" title="учебники по психологии" url="/knigi-psihologiya/prikladnaya/uchebniki/"/>
+					<subgenres arts_count="37" id="5628" s_token="neyropsikhologiya" title="нейропсихология" url="/knigi-psihologiya/prikladnaya/neyropsikhologiya/"/>
+					<subgenres arts_count="67" id="5630" s_token="populyarno" title="о психологии популярно" url="/knigi-psihologiya/prikladnaya/populyarno/"/></subgenres>
+				<subgenres arts_count="2" id="5621" s_token="sotsionika" title="соционика" url="/knigi-psihologiya/socialnaya/sotsionika/"/>
+				<subgenres arts_count="15" id="5881" s_token="razvitiye_psikhiki" title="развитие психики" url="/knigi-psihologiya/razvitiye-psikhiki/"/>
+				<subgenres arts_count="56" id="5883" s_token="otraslevaya" title="отраслевая психология" url="/knigi-psihologiya/otraslevaya/"/>
+				<subgenres arts_count="240" id="5253" s_token="samorazvitiye_lichnostny_rost" title="саморазвитие, личностный рост" url="/knigi-psihologiya/samorazvitiye-lichnostnyy-rost/"/>
+				<subgenres arts_count="240" id="5249" s_token="obschaya_psihologiya" title="общая психология" url="/knigi-psihologiya/obschaya-psihologiya/"/>
+				<subgenres arts_count="18" id="6506" s_token="osnovy_psihologii" title="основы психологии" url="/knigi-psihologiya/osnovy_psihologii/"/>
+				<subgenres arts_count="40" id="5620" s_token="psikhologiya_upravleniya" title="психология управления" url="/knigi-psihologiya/psikhologiya-upravleniya/"/>
+				<subgenres arts_count="240" id="5251" s_token="klassiki" title="классики психологии" url="/knigi-psihologiya/klassiki/"/>
+				<subgenres arts_count="240" id="5220" s_token="knigi_psihologiya_zarubezhnaya" title="зарубежная психология" url="/knigi-psihologiya/zarubezhnaya/"/>
+				<subgenres arts_count="68" id="5885" s_token="sostoyanie_psihiki" title="состояния и явления психики" url="/knigi-psihologiya/sostoyanie-psihiki/"/>
+				<subgenres arts_count="240" id="5624" s_token="semya_brak_seksologiya" title="семья, брак, сексология" url="/knigi-psihologiya/psihoterapiya/semya-brak-seksologiya/"/>
+				<subgenres arts_count="42" id="5257" s_token="vozrastnaya_psihologiya" title="возрастная психология" url="/knigi-psihologiya/vozrastnaya-psihologiya/"/>
+				<subgenres arts_count="240" id="5254" s_token="detskaya" title="детская психология" url="/knigi-psihologiya/detskaya/"/>
+				<subgenres arts_count="240" id="5250" s_token="knigi_psihologiya_socialnaya" title="социальная психология" url="/knigi-psihologiya/socialnaya/"/></subgenres>
+			<subgenres arts_count="454" id="5052" s_token="ekonomicheskaya_teoriya" title="экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/">
+				<subgenres arts_count="10" id="5832" s_token="istoriya_ekonomiki" title="история экономики" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomiki/"/>
+				<subgenres arts_count="6" id="5825" s_token="ekonomicheskaya_statistika" title="экономическая статистика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-statistika/"/>
+				<subgenres arts_count="3" id="5827" s_token="otraslevaya_ekonomika" title="отраслевая и межотраслевая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/otraslevaya-ekonomika/"/>
+				<subgenres arts_count="2" id="5822" s_token="istoriya_ekonomicheskikh_ucheniy" title="история экономических учений" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/istoriya-ekonomicheskikh-ucheniy/"/>
+				<subgenres arts_count="13" id="5831" s_token="ekonomicheskoe_razvitie" title="экономическое развитие" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskoe-razvitie/"/>
+				<subgenres arts_count="4" id="5830" s_token="razvivayushchiye_strany" title="экономика развивающихся стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvivayushchiye-strany/"/>
+				<subgenres arts_count="5" id="5829" s_token="razvityye_strany" title="экономика развитых стран" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/razvityye-strany/"/>
+				<subgenres arts_count="7" id="5826" s_token="ekonomicheskiy_analiz" title="экономический анализ" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskiy-analiz/"/>
+				<subgenres arts_count="4" id="5823" s_token="ekonomicheskaya_geografiya" title="экономическая география" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/ekonomicheskaya-geografiya/"/>
+				<subgenres arts_count="1" id="5833" s_token="makroekonomika" title="макроэкономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/makroekonomika/"/>
+				<subgenres arts_count="5" id="5821" s_token="ekonomicheskaya_teoriya_obshchaya" title="общая экономическая теория" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/obshchaya/"/>
+				<subgenres arts_count="2" id="5824" s_token="upravleniye_ekonomikoy" title="управление экономикой" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/upravleniye-ekonomikoy/"/>
+				<subgenres arts_count="81" id="5834" s_token="vneshneekonomicheskaya_deyatelnost" title="внешнеэкономическая деятельность" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/vneshneekonomicheskaya-deyatelnost/"/>
+				<subgenres arts_count="122" id="5828" s_token="mirovaya_ekonomika" title="мировая экономика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/mirovaya-ekonomika/"/>
+				<subgenres arts_count="240" id="6457" s_token="economics_book" title="книги по экономике" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/ekonomicheskaya-teoriya/economics_book/"/></subgenres>
+			<subgenres arts_count="1161" id="5688" s_token="gumanitarnyye_nauki_istoriya" title="история" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/">
+				<subgenres arts_count="3" id="6421" s_token="hronologiya" title="хронология" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/hronologiya/"/>
+				<subgenres arts_count="2" id="5818" s_token="arkheologiya" title="археология" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/arkheologiya/"/>
+				<subgenres arts_count="3" id="5819" s_token="istochnikovedeniye" title="источниковедение" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/istochnikovedeniye/"/>
+				<subgenres arts_count="2" id="6409" s_token="pervobytnoe_obshestvo" title="первобытное общество" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/pervobytnoe_obshestvo/"/>
+				<subgenres arts_count="53" id="6397" s_token="srednie_veka" title="история Средних веков" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/srednie_veka/"/>
+				<subgenres arts_count="183" id="6416" s_token="novejshaya_istoriya" title="новейшая история" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/novejshaya_istoriya/"/>
+				<subgenres arts_count="189" id="6404" s_token="vsemirnaya_istoriya" title="всемирная история" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/vsemirnaya_istoriya/"/>
+				<subgenres arts_count="240" id="6394" s_token="istoriya_rossii" title="история России" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/istoriya_rossii/"/>
+				<subgenres arts_count="240" id="6429" s_token="obshchaya_istoriya" title="общая история" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/obshchaya_istoriya/"/>
+				<subgenres arts_count="44" id="6411" s_token="novoe_vremya" title="новое время" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/novoe_vremya/"/>
+				<subgenres arts_count="91" id="6402" s_token="drevnij_mir" title="история Древнего мира" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/drevnij_mir/"/>
+				<subgenres arts_count="240" id="5820" s_token="etnografiya" title="этнография" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/istoriya/etnografiya/"/></subgenres>
+			<subgenres arts_count="205" id="5690" s_token="politika" title="политика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/">
+				<subgenres arts_count="10" id="5841" s_token="vneshnyaya_politika" title="внешняя политика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/vneshnyaya-politika/"/>
+				<subgenres arts_count="21" id="5838" s_token="sovremennoye_politicheskoye_polozheniye" title="современное политическое положение" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/sovremennoye-politicheskoye-polozheniye/"/>
+				<subgenres arts_count="10" id="5843" s_token="natsionalnaya_politika" title="национальная политика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/natsionalnaya-politika/"/>
+				<subgenres arts_count="6" id="5840" s_token="vnutrennyaya_politika" title="внутренняя политика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/vnutrennyaya-politika/"/>
+				<subgenres arts_count="5" id="5839" s_token="partii" title="политические партии" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/partii/"/>
+				<subgenres arts_count="3" id="5837" s_token="istoriya_politicheskikh_ucheniy" title="история политических учений" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/istoriya-politicheskikh-ucheniy/"/>
+				<subgenres arts_count="240" id="5622" s_token="politologiya" title="политология" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/politika/politologiya/"/></subgenres>
+			<subgenres arts_count="371" id="5696" s_token="filosofiya" title="философия" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/">
+				<subgenres arts_count="9" id="5889" s_token="filosofiya_istoriya" title="история философии" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/istoriya/"/>
+				<subgenres arts_count="5" id="5887" s_token="metafizika" title="метафизика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/metafizika/"/>
+				<subgenres arts_count="3" id="5890" s_token="logika" title="логика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/logika/"/>
+				<subgenres arts_count="2" id="5892" s_token="etika" title="этика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/etika/"/>
+				<subgenres arts_count="2" id="5893" s_token="estetika" title="эстетика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/estetika/"/>
+				<subgenres arts_count="240" id="6442" s_token="knigi_po_filosofii" title="книги по философии" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/knigi_po_filosofii/"/>
+				<subgenres arts_count="152" id="5891" s_token="sotsialnaya_filosofiya" title="социальная философия" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filosofiya/sotsialnaya-filosofiya/"/></subgenres>
+			<subgenres arts_count="566" id="5694" s_token="filologiya" title="филология" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filologiya/">
+				<subgenres arts_count="240" id="5877" s_token="yazykoznaniye" title="языкознание" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filologiya/yazykoznaniye/"/>
+				<subgenres arts_count="149" id="5066" s_token="oratorskoye_iskusstvo" title="ораторское искусство, риторика" url="/biznes-knigi/oratorskoye-iskusstvo/"/>
+				<subgenres arts_count="240" id="5879" s_token="literaturovedeniye" title="литературоведение" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/filologiya/literaturovedeniye/"/></subgenres>
+			<subgenres arts_count="240" id="6356" s_token="inostrannye_yazyki" title="иностранные языки" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/">
+				<subgenres arts_count="3" id="6375" s_token="italjyanskij_yazyk" title="итальянский язык" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/italjyanskij_yazyk/"/>
+				<subgenres arts_count="3" id="6380" s_token="ispanskij_yazyk" title="испанский язык" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/ispanskij_yazyk/"/>
+				<subgenres arts_count="2" id="6370" s_token="frantcuzskij_yazyk" title="французский язык" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/frantcuzskij_yazyk/"/>
+				<subgenres arts_count="97" id="6365" s_token="nemetckij_yazyk" title="немецкий язык" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/nemetckij_yazyk/"/>
+				<subgenres arts_count="130" id="6389" s_token="russkij_kak_inostrannyj" title="русский язык как иностранный" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/russkij_kak_inostrannyj/"/>
+				<subgenres arts_count="240" id="6361" s_token="anglijskij_yazyk" title="английский язык" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/anglijskij_yazyk/"/>
+				<subgenres arts_count="240" id="6385" s_token="inostrannye_yazyki_prochee" title="иностранные языки" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/inostrannye_yazyki/inostrannye_yazyki_prochee/"/></subgenres>
+			<subgenres arts_count="738" id="5691" s_token="uridicheskaya_literatura" title="юридическая литература" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/">
+				<subgenres arts_count="9" id="5849" s_token="ugolovnoye_pravo" title="уголовное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/ugolovnoye-pravo/"/>
+				<subgenres arts_count="6" id="5851" s_token="ugolovno_processualnoye_pravo" title="уголовно-процессуальное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/ugolovno-processualnoye-pravo/"/>
+				<subgenres arts_count="16" id="5032" s_token="zakony_normativnyye_akty" title="законы, нормативные акты" url="/zakony-normativnyye-akty/">
+					<subgenres arts_count="13" id="5329" s_token="kodeksy_kommentarii" title="конституция и кодексы РФ" url="/zakony-normativnyye-akty/kodeksy-kommentarii/">
+						<subgenres arts_count="5" id="5738" s_token="ugolovno_protsessualnyy" title="уголовно-процессуальный кодекс РФ" url="/zakony-normativnyye-akty/kodeksy-kommentarii/ugolovno-protsessualnyy/"/>
+						<subgenres arts_count="5" id="5737" s_token="ugolovno_ispolnitelnyy" title="уголовно-исполнительный кодекс РФ" url="/zakony-normativnyye-akty/kodeksy-kommentarii/ugolovno-ispolnitelnyy/"/>
+						<subgenres arts_count="5" id="5739" s_token="ugolovnyy" title="уголовный кодекс РФ" url="/zakony-normativnyye-akty/kodeksy-kommentarii/ugolovnyy/"/></subgenres>
+					<subgenres arts_count="3" id="5327" s_token="postanovleniya" title="законы и постановления" url="/zakony-normativnyye-akty/postanovleniya/"/>
+					<subgenres arts_count="2" id="6550" s_token="normativno_pravovye_akty" title="нормативно-правовые акты" url="/zakony-normativnyye-akty/normativno-pravovye-akty/"/></subgenres>
+				<subgenres arts_count="6" id="6602" s_token="pravovedenie" title="правоведение" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/pravovedenie/"/>
+				<subgenres arts_count="4" id="5860" s_token="ugolovno_ispolnitelnoye_pravo" title="уголовно-исполнительное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/ugolovno-ispolnitelnoye-pravo/"/>
+				<subgenres arts_count="1" id="5867" s_token="advokatura" title="адвокатура" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/voyennoye-delo/advokatura/"/>
+				<subgenres arts_count="5" id="5857" s_token="finansovoye_pravo" title="финансовое право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/finansovoye-pravo/"/>
+				<subgenres arts_count="1" id="5853" s_token="zemelnoye_pravo" title="земельное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/zemelnoye-pravo/"/>
+				<subgenres arts_count="2" id="6640" s_token="kriminologiya_kriminalistika" title="криминалистика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/kriminologiya_kriminalistika/"/>
+				<subgenres arts_count="3" id="6556" s_token="sudebnoye_pravo" title="судебное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/sudebnoye_pravo/"/>
+				<subgenres arts_count="3" id="5850" s_token="grazhdanskoye_processualnoye_pravo" title="гражданское процессуальное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/grazhdanskoye-processualnoye-pravo/"/>
+				<subgenres arts_count="2" id="5856" s_token="tamozhennoye_pravo" title="таможенное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/tamozhennoye-pravo/"/>
+				<subgenres arts_count="1" id="5855" s_token="semeynoye_pravo" title="семейное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/semeynoye-pravo/"/>
+				<subgenres arts_count="1" id="5862" s_token="organy_ustitsii" title="органы юстиции" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/organy-ustitsii/"/>
+				<subgenres arts_count="3" id="5328" s_token="mezhdunarodnoye_pravo" title="международное право" url="/zakony-normativnyye-akty/mezhdunarodnoye-pravo/"/>
+				<subgenres arts_count="1" id="5858" s_token="munitsipalnoye_pravo" title="муниципальное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/munitsipalnoye-pravo/"/>
+				<subgenres arts_count="1" id="6597" s_token="kommercheskoe_pravo" title="коммерческое право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/kommercheskoe_pravo/"/>
+				<subgenres arts_count="223" id="5847" s_token="grazhdanskoye_pravo" title="гражданское право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/grazhdanskoye-pravo/"/>
+				<subgenres arts_count="82" id="5846" s_token="konstitutsionnoye_pravo" title="конституционное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/konstitutsionnoye-pravo/"/>
+				<subgenres arts_count="240" id="6444" s_token="sci_juris" title="юриспруденция" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/sci_juris/"/>
+				<subgenres arts_count="63" id="5848" s_token="administrativnoye_pravo" title="административное право" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/administrativnoye-pravo/"/>
+				<subgenres arts_count="147" id="5844" s_token="teoriya_gosudarstva_prava" title="теория государства и права" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/uridicheskaya-literatura/teoriya-gosudarstva-prava/"/></subgenres>
+			<subgenres arts_count="29" id="5693" s_token="kultura_prosveshcheniye" title="культура и просвещение" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/">
+				<subgenres arts_count="2" id="5874" s_token="pamyatniki_istorii_kultury" title="памятники истории и культуры" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/pamyatniki-istorii-kultury/"/>
+				<subgenres arts_count="2" id="5871" s_token="prosveshcheniye" title="издательское дело" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/prosveshcheniye/"/>
+				<subgenres arts_count="1" id="5869" s_token="fizkultura_sport" title="физкультура и спорт" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/fizkultura-sport/"/>
+				<subgenres arts_count="3" id="5875" s_token="muzeynoye_delo" title="музейное дело" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/muzeynoye-delo/"/>
+				<subgenres arts_count="1" id="5873" s_token="bibliografiya" title="библиография" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/bibliografiya/"/>
+				<subgenres arts_count="1" id="5872" s_token="sociokulturnaya_deyatelnost" title="социокультурная деятельность" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/sociokulturnaya-deyatelnost/"/>
+				<subgenres arts_count="23" id="5870" s_token="smi" title="СМИ" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/smi/"/></subgenres>
+			<subgenres arts_count="240" id="5868" s_token="pedagogika" title="педагогика" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kultura-prosveshcheniye/pedagogika/"/>
+			<subgenres arts_count="240" id="5687" s_token="sociologiya" title="социология" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/sociologiya/"/>
+			<subgenres arts_count="240" id="5242" s_token="kulturologiya" title="культурология" url="/knigi-nauka-obrazovanie/gumanitarnyye-nauki/kulturologiya/"/></subgenres>
+		<subgenres arts_count="921" id="5321" s_token="estestvennyye_nauki" title="естественные науки" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/">
+			<subgenres arts_count="247" id="5667" s_token="estestvennyye_nauki_biologiya" title="биология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/">
+				<subgenres arts_count="10" id="6425" s_token="anatomiya_fiziologiya" title="анатомия и физиология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/anatomiya_fiziologiya/"/>
+				<subgenres arts_count="5" id="6633" s_token="genetika" title="генетика" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/genetika/"/>
+				<subgenres arts_count="2" id="5744" s_token="biohimiya" title="биохимия" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/himiya/biohimiya/"/>
+				<subgenres arts_count="6" id="6636" s_token="nejrobiologiya" title="нейробиология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/nejrobiologiya/"/>
+				<subgenres arts_count="3" id="5706" s_token="mikrobiologiya" title="микробиология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/mikrobiologiya/"/>
+				<subgenres arts_count="6" id="5753" s_token="antropologiya" title="антропология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/antropologiya/"/>
+				<subgenres arts_count="1" id="5754" s_token="botanika" title="ботаника" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/botanika/"/>
+				<subgenres arts_count="2" id="5755" s_token="zoologiya" title="зоология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/zoologiya/"/>
+				<subgenres arts_count="240" id="5750" s_token="biologiya_obshchaya" title="общая биология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/obshchaya/"/></subgenres>
+			<subgenres arts_count="6" id="5664" s_token="astronomiya" title="астрономия" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/astronomiya/"/>
+			<subgenres arts_count="220" id="5665" s_token="estestvennyye_nauki_himiya" title="химия" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/himiya/">
+				<subgenres arts_count="2" id="5744" s_token="biohimiya" title="биохимия" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/himiya/biohimiya/"/>
+				<subgenres arts_count="2" id="6824" s_token="farmaciya" title="фармация" url="/knigi-nauka-obrazovanie/medicina/farmaciya/"/>
+				<subgenres arts_count="1" id="5743" s_token="fizicheskaya_himiya" title="физическая химия" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/himiya/fizicheskaya-himiya/"/>
+				<subgenres arts_count="240" id="5740" s_token="obshchaya" title="общая химия" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/himiya/obshchaya/"/></subgenres>
+			<subgenres arts_count="8" id="5668" s_token="estestvoznaniye" title="естествознание" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/estestvoznaniye/"/>
+			<subgenres arts_count="57" id="5666" s_token="o_zemle" title="науки о Земле" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/o-zemle/">
+				<subgenres arts_count="4" id="5748" s_token="geologiya" title="геология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/o-zemle/geologiya/"/>
+				<subgenres arts_count="240" id="5749" s_token="o_zemle_geografiya" title="география" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/o-zemle/geografiya/"/></subgenres>
+			<subgenres arts_count="5" id="6716" s_token="ekologiya" title="экология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/ekologiya/"/>
+			<subgenres arts_count="1" id="5663" s_token="mekhanika" title="механика" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/mekhanika/"/>
+			<subgenres arts_count="240" id="5662" s_token="estestvennyye_nauki_matematika" title="математика" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/matematika/"/>
+			<subgenres arts_count="240" id="5661" s_token="estestvennyye_nauki_fizika" title="физика" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/fizika/"/></subgenres>
+		<subgenres arts_count="736" id="5325" s_token="medicina" title="медицина, здравоохранение" url="/knigi-nauka-obrazovanie/medicina/">
+			<subgenres arts_count="5" id="6633" s_token="genetika" title="генетика" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/genetika/"/>
+			<subgenres arts_count="6" id="6636" s_token="nejrobiologiya" title="нейробиология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/nejrobiologiya/"/>
+			<subgenres arts_count="3" id="5712" s_token="prikladnyye_otrasli" title="прикладные отрасли медицины" url="/knigi-nauka-obrazovanie/medicina/prikladnyye-otrasli/"/>
+			<subgenres arts_count="3" id="5706" s_token="mikrobiologiya" title="микробиология" url="/knigi-nauka-obrazovanie/estestvennyye-nauki/biologiya/mikrobiologiya/"/>
+			<subgenres arts_count="2" id="6824" s_token="farmaciya" title="фармация" url="/knigi-nauka-obrazovanie/medicina/farmaciya/"/>
+			<subgenres arts_count="3" id="6632" s_token="ortopediya_travmatologiya" title="ортопедия и травматология" url="/knigi-nauka-obrazovanie/medicina/ortopediya_travmatologiya/"/>
+			<subgenres arts_count="5" id="5708" s_token="farmakologiya" title="фармакология" url="/knigi-nauka-obrazovanie/medicina/farmakologiya/"/>
+			<subgenres arts_count="5" id="6650" s_token="akusherstvo_ginekologiya" title="акушерство и гинекология" url="/knigi-nauka-obrazovanie/medicina/akusherstvo_ginekologiya/"/>
+			<subgenres arts_count="4" id="6717" s_token="onkologoya" title="онкология" url="/knigi-nauka-obrazovanie/medicina/onkologoya/"/>
+			<subgenres arts_count="1" id="5713" s_token="gigiyena" title="гигиена" url="/knigi-nauka-obrazovanie/medicina/gigiyena/"/>
+			<subgenres arts_count="1" id="6729" s_token="travmatologia" title="травматология" url="/knigi-nauka-obrazovanie/medicina/travmatologia/"/>
+			<subgenres arts_count="3" id="6657" s_token="kardiologiya" title="кардиология" url="/knigi-nauka-obrazovanie/medicina/kardiologiya/"/>
+			<subgenres arts_count="1" id="5704" s_token="obshchaya_patologiya" title="общая патология" url="/knigi-nauka-obrazovanie/medicina/obshchaya-patologiya/"/>
+			<subgenres arts_count="1" id="6748" s_token="endokrinologiya" title="эндокринология" url="/knigi-nauka-obrazovanie/medicina/endokrinologiya/"/>
+			<subgenres arts_count="2" id="6626" s_token="oftalmologiya" title="офтальмология" url="/knigi-nauka-obrazovanie/medicina/oftalmologiya/"/>
+			<subgenres arts_count="240" id="6434" s_token="sci_medicine" title="медицина" url="/knigi-nauka-obrazovanie/medicina/sci_medicine/"/>
+			<subgenres arts_count="240" id="5711" s_token="medicina_klinicheskaya" title="клиническая медицина" url="/knigi-nauka-obrazovanie/medicina/klinicheskaya/"/>
+			<subgenres arts_count="42" id="6715" s_token="pediatriya_neonatologiya" title="педиатрия и неонатология" url="/knigi-nauka-obrazovanie/medicina/pediatriya_neonatologiya/"/>
+			<subgenres arts_count="196" id="5627" s_token="psikhiatriya" title="психиатрия" url="/knigi-psihologiya/psihoterapiya/psikhiatriya/"/>
+			<subgenres arts_count="55" id="6622" s_token="nevrologiya" title="неврология" url="/knigi-nauka-obrazovanie/medicina/nevrologiya/"/></subgenres>
+		<subgenres arts_count="256" id="5322" s_token="tekhnicheskiye_nauki" title="технические науки" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/">
+			<subgenres arts_count="14" id="6645" s_token="informatika_vychislit_tekhnika" title="информатика и вычислительная техника" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/informatika_vychislit_tekhnika/"/>
+			<subgenres arts_count="9" id="5678" s_token="radioelektronika" title="радиоэлектроника" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/radioelektronika/">
+				<subgenres arts_count="3" id="5762" s_token="radiotekhnika" title="радиотехника" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/radioelektronika/radiotekhnika/"/>
+				<subgenres arts_count="5" id="5763" s_token="elektronika" title="электроника" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/radioelektronika/elektronika/"/>
+				<subgenres arts_count="1" id="5767" s_token="kibernetika" title="кибернетика" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/radioelektronika/kibernetika/"/>
+				<subgenres arts_count="1" id="5770" s_token="avtomatika_telemekhanika" title="автоматика и телемеханика" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/radioelektronika/avtomatika-telemekhanika/"/></subgenres>
+			<subgenres arts_count="7" id="5685" s_token="stroitelstvo" title="строительство" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/stroitelstvo/">
+				<subgenres arts_count="2" id="5805" s_token="tekhnologii" title="технология строительного производства" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/stroitelstvo/tekhnologii/"/>
+				<subgenres arts_count="3" id="5801" s_token="stroitelstvo_proyektirovaniye" title="проектирование в строительстве" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/stroitelstvo/proyektirovaniye/"/>
+				<subgenres arts_count="3" id="5800" s_token="stroitelstvo_osnovy" title="основы строительства" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/stroitelstvo/osnovy/"/>
+				<subgenres arts_count="1" id="5803" s_token="arkhitektura" title="архитектурные конструкции" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/stroitelstvo/arkhitektura/"/>
+				<subgenres arts_count="1" id="5802" s_token="stroitelnyye_materialy" title="строительные материалы" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/stroitelstvo/stroitelnyye-materialy/"/>
+				<subgenres arts_count="1" id="5804" s_token="stroitelstvo_konstruktsii" title="строительные конструкции" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/stroitelstvo/konstruktsii/"/></subgenres>
+			<subgenres arts_count="2" id="5681" s_token="mashinostroyeniye" title="машиностроение" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/mashinostroyeniye/"/>
+			<subgenres arts_count="2" id="5674" s_token="ekspluatatsiya_promyshlennogo_oborudovaniya" title="эксплуатация промышленного оборудования" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/ekspluatatsiya-promyshlennogo-oborudovaniya/"/>
+			<subgenres arts_count="1" id="5684" s_token="pishchevaya_promyshlennost" title="пищевая промышленность" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/pishchevaya-promyshlennost/">
+				<subgenres arts_count="1" id="5713" s_token="gigiyena" title="гигиена" url="/knigi-nauka-obrazovanie/medicina/gigiyena/"/></subgenres>
+			<subgenres arts_count="2" id="5686" s_token="transport" title="транспорт" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/transport/">
+				<subgenres arts_count="1" id="5812" s_token="kosmicheskiy" title="космический транспорт" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/transport/kosmicheskiy/"/>
+				<subgenres arts_count="1" id="5809" s_token="avtotransport" title="автотранспорт" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/transport/avtotransport/"/>
+				<subgenres arts_count="1" id="5811" s_token="vozdushnyy_transport" title="воздушный транспорт" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/transport/vozdushnyy/"/></subgenres>
+			<subgenres arts_count="5" id="5670" s_token="proyektirovaniye" title="проектирование" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/proyektirovaniye/"/>
+			<subgenres arts_count="1" id="5682" s_token="priborostroenie" title="приборостроение" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/priborostroenie/"/>
+			<subgenres arts_count="1" id="5675" s_token="promyshlennost" title="промышленность" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/promyshlennost/"/>
+			<subgenres arts_count="1" id="6435" s_token="tekhnicheskaya_dokumentaciya" title="нормативная документация" url="/knigi-nauka-obrazovanie/tekhnicheskiye-nauki/dokumentaciya/"/>
+			<subgenres arts_count="240" id="5311" s_token="tehnicheskaya_literatura" title="техническая литература" url="/knigi-nauka-obrazovanie/tehnicheskaya-literatura/"/></subgenres>
+		<subgenres arts_count="7" id="6607" s_token="voennoe_delo" title="военное дело" url="/knigi-nauka-obrazovanie/voennoe_delo/"/>
+		<subgenres arts_count="12" id="5319" s_token="zadachniki" title="задачники" url="/knigi-nauka-obrazovanie/zadachniki/"/>
+		<subgenres arts_count="461" id="5008" s_token="shkolnye_uchebniki" title="школьные учебники" url="/shkolnye-uchebniki/">
+			<subgenres arts_count="8" id="5112" s_token="chistopisaniye" title="школьные учебники по чистописанию" url="/shkolnye-uchebniki/chistopisaniye/"/>
+			<subgenres arts_count="32" id="5157" s_token="ege" title="ЕГЭ" url="/shkolnye-uchebniki/ege/">
+				<subgenres arts_count="7" id="5558" s_token="ege_istoriya" title="ЕГЭ по истории" url="/shkolnye-uchebniki/ege/istoriya/"/>
+				<subgenres arts_count="3" id="5562" s_token="ege_inostrannyy_yazyk" title="ЕГЭ по иностранному языку" url="/shkolnye-uchebniki/ege/inostrannyy-yazyk/"/>
+				<subgenres arts_count="3" id="5556" s_token="ege_informatika_ikt" title="ЕГЭ по информатике и ИКТ" url="/shkolnye-uchebniki/ege/informatika-ikt/"/>
+				<subgenres arts_count="2" id="5557" s_token="ege_biologiya" title="ЕГЭ по биологии" url="/shkolnye-uchebniki/ege/biologiya/"/>
+				<subgenres arts_count="8" id="5553" s_token="ege_matematika" title="ЕГЭ по математике" url="/shkolnye-uchebniki/ege/matematika/"/>
+				<subgenres arts_count="1" id="5552" s_token="ege_russkiy_yazyk" title="ЕГЭ по русскому языку" url="/shkolnye-uchebniki/ege/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5561" s_token="ege_obshchestvoznaniye" title="ЕГЭ по обществознанию" url="/shkolnye-uchebniki/ege/obshchestvoznaniye/"/>
+				<subgenres arts_count="4" id="5555" s_token="ege_himiya" title="ЕГЭ по химии" url="/shkolnye-uchebniki/ege/himiya/"/>
+				<subgenres arts_count="3" id="5554" s_token="ege_fizika" title="ЕГЭ по физике" url="/shkolnye-uchebniki/ege/fizika/"/></subgenres>
+			<subgenres arts_count="9" id="5116" s_token="angliyskiy_yazyk" title="школьные учебники по английскому языку" url="/shkolnye-uchebniki/angliyskiy-yazyk/"/>
+			<subgenres arts_count="5" id="5151" s_token="8_klass" title="учебники 8 класс" url="/shkolnye-uchebniki/8-klass/">
+				<subgenres arts_count="1" id="5484" s_token="8_klass_geometriya" title="геометрия 8 класс" url="/shkolnye-uchebniki/8-klass/geometriya/"/>
+				<subgenres arts_count="1" id="5483" s_token="8_klass_algebra" title="алгебра 8 класс" url="/shkolnye-uchebniki/8-klass/algebra/"/>
+				<subgenres arts_count="1" id="5494" s_token="8_klass_tekhnologiya" title="технология 8 класс" url="/shkolnye-uchebniki/8-klass/tekhnologiya/"/>
+				<subgenres arts_count="1" id="5492" s_token="himiya" title="химия 8 класс" url="/shkolnye-uchebniki/8-klass/himiya/"/>
+				<subgenres arts_count="1" id="6673" s_token="8_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 8 класс" url="/shkolnye-uchebniki/8-klass/8_klass_izobrazitelnoye_iskusstvo_izo/"/>
+				<subgenres arts_count="1" id="5491" s_token="8_klass_fizika" title="физика 8 класс" url="/shkolnye-uchebniki/8-klass/fizika/"/></subgenres>
+			<subgenres arts_count="6" id="5146" s_token="5_klass" title="учебники 5 класс" url="/shkolnye-uchebniki/5-klass/">
+				<subgenres arts_count="3" id="5445" s_token="5_klass_matematika" title="математика 5 класс" url="/shkolnye-uchebniki/5-klass/matematika/"/>
+				<subgenres arts_count="2" id="6701" s_token="5_klass_biologiya" title="биология 5 класс" url="/shkolnye-uchebniki/5-klass/5_klass_biologiya/"/>
+				<subgenres arts_count="1" id="5452" s_token="5_klass_inostrannyy_yazyk" title="иностранный язык 5 класс" url="/shkolnye-uchebniki/5-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="1" id="5451" s_token="5_klass_informatika" title="информатика 5 класс" url="/shkolnye-uchebniki/5-klass/informatika/"/></subgenres>
+			<subgenres arts_count="8" id="5119" s_token="matematika" title="школьные учебники по математике" url="/shkolnye-uchebniki/matematika/"/>
+			<subgenres arts_count="14" id="5149" s_token="7_klass" title="учебники 7 класс" url="/shkolnye-uchebniki/7-klass/">
+				<subgenres arts_count="2" id="5469" s_token="7_klass_geometriya" title="геометрия 7 класс" url="/shkolnye-uchebniki/7-klass/geometriya/"/>
+				<subgenres arts_count="2" id="5468" s_token="7_klass_algebra" title="алгебра 7 класс" url="/shkolnye-uchebniki/7-klass/algebra/"/>
+				<subgenres arts_count="2" id="5476" s_token="7_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 7 класс" url="/shkolnye-uchebniki/7-klass/izobrazitelnoye-iskusstvo-izo/"/>
+				<subgenres arts_count="1" id="5473" s_token="7_klass_geografiya" title="география 7 класс" url="/shkolnye-uchebniki/7-klass/geografiya/"/>
+				<subgenres arts_count="1" id="5475" s_token="7_klass_fizika" title="физика 7 класс" url="/shkolnye-uchebniki/7-klass/fizika/"/>
+				<subgenres arts_count="2" id="5472" s_token="7_klass_istoriya" title="история 7 класс" url="/shkolnye-uchebniki/7-klass/istoriya/"/>
+				<subgenres arts_count="3" id="5470" s_token="7_klass_russkiy_yazyk" title="русский язык 7 класс" url="/shkolnye-uchebniki/7-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5478" s_token="7_klass_tekhnologiya" title="технология 7 класс" url="/shkolnye-uchebniki/7-klass/tekhnologiya/"/>
+				<subgenres arts_count="1" id="5474" s_token="7_klass_biologiya" title="биология 7 класс" url="/shkolnye-uchebniki/7-klass/biologiya/"/>
+				<subgenres arts_count="1" id="5481" s_token="7_klass_inostrannyy_yazyk" title="иностранный язык 7 класс" url="/shkolnye-uchebniki/7-klass/inostrannyy-yazyk/"/></subgenres>
+			<subgenres arts_count="1" id="5121" s_token="geometriya" title="школьные учебники по геометрии" url="/shkolnye-uchebniki/geometriya/"/>
+			<subgenres arts_count="9" id="5152" s_token="9_klass" title="учебники 9 класс" url="/shkolnye-uchebniki/9-klass/">
+				<subgenres arts_count="2" id="5500" s_token="9_klass_geometriya" title="геометрия 9 класс" url="/shkolnye-uchebniki/9-klass/geometriya/"/>
+				<subgenres arts_count="1" id="6675" s_token="9_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 9 класс" url="/shkolnye-uchebniki/9-klass/9_klass_izobrazitelnoye_iskusstvo_izo/"/>
+				<subgenres arts_count="2" id="5507" s_token="9_klass_fizika" title="физика 9 класс" url="/shkolnye-uchebniki/9-klass/fizika/"/>
+				<subgenres arts_count="1" id="5513" s_token="9_klass_inostrannyy_yazyk" title="иностранный язык 9 класс" url="/shkolnye-uchebniki/9-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="1" id="5508" s_token="9_klass_himiya" title="химия 9 класс" url="/shkolnye-uchebniki/9-klass/himiya/"/>
+				<subgenres arts_count="2" id="5503" s_token="9_klass_istoriya" title="история 9 класс" url="/shkolnye-uchebniki/9-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5499" s_token="9_klass_algebra" title="алгебра 9 класс" url="/shkolnye-uchebniki/9-klass/algebra/"/>
+				<subgenres arts_count="1" id="5506" s_token="9_klass_biologiya" title="биология 9 класс" url="/shkolnye-uchebniki/9-klass/biologiya/"/></subgenres>
+			<subgenres arts_count="4" id="5122" s_token="informatika" title="школьные учебники по информатике" url="/shkolnye-uchebniki/informatika/"/>
+			<subgenres arts_count="9" id="5148" s_token="6_klass" title="учебники 6 класс" url="/shkolnye-uchebniki/6-klass/">
+				<subgenres arts_count="3" id="5460" s_token="6_klass_matematika" title="математика 6 класс" url="/shkolnye-uchebniki/6-klass/matematika/"/>
+				<subgenres arts_count="3" id="5457" s_token="6_klass_istoriya" title="история 6 класс" url="/shkolnye-uchebniki/6-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5456" s_token="6_klass_literatura" title="литература 6 класс" url="/shkolnye-uchebniki/6-klass/literatura/"/>
+				<subgenres arts_count="2" id="5459" s_token="6_klass_biologiya" title="биология 6 класс" url="/shkolnye-uchebniki/6-klass/biologiya/"/>
+				<subgenres arts_count="1" id="5461" s_token="6_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 6 класс" url="/shkolnye-uchebniki/6-klass/izobrazitelnoye-iskusstvo-izo/"/></subgenres>
+			<subgenres arts_count="8" id="5123" s_token="istoriya" title="школьные учебники по истории" url="/shkolnye-uchebniki/istoriya/"/>
+			<subgenres arts_count="9" id="5315" s_token="rabochiye_tetradi" title="рабочие тетради" url="/knigi-nauka-obrazovanie/rabochiye-tetradi/"/>
+			<subgenres arts_count="19" id="5144" s_token="3_klass" title="учебники 3 класс" url="/shkolnye-uchebniki/3-klass/">
+				<subgenres arts_count="4" id="5423" s_token="3_klass_matematika" title="математика 3 класс" url="/shkolnye-uchebniki/3-klass/matematika/"/>
+				<subgenres arts_count="3" id="5422" s_token="3_klass_literaturnoye_chteniye" title="чтение 3 класс" url="/shkolnye-uchebniki/3-klass/literaturnoye-chteniye/"/>
+				<subgenres arts_count="4" id="5430" s_token="3_klass_inostrannyy_yazyk" title="иностранный язык 3 класс" url="/shkolnye-uchebniki/3-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="3" id="5421" s_token="3_klass_russkiy_yazyk" title="русский язык 3 класс" url="/shkolnye-uchebniki/3-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5426" s_token="3_klass_muzyka" title="музыка 3 класс" url="/shkolnye-uchebniki/3-klass/muzyka/"/>
+				<subgenres arts_count="1" id="5428" s_token="3_klass_fizkultura" title="физкультура 3 класс" url="/shkolnye-uchebniki/3-klass/fizkultura/"/>
+				<subgenres arts_count="1" id="5427" s_token="3_klass_tekhnologiya" title="технология 3 класс" url="/shkolnye-uchebniki/3-klass/tekhnologiya/"/>
+				<subgenres arts_count="2" id="5424" s_token="3_klass_okruzhayushchiy_mir" title="окружающий мир 3 класс" url="/shkolnye-uchebniki/3-klass/okruzhayushchiy-mir/"/></subgenres>
+			<subgenres arts_count="18" id="5143" s_token="2_klass" title="учебники 2 класс" url="/shkolnye-uchebniki/2-klass/">
+				<subgenres arts_count="7" id="5413" s_token="2_klass_matematika" title="математика 2 класс" url="/shkolnye-uchebniki/2-klass/matematika/"/>
+				<subgenres arts_count="2" id="5417" s_token="2_klass_tekhnologiya" title="технология 2 класс" url="/shkolnye-uchebniki/2-klass/tekhnologiya/"/>
+				<subgenres arts_count="2" id="5420" s_token="2_klass_inostrannyy_yazyk" title="иностранный язык 2 класс" url="/shkolnye-uchebniki/2-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="4" id="5411" s_token="2_klass_russkiy_yazyk" title="русский язык 2 класс" url="/shkolnye-uchebniki/2-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5416" s_token="2_klass_muzyka" title="музыка 2 класс" url="/shkolnye-uchebniki/2-klass/muzyka/"/>
+				<subgenres arts_count="2" id="5412" s_token="2_klass_literaturnoye_chteniye" title="чтение 2 класс" url="/shkolnye-uchebniki/2-klass/literaturnoye-chteniye/"/>
+				<subgenres arts_count="1" id="5414" s_token="2_klass_okruzhayushchiy_mir" title="окружающий мир 2 класс" url="/shkolnye-uchebniki/2-klass/okruzhayushchiy-mir/"/>
+				<subgenres arts_count="1" id="5418" s_token="2_klass_fizkultura" title="физкультура 2 класс" url="/shkolnye-uchebniki/2-klass/fizkultura/"/>
+				<subgenres arts_count="1" id="5415" s_token="2_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 2 класс" url="/shkolnye-uchebniki/2-klass/izobrazitelnoye-iskusstvo-izo/"/></subgenres>
+			<subgenres arts_count="17" id="5145" s_token="4_klass" title="учебники 4 класс" url="/shkolnye-uchebniki/4-klass/">
+				<subgenres arts_count="6" id="5431" s_token="4_klass_russkiy_yazyk" title="русский язык 4 класс" url="/shkolnye-uchebniki/4-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="4" id="5440" s_token="4_klass_inostrannyy_yazyk" title="иностранный язык 4 класс" url="/shkolnye-uchebniki/4-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="3" id="5433" s_token="4_klass_matematika" title="математика 4 класс" url="/shkolnye-uchebniki/4-klass/matematika/"/>
+				<subgenres arts_count="1" id="5438" s_token="4_klass_fizkultura" title="физкультура 4 класс" url="/shkolnye-uchebniki/4-klass/fizkultura/"/>
+				<subgenres arts_count="2" id="5437" s_token="4_klass_tekhnologiya" title="технология 4 класс" url="/shkolnye-uchebniki/4-klass/tekhnologiya/"/>
+				<subgenres arts_count="3" id="5435" s_token="4_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 4 класс" url="/shkolnye-uchebniki/4-klass/izobrazitelnoye-iskusstvo-izo/"/></subgenres>
+			<subgenres arts_count="7" id="5133" s_token="izobrazitelnoye_iskusstvo_izo" title="школьные учебники по изобразительному искусству (ИЗО)" url="/shkolnye-uchebniki/izobrazitelnoye-iskusstvo-izo/"/>
+			<subgenres arts_count="2" id="5129" s_token="fizika" title="школьные учебники по физике" url="/shkolnye-uchebniki/fizika/"/>
+			<subgenres arts_count="2" id="5120" s_token="algebra" title="школьные учебники по алгебре" url="/shkolnye-uchebniki/algebra/"/>
+			<subgenres arts_count="8" id="5156" s_token="11_klass" title="учебники 11 класс" url="/shkolnye-uchebniki/11-klass/">
+				<subgenres arts_count="4" id="5545" s_token="11_klass_himiya" title="химия 11 класс" url="/shkolnye-uchebniki/11-klass/himiya/"/>
+				<subgenres arts_count="1" id="5537" s_token="11_klass_russkiy_yazyk" title="русский язык 11 класс" url="/shkolnye-uchebniki/11-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5542" s_token="11_klass_pravo" title="право 11 класс" url="/shkolnye-uchebniki/11-klass/pravo/"/>
+				<subgenres arts_count="1" id="5536" s_token="11_klass_geometriya" title="геометрия 11 класс" url="/shkolnye-uchebniki/11-klass/geometriya/"/>
+				<subgenres arts_count="1" id="5539" s_token="11_klass_istoriya" title="история 11 класс" url="/shkolnye-uchebniki/11-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5535" s_token="11_klass_algebra" title="алгебра 11 класс" url="/shkolnye-uchebniki/11-klass/algebra/"/></subgenres>
+			<subgenres arts_count="2" id="5138" s_token="tekhnologiya" title="школьные учебники по технологии" url="/shkolnye-uchebniki/tekhnologiya/"/>
+			<subgenres arts_count="7" id="5131" s_token="khimiya" title="школьные учебники по химии" url="/shkolnye-uchebniki/khimiya/"/>
+			<subgenres arts_count="8" id="5154" s_token="10_klass" title="учебники 10 класс" url="/shkolnye-uchebniki/10-klass/">
+				<subgenres arts_count="4" id="5527" s_token="10_klass_himiya" title="химия 10 класс" url="/shkolnye-uchebniki/10-klass/himiya/"/>
+				<subgenres arts_count="2" id="5520" s_token="10_klass_istoriya" title="история 10 класс" url="/shkolnye-uchebniki/10-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5518" s_token="10_klass_russkiy_yazyk" title="русский язык 10 класс" url="/shkolnye-uchebniki/10-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5524" s_token="pravo" title="право 10 класс" url="/shkolnye-uchebniki/10-klass/pravo/"/>
+				<subgenres arts_count="1" id="5526" s_token="10_klass_fizika" title="физика 10 класс" url="/shkolnye-uchebniki/10-klass/fizika/"/></subgenres>
+			<subgenres arts_count="4" id="5130" s_token="biologiya" title="школьные учебники по биологии" url="/shkolnye-uchebniki/biologiya/"/>
+			<subgenres arts_count="1" id="5126" s_token="geografiya" title="школьные учебники по географии" url="/shkolnye-uchebniki/geografiya/"/>
+			<subgenres arts_count="1" id="5117" s_token="frantsuzskiy_yazyk" title="школьные учебники по французскому языку" url="/shkolnye-uchebniki/frantsuzskiy-yazyk/"/>
+			<subgenres arts_count="11" id="5114" s_token="russkiy_yazyk" title="школьные учебники по русскому языку" url="/shkolnye-uchebniki/russkiy-yazyk/"/>
+			<subgenres arts_count="6" id="5128" s_token="okruzhayushchiy_mir" title="школьные учебники по окружающему миру" url="/shkolnye-uchebniki/okruzhayushchiy-mir/"/>
+			<subgenres arts_count="1" id="5115" s_token="literatura" title="школьные учебники по литературе" url="/shkolnye-uchebniki/literatura/"/>
+			<subgenres arts_count="29" id="5142" s_token="1_klass" title="учебники 1 класс" url="/shkolnye-uchebniki/1-klass/">
+				<subgenres arts_count="8" id="5401" s_token="1_klass_russkiy_yazyk" title="русский язык 1 класс" url="/shkolnye-uchebniki/1-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="6" id="5403" s_token="1_klass_matematika" title="математика 1 класс" url="/shkolnye-uchebniki/1-klass/matematika/"/>
+				<subgenres arts_count="5" id="5406" s_token="1_klass_muzyka" title="музыка 1 класс" url="/shkolnye-uchebniki/1-klass/muzyka/"/>
+				<subgenres arts_count="1" id="5400" s_token="1_klass_chistopisaniye" title="чистописание 1 класс" url="/shkolnye-uchebniki/1-klass/chistopisaniye/"/>
+				<subgenres arts_count="4" id="5404" s_token="1_klass_okruzhayushchiy_mir" title="окружающий мир 1 класс" url="/shkolnye-uchebniki/1-klass/okruzhayushchiy-mir/"/>
+				<subgenres arts_count="3" id="5407" s_token="1_klass_tekhnologiya" title="технология 1 класс" url="/shkolnye-uchebniki/1-klass/tekhnologiya/"/>
+				<subgenres arts_count="2" id="5408" s_token="1_klass_fizkultura" title="физкультура 1 класс" url="/shkolnye-uchebniki/1-klass/fizkultura/"/></subgenres>
+			<subgenres arts_count="11" id="5158" s_token="gia_oge_gve" title="ГИА (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/">
+				<subgenres arts_count="1" id="5570" s_token="gia_oge_gve_obshchestvoznaniye" title="ГИА по обществознанию (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/obshchestvoznaniye/"/>
+				<subgenres arts_count="2" id="5569" s_token="gia_oge_gve_istoriya" title="ГИА по истории (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/istoriya/"/>
+				<subgenres arts_count="1" id="6796" s_token="gia_oge_gve_matematika" title="ГИА по математике (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/matematika/"/>
+				<subgenres arts_count="6" id="5563" s_token="gia_oge_gve_russkiy_yazyk" title="ГИА по русскому языку (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/russkiy-yazyk/"/>
+				<subgenres arts_count="2" id="5565" s_token="gia_oge_gve_fizika" title="ГИА по физике (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/fizika/"/>
+				<subgenres arts_count="1" id="5566" s_token="gia_oge_gve_himiya" title="ГИА по химии (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/himiya/"/></subgenres>
+			<subgenres arts_count="2" id="5160" s_token="uchebnyye_programmy" title="учебные программы" url="/knigi-nauka-obrazovanie/uchebnyye-programmy/"/>
+			<subgenres arts_count="1" id="6694" s_token="estestvoznanie" title="школьные учебники по естествознанию" url="/shkolnye-uchebniki/estestvoznanie/"/>
+			<subgenres arts_count="5" id="5140" s_token="fizkultura" title="школьные учебники по физической культуре" url="/shkolnye-uchebniki/fizkultura/"/>
+			<subgenres arts_count="1" id="5113" s_token="chteniye" title="школьные учебники по чтению" url="/shkolnye-uchebniki/chteniye/"/>
+			<subgenres arts_count="3" id="5137" s_token="muzyka" title="школьные учебники по музыке" url="/shkolnye-uchebniki/muzyka/"/>
+			<subgenres arts_count="211" id="5161" s_token="metodicheskiye_posobiya" title="школьные методические пособия" url="/shkolnye-uchebniki/metodicheskiye-posobiya/"/></subgenres>
+		<subgenres arts_count="3" id="5324" s_token="selskoye_lesnoye_khozyaystvo" title="сельское и лесное хозяйство" url="/knigi-nauka-obrazovanie/selskoye-lesnoye-khozyaystvo/">
+			<subgenres arts_count="2" id="5697" s_token="rasteniyevodstvo" title="растениеводство" url="/knigi-nauka-obrazovanie/selskoye-lesnoye-khozyaystvo/rasteniyevodstvo/"/>
+			<subgenres arts_count="1" id="5700" s_token="agrokhimiya" title="агрохимия" url="/knigi-nauka-obrazovanie/selskoye-lesnoye-khozyaystvo/agrokhimiya/"/>
+			<subgenres arts_count="1" id="5699" s_token="zhivotnovodstvo" title="животноводство" url="/knigi-nauka-obrazovanie/selskoye-lesnoye-khozyaystvo/zhivotnovodstvo/"/></subgenres>
+		<subgenres arts_count="1" id="5320" s_token="nauchnyye_trudy" title="научные труды" url="/knigi-nauka-obrazovanie/nauchnyye-trudy/">
+			<subgenres arts_count="1" id="5660" s_token="tezisy_dokladov" title="тезисы докладов" url="/knigi-nauka-obrazovanie/nauchnyye-trudy/tezisy-dokladov/"/></subgenres>
+		<subgenres arts_count="240" id="6351" s_token="prochaya_obrazovatelnaya_literatura" title="прочая образовательная литература" url="/knigi-nauka-obrazovanie/prochaya_obrazovatelnaya_literatura/"/>
+		<subgenres arts_count="240" id="5314" s_token="uchebno-metodicheskie_posobiya" title="методички (учебно-методические пособия)" url="/knigi-nauka-obrazovanie/uchebno-metodicheskie_posobiya/"/>
+		<subgenres arts_count="240" id="5031" s_token="nauchno_populyarnaya_literatura" title="научно-популярная литература" url="/knigi-nauka-obrazovanie/nauchno-populyarnaya-literatura/"/>
+		<subgenres arts_count="46" id="6845" s_token="praktikumy" title="практикумы" url="/knigi-nauka-obrazovanie/praktikumy/"/>
+		<subgenres arts_count="240" id="5312" s_token="uchebniki_dlya_vuzov" title="учебники и пособия для вузов" url="/knigi-nauka-obrazovanie/uchebniki-dlya-vuzov/"/>
+		<subgenres arts_count="240" id="5318" s_token="monografii" title="монографии" url="/knigi-nauka-obrazovanie/monografii/"/>
+		<subgenres arts_count="240" id="5217" s_token="zarubezhnaya_obrazovatelnaya_literatura" title="зарубежная образовательная литература" url="/knigi-nauka-obrazovanie/zarubezhnaya-literatura/"/>
+	</genre>
+	<genre arts_count="240" id="5021" s_token="knigi_psihologiya" title="книги по психологии" url="/knigi-psihologiya/">
+		<subgenres arts_count="372" id="5256" s_token="prakticheskaya" title="практическая психология" url="/knigi-psihologiya/prakticheskaya/">
+			<subgenres arts_count="5" id="5638" s_token="nlp" title="НЛП" url="/knigi-psihologiya/prakticheskaya/nlp/"/>
+			<subgenres arts_count="7" id="5623" s_token="psikhoanaliz" title="психоанализ" url="/knigi-psihologiya/psihoterapiya/psikhoanaliz/"/>
+			<subgenres arts_count="1" id="5625" s_token="tranzaktsionnyy_analiz" title="транзакционный анализ" url="/knigi-psihologiya/psihoterapiya/tranzaktsionnyy-analiz/"/>
+			<subgenres arts_count="108" id="5641" s_token="treningi" title="психологические тренинги" url="/knigi-psihologiya/prakticheskaya/treningi/"/>
+			<subgenres arts_count="10" id="6838" s_token="psihoterapiya" title="психотерапия" url="/knigi-psihologiya/prakticheskaya/psihoterapiya/"/>
+			<subgenres arts_count="240" id="6544" s_token="konsultatsii_psihoterapiya" title="психологическая консультация" url="/knigi-psihologiya/prakticheskaya/konsultatsii_psihoterapiya/"/>
+			<subgenres arts_count="43" id="5626" s_token="klinicheskaya" title="клиническая психология" url="/knigi-psihologiya/psihoterapiya/klinicheskaya/"/></subgenres>
+		<subgenres arts_count="126" id="5255" s_token="prikladnaya" title="прикладная психология" url="/knigi-psihologiya/prikladnaya/">
+			<subgenres arts_count="1" id="5629" s_token="testy" title="психологические тесты" url="/knigi-psihologiya/prikladnaya/testy/"/>
+			<subgenres arts_count="36" id="5631" s_token="uchebniki" title="учебники по психологии" url="/knigi-psihologiya/prikladnaya/uchebniki/"/>
+			<subgenres arts_count="37" id="5628" s_token="neyropsikhologiya" title="нейропсихология" url="/knigi-psihologiya/prikladnaya/neyropsikhologiya/"/>
+			<subgenres arts_count="67" id="5630" s_token="populyarno" title="о психологии популярно" url="/knigi-psihologiya/prikladnaya/populyarno/"/></subgenres>
+		<subgenres arts_count="2" id="5621" s_token="sotsionika" title="соционика" url="/knigi-psihologiya/socialnaya/sotsionika/"/>
+		<subgenres arts_count="15" id="5881" s_token="razvitiye_psikhiki" title="развитие психики" url="/knigi-psihologiya/razvitiye-psikhiki/"/>
+		<subgenres arts_count="56" id="5883" s_token="otraslevaya" title="отраслевая психология" url="/knigi-psihologiya/otraslevaya/"/>
+		<subgenres arts_count="240" id="5253" s_token="samorazvitiye_lichnostny_rost" title="саморазвитие, личностный рост" url="/knigi-psihologiya/samorazvitiye-lichnostnyy-rost/"/>
+		<subgenres arts_count="240" id="5249" s_token="obschaya_psihologiya" title="общая психология" url="/knigi-psihologiya/obschaya-psihologiya/"/>
+		<subgenres arts_count="18" id="6506" s_token="osnovy_psihologii" title="основы психологии" url="/knigi-psihologiya/osnovy_psihologii/"/>
+		<subgenres arts_count="40" id="5620" s_token="psikhologiya_upravleniya" title="психология управления" url="/knigi-psihologiya/psikhologiya-upravleniya/"/>
+		<subgenres arts_count="240" id="5251" s_token="klassiki" title="классики психологии" url="/knigi-psihologiya/klassiki/"/>
+		<subgenres arts_count="240" id="5220" s_token="knigi_psihologiya_zarubezhnaya" title="зарубежная психология" url="/knigi-psihologiya/zarubezhnaya/"/>
+		<subgenres arts_count="68" id="5885" s_token="sostoyanie_psihiki" title="состояния и явления психики" url="/knigi-psihologiya/sostoyanie-psihiki/"/>
+		<subgenres arts_count="240" id="5624" s_token="semya_brak_seksologiya" title="семья, брак, сексология" url="/knigi-psihologiya/psihoterapiya/semya-brak-seksologiya/"/>
+		<subgenres arts_count="42" id="5257" s_token="vozrastnaya_psihologiya" title="возрастная психология" url="/knigi-psihologiya/vozrastnaya-psihologiya/"/>
+		<subgenres arts_count="240" id="5254" s_token="detskaya" title="детская психология" url="/knigi-psihologiya/detskaya/"/>
+		<subgenres arts_count="240" id="5250" s_token="knigi_psihologiya_socialnaya" title="социальная психология" url="/knigi-psihologiya/socialnaya/"/>
+	</genre>
+	<genre arts_count="240" id="5018" s_token="knigi_fentezi" title="фэнтези" url="/knigi-fentezi/">
+		<subgenres arts_count="4" id="6803" s_token="eroticheskoe_fantasy" title="эротическое фэнтези" url="/erotika-seks/eroticheskoe_fantasy/"/>
+		<subgenres arts_count="240" id="5232" s_token="boevoe_fentezi" title="боевое фэнтези" url="/knigi-fentezi/boevoe/"/>
+		<subgenres arts_count="240" id="5229" s_token="russkoe" title="русское фэнтези" url="/knigi-fentezi/russkoe/"/>
+		<subgenres arts_count="240" id="5226" s_token="volshebniki" title="книги про волшебников" url="/knigi-fentezi/volshebniki/"/>
+		<subgenres arts_count="240" id="5218" s_token="knigi_fentezi_zarubezhnye" title="зарубежное фэнтези" url="/knigi-fentezi/zarubezhnye/"/>
+		<subgenres arts_count="240" id="6791" s_token="geroicheskoe_fentezi" title="героическое фэнтези" url="/knigi-fentezi/geroicheskoe_fentezi/"/>
+		<subgenres arts_count="240" id="5231" s_token="lubov" title="любовное фэнтези" url="/knigi-fentezi/lubov/"/>
+		<subgenres arts_count="240" id="5228" s_token="umoristicheskoe" title="юмористическое фэнтези" url="/knigi-fentezi/umoristicheskoe/"/>
+		<subgenres arts_count="240" id="5225" s_token="gorodskoe" title="городское фэнтези" url="/knigi-fentezi/gorodskoe/"/>
+		<subgenres arts_count="240" id="5082" s_token="popadancy" title="попаданцы" url="/knigi-fantastika/popadancy/"/>
+		<subgenres arts_count="106" id="6337" s_token="detective_fentezi" title="детективное фэнтези" url="/knigi-fentezi/detective_fentezi/"/>
+		<subgenres arts_count="218" id="5230" s_token="drakony" title="фэнтези про драконов" url="/knigi-fentezi/drakony/"/>
+		<subgenres arts_count="240" id="5227" s_token="istoricheskoe" title="историческое фэнтези" url="/knigi-fentezi/istoricheskoe/"/>
+		<subgenres arts_count="240" id="5224" s_token="vampiry" title="книги про вампиров" url="/knigi-fentezi/vampiry/"/>
+	</genre>
+	<genre arts_count="240" id="5015" s_token="knigi_sovremennaya_proza" title="современная проза" url="/knigi-sovremennaya-proza/">
+		<subgenres arts_count="240" id="5211" s_token="knigi_sovremennaya_proza_zarubezhnaya" title="современная зарубежная литература" url="/knigi-sovremennaya-proza/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5208" s_token="kontrkultura" title="контркультура" url="/knigi-sovremennaya-proza/kontrkultura/"/>
+		<subgenres arts_count="240" id="5210" s_token="russkaya_literatura" title="современная русская литература" url="/knigi-sovremennaya-proza/russkaya-literatura/"/>
+		<subgenres arts_count="240" id="5205" s_token="knigi_o_voyne" title="книги о войне" url="/knigi-sovremennaya-proza/knigi_o_voyne/"/>
+		<subgenres arts_count="240" id="5209" s_token="istoricheskaya_literatura" title="историческая литература" url="/knigi-sovremennaya-proza/istoricheskaya-literatura/"/>
+	</genre>
+	<genre arts_count="240" id="5006" s_token="knigi_priklucheniya" title="приключения" url="/knigi-priklucheniya/">
+		<subgenres arts_count="240" id="5096" s_token="zarubezhnye" title="зарубежные приключения" url="/knigi-priklucheniya/zarubezhnye/"/>
+		<subgenres arts_count="158" id="5093" s_token="vesterny" title="вестерны" url="/knigi-priklucheniya/vesterny/"/>
+		<subgenres arts_count="240" id="5095" s_token="istoricheskie" title="исторические приключения" url="/knigi-priklucheniya/istoricheskie/"/>
+		<subgenres arts_count="240" id="5092" s_token="morskie" title="морские приключения" url="/knigi-priklucheniya/morskie/"/>
+		<subgenres arts_count="240" id="6454" s_token="priklucheniya_knigi" title="книги о приключениях" url="/knigi-priklucheniya/priklucheniya_knigi/"/>
+		<subgenres arts_count="240" id="5094" s_token="puteshestviyah" title="книги о путешествиях" url="/knigi-priklucheniya/puteshestviyah/"/>
+	</genre>
+	<genre arts_count="240" id="5026" s_token="knigi_krasota_zdorove" title="красота и здоровье" url="/knigi-krasota-zdorove/">
+		<subgenres arts_count="16" id="6866" s_token="pravilnoe_pitanie" title="здоровое и правильное питание" url="/knigi-krasota-zdorove/pravilnoe_pitanie/"/>
+		<subgenres arts_count="4" id="6580" s_token="kosmetika_kosmetologiya" title="косметика и косметология" url="/knigi-krasota-zdorove/kosmetika_kosmetologiya/"/>
+		<subgenres arts_count="5" id="6859" s_token="alternativnaya_medicina" title="альтернативная медицина" url="/knigi-krasota-zdorove/alternativnaya_medicina/"/>
+		<subgenres arts_count="119" id="5290" s_token="pokhudeniye_diyety" title="похудение и диеты" url="/knigi-krasota-zdorove/pokhudeniye-diyety/"/>
+		<subgenres arts_count="240" id="6449" s_token="home_health" title="здоровье" url="/knigi-krasota-zdorove/home_health/"/>
+		<subgenres arts_count="240" id="5278" s_token="sport_fitnes" title="спорт, фитнес" url="/knigi-krasota-zdorove/sport-fitnes/"/>
+		<subgenres arts_count="218" id="6439" s_token="narodnaya_medicina" title="народная и нетрадиционная медицина" url="/knigi-krasota-zdorove/narodnaya-medicina/"/>
+	</genre>
+	<genre arts_count="3283" id="5025" s_token="knigi_dom_semya" title="дом, семья, хобби и досуг" url="/knigi-dom-semya/">
+		<subgenres arts_count="30" id="5285" s_token="moda_stil" title="мода и стиль" url="/knigi-dom-semya/moda-stil/"/>
+		<subgenres arts_count="7" id="5237" s_token="fotografiya" title="искусство фотографии" url="/knigi-iskusstvo/fotografiya/"/>
+		<subgenres arts_count="3" id="5289" s_token="otdykh_turizm" title="отдых, туризм" url="/knigi-dom-semya/otdykh-turizm/"/>
+		<subgenres arts_count="8" id="5288" s_token="interyery" title="интерьеры" url="/knigi-dom-semya/interyery/"/>
+		<subgenres arts_count="240" id="5284" s_token="vospitanie_detey" title="воспитание детей" url="/knigi-dom-semya/vospitanie-detey/"/>
+		<subgenres arts_count="240" id="5281" s_token="razvlecheniya" title="развлечения" url="/knigi-dom-semya/razvlecheniya/"/>
+		<subgenres arts_count="240" id="5278" s_token="sport_fitnes" title="спорт, фитнес" url="/knigi-krasota-zdorove/sport-fitnes/"/>
+		<subgenres arts_count="240" id="5275" s_token="kulinariya" title="кулинария" url="/knigi-dom-semya/kulinariya/"/>
+		<subgenres arts_count="240" id="5236" s_token="izobrazitelnoe_iskusstvo" title="изобразительное искусство" url="/knigi-iskusstvo/izobrazitelnoe-iskusstvo/"/>
+		<subgenres arts_count="240" id="6484" s_token="zarubezhnaya_prikladnaya_literatura" title="зарубежная прикладная литература" url="/zarubezhnaya-literatura/zarubezhnaya_prikladnaya_literatura/"/>
+		<subgenres arts_count="240" id="5287" s_token="hobbi_uvlecheniya" title="хобби, увлечения" url="/knigi-dom-semya/hobbi_uvlecheniya/"/>
+		<subgenres arts_count="240" id="5283" s_token="avtomobili_pdd_koap_shtrafy" title="автомобили и ПДД" url="/knigi-dom-semya/pdd-koap-shtrafy/"/>
+		<subgenres arts_count="240" id="5280" s_token="rukodeliye_remesla" title="рукоделие, ремесла" url="/knigi-dom-semya/rukodeliye-remesla/"/>
+		<subgenres arts_count="240" id="5277" s_token="samosovershenstvovanie" title="самосовершенствование" url="/knigi-dom-semya/samosovershenstvovanie/"/>
+		<subgenres arts_count="240" id="5274" s_token="flora_fauna" title="природа и животные" url="/knigi-dom-semya/priroda_i_zhivotnye/"/>
+		<subgenres arts_count="240" id="5216" s_token="prikladnaya_literatura" title="прикладная литература" url="/knigi-dom-semya/prikladnaya-literatura/"/>
+		<subgenres arts_count="240" id="5282" s_token="sad_ogorod" title="сад и огород" url="/knigi-dom-semya/sad-ogorod/"/>
+		<subgenres arts_count="240" id="5279" s_token="domashnie_zhivotnye" title="домашние животные" url="/knigi-dom-semya/domashnie-zhivotnye/"/>
+		<subgenres arts_count="240" id="5276" s_token="sdelay_sam" title="сделай сам" url="/knigi-dom-semya/sdelay-sam/"/>
+	</genre>
+	<genre arts_count="240" id="5005" s_token="knigi_lubovnye_romany" title="любовные романы" url="/knigi-lubovnye-romany/">
+		<subgenres arts_count="240" id="5089" s_token="eroticheskie_romany" title="эротические романы" url="/knigi-lubovnye-romany/eroticheskie_romany/"/>
+		<subgenres arts_count="240" id="5086" s_token="ostrosyuzhetnyye" title="остросюжетные любовные романы" url="/knigi-lubovnye-romany/ostrosyuzhetnyye/"/>
+		<subgenres arts_count="240" id="5091" s_token="zarubezhnyye" title="зарубежные любовные романы" url="/knigi-lubovnye-romany/zarubezhnyye/"/>
+		<subgenres arts_count="240" id="5088" s_token="korotkiye" title="короткие любовные романы" url="/knigi-lubovnye-romany/korotkiye/"/>
+		<subgenres arts_count="240" id="5085" s_token="sovremennyye" title="современные любовные романы" url="/knigi-lubovnye-romany/sovremennyye/"/>
+		<subgenres arts_count="240" id="5090" s_token="lyubovno_fantasticheskiye" title="любовно-фантастические романы" url="/knigi-lubovnye-romany/lyubovno-fantasticheskiye/"/>
+		<subgenres arts_count="240" id="5087" s_token="istoricheskiye" title="исторические любовные романы" url="/knigi-lubovnye-romany/istoricheskiye/"/>
+	</genre>
+	<genre arts_count="240" id="5014" s_token="knigi_boeviki_ostrosugetnaya" title="боевики, остросюжетная литература" url="/knigi-boeviki-ostrosugetnaya/">
+		<subgenres arts_count="20" id="5206" s_token="knigi_boeviki_zarubezhnye" title="зарубежные боевики" url="/knigi-boeviki/zarubezhnye/"/>
+		<subgenres arts_count="158" id="5093" s_token="vesterny" title="вестерны" url="/knigi-priklucheniya/vesterny/"/>
+		<subgenres arts_count="240" id="5204" s_token="trillery" title="триллеры" url="/knigi-boeviki-ostrosugetnaya/trillery/"/>
+		<subgenres arts_count="240" id="5074" s_token="boevaya_fantastika" title="боевая фантастика" url="/knigi-boeviki/boevaya-fantastika/"/>
+		<subgenres arts_count="240" id="5207" s_token="boeviki" title="боевики" url="/knigi-boeviki-ostrosugetnaya/boeviki/"/>
+		<subgenres arts_count="240" id="5203" s_token="kriminalnye_boeviki" title="криминальные боевики" url="/knigi-boeviki/kriminalnye-boeviki/"/>
+	</genre>
+	<genre arts_count="2597" id="5004" s_token="knigi_fantastika" title="фантастика" url="/knigi-fantastika/">
+		<subgenres arts_count="6" id="5084" s_token="stimpank" title="стимпанк" url="/knigi-fantastika/stimpank/"/>
+		<subgenres arts_count="240" id="5082" s_token="popadancy" title="попаданцы" url="/knigi-fantastika/popadancy/"/>
+		<subgenres arts_count="240" id="5078" s_token="socialnaya" title="социальная фантастика" url="/knigi-fantastika/socialnaya/"/>
+		<subgenres arts_count="240" id="5075" s_token="geroicheskaya" title="героическая фантастика" url="/knigi-fantastika/geroicheskaya/"/>
+		<subgenres arts_count="240" id="5072" s_token="kiberpank" title="киберпанк" url="/knigi-fantastika/kiberpank/"/>
+		<subgenres arts_count="240" id="5090" s_token="lyubovno_fantasticheskiye" title="любовно-фантастические романы" url="/knigi-lubovnye-romany/lyubovno-fantasticheskiye/"/>
+		<subgenres arts_count="240" id="5080" s_token="zarubezhnaya" title="зарубежная фантастика" url="/knigi-fantastika/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5077" s_token="kosmicheskaya" title="космическая фантастика" url="/knigi-fantastika/kosmicheskaya/"/>
+		<subgenres arts_count="240" id="5074" s_token="boevaya_fantastika" title="боевая фантастика" url="/knigi-boeviki/boevaya-fantastika/"/>
+		<subgenres arts_count="240" id="5071" s_token="istoricheskaya" title="историческая фантастика" url="/knigi-fantastika/istoricheskaya/"/>
+		<subgenres arts_count="240" id="5079" s_token="umoristicheskaya" title="юмористическая фантастика" url="/knigi-fantastika/umoristicheskaya/"/>
+		<subgenres arts_count="240" id="5076" s_token="detektivnaya" title="детективная фантастика" url="/knigi-fantastika/detektivnaya/"/>
+		<subgenres arts_count="240" id="5073" s_token="nauchnaya" title="научная фантастика" url="/knigi-fantastika/nauchnaya/"/>
+	</genre>
+	<genre arts_count="2160" id="5022" s_token="knigi_detektivy" title="детективы" url="/knigi-detektivy/">
+		<subgenres arts_count="240" id="5263" s_token="shpionskie" title="шпионские детективы" url="/knigi-detektivy/shpionskie/"/>
+		<subgenres arts_count="240" id="5260" s_token="policeyskie" title="полицейские детективы" url="/knigi-detektivy/policeyskie/"/>
+		<subgenres arts_count="240" id="5219" s_token="knigi_detektivy_zarubezhnye" title="зарубежные детективы" url="/knigi-detektivy/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5265" s_token="knigi_detektivy_hard" title="крутой детектив" url="/knigi-detektivy/krutoy-detektiv/"/>
+		<subgenres arts_count="240" id="5262" s_token="ironicheskie" title="иронические детективы" url="/knigi-detektivy/ironicheskie/"/>
+		<subgenres arts_count="240" id="5259" s_token="sovremennye" title="современные детективы" url="/knigi-detektivy/sovremennye/"/>
+		<subgenres arts_count="240" id="5204" s_token="trillery" title="триллеры" url="/knigi-boeviki-ostrosugetnaya/trillery/"/>
+		<subgenres arts_count="240" id="5264" s_token="politicheskie" title="политические детективы" url="/knigi-detektivy/politicheskie/"/>
+		<subgenres arts_count="240" id="5261" s_token="klassicheskie" title="классические детективы" url="/knigi-detektivy/klassicheskie/"/>
+		<subgenres arts_count="240" id="5258" s_token="knigi_detektivy_istoricheskie" title="исторические детективы" url="/knigi-detektivy/istoricheskie/"/>
+	</genre>
+	<genre arts_count="2711" id="5028" s_token="klassicheskaya_literatura" title="классическая литература" url="/klassicheskaya-literatura/">
+		<subgenres arts_count="2" id="5878" s_token="folklor" title="фольклор" url="/klassicheskaya-literatura/folklor/"/>
+		<subgenres arts_count="240" id="5304" s_token="20_vek" title="литература 20 века" url="/klassicheskaya-literatura/20-vek/"/>
+		<subgenres arts_count="240" id="5301" s_token="evropeyskaya_starinnaya" title="европейская старинная литература" url="/klassicheskaya-literatura/evropeyskaya-starinnaya/"/>
+		<subgenres arts_count="240" id="5298" s_token="sovetskaya" title="советская литература" url="/klassicheskaya-literatura/sovetskaya/"/>
+		<subgenres arts_count="240" id="5215" s_token="zarubezhnaya_starinnaya" title="зарубежная старинная литература" url="/klassicheskaya-literatura/zarubezhnaya-starinnaya/"/>
+		<subgenres arts_count="240" id="5306" s_token="18_vek" title="литература 18 века" url="/klassicheskaya-literatura/18-vek/"/>
+		<subgenres arts_count="161" id="5303" s_token="drevnevostochnaya" title="древневосточная литература" url="/klassicheskaya-literatura/drevnevostochnaya/"/>
+		<subgenres arts_count="221" id="5300" s_token="antichnaya" title="античная литература" url="/klassicheskaya-literatura/antichnaya/"/>
+		<subgenres arts_count="240" id="5297" s_token="klassicheskaya_literatura_russkaya" title="русская классика" url="/klassicheskaya-literatura/russkaya/"/>
+		<subgenres arts_count="240" id="5214" s_token="klassicheskaya_literatura_zarubezhnaya" title="зарубежная классика" url="/klassicheskaya-literatura/zarubezhnaya/"/>
+		<subgenres arts_count="25" id="6546" s_token="starinnaya_literatura" title="старинная литература" url="/klassicheskaya-literatura/starinnaya_literatura/"/>
+		<subgenres arts_count="240" id="5305" s_token="19_vek" title="литература 19 века" url="/klassicheskaya-literatura/19-vek/"/>
+		<subgenres arts_count="204" id="5302" s_token="drevnerusskaya" title="древнерусская литература" url="/klassicheskaya-literatura/drevnerusskaya/"/>
+		<subgenres arts_count="240" id="5299" s_token="mify_legendy_epos" title="мифы, легенды, эпос" url="/klassicheskaya-literatura/mify-legendy-epos/"/>
+		<subgenres arts_count="240" id="5296" s_token="klassicheskaya_literatura_proza" title="классическая проза" url="/klassicheskaya-literatura/proza/"/>
+	</genre>
+	<genre arts_count="240" id="5010" s_token="knigi_publicisticheskaya_literatura" title="публицистическая литература" url="/knigi-publicisticheskaya_literatura/">
+		<subgenres arts_count="2" id="5175" s_token="retsenzii" title="рецензии" url="/knigi-publicistika/retsenzii/"/>
+		<subgenres arts_count="58" id="5176" s_token="intervyu" title="интервью" url="/knigi-publicistika/intervyu/"/>
+		<subgenres arts_count="240" id="5173" s_token="aforizmy_i_citaty" title="афоризмы и цитаты" url="/knigi-publicistika/aforizmy-i-citaty/"/>
+		<subgenres arts_count="240" id="5170" s_token="dokumentalnaya_literatura" title="документальная литература" url="/knigi-publicistika/dokumentalnaya-literatura/"/>
+		<subgenres arts_count="240" id="5172" s_token="voennoe_delo_specsluzhby" title="военное дело, спецслужбы" url="/knigi-publicistika/voennoe-delo-specsluzhby/"/>
+		<subgenres arts_count="240" id="5169" s_token="biografii_i_memuary" title="биографии и мемуары" url="/knigi-publicistika/biografii-i-memuary/"/>
+		<subgenres arts_count="240" id="6491" s_token="publicistika" title="публицистика" url="/knigi-publicisticheskaya_literatura/publicistika/"/>
+		<subgenres arts_count="153" id="5174" s_token="stati" title="статьи" url="/knigi-publicistika/stati/"/>
+		<subgenres arts_count="240" id="5171" s_token="knigi_publicistika_zarubezhnaya" title="зарубежная публицистика" url="/knigi-publicistika/zarubezhnaya/"/>
+	</genre>
+	<genre arts_count="728" id="5011" s_token="knigi_ezoterika" title="эзотерика" url="/knigi-ezoterika/">
+		<subgenres arts_count="15" id="5185" s_token="tainstvennyye_yavleniya" title="таинственные явления" url="/knigi-ezoterika/tainstvennyye-yavleniya/"/>
+		<subgenres arts_count="20" id="5180" s_token="magiya_koldovstvo" title="магия, колдовство" url="/knigi-ezoterika/magiya-koldovstvo/"/>
+		<subgenres arts_count="25" id="6474" s_token="zarubezhnaya_ezoterika" title="зарубежная эзотерическая литература" url="/zarubezhnaya-literatura/zarubezhnaya_ezoterika/"/>
+		<subgenres arts_count="4" id="5179" s_token="yoga" title="йога" url="/knigi-ezoterika/yoga/"/>
+		<subgenres arts_count="2" id="5184" s_token="spiritizm_prorochestva_predskazaniya" title="спиритизм, пророчества и предсказания" url="/knigi-ezoterika/spiritizm-prorochestva-predskazaniya/"/>
+		<subgenres arts_count="5" id="5178" s_token="gadaniye_tolkovaniye_snov" title="гадание, толкование снов" url="/knigi-ezoterika/gadaniye-tolkovaniye-snov/"/>
+		<subgenres arts_count="4" id="5183" s_token="sovremennyye_religioznyye_techeniya" title="современные религиозные течения" url="/knigi-ezoterika/sovremennyye-religioznyye-techeniya/"/>
+		<subgenres arts_count="1" id="5186" s_token="taynyye_obshchestva" title="тайные общества" url="/knigi-ezoterika/taynyye-obshchestva/"/>
+		<subgenres arts_count="1" id="5187" s_token="fen_shuy" title="фэн-шуй" url="/knigi-ezoterika/fen-shuy/"/>
+		<subgenres arts_count="12" id="5181" s_token="parapsikhologiya" title="парапсихология" url="/knigi-ezoterika/parapsikhologiya/"/>
+		<subgenres arts_count="240" id="5177" s_token="astrologiya" title="астрология" url="/knigi-ezoterika/astrologiya/"/>
+		<subgenres arts_count="240" id="5188" s_token="okkultizm" title="эзотерика, оккультизм" url="/knigi-ezoterika/okkultizm/"/>
+		<subgenres arts_count="240" id="5182" s_token="prakticheskaya_ezoterika" title="практическая эзотерика" url="/knigi-ezoterika/prakticheskaya-ezoterika/"/>
+	</genre>
+	<genre arts_count="1292" id="5009" s_token="spravochniki_slovari" title="словари, справочники" url="/spravochniki-slovari/">
+		<subgenres arts_count="290" id="5165" s_token="spravochniki" title="справочники" url="/spravochniki-slovari/spravochniki/">
+			<subgenres arts_count="8" id="5576" s_token="uchebnyye" title="учебные справочники" url="/spravochniki-slovari/spravochniki/uchebnyye/"/>
+			<subgenres arts_count="1" id="5573" s_token="nauchnyye" title="научные справочники" url="/spravochniki-slovari/spravochniki/nauchnyye/"/>
+			<subgenres arts_count="240" id="6527" s_token="spravochnik" title="другие справочники" url="/spravochniki-slovari/spravochniki/spravochnik/"/>
+			<subgenres arts_count="74" id="5577" s_token="populyarnyye" title="популярные справочники" url="/spravochniki-slovari/spravochniki/populyarnyye/"/></subgenres>
+		<subgenres arts_count="30" id="5316" s_token="samouchiteli" title="самоучители" url="/knigi-nauka-obrazovanie/samouchiteli/"/>
+		<subgenres arts_count="78" id="5167" s_token="slovari" title="словари" url="/spravochniki-slovari/slovari/">
+			<subgenres arts_count="2" id="5590" s_token="etimologicheskiye" title="этимологические словари" url="/spravochniki-slovari/slovari/etimologicheskiye/"/>
+			<subgenres arts_count="1" id="5588" s_token="tolkovyye" title="толковые словари" url="/spravochniki-slovari/slovari/tolkovyye/"/>
+			<subgenres arts_count="3" id="5587" s_token="razgovorniki" title="разговорники" url="/spravochniki-slovari/slovari/razgovorniki/"/>
+			<subgenres arts_count="108" id="5583" s_token="yazykovyye" title="языковые словари" url="/spravochniki-slovari/slovari/yazykovyye/"/>
+			<subgenres arts_count="240" id="6522" s_token="slovar" title="другие словари" url="/spravochniki-slovari/slovari/slovar/"/>
+			<subgenres arts_count="65" id="5582" s_token="enciklopedicheskiye" title="энциклопедические словари" url="/spravochniki-slovari/slovari/enciklopedicheskiye/"/>
+			<subgenres arts_count="37" id="5591" s_token="terminologicheskiye" title="терминологические словари" url="/spravochniki-slovari/slovari/terminologicheskiye/"/></subgenres>
+		<subgenres arts_count="240" id="6512" s_token="spravochnaya_literatura" title="справочная литература" url="/spravochniki-slovari/spravochnaya-literatura/"/>
+		<subgenres arts_count="240" id="5164" s_token="rukovodstva" title="руководства" url="/spravochniki-slovari/rukovodstva/"/>
+		<subgenres arts_count="240" id="5166" s_token="enciklopedii" title="энциклопедии" url="/spravochniki-slovari/enciklopedii/"/>
+		<subgenres arts_count="240" id="5163" s_token="putevoditeli" title="путеводители" url="/spravochniki-slovari/putevoditeli/"/>
+		<subgenres arts_count="240" id="5168" s_token="spravochniki_slovari_zarubezhnye" title="зарубежная справочная литература" url="/spravochniki-slovari/zarubezhnye/"/>
+	</genre>
+	<genre arts_count="404" id="5017" s_token="knigi_uzhasy_mistika" title="ужасы, мистика" url="/knigi-uzhasy-mistika/">
+		<subgenres arts_count="240" id="5223" s_token="mistika" title="мистика" url="/knigi-uzhasy-mistika-trillery/mistika/"/>
+		<subgenres arts_count="209" id="5222" s_token="uzhasy" title="ужасы" url="/knigi-uzhasy-mistika-trillery/uzhasy/"/>
+	</genre>
+	<genre arts_count="169" id="5029" s_token="erotika_seks" title="эротика и секс" url="/erotika-seks/">
+		<subgenres arts_count="4" id="5310" s_token="seksualnyye_rukovodstva" title="сексуальные руководства" url="/erotika-seks/seksualnyye-rukovodstva/"/>
+		<subgenres arts_count="5" id="6799" s_token="eroticheskie_rasskazy" title="эротические рассказы и истории" url="/erotika-seks/eroticheskie_rasskazy/"/>
+		<subgenres arts_count="4" id="6803" s_token="eroticheskoe_fantasy" title="эротическое фэнтези" url="/erotika-seks/eroticheskoe_fantasy/"/>
+		<subgenres arts_count="240" id="5308" s_token="eroticheskaya_literatura" title="эротическая литература" url="/erotika-seks/eroticheskaya_literatura/"/>
+		<subgenres arts_count="240" id="5089" s_token="eroticheskie_romany" title="эротические романы" url="/knigi-lubovnye-romany/eroticheskie_romany/"/>
+	</genre>
+	<genre arts_count="240" id="5013" s_token="knigi_umor" title="юмористическая литература" url="/knigi-umor/">
+		<subgenres arts_count="240" id="6496" s_token="umori_i_satira" title="юмор и сатира" url="/knigi-umor/umori_i_satira/"/>
+		<subgenres arts_count="240" id="5200" s_token="umoristicheskie_stihi" title="юмористические стихи" url="/knigi-umor/umoristicheskie-stihi/"/>
+		<subgenres arts_count="240" id="5202" s_token="zarubezhnyy" title="зарубежный юмор" url="/knigi-umor/zarubezhnyy/"/>
+		<subgenres arts_count="240" id="5199" s_token="umoristicheskaya_proza" title="юмористическая проза" url="/knigi-umor/umoristicheskaya-proza/"/>
+		<subgenres arts_count="240" id="5201" s_token="anekdoty" title="анекдоты" url="/knigi-umor/anekdoty/"/>
+	</genre>
+	<genre arts_count="2778" id="5007" s_token="detskie_knigi" title="детские книги" url="/detskie-knigi/">
+		<subgenres arts_count="461" id="5008" s_token="shkolnye_uchebniki" title="школьные учебники" url="/shkolnye-uchebniki/">
+			<subgenres arts_count="8" id="5112" s_token="chistopisaniye" title="школьные учебники по чистописанию" url="/shkolnye-uchebniki/chistopisaniye/"/>
+			<subgenres arts_count="32" id="5157" s_token="ege" title="ЕГЭ" url="/shkolnye-uchebniki/ege/">
+				<subgenres arts_count="7" id="5558" s_token="ege_istoriya" title="ЕГЭ по истории" url="/shkolnye-uchebniki/ege/istoriya/"/>
+				<subgenres arts_count="3" id="5562" s_token="ege_inostrannyy_yazyk" title="ЕГЭ по иностранному языку" url="/shkolnye-uchebniki/ege/inostrannyy-yazyk/"/>
+				<subgenres arts_count="3" id="5556" s_token="ege_informatika_ikt" title="ЕГЭ по информатике и ИКТ" url="/shkolnye-uchebniki/ege/informatika-ikt/"/>
+				<subgenres arts_count="2" id="5557" s_token="ege_biologiya" title="ЕГЭ по биологии" url="/shkolnye-uchebniki/ege/biologiya/"/>
+				<subgenres arts_count="8" id="5553" s_token="ege_matematika" title="ЕГЭ по математике" url="/shkolnye-uchebniki/ege/matematika/"/>
+				<subgenres arts_count="1" id="5552" s_token="ege_russkiy_yazyk" title="ЕГЭ по русскому языку" url="/shkolnye-uchebniki/ege/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5561" s_token="ege_obshchestvoznaniye" title="ЕГЭ по обществознанию" url="/shkolnye-uchebniki/ege/obshchestvoznaniye/"/>
+				<subgenres arts_count="4" id="5555" s_token="ege_himiya" title="ЕГЭ по химии" url="/shkolnye-uchebniki/ege/himiya/"/>
+				<subgenres arts_count="3" id="5554" s_token="ege_fizika" title="ЕГЭ по физике" url="/shkolnye-uchebniki/ege/fizika/"/></subgenres>
+			<subgenres arts_count="9" id="5116" s_token="angliyskiy_yazyk" title="школьные учебники по английскому языку" url="/shkolnye-uchebniki/angliyskiy-yazyk/"/>
+			<subgenres arts_count="5" id="5151" s_token="8_klass" title="учебники 8 класс" url="/shkolnye-uchebniki/8-klass/">
+				<subgenres arts_count="1" id="5484" s_token="8_klass_geometriya" title="геометрия 8 класс" url="/shkolnye-uchebniki/8-klass/geometriya/"/>
+				<subgenres arts_count="1" id="5483" s_token="8_klass_algebra" title="алгебра 8 класс" url="/shkolnye-uchebniki/8-klass/algebra/"/>
+				<subgenres arts_count="1" id="5494" s_token="8_klass_tekhnologiya" title="технология 8 класс" url="/shkolnye-uchebniki/8-klass/tekhnologiya/"/>
+				<subgenres arts_count="1" id="5492" s_token="himiya" title="химия 8 класс" url="/shkolnye-uchebniki/8-klass/himiya/"/>
+				<subgenres arts_count="1" id="6673" s_token="8_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 8 класс" url="/shkolnye-uchebniki/8-klass/8_klass_izobrazitelnoye_iskusstvo_izo/"/>
+				<subgenres arts_count="1" id="5491" s_token="8_klass_fizika" title="физика 8 класс" url="/shkolnye-uchebniki/8-klass/fizika/"/></subgenres>
+			<subgenres arts_count="6" id="5146" s_token="5_klass" title="учебники 5 класс" url="/shkolnye-uchebniki/5-klass/">
+				<subgenres arts_count="3" id="5445" s_token="5_klass_matematika" title="математика 5 класс" url="/shkolnye-uchebniki/5-klass/matematika/"/>
+				<subgenres arts_count="2" id="6701" s_token="5_klass_biologiya" title="биология 5 класс" url="/shkolnye-uchebniki/5-klass/5_klass_biologiya/"/>
+				<subgenres arts_count="1" id="5452" s_token="5_klass_inostrannyy_yazyk" title="иностранный язык 5 класс" url="/shkolnye-uchebniki/5-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="1" id="5451" s_token="5_klass_informatika" title="информатика 5 класс" url="/shkolnye-uchebniki/5-klass/informatika/"/></subgenres>
+			<subgenres arts_count="8" id="5119" s_token="matematika" title="школьные учебники по математике" url="/shkolnye-uchebniki/matematika/"/>
+			<subgenres arts_count="14" id="5149" s_token="7_klass" title="учебники 7 класс" url="/shkolnye-uchebniki/7-klass/">
+				<subgenres arts_count="2" id="5469" s_token="7_klass_geometriya" title="геометрия 7 класс" url="/shkolnye-uchebniki/7-klass/geometriya/"/>
+				<subgenres arts_count="2" id="5468" s_token="7_klass_algebra" title="алгебра 7 класс" url="/shkolnye-uchebniki/7-klass/algebra/"/>
+				<subgenres arts_count="2" id="5476" s_token="7_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 7 класс" url="/shkolnye-uchebniki/7-klass/izobrazitelnoye-iskusstvo-izo/"/>
+				<subgenres arts_count="1" id="5473" s_token="7_klass_geografiya" title="география 7 класс" url="/shkolnye-uchebniki/7-klass/geografiya/"/>
+				<subgenres arts_count="1" id="5475" s_token="7_klass_fizika" title="физика 7 класс" url="/shkolnye-uchebniki/7-klass/fizika/"/>
+				<subgenres arts_count="2" id="5472" s_token="7_klass_istoriya" title="история 7 класс" url="/shkolnye-uchebniki/7-klass/istoriya/"/>
+				<subgenres arts_count="3" id="5470" s_token="7_klass_russkiy_yazyk" title="русский язык 7 класс" url="/shkolnye-uchebniki/7-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5478" s_token="7_klass_tekhnologiya" title="технология 7 класс" url="/shkolnye-uchebniki/7-klass/tekhnologiya/"/>
+				<subgenres arts_count="1" id="5474" s_token="7_klass_biologiya" title="биология 7 класс" url="/shkolnye-uchebniki/7-klass/biologiya/"/>
+				<subgenres arts_count="1" id="5481" s_token="7_klass_inostrannyy_yazyk" title="иностранный язык 7 класс" url="/shkolnye-uchebniki/7-klass/inostrannyy-yazyk/"/></subgenres>
+			<subgenres arts_count="1" id="5121" s_token="geometriya" title="школьные учебники по геометрии" url="/shkolnye-uchebniki/geometriya/"/>
+			<subgenres arts_count="9" id="5152" s_token="9_klass" title="учебники 9 класс" url="/shkolnye-uchebniki/9-klass/">
+				<subgenres arts_count="2" id="5500" s_token="9_klass_geometriya" title="геометрия 9 класс" url="/shkolnye-uchebniki/9-klass/geometriya/"/>
+				<subgenres arts_count="1" id="6675" s_token="9_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 9 класс" url="/shkolnye-uchebniki/9-klass/9_klass_izobrazitelnoye_iskusstvo_izo/"/>
+				<subgenres arts_count="2" id="5507" s_token="9_klass_fizika" title="физика 9 класс" url="/shkolnye-uchebniki/9-klass/fizika/"/>
+				<subgenres arts_count="1" id="5513" s_token="9_klass_inostrannyy_yazyk" title="иностранный язык 9 класс" url="/shkolnye-uchebniki/9-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="1" id="5508" s_token="9_klass_himiya" title="химия 9 класс" url="/shkolnye-uchebniki/9-klass/himiya/"/>
+				<subgenres arts_count="2" id="5503" s_token="9_klass_istoriya" title="история 9 класс" url="/shkolnye-uchebniki/9-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5499" s_token="9_klass_algebra" title="алгебра 9 класс" url="/shkolnye-uchebniki/9-klass/algebra/"/>
+				<subgenres arts_count="1" id="5506" s_token="9_klass_biologiya" title="биология 9 класс" url="/shkolnye-uchebniki/9-klass/biologiya/"/></subgenres>
+			<subgenres arts_count="4" id="5122" s_token="informatika" title="школьные учебники по информатике" url="/shkolnye-uchebniki/informatika/"/>
+			<subgenres arts_count="9" id="5148" s_token="6_klass" title="учебники 6 класс" url="/shkolnye-uchebniki/6-klass/">
+				<subgenres arts_count="3" id="5460" s_token="6_klass_matematika" title="математика 6 класс" url="/shkolnye-uchebniki/6-klass/matematika/"/>
+				<subgenres arts_count="3" id="5457" s_token="6_klass_istoriya" title="история 6 класс" url="/shkolnye-uchebniki/6-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5456" s_token="6_klass_literatura" title="литература 6 класс" url="/shkolnye-uchebniki/6-klass/literatura/"/>
+				<subgenres arts_count="2" id="5459" s_token="6_klass_biologiya" title="биология 6 класс" url="/shkolnye-uchebniki/6-klass/biologiya/"/>
+				<subgenres arts_count="1" id="5461" s_token="6_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 6 класс" url="/shkolnye-uchebniki/6-klass/izobrazitelnoye-iskusstvo-izo/"/></subgenres>
+			<subgenres arts_count="8" id="5123" s_token="istoriya" title="школьные учебники по истории" url="/shkolnye-uchebniki/istoriya/"/>
+			<subgenres arts_count="9" id="5315" s_token="rabochiye_tetradi" title="рабочие тетради" url="/knigi-nauka-obrazovanie/rabochiye-tetradi/"/>
+			<subgenres arts_count="19" id="5144" s_token="3_klass" title="учебники 3 класс" url="/shkolnye-uchebniki/3-klass/">
+				<subgenres arts_count="4" id="5423" s_token="3_klass_matematika" title="математика 3 класс" url="/shkolnye-uchebniki/3-klass/matematika/"/>
+				<subgenres arts_count="3" id="5422" s_token="3_klass_literaturnoye_chteniye" title="чтение 3 класс" url="/shkolnye-uchebniki/3-klass/literaturnoye-chteniye/"/>
+				<subgenres arts_count="4" id="5430" s_token="3_klass_inostrannyy_yazyk" title="иностранный язык 3 класс" url="/shkolnye-uchebniki/3-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="3" id="5421" s_token="3_klass_russkiy_yazyk" title="русский язык 3 класс" url="/shkolnye-uchebniki/3-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5426" s_token="3_klass_muzyka" title="музыка 3 класс" url="/shkolnye-uchebniki/3-klass/muzyka/"/>
+				<subgenres arts_count="1" id="5428" s_token="3_klass_fizkultura" title="физкультура 3 класс" url="/shkolnye-uchebniki/3-klass/fizkultura/"/>
+				<subgenres arts_count="1" id="5427" s_token="3_klass_tekhnologiya" title="технология 3 класс" url="/shkolnye-uchebniki/3-klass/tekhnologiya/"/>
+				<subgenres arts_count="2" id="5424" s_token="3_klass_okruzhayushchiy_mir" title="окружающий мир 3 класс" url="/shkolnye-uchebniki/3-klass/okruzhayushchiy-mir/"/></subgenres>
+			<subgenres arts_count="18" id="5143" s_token="2_klass" title="учебники 2 класс" url="/shkolnye-uchebniki/2-klass/">
+				<subgenres arts_count="7" id="5413" s_token="2_klass_matematika" title="математика 2 класс" url="/shkolnye-uchebniki/2-klass/matematika/"/>
+				<subgenres arts_count="2" id="5417" s_token="2_klass_tekhnologiya" title="технология 2 класс" url="/shkolnye-uchebniki/2-klass/tekhnologiya/"/>
+				<subgenres arts_count="2" id="5420" s_token="2_klass_inostrannyy_yazyk" title="иностранный язык 2 класс" url="/shkolnye-uchebniki/2-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="4" id="5411" s_token="2_klass_russkiy_yazyk" title="русский язык 2 класс" url="/shkolnye-uchebniki/2-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5416" s_token="2_klass_muzyka" title="музыка 2 класс" url="/shkolnye-uchebniki/2-klass/muzyka/"/>
+				<subgenres arts_count="2" id="5412" s_token="2_klass_literaturnoye_chteniye" title="чтение 2 класс" url="/shkolnye-uchebniki/2-klass/literaturnoye-chteniye/"/>
+				<subgenres arts_count="1" id="5414" s_token="2_klass_okruzhayushchiy_mir" title="окружающий мир 2 класс" url="/shkolnye-uchebniki/2-klass/okruzhayushchiy-mir/"/>
+				<subgenres arts_count="1" id="5418" s_token="2_klass_fizkultura" title="физкультура 2 класс" url="/shkolnye-uchebniki/2-klass/fizkultura/"/>
+				<subgenres arts_count="1" id="5415" s_token="2_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 2 класс" url="/shkolnye-uchebniki/2-klass/izobrazitelnoye-iskusstvo-izo/"/></subgenres>
+			<subgenres arts_count="17" id="5145" s_token="4_klass" title="учебники 4 класс" url="/shkolnye-uchebniki/4-klass/">
+				<subgenres arts_count="6" id="5431" s_token="4_klass_russkiy_yazyk" title="русский язык 4 класс" url="/shkolnye-uchebniki/4-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="4" id="5440" s_token="4_klass_inostrannyy_yazyk" title="иностранный язык 4 класс" url="/shkolnye-uchebniki/4-klass/inostrannyy-yazyk/"/>
+				<subgenres arts_count="3" id="5433" s_token="4_klass_matematika" title="математика 4 класс" url="/shkolnye-uchebniki/4-klass/matematika/"/>
+				<subgenres arts_count="1" id="5438" s_token="4_klass_fizkultura" title="физкультура 4 класс" url="/shkolnye-uchebniki/4-klass/fizkultura/"/>
+				<subgenres arts_count="2" id="5437" s_token="4_klass_tekhnologiya" title="технология 4 класс" url="/shkolnye-uchebniki/4-klass/tekhnologiya/"/>
+				<subgenres arts_count="3" id="5435" s_token="4_klass_izobrazitelnoye_iskusstvo_izo" title="изобразительное искусство (ИЗО) 4 класс" url="/shkolnye-uchebniki/4-klass/izobrazitelnoye-iskusstvo-izo/"/></subgenres>
+			<subgenres arts_count="7" id="5133" s_token="izobrazitelnoye_iskusstvo_izo" title="школьные учебники по изобразительному искусству (ИЗО)" url="/shkolnye-uchebniki/izobrazitelnoye-iskusstvo-izo/"/>
+			<subgenres arts_count="2" id="5129" s_token="fizika" title="школьные учебники по физике" url="/shkolnye-uchebniki/fizika/"/>
+			<subgenres arts_count="2" id="5120" s_token="algebra" title="школьные учебники по алгебре" url="/shkolnye-uchebniki/algebra/"/>
+			<subgenres arts_count="8" id="5156" s_token="11_klass" title="учебники 11 класс" url="/shkolnye-uchebniki/11-klass/">
+				<subgenres arts_count="4" id="5545" s_token="11_klass_himiya" title="химия 11 класс" url="/shkolnye-uchebniki/11-klass/himiya/"/>
+				<subgenres arts_count="1" id="5537" s_token="11_klass_russkiy_yazyk" title="русский язык 11 класс" url="/shkolnye-uchebniki/11-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5542" s_token="11_klass_pravo" title="право 11 класс" url="/shkolnye-uchebniki/11-klass/pravo/"/>
+				<subgenres arts_count="1" id="5536" s_token="11_klass_geometriya" title="геометрия 11 класс" url="/shkolnye-uchebniki/11-klass/geometriya/"/>
+				<subgenres arts_count="1" id="5539" s_token="11_klass_istoriya" title="история 11 класс" url="/shkolnye-uchebniki/11-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5535" s_token="11_klass_algebra" title="алгебра 11 класс" url="/shkolnye-uchebniki/11-klass/algebra/"/></subgenres>
+			<subgenres arts_count="2" id="5138" s_token="tekhnologiya" title="школьные учебники по технологии" url="/shkolnye-uchebniki/tekhnologiya/"/>
+			<subgenres arts_count="7" id="5131" s_token="khimiya" title="школьные учебники по химии" url="/shkolnye-uchebniki/khimiya/"/>
+			<subgenres arts_count="8" id="5154" s_token="10_klass" title="учебники 10 класс" url="/shkolnye-uchebniki/10-klass/">
+				<subgenres arts_count="4" id="5527" s_token="10_klass_himiya" title="химия 10 класс" url="/shkolnye-uchebniki/10-klass/himiya/"/>
+				<subgenres arts_count="2" id="5520" s_token="10_klass_istoriya" title="история 10 класс" url="/shkolnye-uchebniki/10-klass/istoriya/"/>
+				<subgenres arts_count="1" id="5518" s_token="10_klass_russkiy_yazyk" title="русский язык 10 класс" url="/shkolnye-uchebniki/10-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="1" id="5524" s_token="pravo" title="право 10 класс" url="/shkolnye-uchebniki/10-klass/pravo/"/>
+				<subgenres arts_count="1" id="5526" s_token="10_klass_fizika" title="физика 10 класс" url="/shkolnye-uchebniki/10-klass/fizika/"/></subgenres>
+			<subgenres arts_count="4" id="5130" s_token="biologiya" title="школьные учебники по биологии" url="/shkolnye-uchebniki/biologiya/"/>
+			<subgenres arts_count="1" id="5126" s_token="geografiya" title="школьные учебники по географии" url="/shkolnye-uchebniki/geografiya/"/>
+			<subgenres arts_count="1" id="5117" s_token="frantsuzskiy_yazyk" title="школьные учебники по французскому языку" url="/shkolnye-uchebniki/frantsuzskiy-yazyk/"/>
+			<subgenres arts_count="11" id="5114" s_token="russkiy_yazyk" title="школьные учебники по русскому языку" url="/shkolnye-uchebniki/russkiy-yazyk/"/>
+			<subgenres arts_count="6" id="5128" s_token="okruzhayushchiy_mir" title="школьные учебники по окружающему миру" url="/shkolnye-uchebniki/okruzhayushchiy-mir/"/>
+			<subgenres arts_count="1" id="5115" s_token="literatura" title="школьные учебники по литературе" url="/shkolnye-uchebniki/literatura/"/>
+			<subgenres arts_count="29" id="5142" s_token="1_klass" title="учебники 1 класс" url="/shkolnye-uchebniki/1-klass/">
+				<subgenres arts_count="8" id="5401" s_token="1_klass_russkiy_yazyk" title="русский язык 1 класс" url="/shkolnye-uchebniki/1-klass/russkiy-yazyk/"/>
+				<subgenres arts_count="6" id="5403" s_token="1_klass_matematika" title="математика 1 класс" url="/shkolnye-uchebniki/1-klass/matematika/"/>
+				<subgenres arts_count="5" id="5406" s_token="1_klass_muzyka" title="музыка 1 класс" url="/shkolnye-uchebniki/1-klass/muzyka/"/>
+				<subgenres arts_count="1" id="5400" s_token="1_klass_chistopisaniye" title="чистописание 1 класс" url="/shkolnye-uchebniki/1-klass/chistopisaniye/"/>
+				<subgenres arts_count="4" id="5404" s_token="1_klass_okruzhayushchiy_mir" title="окружающий мир 1 класс" url="/shkolnye-uchebniki/1-klass/okruzhayushchiy-mir/"/>
+				<subgenres arts_count="3" id="5407" s_token="1_klass_tekhnologiya" title="технология 1 класс" url="/shkolnye-uchebniki/1-klass/tekhnologiya/"/>
+				<subgenres arts_count="2" id="5408" s_token="1_klass_fizkultura" title="физкультура 1 класс" url="/shkolnye-uchebniki/1-klass/fizkultura/"/></subgenres>
+			<subgenres arts_count="11" id="5158" s_token="gia_oge_gve" title="ГИА (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/">
+				<subgenres arts_count="1" id="5570" s_token="gia_oge_gve_obshchestvoznaniye" title="ГИА по обществознанию (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/obshchestvoznaniye/"/>
+				<subgenres arts_count="2" id="5569" s_token="gia_oge_gve_istoriya" title="ГИА по истории (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/istoriya/"/>
+				<subgenres arts_count="1" id="6796" s_token="gia_oge_gve_matematika" title="ГИА по математике (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/matematika/"/>
+				<subgenres arts_count="6" id="5563" s_token="gia_oge_gve_russkiy_yazyk" title="ГИА по русскому языку (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/russkiy-yazyk/"/>
+				<subgenres arts_count="2" id="5565" s_token="gia_oge_gve_fizika" title="ГИА по физике (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/fizika/"/>
+				<subgenres arts_count="1" id="5566" s_token="gia_oge_gve_himiya" title="ГИА по химии (ОГЭ, ГВЭ)" url="/shkolnye-uchebniki/gia-oge-gve/himiya/"/></subgenres>
+			<subgenres arts_count="2" id="5160" s_token="uchebnyye_programmy" title="учебные программы" url="/knigi-nauka-obrazovanie/uchebnyye-programmy/"/>
+			<subgenres arts_count="1" id="6694" s_token="estestvoznanie" title="школьные учебники по естествознанию" url="/shkolnye-uchebniki/estestvoznanie/"/>
+			<subgenres arts_count="5" id="5140" s_token="fizkultura" title="школьные учебники по физической культуре" url="/shkolnye-uchebniki/fizkultura/"/>
+			<subgenres arts_count="1" id="5113" s_token="chteniye" title="школьные учебники по чтению" url="/shkolnye-uchebniki/chteniye/"/>
+			<subgenres arts_count="3" id="5137" s_token="muzyka" title="школьные учебники по музыке" url="/shkolnye-uchebniki/muzyka/"/>
+			<subgenres arts_count="211" id="5161" s_token="metodicheskiye_posobiya" title="школьные методические пособия" url="/shkolnye-uchebniki/metodicheskiye-posobiya/"/></subgenres>
+		<subgenres arts_count="36" id="6481" s_token="detskaya_pazvivayushaya_literatura" title="детская познавательная и развивающая литература" url="/detskie-knigi/detskaya_pazvivayushaya_literatura/"/>
+		<subgenres arts_count="1" id="5102" s_token="vneklassnoye_chteniye" title="внеклассное чтение" url="/detskie-knigi/vneklassnoye-chteniye/"/>
+		<subgenres arts_count="216" id="6610" s_token="knigi_doshkolniki" title="книги для дошкольников" url="/detskie-knigi/knigi_doshkolniki/"/>
+		<subgenres arts_count="240" id="5111" s_token="detskie_knigi_zarubezhnye" title="зарубежные детские книги" url="/detskie-knigi/zarubezhnye/"/>
+		<subgenres arts_count="240" id="5108" s_token="detskaya_fantastika" title="детская фантастика" url="/detskie-knigi/fantastika/"/>
+		<subgenres arts_count="213" id="5105" s_token="dlya_podrostkov" title="книги для подростков" url="/detskie-knigi/dlya-podrostkov/"/>
+		<subgenres arts_count="240" id="6517" s_token="children" title="книги для детей" url="/detskie-knigi/children/"/>
+		<subgenres arts_count="240" id="5110" s_token="stihi" title="детские стихи" url="/detskie-knigi/stihi/"/>
+		<subgenres arts_count="240" id="5107" s_token="priklucheniya" title="детские приключения" url="/detskie-knigi/priklucheniya/"/>
+		<subgenres arts_count="240" id="5104" s_token="detakaya_proza" title="детская проза" url="/detskie-knigi/proza/"/>
+		<subgenres arts_count="240" id="5109" s_token="detskie_detektivy" title="детские детективы" url="/detskie-knigi/detektivy/"/>
+		<subgenres arts_count="240" id="5106" s_token="skazki" title="сказки" url="/detskie-knigi/skazki/"/>
+		<subgenres arts_count="240" id="5103" s_token="uchebnaya_literatura" title="учебная литература" url="/detskie-knigi/uchebnaya-literatura/"/>
+	</genre>
+	<genre arts_count="864" id="5023" s_token="knigi_poeziya_dramaturgiya" title="поэзия и драматургия" url="/knigi-poeziya-dramaturgiya/">
+		<subgenres arts_count="240" id="5213" s_token="zarubezhnaya_poeziya" title="зарубежная поэзия" url="/knigi-poeziya-dramaturgiya/zarubezhnaya_poeziya/"/>
+		<subgenres arts_count="240" id="5267" s_token="poeziya" title="cтихи и поэзия" url="/knigi-poeziya-dramaturgiya/poeziya/"/>
+		<subgenres arts_count="240" id="5212" s_token="zarubezhnaya_dramaturgiya" title="зарубежная драматургия" url="/knigi-poeziya-dramaturgiya/zarubezhnaya-dramaturgiya/"/>
+		<subgenres arts_count="240" id="5266" s_token="dramaturgiya" title="пьесы и драматургия" url="/knigi-poeziya-dramaturgiya/dramaturgiya/dramaturgiya/"/>
+	</genre>
+	<genre arts_count="1728" id="5024" s_token="kompyuternaya_literatura" title="компьютерная литература" url="/kompyuternaya-literatura/">
+		<subgenres arts_count="240" id="6487" s_token="knigi_o_kompyuterah" title="книги о компьютерах" url="/kompyuternaya-literatura/knigi_o_kompyuterah/"/>
+		<subgenres arts_count="240" id="5271" s_token="kompyuternaya_literatura_internet" title="интернет" url="/kompyuternaya-literatura/internet/"/>
+		<subgenres arts_count="240" id="5268" s_token="zhelezo" title="компьютерное железо" url="/kompyuternaya-literatura/zhelezo/"/>
+		<subgenres arts_count="240" id="5273" s_token="bazy_dannyh" title="базы данных" url="/kompyuternaya-literatura/bazy-dannyh/"/>
+		<subgenres arts_count="240" id="5270" s_token="programmy" title="программы" url="/kompyuternaya-literatura/programmy/"/>
+		<subgenres arts_count="240" id="5221" s_token="kompyuternaya_literatura_zarubezhnaya" title="зарубежная компьютерная литература" url="/kompyuternaya-literatura/zarubezhnaya/"/>
+		<subgenres arts_count="240" id="5272" s_token="programmirovanie" title="программирование" url="/kompyuternaya-literatura/programmirovanie/"/>
+		<subgenres arts_count="240" id="5269" s_token="os_seti" title="ОС и сети" url="/kompyuternaya-literatura/os-seti/"/>
+	</genre>
+	<genre arts_count="240" id="5020" s_token="knigi_iskusstvo" title="культура и искусство" url="/knigi-iskusstvo/">
+		<subgenres arts_count="7" id="5237" s_token="fotografiya" title="искусство фотографии" url="/knigi-iskusstvo/fotografiya/"/>
+		<subgenres arts_count="7" id="5243" s_token="iskusstvovedenie" title="искусствоведение" url="/knigi-iskusstvo/iskusstvovedenie/"/>
+		<subgenres arts_count="9" id="6541" s_token="design" title="дизайн" url="/knigi-iskusstvo/design/"/>
+		<subgenres arts_count="1" id="5768" s_token="televideniye" title="телевидение" url="/knigi-iskusstvo/televideniye/"/>
+		<subgenres arts_count="1" id="5246" s_token="muzei_kollektsii" title="музеи и коллекции" url="/knigi-iskusstvo/muzei-kollektsii/"/>
+		<subgenres arts_count="1" id="5241" s_token="noty" title="ноты" url="/knigi-iskusstvo/noty/"/>
+		<subgenres arts_count="240" id="6536" s_token="nonf_criticism" title="критика" url="/knigi-iskusstvo/kritika/"/>
+		<subgenres arts_count="240" id="5236" s_token="izobrazitelnoe_iskusstvo" title="изобразительное искусство" url="/knigi-iskusstvo/izobrazitelnoe-iskusstvo/"/>
+		<subgenres arts_count="151" id="6584" s_token="zarubezhnaya_kultura_iskusstvo" title="зарубежная литература о культуре и искусстве" url="/knigi-iskusstvo/zarubezhnaya_kultura_iskusstvo/"/>
+		<subgenres arts_count="240" id="6531" s_token="architecture_book" title="архитектура" url="/knigi-iskusstvo/architectura/"/>
+		<subgenres arts_count="134" id="5244" s_token="istoriya_iskusstv" title="история искусств" url="/knigi-iskusstvo/istoriya-iskusstv/"/>
+		<subgenres arts_count="240" id="5238" s_token="knigi_iskusstvo_muzyka" title="музыка" url="/knigi-iskusstvo/muzyka/"/>
+		<subgenres arts_count="240" id="5234" s_token="kinematograf_teatr" title="кинематограф, театр" url="/knigi-iskusstvo/kinematograf_teatr/"/>
+	</genre>
+	<genre arts_count="240" id="5012" s_token="knigi_religiya" title="религия" url="/knigi-religiya/">
+		<subgenres arts_count="2" id="5194" s_token="buddizm" title="буддизм" url="/knigi-religiya/buddizm/">
+			<subgenres arts_count="1" id="5599" s_token="dzen_buddizm" title="дзэн-буддизм" url="/knigi-religiya/buddizm/dzen-buddizm/"/>
+			<subgenres arts_count="1" id="5597" s_token="tibetskiy" title="тибетский буддизм" url="/knigi-religiya/buddizm/tibetskiy/"/>
+			<subgenres arts_count="1" id="5598" s_token="buddizm_veroucheniya" title="вероучения в буддизме" url="/knigi-religiya/buddizm/veroucheniya/"/></subgenres>
+		<subgenres arts_count="26" id="5196" s_token="pravoslaviye" title="православие" url="/knigi-religiya/pravoslaviye/">
+			<subgenres arts_count="11" id="5614" s_token="bogosloviye" title="богословие" url="/knigi-religiya/pravoslaviye/bogosloviye/"/>
+			<subgenres arts_count="7" id="5602" s_token="pravoslaviye_istoriya" title="история православной церкви" url="/knigi-religiya/pravoslaviye/istoriya/"/>
+			<subgenres arts_count="3" id="5610" s_token="palomnichestvo" title="паломничество" url="/knigi-religiya/pravoslaviye/palomnichestvo/"/>
+			<subgenres arts_count="3" id="5601" s_token="zhitiynaya_literatura" title="житийная литература" url="/knigi-religiya/pravoslaviye/zhitiynaya-literatura/"/>
+			<subgenres arts_count="2" id="5606" s_token="molitvoslovy" title="православные молитвы" url="/knigi-religiya/pravoslaviye/molitvoslovy/"/>
+			<subgenres arts_count="1" id="5613" s_token="pravoslavnye tradicii" title="православные традиции" url="/knigi-religiya/pravoslaviye/pravoslavnye-tradicii/"/>
+			<subgenres arts_count="1" id="5612" s_token="dlya_svyashchennosluzhiteley" title="книги для священнослужителей" url="/knigi-religiya/pravoslaviye/dlya-svyashchennosluzhiteley/"/>
+			<subgenres arts_count="49" id="5611" s_token="svyashchennoye_pisaniye" title="Священное Писание" url="/knigi-religiya/pravoslaviye/svyashchennoye-pisaniye/"/></subgenres>
+		<subgenres arts_count="1" id="5193" s_token="islam" title="ислам" url="/knigi-religiya/islam/">
+			<subgenres arts_count="1" id="5595" s_token="proroki" title="пророки" url="/knigi-religiya/islam/proroki/"/></subgenres>
+		<subgenres arts_count="240" id="5190" s_token="religiovedenie" title="религиоведение, история религий" url="/knigi-religiya/religiovedenie/"/>
+		<subgenres arts_count="240" id="6566" s_token="dukhovnaya_literatura" title="духовная литература" url="/knigi-religiya/dukhovnaya_literatura/"/>
+		<subgenres arts_count="10" id="5195" s_token="iudaizm" title="иудаизм" url="/knigi-religiya/iudaizm/"/>
+		<subgenres arts_count="240" id="5192" s_token="khristianstvo" title="христианство" url="/knigi-religiya/khristianstvo/"/>
+		<subgenres arts_count="240" id="5189" s_token="religioznye_teksty" title="религиозные тексты" url="/knigi-religiya/religioznye-teksty/"/>
+		<subgenres arts_count="149" id="6469" s_token="zarubezhnaya_religiya" title="зарубежная религиозная литература" url="/zarubezhnaya-literatura/zarubezhnaya_religiya/"/>
+		<subgenres arts_count="240" id="5191" s_token="religii_verovaniya_kulty" title="религии, верования, культы" url="/knigi-religiya/religii_verovaniya_kulty/"/>
+	</genre>
+	<genre arts_count="1100" id="5000" s_token="povesti_rasskazy" title="повести, рассказы" url="/povesti-rasskazy/">
+		<subgenres arts_count="237" id="6334" s_token="samizdat" title="Самиздат" url="/samizdat/"/>
+		<subgenres arts_count="240" id="5036" s_token="ocherk" title="очерки" url="/povesti-rasskazy/ocherk/"/>
+		<subgenres arts_count="240" id="5033" s_token="rasskazy" title="рассказы" url="/povesti-rasskazy/rasskazy/"/>
+		<subgenres arts_count="240" id="5035" s_token="povest" title="повести" url="/povesti-rasskazy/povest/"/>
+		<subgenres arts_count="26" id="5001" s_token="komiksy_manga" title="комиксы, манга" url="/komiksy-manga/"/>
+		<subgenres arts_count="240" id="5034" s_token="esse" title="эссе" url="/povesti-rasskazy/esse/"/>
+	</genre>
+	<genre arts_count="15" id="5002" s_token="knigi_inostrannye_yazyki" title="книги на иностранных языках" url="/knigi-inostrannye-yazyki/">
+		<subgenres arts_count="10" id="5042" s_token="angliyskiy" title="книги на английском" url="/knigi-inostrannye-yazyki/angliyskiy/"/>
+		<subgenres arts_count="240" id="5038" s_token="ukrainskiy" title="книги на украинском" url="/knigi-inostrannye-yazyki/ukrainskiy/"/>
+	</genre>
+	<genre arts_count="114" id="5027" s_token="periodicheskie_izdaniya" title="периодические издания" url="/periodicheskie-izdaniya/">
+		<subgenres arts_count="102" id="5292" s_token="zhurnalnye_izdaniya" title="журналы" url="/periodicheskie-izdaniya/zhurnalnye-izdaniya/">
+			<subgenres arts_count="7" id="6568" s_token="kompjyuternye_zhurnaly" title="компьютерные журналы" url="/periodicheskie-izdaniya/zhurnalnye-izdaniya/kompjyuternye_zhurnaly/"/>
+			<subgenres arts_count="1" id="6560" s_token="nauchno_prakt_zhurnaly" title="научно-практические журналы" url="/periodicheskie-izdaniya/zhurnalnye-izdaniya/nauchno_prakt_zhurnaly/"/>
+			<subgenres arts_count="1" id="5651" s_token="biznes" title="бизнес-журналы" url="/periodicheskie-izdaniya/zhurnaly/biznes/"/>
+			<subgenres arts_count="9" id="5652" s_token="nauchno_populyarnyye" title="научно-популярные журналы" url="/periodicheskie-izdaniya/zhurnaly/nauchno-populyarnyye/"/>
+			<subgenres arts_count="31" id="5653" s_token="dosug_razvlecheniya" title="журналы о досуге и развлечениях" url="/periodicheskie-izdaniya/zhurnaly/dosug-razvlecheniya/"/>
+			<subgenres arts_count="40" id="5642" s_token="zhenskiye" title="женские журналы" url="/periodicheskie-izdaniya/zhurnaly/zhenskiye/"/>
+			<subgenres arts_count="19" id="5645" s_token="dom_semya" title="журналы о доме и семье" url="/periodicheskie-izdaniya/zhurnaly/dom-semya/"/>
+			<subgenres arts_count="2" id="5649" s_token="zhurnaly_obshchestvenno_politicheskiye" title="общественно-политические журналы" url="/periodicheskie-izdaniya/zhurnaly/obshchestvenno-politicheskiye/"/>
+			<subgenres arts_count="2" id="6565" s_token="analiticheskiye_zhurnaly" title="аналитические журналы" url="/periodicheskie-izdaniya/zhurnalnye-izdaniya/analiticheskiye_zhurnaly/"/>
+			<subgenres arts_count="10" id="6615" s_token="molodezhnye_zhurnaly" title="молодежные журналы" url="/periodicheskie-izdaniya/zhurnalnye-izdaniya/molodezhnye_zhurnaly/"/>
+			<subgenres arts_count="2" id="5643" s_token="muzhskiye" title="мужские журналы" url="/periodicheskie-izdaniya/zhurnaly/muzhskiye/"/>
+			<subgenres arts_count="1" id="5646" s_token="avto_zhurnaly" title="автожурналы" url="/periodicheskie-izdaniya/zhurnaly/avto-zhurnaly/"/>
+			<subgenres arts_count="2" id="5650" s_token="finansovo_ekonomicheskie_zhurnaly" title="финансово-экономические журналы" url="/periodicheskie-izdaniya/zhurnaly/finansovo-ekonomicheskie-zhurnaly/"/>
+			<subgenres arts_count="52" id="6573" s_token="literaturnye_zhurnaly" title="литературные журналы" url="/periodicheskie-izdaniya/zhurnalnye-izdaniya/literaturnye_zhurnaly/"/>
+			<subgenres arts_count="240" id="6509" s_token="zhurnaly" title="журнальные издания" url="/periodicheskie-izdaniya/zhurnaly/"/></subgenres>
+		<subgenres arts_count="12" id="5293" s_token="gazety" title="газеты" url="/periodicheskie-izdaniya/gazety/"/>
+	</genre>
+</new_genres>
