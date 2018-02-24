@@ -42,17 +42,17 @@ SKIP: {
 
   can_ok($engine, 'GettextInit');
 
-  ok($engine->GettextInit('t/06_i18n/ru_RU/LC_MESSAGES/default.mo'),        'init, ru_RU/LC_MESSAGES/default.mo');
+  ok($engine->GettextInit('t/06_i18n/ru_RU/default.po'), 'init, ru_RU/default.po');
   like($ctx->Output($ctx->Transform($xml_text)),  qr/text: выйти/,          'text, ru_RU');
   like($ctx->Output($ctx->Transform($xml_pages)), qr/pages: страниц: 10/,   'pages, ru_RU');
   like($ctx->Output($ctx->Transform($xml_days)),  qr/days: Осталось 3 дня/, 'days, ru_RU');
 
-  ok($engine->GettextInit('t/06_i18n/ru_RU/LC_MESSAGES/default.mo'),        're-init, ru_RU/LC_MESSAGES/default.mo');
+  ok($engine->GettextInit('t/06_i18n/ru_RU/default.po'), 're-init, ru_RU/default.po');
   like($ctx->Output($ctx->Transform($xml_text)),  qr/text: выйти/,          'text, ru_RU, re-init');
   like($ctx->Output($ctx->Transform($xml_pages)), qr/pages: страниц: 10/,   'pages, ru_RU, re-init');
   like($ctx->Output($ctx->Transform($xml_days)),  qr/days: Осталось 3 дня/, 'days, ru_RU');
 
-  ok($engine->GettextInit('t/06_i18n/en_US/LC_MESSAGES/default.mo'),        'init, en_US/LC_MESSAGES/default.mo');
+  ok($engine->GettextInit('t/06_i18n/en_US/default.po'), 'init, en_US/default.po');
   like($ctx->Output($ctx->Transform($xml_text)),  qr/text: log out/,        'text, en_US');
   like($ctx->Output($ctx->Transform($xml_pages)), qr/pages: pages: 10/,     'pages, en_US');
   like($ctx->Output($ctx->Transform($xml_days)),  qr/days: 3 days to go/,   'days, en_US');
