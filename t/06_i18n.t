@@ -46,9 +46,7 @@ SKIP: {
 
     my $x = TurboXSLT->new->LoadStylesheet('t/06_i18n/style.xsl');
 
-    diag($x->Output($x->Transform($xml_text)));
-
-    return 1; 
+    return $x->Output($x->Transform($xml_text));
   };
 
   nok($failed, 'Translation without GettextInit() should fail.');
