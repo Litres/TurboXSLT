@@ -482,12 +482,14 @@ CODE:
   XSLTSetUserContext(self,library,group_array,group_count);
   free(group_array);
 
-void
+int
 tctx_SetLocalization(self,filename)
   TRANSFORM_CONTEXT *self
   char *filename
 CODE:
-  XSLTSetLocalization(self,filename);  
+  RETVAL = XSLTSetLocalization(self,filename);  
+OUTPUT:
+  RETVAL
 
 XMLNODE *
 tctx_Transform(self,document)
