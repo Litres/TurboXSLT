@@ -482,6 +482,13 @@ CODE:
   XSLTSetUserContext(self,library,group_array,group_count);
   free(group_array);
 
+void
+tctx_SetLocalization(self,filename)
+  TRANSFORM_CONTEXT *self
+  char *filename
+CODE:
+  XSLTSetLocalization(self,filename);  
+
 XMLNODE *
 tctx_Transform(self,document)
   TRANSFORM_CONTEXT *self
