@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 37; # WIth forks you never know... 69 in fact, but who cares?
+use Test::More tests => 38; # WIth forks you never know... 69 in fact, but who cares?
 use utf8;
 use Encode;
 use File::Temp;
@@ -10,6 +10,10 @@ require_ok( 'TurboXSLT' );
 
 my $engine = new TurboXSLT;
 isa_ok($engine, 'TurboXSLT', "XSLT init");
+
+my $second_engine = eval { new TurboXSLT };
+is($second_engine, undef, 'Multiple instances of TurboXSLT are not allowed');
+
 my $RegOk=0;
 eval {
 	$engine->RegisterCallback('ltr:my_callback', sub {join '/',@_});
