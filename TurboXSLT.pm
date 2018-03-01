@@ -34,13 +34,16 @@ bootstrap TurboXSLT $VERSION;
 #INIT_THREAD_SUPPORT()
 }
 
+my $has_instance = 0;
 
 sub new {
+    die 'Only one instance of TurboXSLT is allowed' if $has_instance;
     my $class = shift;
     my %options = @_;
     my $self = bless \%options, $class;
     $self->{TURBOXSL_GLOBAL_CONTEXT} = new XSLTGLOBALDATAPtr;
     $self->{TURBOXSL_CALLBACKS} = {};
+    $has_instance++;
     return $self;
 }
 
@@ -134,6 +137,10 @@ sub AddHashVar {
   
   $name = '@'.$name.'@'.$index;
   $self->SetVar($name, $value);
+}
+
+sub DESTROY {
+    $has_instance--;
 }
 
 1;
