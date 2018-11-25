@@ -125,7 +125,7 @@ node_add_attribute(XMLNODE *element, char *key, SV* scalar)
 }
 
 int
-value_hash_add_value(HV *value_hash, SV* value)
+value_hash_add_value(HV *value_hash, void* value)
 {
   char key[64];
   sprintf(key, "%p", value);
@@ -188,10 +188,10 @@ node_from_hash(XSLTGLOBALDATA *context, HV *value_hash, XMLNODE *element, HV *ha
     I32 key_length = 0;
     SV *value = hv_iternextsv(hash, &key, &key_length);
 
-    if (!value_hash_add_value(value_hash, value)) continue;
-
     if (!SvROK(value))
     {
+      if (!value_hash_add_value(value_hash, value)) continue;
+
       // special case for XML fragment
       if (node_is_xml_fragment(key, key_length) && SvPOK(value))
       {
@@ -213,14 +213,21 @@ node_from_hash(XSLTGLOBALDATA *context, HV *value_hash, XMLNODE *element, HV *ha
     }
     else
     {
+      // get value from reference
       SV *real_value = SvRV(value);
+
       if (SvTYPE(real_value) == SVt_PVAV)
       {
+        if (!value_hash_add_value(value_hash, real_value)) continue;
+
         node_from_array(context, value_hash, element, (AV *)real_value, key);
       }
       else if (SvTYPE(real_value) == SVt_PVHV)
       {
         XMLNODE *node = XMLCreateElement(element, key);
+
+        if (!value_hash_add_value(value_hash, real_value)) continue;
+
         node_from_hash(context, value_hash, node, (HV *)real_value, 0);
       }
     }
@@ -266,6 +273,8 @@ CODE:
     XMLNODE *document = XMLCreateDocument();
 
     HV *value_hash = newHV();
+    value_hash_add_value(value_hash, object);
+
     XMLNODE *root = XMLCreateElement(document, name);
     node_from_hash(gctx, value_hash, root, (HV *)object, 1);
     hv_undef(value_hash);
