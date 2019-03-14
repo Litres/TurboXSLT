@@ -3,4 +3,6 @@
 <xsl:template match="pages">pages: <xsl:value-of select="ltr:__l('страниц: {pages}', 'pages', @number)"/></xsl:template>
 <xsl:template match="days">days: <xsl:value-of select="ltr:__ln('Остался {count} день','Осталось {count} дней', @left, 'count', @left)"/></xsl:template>
 <xsl:template match="greetings">greetings: <xsl:value-of select="ltr:__l('Greetings, Earth Citizens!')"/></xsl:template>
+<xsl:template match="notranslate">notranslate: <xsl:value-of select="ltr:__l('Сервис {name}','name',@name)"/></xsl:template>
+<xsl:template match="symbols">symbols: <xsl:value-of select="ltr:__l('Сервис электронных книг &#x1F4DA; ЛитРес предлагает скачать книгу &#x1F833; {bookName}, {authors_list} в форматах fb2, txt, epub, pdf или читать онлайн! &#x27A4; Оставляйте и читайте отзывы о книге на ЛитРес!','bookName',@bookname,'authors_list',@authors_list)"/></xsl:template>
 </xsl:stylesheet>
