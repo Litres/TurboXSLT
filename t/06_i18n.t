@@ -40,6 +40,8 @@ like($ctx->Output($ctx->Transform($xml_unk)),   qr/greetings: Greetings, Earth C
 #Перевода нет, но нужно плейсхолдер заменить
 like($ctx->Output($ctx->Transform($xml_notranslate)),   qr/notranslate: Сервис aaa/, 'no translation');
 
+like($ctx->Output($ctx->Transform($xml_notranslate)),   qr/double_placeholeds: Сервис aaa да и aaa еще/, 'no translation');
+
 ok($ctx->SetLocalization('t/06_i18n/pl_PL/default.po'), 'init, pl_PL');
 my $Res1='E-book serwis 📚 LitRes zaprasza do pobrania książki &#x1F833 1, 2 w fb2, epub, pdf, txt lub przeczytania jej online! ➤ Napisz i przeczytaj recenzje o książce na stronie LitRes!';
 like($ctx->Output($ctx->Transform($xml_symbols)),   qr/symbols: $Res1/, 'symbols, pl_PL');
