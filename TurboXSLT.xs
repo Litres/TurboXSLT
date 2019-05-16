@@ -325,6 +325,13 @@ CODE:
   register_function(gctx,name,callbackfunc,func);
 
 void
+xslt__create_thread_pool(gctx,size)
+  XSLTGLOBALDATA *gctx
+  unsigned int size
+CODE:
+  XSLTCreateThreadPool(gctx,size);
+
+void
 xslt__enable_external_cache(gctx,list)
   XSLTGLOBALDATA *gctx
   char *list
@@ -404,13 +411,6 @@ tctx_DESTROY(gctx)
   TRANSFORM_CONTEXT *gctx
 CODE:
   XSLTFreeProcessor(gctx);
-
-void
-tctx_CreateThreadPool(self,size)
-  TRANSFORM_CONTEXT *self
-  unsigned int size
-CODE:
-  XSLTCreateThreadPool(self,size);
 
 void
 tctx_SetParallelInstructions(self,instructions)

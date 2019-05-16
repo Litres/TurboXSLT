@@ -47,6 +47,12 @@ sub new {
     return $self;
 }
 
+sub CreateThreadPool {
+  my $self = shift;
+  my $size = shift;
+  _create_thread_pool($self->{TURBOXSL_GLOBAL_CONTEXT},$size);
+}
+
 sub EnableExternalCache {
   my $self = shift;
   my $list = shift;
@@ -71,7 +77,7 @@ sub DefineGroupRights {
 sub LoadStylesheet {
   my $self = shift;
   my $file = shift;
-  return new TurboXSLT::Stylesheet($self->{TURBOXSL_GLOBAL_CONTEXT}, $file);
+  return new TurboXSLT::Stylesheet($self->{TURBOXSL_GLOBAL_CONTEXT},$file);
 }
 
 sub Parse {
