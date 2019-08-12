@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use open ':std', ':encoding(utf8)';
 
-use Test::More 'tests' => 19;
+use Test::More 'tests' => 20;
 
 require_ok('TurboXSLT');
 
@@ -45,3 +45,6 @@ like($ctx->Output($ctx->Transform($xml_notranslate)),   qr/double_placeholeds: �
 ok($ctx->SetLocalization('t/06_i18n/pl_PL/default.po'), 'init, pl_PL');
 my $Res1='E-book serwis 📚 LitRes zaprasza do pobrania książki &#x1F833 1, 2 w fb2, epub, pdf, txt lub przeczytania jej online! ➤ Napisz i przeczytaj recenzje o książce na stronie LitRes!';
 like($ctx->Output($ctx->Transform($xml_symbols)),   qr/symbols: $Res1/, 'symbols, pl_PL');
+
+my $Res2='E-book serwis 📚 LitRes zaprasza do pobrania 🠳 1, 2 w epub, mobi lub przeczytania jej online! ➤ Napisz i zapoznaj się z rezenzjami o książce na stronie LitRes!';
+like($ctx->Output($ctx->Transform($xml_symbols)),   qr/symbols2: $Res2/, 'symbols2, pl_PL');
