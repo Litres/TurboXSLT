@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: litres-website-ru-en\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-11 11:29+0300\n"
-"PO-Revision-Date: 2019-03-14 20:14+0300\n"
+"PO-Revision-Date: 2019-08-12 18:28+0300\n"
 "Last-Translator: alconost <alpha@alconost.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -32,3 +32,8 @@ msgstr[2] "Zostało {count} dni"
 #. /var/www_local/WWWHub/xsl/litres/pages/biblio_book/metadata.xsl:169
 msgid "Сервис электронных книг &#x1F4DA; ЛитРес предлагает скачать книгу &#x1F833; {bookName}, {authors_list} в форматах fb2, txt, epub, pdf или читать онлайн! &#x27A4; Оставляйте и читайте отзывы о книге на ЛитРес!"
 msgstr "E-book serwis 📚 LitRes zaprasza do pobrania książki &#x1F833 {bookName}, {authors_list} w fb2, epub, pdf, txt lub przeczytania jej online! ➤ Napisz i przeczytaj recenzje o książce na stronie LitRes!"
+
+#. /var/www_local/WWWHub/xsl/pda_2.0/pages/biblio_book/metadata.xsl:165
+#. /var/www_local/WWWHub/xsl/litres/pages/biblio_book/metadata.xsl:164
+msgid "Сервис электронных книг &#x1F4DA; ЛитРес предлагает скачать книгу &#x1F833; {bookName}, {authors_list} в epub или читать онлайн! &#x27A4; Оставляйте и читайте отзывы о книге на ЛитРес!"
+msgstr "E-book serwis 📚 LitRes zaprasza do pobrania 🠳 {bookName}, {authors_list} w epub, mobi lub przeczytania jej online! ➤ Napisz i zapoznaj się z rezenzjami o książce na stronie LitRes!"
