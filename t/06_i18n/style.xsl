@@ -6,5 +6,5 @@
 <xsl:template match="notranslate">notranslate: <xsl:value-of select="ltr:__l('Сервис {name}','name',@name)"/></xsl:template>
 <xsl:template match="double_placeholeds">double_placeholeds: <xsl:value-of select="ltr:__l('Сервис {name} да и {name} еще','name',@name)"/></xsl:template>
 <xsl:template match="symbols">symbols: <xsl:value-of select="ltr:__l('Сервис электронных книг &#x1F4DA; ЛитРес предлагает скачать книгу &#x1F833; {bookName}, {authors_list} в форматах fb2, txt, epub, pdf или читать онлайн! &#x27A4; Оставляйте и читайте отзывы о книге на ЛитРес!','bookName',@bookname,'authors_list',@authors_list)"/></xsl:template>
-<xsl:template match="symbols2">symbols2: <xsl:value-of select="ltr:__l('Сервис электронных книг &#x1F4DA; ЛитРес предлагает скачать &#x1F833; аудиокнигу {bookName}, {authors_list} в формате &#127911; mp3 или слушать онлайн! &#x27A4; Скачивайте и слушайте лучшие аудиокниги. Только профессиональные чтецы!','bookName',$bookName,'authors_list',$authors_list)"/></xsl:template>
+<xsl:template match="symbols2">symbols2: <xsl:value-of select="ltr:__l('Сервис электронных книг &#x1F4DA; ЛитРес предлагает скачать книгу &#x1F833; {bookName}, {authors_list} в epub или читать онлайн! &#x27A4; Оставляйте и читайте отзывы о книге на ЛитРес!','bookName',@bookname,'authors_list',@authors_list)"/></xsl:template>
 </xsl:stylesheet>
