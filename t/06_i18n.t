@@ -18,6 +18,7 @@ my $xml_pages         = $engine->Parse('<pages number="10"/>');
 my $xml_days          = $engine->Parse('<days left="3"/>');
 my $xml_unk           = $engine->Parse('<greetings number="13"/>');
 my $xml_symbols       = $engine->Parse('<symbols bookname="1" authors_list="2"/>');
+my $xml_symbols2      = $engine->Parse('<symbols2 bookname="1" authors_list="2"/>');
 my $xml_notranslate   = $engine->Parse('<notranslate name="aaa"/>');
 
 ok($ctx->SetLocalization('t/06_i18n/ru_RU/default.po'), 'init, ru_RU');
@@ -47,4 +48,4 @@ my $Res1='E-book serwis 📚 LitRes zaprasza do pobrania książki &#x1F833 1, 2
 like($ctx->Output($ctx->Transform($xml_symbols)),   qr/symbols: $Res1/, 'symbols, pl_PL');
 
 my $Res2='E-book serwis 📚 LitRes zaprasza do pobrania 🠳 1, 2 w epub, mobi lub przeczytania jej online! ➤ Napisz i zapoznaj się z rezenzjami o książce na stronie LitRes!';
-like($ctx->Output($ctx->Transform($xml_symbols)),   qr/symbols2: $Res2/, 'symbols2, pl_PL');
+like($ctx->Output($ctx->Transform($xml_symbols2)),   qr/symbols2: $Res2/, 'symbols2, pl_PL');
