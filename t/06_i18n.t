@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use open ':std', ':encoding(utf8)';
 
-use Test::More 'tests' => 20;
+use Test::More 'tests' => 21;
 
 require_ok('TurboXSLT');
 
@@ -20,6 +20,7 @@ my $xml_unk           = $engine->Parse('<greetings number="13"/>');
 my $xml_symbols       = $engine->Parse('<symbols bookname="1" authors_list="2"/>');
 my $xml_symbols2      = $engine->Parse('<symbols2 bookname="1" authors_list="2"/>');
 my $xml_notranslate   = $engine->Parse('<notranslate name="aaa"/>');
+my $xml_placeholders  = $engine->Parse('<double_placeholders name="aaa"/>');
 
 ok($ctx->SetLocalization('t/06_i18n/ru_RU/default.po'), 'init, ru_RU');
 like($ctx->Output($ctx->Transform($xml_text)),  qr/text: выйти/,          'text, ru_RU');
@@ -38,10 +39,9 @@ like($ctx->Output($ctx->Transform($xml_days)),  qr/days: 3 days to go/,   'days,
 
 like($ctx->Output($ctx->Transform($xml_unk)),   qr/greetings: Greetings, Earth Citizens!/, 'no translation');
 
-#Перевода нет, но нужно плейсхолдер заменить
+# Перевода нет, но нужно плейсхолдер заменить
 like($ctx->Output($ctx->Transform($xml_notranslate)),   qr/notranslate: Сервис aaa/, 'no translation');
-
-like($ctx->Output($ctx->Transform($xml_notranslate)),   qr/double_placeholeds: Сервис aaa да и aaa еще/, 'no translation');
+like($ctx->Output($ctx->Transform($xml_placeholders)),  qr/double_placeholders: Сервис aaa да и aaa еще/, 'no translation');
 
 ok($ctx->SetLocalization('t/06_i18n/pl_PL/default.po'), 'init, pl_PL');
 my $Res1='E-book serwis 📚 LitRes zaprasza do pobrania książki &#x1F833 1, 2 w fb2, epub, pdf, txt lub przeczytania jej online! ➤ Napisz i przeczytaj recenzje o książce na stronie LitRes!';
