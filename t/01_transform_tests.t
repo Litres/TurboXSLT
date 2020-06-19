@@ -17,26 +17,25 @@ closedir TESTSDIR;
 
 @XSLs = sort {$b cmp $a} @XSLs;
 
-
-plan(tests => (scalar @XSLs) + 2);
+plan(tests => (scalar @XSLs) + 1);
 
 ok(@XSLs > 0, "Tests loaded");
-
-my $engine = new TurboXSLT;
-isa_ok($engine, 'TurboXSLT', "XSLT init");
 
 for my $XSL (@XSLs){
 	my $XSLFile = "$TestsFolder/$XSL.xsl";
 	my $XMLFile = "$TestsFolder/$XSL.xml";
 	my $Expectance = "$TestsFolder/$XSL.out";
 	subtest $XSL => sub {
-		plan tests => 13;
+		plan tests => 15;
 		for my $Multithreads (0,4){
+			my $engine = new TurboXSLT;
+			isa_ok($engine, 'TurboXSLT', "XSLT init");
+
 			my $ctx = $engine->LoadStylesheet($XSLFile);
 			isa_ok($ctx, 'TurboXSLT::Stylesheet', "Stylesheet $XSL.xsl load");
 
 			if ($Multithreads){
-				$ctx->CreateThreadPool(4);
+				$engine->CreateThreadPool(4);
 				pass("CreateThreadPool(4) - no die");
 			}
 
