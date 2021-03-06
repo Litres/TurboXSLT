@@ -80,7 +80,7 @@ node_add_text(XMLNODE *element, SV* scalar)
   if (SvIOK(scalar))
   {
     char buffer[64];
-    sprintf(buffer, "%d", SvIVX(scalar));
+    sprintf(buffer, "%ld", SvIVX(scalar));
     XMLAddText(element, buffer);
     return;
   }
@@ -105,7 +105,7 @@ node_add_attribute(XMLNODE *element, char *key, SV* scalar)
   if (SvIOK(scalar))
   {
     char buffer[64];
-    sprintf(buffer, "%d", SvIVX(scalar));
+    sprintf(buffer, "%ld", SvIVX(scalar));
     XMLAddAttribute(element, key, buffer);
     return;
   }
